@@ -1,0 +1,261 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Panel class="pnlSearchDate">
+		<FlexBox alignItems="Center" justifyContent="SpaceBetween">
+			<items>
+				<VBox visible="false">
+					<HBox alignItems="Center">
+						<Label class="textcolor" width="100px" text="{i18n>txtNextOfKin}" />
+						<Input id="inNextOfKin" class="inputbordercolor" editable="false" />
+					</HBox>
+					<HBox alignItems="Center">
+						<Label class="textcolor" width="100px" text="{i18n>txtPhoneNo}" />
+						<Input id="inPhoneNo" class="inputbordercolor" editable="false" />
+					</HBox>
+					<!-- <HBox alignItems="Center"> <Label class="textcolor" width="100px"
+						text="{i18n>txtName}" /> <Input id="inName" class="inputbordercolor" editable="false"
+						/> </HBox> -->
+				</VBox>
+				<VBox visible="false">
+					<Panel class="border" width="100%" height="95px">
+						<HBox alignItems="Center" height="100%" justifyContent="Center">
+							<Label class="textcolor" design="Standard" text="{i18n>txtIdSticker}" />
+						</HBox>
+					</Panel>
+				</VBox>
+			</items>
+		</FlexBox>
+		<HBox justifyContent="Center">
+			<VBox width="100%">
+				<html:div class="textcolor"
+					style="font-size: 0.875rem;font-family: Arial,Helvetica,sans-serif;line-height:25px;color:#6a7694;text-align:justify;">
+					أنا أسأل لتلقي الرعاية الطبية والعلاج في هذا المرفق، و
+					توافق على
+					قبول الخدمات التي يمكن تشخيص بلدي الطبية
+					حالة، وإجراءات لعلاج حالتي
+					والروتين الأسنان
+					والرعاية الطبية.
+					<html:br />
+					&#8226; وأنا أفهم أن سيتم توفير هذه الخدمات لي
+					الأطباء والممرضات
+					وأطباء الأسنان والقابلات ومساعدي الأطباء
+					ومقدمي الرعاية الصحية
+					الآخرين.
+					<html:br />
+					&#8226; وأنا أفهم أن موافقتي لقبول هذه الخدمات
+					ودعا الموافقة عامة
+					وأنه يتضمن أي روتين
+					الإجراء (الإجراءات) أو العلاج (ق) مثل الرسم الدم
+					والمادية
+					فحص والإدارة أو الدواء (ق)، وأخذ الأشعة السينية،
+					استخدام
+					تخدير موضعي، وغيرها من الإجراءات غير الغازية.
+					<html:br />
+					&#8226; أنا لا نعترف بأن قد تكون هناك حاجة إلى الإعلانات المختلفة
+					لبعض الإجراءات التشخيصية والجراحية محددة.
+					<html:br />
+					&#8226; وأقر كذلك أن نتائج العلاجات الطبية و
+					قد لا يمكن التنبؤ بشكل
+					كاف العمليات الجراحية.
+					لا مستشفى ولا فريق طبي حضور يستطيعون أو لا
+					يسمح لإعطاء أي ضمان أو تأكيد النتائج.
+					<html:br />
+					&#8226;أنا منح إذن للبيانات الطبية بلدي لاستخدامها في السريرية
+					البحوث، وإذا لزم الأمر، مع العلم أن هويتي
+					تظل يخدع العمارات
+					والخصوصية احترامها.
+					<html:br />
+					&#8226; نفهم أن موافقتي على قبول هذه الخدمة سوف
+					تبقى سارية المفعول
+					ما لم أقول إنني لم تعد تريد هذه
+					الخدمات أو حتى اكتمال علاجي.
+					<html:br />
+					&#8226; أنا أتحمل المسؤولية الكاملة عن جميع بنود الممتلكات الشخصية،
+					بما في ذلك سبيل المثال لا الحصر، النظارات، السمع،
+					أطقم الأسنان،
+					والمجوهرات، والمال وجميع الأشياء الثمينة الأخرى.
+					<html:br />
+					&#8226; وأنا أفهم أنه قد يكون هناك تكلفة شخصية تشارك في بلدي
+					العلاج
+					وفقا للقوانين واللوائح الإمارات العربية المتحدة.
+					<html:br />
+					&#8226; سأمتنع عن التدخين داخل المستشفى ومن أي
+					النشاط الأخرى التي قد
+					تشكل خطرا على صحة وسلامة
+					الموظفين والمرضى والزوار.
+					<html:br />
+					&#8226; لقد أبلغت عن حقوق ومسؤوليات المريض.
+					<html:br />
+					<html:br />
+					<html:span class="inputEntry" id="patientName" style="display:none;"></html:span>
+					<l:Grid defaultSpan="L12 M12 S12" width="auto">
+						<l:content>
+							<f:SimpleForm id="frmAddPatient" minWidth="1024"
+								maxContainerCols="1" editable="true" layout="ResponsiveGridLayout"
+								title="" labelSpanL="3" labelSpanM="3" emptySpanL="0"
+								emptySpanM="0" columnsL="1" columnsM="1" class="editableForm">
+								<f:content>
+									<html:div>
+										في حالة رفض الرجاء ليرة لبنانية حتى شكل رفض محدد
+									</html:div>
+									<Label></Label>
+									<Label></Label>
+									<!-- <Label class="textcolor" text="{i18n>txtPatientGuar}" /> <Input
+										id="inPatientGuardian" class="inputbordercolor" /> -->
+									<Label class="textcolor" text="{i18n>txtSignDate}" />
+									<Button id="imgOne" text="{i18n>txtTapHere}" press="onClickSignature" />
+									<DateTimeInput id="inPatientGuardianDT" class="inputbordercolor"
+										type="DateTime"></DateTimeInput>
+									<Label />
+									<Image id="imgOneDisplay" width="300px" height="110px"></Image>
+									<core:Title text="" />
+									<html:div>
+										<html:br />
+										<html:b>بديل اهب الموافقة</html:b>
+										<html:br></html:br>
+										إذا كان المريض لا يستطيع الموافقة على نفسه / نفسها، توقيع
+										الوالد، مزود الرعاية الصحية، الوصي القانوني، أو بديلا
+										المعطي
+										موافقة الذي يعمل نيابة عن المريض أو
+										المريض القادم من ذوي القربى
+										الذي المؤيدين للعلاج ل
+										المريض، يجب الحصول عليها.
+										<html:br></html:br>
+										أنا
+										<html:input class="inputEntry"></html:input>
+										من
+										<html:input class="inputEntry"></html:input>
+										سنوات الجنسية
+										<html:input class="inputEntry"></html:input>
+										القديمة،
+										حامل معك بطاقة تعريف عدد
+										<html:input class="inputEntry"></html:input>
+										اكتب
+										<html:input class="inputEntry"></html:input>
+										هل أصرح أني أنا
+										ولي / بديلا المعطي الموافقة على المريض في بلدي
+										القدرة كما
+										<html:input class="inputEntry"></html:input>
+										لقد طلب مني، في مصلحة المريض، للتوقيع
+										هذا الإعلان والموافقات
+										المطلوبة من قبل المستشفى كما
+										المريض هو غير كفء للقيام بذلك.
+										<html:br />
+									</html:div>
+
+									<Label class="textcolor" text="{i18n>txtSubConceGiver}" />
+									<Input id="inSubConceGiver" class="inputbordercolor" />
+									<Label class="textcolor" text="{i18n>txtRelaToPatient}" />
+									<Input id="inRelationToPatient" class="inputbordercolor" />
+									<Label class="textcolor" text="{i18n>txtSignDate}" />
+									<Button id="imgTwo" text="{i18n>txtTapHere}" press="onClickSignature" />
+									<DateTimeInput id="inRelationToPatientDT" class="inputbordercolor"
+										type="DateTime"></DateTimeInput>
+									<Label />
+									<Image id="imgTwoDisplay" width="300px" height="110px"></Image>
+									<core:Title text="" />
+									<html:div>
+										<html:b>الشاهد</html:b>
+										<html:br></html:br>
+										الأول،
+										<html:input class="inputEntry" id="inpWitnessName"></html:input>
+										صباحا
+										مستشفى Burjeel الموظف الذي ليس الطبيب المرضى أو
+										مرخص مزود
+										الرعاية الصحية، ولقد شهد
+										المريض أو له / لها البديل الموافقة اهب
+										توقيع طوعا هذا
+										شكل.
+										<html:br></html:br>
+									</html:div>
+									<!-- <Label class="textcolor" text="{i18n>txtWitness}" /> <Input
+										id="inWitness" class="inputbordercolor" /> -->
+									<Label class="textcolor" text="اسم" />
+									<Input id="inWitnessIdNo" class="inputbordercolor" />
+									<Label class="textcolor" text="{i18n>txtSignDate}" />
+									<Button id="imgThree" text="{i18n>txtTapHere}" press="onClickSignature" />
+									<DateTimeInput id="inWitnessDT" class="inputbordercolor"
+										type="DateTime"></DateTimeInput>
+									<Label />
+									<Image id="imgThreeDisplay" width="300px" height="110px"></Image>
+									<core:Title text="" />
+									<html:div>
+										<html:br />
+										<html:b>
+											المبادئ التوجيهية
+										</html:b>
+										<html:br />
+										<html:b>
+											ولي المريض أو بديل مقدم موافقة يجب أن تفي
+											المعايير التالية القانونية:
+										</html:b>
+										يجب أن تكون 18 سنة أو أكثر. الأب أو الأم لديه
+										حق التوقيع نيابة عن ابنهما أو ابنتهما بغض النظر عن
+										سنهم. يجب أن يكون سليم العقل والجسم. يجب أن تكون قادرة على
+										فهم مضمون الإعلان والتوقيع عليه. يستطيع
+										قراءة الكتابة بشكل صحيح، وإلا يمكن أن يعاونه آخر
+										الشخص الذي يشرح محتويات والتوقيع على الإعلانات
+										معه / معها كشاهد. على حد سواء، من الذكور والإناث
+										تعتبر متساوين في بالتراضي.
+										<html:br />
+										<html:b>تعريف الجارديان:</html:b>
+										الأب، الأم، الأخ، الأخت، العم، الجد، الجدة،
+										أقارب أو أي والد في القانون. الزوج يلغي ل
+										الأب وأولئك الذين يتبعون تحته.
+										<html:br />
+										<html:b>تعريف البديل الموافقة اهب:</html:b>
+										إذا كان المريض ليس لديه أقارب المقيمين في دولة الإمارات
+										العربية المتحدة: له / لها مقدمي مشروع القرار،
+										ثم صديق قد يوقع على ه / نيابة عنها.
+										<html:br />
+										<html:b>الإعفاءات:</html:b>
+										واللاواعي / غير كفء المريض في حالات الطوارئ الذي لا يوجد لديه
+										الوصي أو البديل المعطي الموافقة في الوقت هو / هي
+										ادخاله الى قسم الحوادث والطوارئ يجب أن تكون
+										يعفى من إعطاء الموافقة. يجب أن يوقع الزوج في شخص
+										إعلان المتعلقة العلاجات والتدخلات الجراحية
+										التي قد تؤثر على خصوبة زوجته في
+										المستقبل.
+										<html:br />
+										<html:b>تطبق فقط قوانين دولة الإمارات العربية المتحدة:
+										</html:b>
+										إلى أي نزاع قد ينشأ فيما يتعلق بمعاملة أو
+										التعامل مع المريض، ومحاكم الإمارات العربية المتحدة هي حصرا
+										المختصة لاتخاذ القرار والقاضي في هذا النزاع.
+										<html:br />
+										<html:b>أسئلة معلومات:</html:b>
+										وينبغي لأعضاء الفريق الطبي الإجابة / المريض
+										الأسئلة ولي الأمر / بديلا موافقة المانح بشكل بسيط،
+										من السهل أن نفهم، وموضوعية الطريقة، دون
+										المبالغة أو الوعود. والهدف من ذلك هو لمنحهم ما يكفي
+										معلومات عن كل جانب من جوانب هذا المرض، والتدابير التشخيصية
+										والعلاج، فضلا عن أي آثار جانبية، والمعتاد
+										مضاعفات. يجب أن يكون هذا: واضح والعلمية وبسهولة
+										فهم، وبما يكفي لمساعدة له / لها في اتخاذ القرار.
+										ولا تحتوي هذه المعلومات على أي وعود أو
+										التوقعات.
+										<html:br />
+										<html:b>لغة:</html:b>
+										يجب أن تكون هناك لغة مشتركة بين المريض،
+										الوصي أو موافقة بديلة مقدمي والأطباء من أجل
+										لفهم مضمون الإعلان. مترجم قد تستخدم، إذا
+										الضرورة، وقال انه / انها يجب أيضا التوقيع على الإعلان.
+										<html:br />
+									</html:div>
+									<!-- <Label class="textcolor" text="{i18n>txtTransInter}" /> <Input
+										id="inTranslatorInter" class="inputbordercolor" /> <Label class="textcolor"
+										text="{i18n>txtIdNo}" /> <Input id="inTranslatorInterIdNo" class="inputbordercolor"
+										/> <Label class="textcolor" text="{i18n>txtSignDate}" /> <Button id="imgFour"
+										text="{i18n>txtTapHere}" press="onClickSignature" /> <DateTimeInput id="inTranslatorInterDT"
+										class="inputbordercolor" type="DateTime"></DateTimeInput> <Label /> <Image
+										id="imgFourDisplay" width="300px" height="110px"></Image> -->
+								</f:content>
+							</f:SimpleForm>
+						</l:content>
+					</l:Grid>
+				</html:div>
+			</VBox>
+		</HBox>
+	</Panel>
+</core:FragmentDefinition>

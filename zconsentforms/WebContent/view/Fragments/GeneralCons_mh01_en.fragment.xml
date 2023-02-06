@@ -1,0 +1,243 @@
+<core:FragmentDefinition
+	xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns="sap.m"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Panel class="pnlSearchDate">
+		<FlexBox alignItems="Center" justifyContent="SpaceBetween">
+			<items>
+				<VBox>
+					<HBox alignItems="Center">
+						<Label class="textcolor" width="100px"
+							text="{i18n>txtNextOfKin}" />
+						<Input id="inNextOfKin" class="inputbordercolor"
+							editable="false" />
+					</HBox>
+					<HBox alignItems="Center">
+						<Label class="textcolor" width="100px"
+							text="{i18n>txtPhoneNo}" />
+						<Input id="inPhoneNo" class="inputbordercolor"
+							editable="false" />
+					</HBox>
+					<!-- <HBox alignItems="Center"> <Label class="textcolor" width="100px"\
+						text="{i18n>txtName}" /> <Input id="inName" class="inputbordercolor" editable="false"\
+						/> </HBox> -->
+				</VBox>
+				<VBox visible="false">
+					<Panel class="border" width="100%" height="95px">
+						<HBox alignItems="Center" height="100%"
+							justifyContent="Center">
+							<Label class="textcolor" design="Standard"
+								text="{i18n>txtIdSticker}" />
+						</HBox>
+					</Panel>
+				</VBox>
+			</items>
+		</FlexBox>
+		<HBox justifyContent="Center">
+			<VBox width="100%">
+				<VBox height="25px"></VBox>
+				<html:div class="textcolor"
+					style="font-size: 0.875rem;font-family: Arial,Helvetica,sans-serif;line-height:25px;color:#6a7694;text-align:justify;">
+					1. I
+					<html:span class="inputEntry" id="patientName"></html:span>
+					hereby consent to authorize Medeor 24x7 Hospital, its
+					working
+					physicians and its health professionals to render all
+					medical care
+					to myself or to my dependent, including Physical
+					Examinations,
+					Radiology Examinations, Laboratory tests, Blood and
+					blood products,
+					Injections and /or administration of pharmaceutical
+					products /
+					Medications, use of local anesthetics and other invasive
+					procedures
+					as necessary or advisable in the judgement of the
+					hospital's
+					physicians and health professionals. I have not been
+					given any
+					guarantees to the results of the services I will receive.
+					<html:br />
+					2. Access to Medical Records: I hereby consent that relevant Medeor
+					24x7 Hospital staff may access my personal medical records for
+					processing insurance claims, quality review, medico-legal auditing
+					purposes or as directed by the Hospital Management. I hereby
+					consent that Medeor 24x7 Hospital may release my medical records at
+					the request of the Police, Court, Health Authority of Abu Dhabi,
+					and my insurance company/payer. This is applicable while I remain a
+					member of the Insurance Company after which the insurance company
+					will obtain my consent for this purpose. I understand that all
+					personnel accessing my records will maintain a professional
+					standard of confidentiality and that will not jeopardize my right
+					to high quality medical care in the future.
+					<html:br />
+					3. Consent for Release of Medical Information to insurance
+					companies/payer: I, the undersigned, do hereby authorize my
+					Insurance Company/Payer to have access to and take copies of all my
+					files and records at any time relating to any healthcare services
+					provided to me for services rendered under my insurance card during
+					the period of my insurance coverage.
+					<html:br />
+					I understand that from time to time my insurance company /payer may
+					need to disclose information related to my medical files and
+					records to third parties for reasons related to insurance including
+					but not limited to the processing of my Medical claim,
+					research/statistical purposes or to prevent/control fraudulent or
+					improper claims.
+					<html:br />
+					I hereby authorize my insurance company/payer to consult with and /
+					or require me to attend a second opinion consultation or case
+					management review with regard to the coverage of certain benefits
+					as per my insurance coverage.
+					<html:br />
+					My insurance company/payer will ensure the confidentiality of all
+					information it receives in relation to this Consent as required by
+					the UAE Law.
+					<html:br />
+					4. I authorize Medeor 24x7 Hospital to release my treatment reports
+					to the registered mail id.
+					<html:br />
+					5. Transfer: I agree, if I / my dependent's medical conditions
+					require transferring me / my dependents from the hospital, ward or
+					room to another hospital, ward or room if recommended by attending
+					Physicians of Medeor 24x7 Hospital.
+					<html:br />
+					6. Cost Payment: I have been made aware of the estimated cost of
+					treatment by the hospital. I accept the final cost as my
+					responsibility, when presented at the end of the treatment. I agree
+					to pay this cost in full to the hospital in the event of refusal of
+					payment by my insurers, or by my employer in whole or in part of
+					the medical bills or non-payment on time.
+					<html:br />
+					7. I understand that all my past and present medical information
+					will be shared through ADHIE (Abu Dhabi Health Information Exchange)
+ 					platform/portal as part of the Department of Health regulatory
+ 					requirements to ensure better access (across the Emirate
+ 					of Abu Dhabi), quality and continuity of care.
+					<html:br />
+					8. I have been made aware of the Hospital's Patient Rights and
+					Responsibilities.
+					<html:br />
+					<l:Grid defaultSpan="L12 M12 S12" width="auto">
+						<l:content>
+							<f:SimpleForm id="frmAddPatient" minWidth="1024"
+								maxContainerCols="1" editable="true"
+								layout="ResponsiveGridLayout" title="" labelSpanL="3"
+								labelSpanM="3" emptySpanL="0" emptySpanM="0" columnsL="1"
+								columnsM="1" class="editableForm">
+								<f:content>
+									<core:Title text="" />
+									<html:div>This Consent is valid as long as I am receiving
+										treatment and care at Medeor 24x7 Hospital and pharmacies.
+									</html:div>
+									<Label></Label>
+									<Label></Label>
+									<!-- <Label class="textcolor" text="{i18n>txtPatientGuar}" /> <Input\
+										id="inPatientGuardian" class="inputbordercolor" /> -->
+									<Label class="textcolor" text="{i18n>txtSignDate}" />
+									<Button id="imgOne" text="{i18n>txtTapHere}"
+										press="onClickSignature" />
+									<DateTimeInput id="inPatientGuardianDT"
+										class="inputbordercolor" type="DateTime"></DateTimeInput>
+									<Label />
+									<Image id="imgOneDisplay" width="300px" height="110px"></Image>
+									<core:Title text="" />
+									<html:div>
+										<html:b>SUBSTITUTE CONSENT GIVER</html:b>
+										<html:br></html:br>
+										If the patient cannot consent for him / herself, the consent
+										must be obtained from the parent or nearby relative according
+										to UAE law. If a family member is not available, it must be
+										given by an appointed legal guardian.
+										<html:br></html:br>
+										I,
+										<html:input class="inputEntry"></html:input>
+										of
+										<html:input class="inputEntry"></html:input>
+										Nationality,
+										<html:input class="inputEntry"></html:input>
+										years old:
+										<html:input class="inputEntry"></html:input>
+										holder of ID Number
+										<html:input class="inputEntry"></html:input>
+										Type
+										<html:input class="inputEntry"></html:input>
+										Relation
+										to the patient
+										<html:input class="inputEntry"></html:input>
+										<html:br></html:br>
+										Do hereby declare that I am the guardian/substitute consent
+										giver for the patient in my capacity as. I have been asked, in
+										the best interest of the patient, to sign this declaration and
+										consent required by the hospital as the patient is incompetent
+										to do so.
+										<html:br />
+									</html:div>
+
+									<!-- <Label class="textcolor" text="{i18n>txtSubConceGiver}" />\
+										<Input id="inSubConceGiver" class="inputbordercolor" /> <Label class="textcolor"\
+										text="{i18n>txtRelaToPatient}" /> <Input id="inRelationToPatient" class="inputbordercolor"\
+										/> -->
+									<Label class="textcolor" text="{i18n>txtSignDate}" />
+									<Button id="imgTwo" text="{i18n>txtTapHere}"
+										press="onClickSignature" />
+									<DateTimeInput id="inRelationToPatientDT"
+										class="inputbordercolor" type="DateTime"></DateTimeInput>
+									<Label />
+									<Image id="imgTwoDisplay" width="300px" height="110px"></Image>
+									<core:Title text="" />
+									<html:div>
+										<html:b>WITNESS</html:b>
+										<html:br></html:br>
+										I,
+										<html:input class="inputEntry" id="inpWitnessName"></html:input>
+										am a Medeor 24x7 Hospital employee who is not
+										a patient's
+										physician or authorized health care provider and I
+										have
+										witnessed the patient or his/her Substitute Consent giver
+										voluntarily sign this form.
+										<html:br></html:br>
+									</html:div>
+									<!-- <Label class="textcolor" text="{i18n>txtWitness}" /> <Input\
+										id="inWitness" class="inputbordercolor" /> -->
+									<Label class="textcolor" text="{i18n>txtIdNo}" />
+									<Input id="inWitnessIdNo" class="inputbordercolor" />
+									<Label class="textcolor" text="{i18n>txtSignDate}" />
+									<Button id="imgThree" text="{i18n>txtTapHere}"
+										press="onClickSignature" />
+									<DateTimeInput id="inWitnessDT"
+										class="inputbordercolor" type="DateTime"></DateTimeInput>
+									<Label />
+									<Image id="imgThreeDisplay" width="300px" height="110px"></Image>
+									<core:Title text="" />
+									<html:div>
+										<html:b>
+											INTERPRETER /TRANSLATOR
+										</html:b>
+										<html:br></html:br>
+										To the best of my knowledge, the patient understood what was
+										interpreted/translated and voluntarily signed this form.
+
+									</html:div>
+									<Label class="textcolor" text="{i18n>txtTransInter}" />
+									<Input id="inTranslatorInter" class="inputbordercolor" />
+									<Label class="textcolor" text="{i18n>txtIdNo}" />
+									<Input id="inTranslatorInterIdNo"
+										class="inputbordercolor" />
+									<Label class="textcolor" text="{i18n>txtSignDate}" />
+									<Button id="imgFour" text="{i18n>txtTapHere}"
+										press="onClickSignature" />
+									<DateTimeInput id="inTranslatorInterDT"
+										class="inputbordercolor" type="DateTime"></DateTimeInput>
+									<Label />
+									<Image id="imgFourDisplay" width="300px" height="110px"></Image>
+								</f:content>
+							</f:SimpleForm>
+						</l:content>
+					</l:Grid>
+				</html:div>
+			</VBox>
+		</HBox>
+	</Panel>
+</core:FragmentDefinition>

@@ -1,0 +1,251 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Panel class="pnlSearchDate">
+		<FlexBox alignItems="Center" justifyContent="SpaceBetween">
+			<items>
+				<VBox visible="false">
+					<HBox alignItems="Center">
+						<Label class="textcolor" width="100px" text="{i18n>txtNextOfKin}" />
+						<Input id="inNextOfKin" class="inputbordercolor" editable="false" />
+					</HBox>
+					<HBox alignItems="Center">
+						<Label class="textcolor" width="100px" text="{i18n>txtPhoneNo}" />
+						<Input id="inPhoneNo" class="inputbordercolor" editable="false" />
+					</HBox>
+					<!-- <HBox alignItems="Center"> <Label class="textcolor" width="100px"
+						text="{i18n>txtName}" /> <Input id="inName" class="inputbordercolor" editable="false"
+						/> </HBox> -->
+				</VBox>
+				<VBox visible="false">
+					<Panel class="border" width="100%" height="95px">
+						<HBox alignItems="Center" height="100%" justifyContent="Center">
+							<Label class="textcolor" design="Standard" text="{i18n>txtIdSticker}" />
+						</HBox>
+					</Panel>
+				</VBox>
+			</items>
+		</FlexBox>
+		<HBox justifyContent="Center">	
+			<VBox width="100%">
+				<html:div class="textcolor"
+					style="font-size: 0.875rem;font-family: Arial,Helvetica,sans-serif;line-height:25px;color:#6a7694;text-align:justify;">
+					I am asking for medical care and treatment at this facility, and
+					agree to accept services which may diagnose my medical
+					condition,
+					procedures to treat my condition and routine dental
+					and medical
+					care.
+					<html:br />&#8226; I understand that these services will be provided to me
+							by
+							physicians, Nurses, dentists, midwives, physician assistants
+							and other health care providers.
+						<html:br />&#8226; I understand that my agreement to accept these services
+							is
+							called a General Consent and that it includes any routine
+							procedure(s) or treatment(s) such as blood drawing, physical
+							examination, administration or medication(s), taking x-rays,
+							use
+							of local anesthesia, and other non-invasive procedures.
+						<html:br />&#8226; I do acknowledge that different declarations may be needed
+							for some specific diagnostic and surgical procedures.
+						<html:br />&#8226; I further acknowledge, that results of medical treatments
+							and
+							surgical procedures may not be adequately predicted.
+							Neither
+							the Hospital nor attending medical team can or are
+							allowed to give
+							any guarantee or confirmation of outcomes.
+						<html:br />&#8226; I consent for relevant staff / authority to access my information for insurance purposes, patient experience, quality review and analysis, medico-legal purposes or as directed by the hospital management. The hospital may release my medical records at the request to police, court, health authority, accreditation or certification bodies and insurance company /payer.
+						<html:br />&#8226; I understand that my agreement to accept these service
+							will
+							remain in effect unless I say that I no longer want these
+							services or until my treatment is completed.
+						<html:br />&#8226; I assume full responsibility for all items of personal
+							property,
+							including but not limited to, eyeglasses, hearing aids,
+							dentures, jewelry, money and all other valuables.
+						<html:br />&#8226; I understand that there may be personal cost involved in
+							my
+							treatment as per the UAE laws and regulations.
+						<html:br />&#8226; I will refrain from smoking within the hospital and from
+							any
+							other activity that may pose a risk to the health and safety
+							of
+							staff, patients or visitors.
+						<html:br />&#8226; I have been informed about patient's rights &amp;
+							responsibilities.<html:br /><html:br />
+					<html:span class="inputEntry" id="patientName" style="display:none;"></html:span>
+					<l:Grid defaultSpan="L12 M12 S12" width="auto">
+						<l:content>
+							<f:SimpleForm id="frmAddPatient" minWidth="1024"
+								maxContainerCols="1" editable="true" layout="ResponsiveGridLayout"
+								title="" labelSpanL="3" labelSpanM="3" emptySpanL="0"
+								emptySpanM="0" columnsL="1" columnsM="1" class="editableForm">
+								<f:content>
+									<html:div>
+										In case of refusal please fill up the specific
+										Refusal form.
+									</html:div>
+									<Label></Label>
+									<Label></Label>
+									<!-- <Label class="textcolor" text="{i18n>txtPatientGuar}" /> <Input
+										id="inPatientGuardian" class="inputbordercolor" /> -->
+									<Label class="textcolor" text="{i18n>txtSignDate}" />
+									<Button id="imgOne" text="{i18n>txtTapHere}" press="onClickSignature" />
+									<DateTimeInput id="inPatientGuardianDT" class="inputbordercolor"
+										type="DateTime"></DateTimeInput>
+									<Label />
+									<Image id="imgOneDisplay" width="300px" height="110px"></Image>
+									<core:Title text="" />
+									<html:div><html:br />
+										<html:b>SUBSTITUTE CONSENT GIVER</html:b>
+										<html:br></html:br>
+										If the patient cannot consent for him/herself, the signature
+										of the parent, health care provider, legal guardian, or
+										substitute consent giver who is acting on behalf of the
+										patient or the patient's next of kin who is assenting to the
+										treatment for the patient, must be obtained.
+										<html:br></html:br>
+										I,
+										<html:input class="inputEntry"></html:input>
+										of
+										<html:input class="inputEntry"></html:input>
+										Nationality,
+										<html:input class="inputEntry"></html:input>
+										years old,
+										<html:input class="inputEntry"></html:input>
+										Holder of I.D. Number
+										<html:input class="inputEntry"></html:input>
+										Type
+										<html:input class="inputEntry"></html:input>
+										Do hereby declare that I am the guardian/substitute consent
+										giver for the patient in my capacity as
+										<html:input class="inputEntry"></html:input>
+										I have been asked, in the best interests of the patient, to
+										sign this declaration and consents required by the hospital as
+										the patient is incompetent to do so.
+										<html:br />
+									</html:div>
+
+									<Label class="textcolor" text="{i18n>txtSubConceGiver}" />
+									<Input id="inSubConceGiver" class="inputbordercolor" />
+									<Label class="textcolor" text="{i18n>txtRelaToPatient}" />
+									<Input id="inRelationToPatient" class="inputbordercolor" />
+									<Label class="textcolor" text="{i18n>txtSignDate}" />
+									<Button id="imgTwo" text="{i18n>txtTapHere}" press="onClickSignature" />
+									<DateTimeInput id="inRelationToPatientDT" class="inputbordercolor"
+										type="DateTime"></DateTimeInput>
+									<Label />
+									<Image id="imgTwoDisplay" width="300px" height="110px"></Image>
+									<core:Title text="" />
+									<html:div>
+										<html:b>WITNESS</html:b>
+										<html:br></html:br>
+										I,
+										<html:input class="inputEntry" id="inpWitnessName"></html:input>
+										am Burjeel Hospital Employee who is not the patient's
+										physician or authorized health care provider and I have
+										witnessed the patient or his/her Substitute Consent Giver
+										voluntarily sign this form.
+										<html:br></html:br>
+									</html:div>
+									<!-- <Label class="textcolor" text="{i18n>txtWitness}" /> <Input
+										id="inWitness" class="inputbordercolor" /> -->
+									<Label class="textcolor" text="Name" />
+									<Input id="inWitnessIdNo" class="inputbordercolor" />
+									<Label class="textcolor" text="{i18n>txtSignDate}" />
+									<Button id="imgThree" text="{i18n>txtTapHere}" press="onClickSignature" />
+									<DateTimeInput id="inWitnessDT" class="inputbordercolor"
+										type="DateTime"></DateTimeInput>
+									<Label />
+									<Image id="imgThreeDisplay" width="300px" height="110px"></Image>
+									<core:Title text="" />
+									<html:div><html:br />
+										<html:b>
+											GUIDELINES
+										</html:b>
+										<html:br />
+										<html:b>
+											Patient guardian or substitute consent giver must meet
+											the following legal criteria:
+										</html:b>
+										Shall be 18 years old or more. The father or mother has the
+										right to sign on behalf of their son or daughter regardless of
+										their age. Shall be of sound mind and body. Shall be able to
+										understand the contents of the declaration and sign it. Can
+										read write properly, otherwise may be assisted by another
+										person who explains the contents and sign the declarations
+										with him/her as witness. Both, males and females are
+										considered equal in consenting.
+										<html:br />
+										<html:b>Definition of the Guardian:</html:b>
+										Father, mother, brother, sister, uncle, grandfather,
+										grandmother,
+										relatives or any parent in law. The husband
+										supersedes the
+										father and those who follow under him.
+										<html:br />
+										<html:b>Definition of Substitute Consent Giver:</html:b>
+										If the patient has no relatives residing in UAE: his/her
+										sponsors,
+										then a friend may sign on his/her behalf.
+										<html:br />
+										<html:b>Exemptions:</html:b>
+										An unconscious/ incompetent emergency patient who has no
+										guardian or substitute consent giver at the time he/she is
+										admitted to the accident and emergency unit shall be
+										exempted
+										from giving consent. Husband must sign in person
+										the
+										declaration related to treatments and surgical interventions
+										that may affect his wife's fertility in
+										the future.
+										<html:br />
+										<html:b>Only the UAE laws shall be applied:</html:b>
+										To any dispute that may arise regarding the treatment or
+										dealing with the patient, the UAE courts are exclusively
+										competent to decide and judge on such dispute.
+										<html:br />
+										<html:b>Information &amp; Questions:</html:b>
+										Members of the medical team should answer patient's/
+										guardian's/ substitute consent giver's questions in a simple,
+										easy to understand, and objective manner, without
+										exaggeration
+										or promises. The aim is to give them enough
+										information on all
+										aspect of the disease, diagnostic measures
+										and treatments, as
+										well as any side effects and usual
+										complications. This should
+										be: clear, scientific, easily
+										understood, and enough to assist
+										him/her in taking decision.
+										This information shall not contain
+										any promises or
+										expectations.
+										<html:br />
+										<html:b>Language:</html:b>
+										There should be a common language between the patient,
+										guardian or substitute consent givers and physicians in order
+										to understand content of declaration. A translator may used,
+										if
+										necessary, he/she must also sign the declaration.
+										<html:br />
+									</html:div>
+									<!-- <Label class="textcolor" text="{i18n>txtTransInter}" /> <Input
+										id="inTranslatorInter" class="inputbordercolor" /> <Label class="textcolor"
+										text="{i18n>txtIdNo}" /> <Input id="inTranslatorInterIdNo" class="inputbordercolor"
+										/> <Label class="textcolor" text="{i18n>txtSignDate}" /> <Button id="imgFour"
+										text="{i18n>txtTapHere}" press="onClickSignature" /> <DateTimeInput id="inTranslatorInterDT"
+										class="inputbordercolor" type="DateTime"></DateTimeInput> <Label /> <Image
+										id="imgFourDisplay" width="300px" height="110px"></Image> -->
+								</f:content>
+							</f:SimpleForm>
+						</l:content>
+					</l:Grid>
+				</html:div>
+			</VBox>
+		</HBox>
+	</Panel>
+</core:FragmentDefinition>

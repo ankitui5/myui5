@@ -1,0 +1,236 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Panel class="pnlSearchDate">
+		<FlexBox alignItems="Center" justifyContent="SpaceBetween">
+			<items>
+				<VBox>
+					<HBox alignItems="Center">
+						<Label class="textcolor" width="100px" text="{i18n>txtNextOfKin}" />
+						<Input id="inNextOfKin" class="inputbordercolor" editable="false" />
+					</HBox>
+					<HBox alignItems="Center">
+						<Label class="textcolor" width="100px" text="{i18n>txtPhoneNo}" />
+						<Input id="inPhoneNo" class="inputbordercolor" editable="false" />
+					</HBox>
+					<!-- <HBox alignItems="Center"> <Label class="textcolor" width="100px"
+						text="{i18n>txtName}" /> <Input id="inName" class="inputbordercolor" editable="false"
+						/> </HBox> -->
+				</VBox>
+				<VBox visible="false">
+					<Panel class="border" width="100%" height="95px">
+						<HBox alignItems="Center" height="100%" justifyContent="Center">
+							<Label class="textcolor" design="Standard" text="{i18n>txtIdSticker}" />
+						</HBox>
+					</Panel>
+				</VBox>
+			</items>
+		</FlexBox>
+		<HBox justifyContent="Center">
+			<VBox width="100%">
+				<VBox height="32px"></VBox>
+				<html:div class="textcolor"
+					style="font-size: 0.875rem;font-family: Arial,Helvetica,sans-serif;line-height:25px;color:#6a7694;text-align:justify;">
+					أقر أنا ،
+					<html:span class="inputEntryAR"  id="patientName" ></html:span>
+					بالموافقة على منح الإذن لمستشفى ميديور 24x7 والأطباء العاملين
+					والمهنيين بتقديم كل الرعاية الطبية لى أو لإفراد عائلتي بما في ذلك
+					الفحوصات الطبية و الأشعة، والاختبارات المعملية و أعطائي كافة ألدم
+					ومشتقات ألدم أنواع الأدوية و العقاقير (بما فيها) الحقن و استخدام
+					التخدير الموضعي وغيرها من الإجراءات اللازمة عند الضرورة أو الموصى
+					بها من قبل الأطباء بالمستشفى والعاملين في مجال الصحة . وأقر أنه لم
+					تعطى لي أية ضمانات لنتائج الخدمات التي سوف أتلقاها.
+					<html:br />
+
+					.2 الاطلاع على السجلات الطبية :
+					أقر أنا و أوافق على منح موظفي مستشفى
+					ميديور 24x7 ذات الصلة الحق في
+					الإطلاع على السجلات الطبية الخاصة بي
+					لتجهيز مطالبات التأمين ومراجعة
+					الجودة و الاجراءات الطبية القانونية
+					وذلك حسب توجيهات إدارة
+					المستشفى. كما أوافق على أنه من حق مستشفى
+					ميديور 24x7 الإفصاح عن
+					السجلات الطبية الخاصة بي بناءاً على طلب من
+					الشرطة / المحكمة / هيئة
+					الصحة في ابوظبي / شركة التأمين الخاصة بي /
+					دافع تكاليف علاجي. وهذا
+					ينطبق بينما لازلت عضواً في شركة التأمين. أما
+					بعد ذالك فإن شركة
+					التأمين سوف تسعى للحصول على موافقتي لهذا الغرض.
+					كما أنني أفهم أن اطلاع الموظفين بالمستشفى على سجلاتي سوف يتم فى
+					إطار
+					المحافظة على أعلى المعايير المهنية والسرية التي لا تعرض حقي في
+					الحصول على الرعاية الطبية عالية الجودة في المستقبل لأي خطر قد يحدث.
+
+					<html:br />
+
+					.3 الموافقة على الإفصاح عن المعلومات الطبية لشركات التأمين أو
+					الوسطاء من شركات التأمين التابعة لشركتي:
+					<html:br />
+					أقرا أنا الموقع أدناه بموافقتي على إعطاء شركة التأمين الخاصة بي أو
+					الوسطاء من شركات التأمين التابعة لشركتي الحق فى الإطلاع و الحصول
+					على نسخ من الملفات و السجلات الخاصة بي في أي وقت والمتعلقة بخدمات
+					الرعاية الصحية التي قدمت لي خلال فترة العضوية (فترة التأمين) كما
+					أنني أعطي لشركة التأمين الخاصة بي أو الوسطاء من شركات التأمين
+					التابعة لشركتي الحق بالإفصاح عن هذه المعلومات الطبية الخاصة بي لأي
+					طرف ثالث وفقاً لما تراه مناسباً لأسباب تتعلق بالتأمين الصحي على
+					سبيل المثال لا للحصر أسباب متعلقة بتقييم المطالبات الطبية، البحوث
+					والإحصاء ضبط ومراقبة حالات الإحتيال و إساءة الاستخدامبشأن الخدمات
+					المقدمة بموجب بطاقة التأمين الخاصة بي.
+					الفقرة الثالثة (جد
+					<html:br />
+					يد)
+					أفوض بموجبه شركة التأمين/ جهة السداد لدى بالتشاور مع و/أوطلبي
+					لحضور
+					استشارات الرأي الثانية أو الإطلاع على إدارة الدعوى وذلك فيما
+					يتعلق
+					بتغطية بعض المزايا وفق التغطية التأمينية الخاصة بي
+					<html:br />
+					.
+					لذا يتوجب على شركة التأمين الخاصة بي أو الوسطاء من شركات التأمين
+					التابعة لشركتي المحافظة على سرية جميع المعلومات التي تتلقاها بموجب
+					هذه الموافقة وفقاً لما هو منصوص عليه بالقوانين المعمول بها في دولة
+					الإمارات العربية المتحدة.
+					<html:br />
+
+
+					.4 الإنتــــــقـــــــــــــــــــــــال :
+					أقرا أنا الموقع أدناه
+					بموافقتي على الإنتقال وفقاً للحالة الطبية الخاصة
+					بى أو للمعالين من
+					قبلي سواء كان إنتقال خارجي أي من مستشفى ميديور
+					24x7 إلى مستشفى أخرى
+					أو إنتقال داخلي من جناح / غرفة الى أخرى إذا
+					أوصى بذلك طبيبي المعالج
+					بمستشفى ميديور24x7.
+
+					<html:br />
+
+					.5 دفـــــع تكالــــيف العــــــــــــلاج :
+					لقد تم إخباري بالتكلفة
+					التقديرية للعلاج من قبل المستشفى وأنا أوافق على
+					دفع التكلفة النهائية
+					بالكامل إلى المستشفى في حالة رفض شركة التأمين
+					الخاصة بي / صاحب العمل
+					دفع هذه التكلفة سواء كان الرفض كلياً أو
+					جزئياً أو في حالة عدم دفعها
+					في الوقت المحدد .
+
+					<html:br />
+
+					.6 لقد اطلعت على كافــة حقـــوق و واجبـــات المريـــض بالمستشفى.
+					<html:br />
+					<l:Grid defaultSpan="L12 M12 S12" width="auto">
+						<l:content>
+							<f:SimpleForm id="frmAddPatient" minWidth="1024"
+								maxContainerCols="1" editable="true" layout="ResponsiveGridLayout"
+								title="" labelSpanL="3" labelSpanM="3" emptySpanL="0"
+								emptySpanM="0" columnsL="1" columnsM="1" class="editableForm">
+								<f:content>
+									<core:Title text="" />
+									<html:div>تعتبر هذه الموافقة سارية المفعول لطالما أنني أتلقى
+										العلاج والرعاية في مستشفى ميديور 24x7 والصيدليات.
+									</html:div>
+									<Label></Label>
+									<Label></Label>
+									<!-- <Label class="textcolor" text="{i18n>txtPatientGuar}" /> <Input
+										id="inPatientGuardian" class="inputbordercolor" /> -->
+									<Label class="textcolor" text="{i18n>txtSignDate}" />
+									<Button id="imgOne" text="{i18n>txtTapHere}" press="onClickSignature" />
+									<DateTimeInput id="inPatientGuardianDT" class="inputbordercolor"
+										type="DateTime"></DateTimeInput>
+									<Label />
+									<Image id="imgOneDisplay" width="300px" height="110px"></Image>
+									<core:Title text="" />
+									<html:div>
+										<html:b>إقرارنائب المريض أو ولي الأمر</html:b>
+										<html:br></html:br>
+
+										وفقا لقانون دولة الإمارات العربية المتحدة، إذا كان المريض لا
+										يستطيع الموافقة بنفسه / بنفسها يجب الحصول على موافقة من ولي
+										الأمر أو أى من الأقارب. إذا كان أحد أفراد الأسرة غير متواجد مع
+										المريض يجب أن تعطى الموافقة من قبل الولي القانوني .
+
+										<html:br></html:br>
+
+										الإسم :
+										<html:input class="inputEntryAR"></html:input>
+										الجنسية :
+										<html:input class="inputEntryAR"></html:input>
+										العمر :
+										<html:input class="inputEntryAR"></html:input>
+										حامل بطاقة تعريف رقم:
+										<html:input class="inputEntryAR"></html:input>
+										نوع البطاقة:
+										<html:input class="inputEntryAR"></html:input>
+										صلة القرابة للمريض:
+										<html:input class="inputEntryAR"></html:input>
+										<html:br></html:br>
+
+										اقر أنا نائب الـمريض/ولي امره أنه قد طلب مني، في مصلحة
+										الـمريض، توقيع هذا الإقرار بما أن الـمريض غير كفء للقيام بذلك.
+
+										<html:br />
+									</html:div>
+
+									<!-- <Label class="textcolor" text="{i18n>txtSubConceGiver}" />
+										<Input id="inSubConceGiver" class="inputbordercolor" /> <Label class="textcolor"
+										text="{i18n>txtRelaToPatient}" /> <Input id="inRelationToPatient" class="inputbordercolor"
+										/> -->
+									<Label class="textcolor" text="{i18n>txtSignDate}" />
+									<Button id="imgTwo" text="{i18n>txtTapHere}" press="onClickSignature" />
+									<DateTimeInput id="inRelationToPatientDT" class="inputbordercolor"
+										type="DateTime"></DateTimeInput>
+									<Label />
+									<Image id="imgTwoDisplay" width="300px" height="110px"></Image>
+									<core:Title text="" />
+									<html:div><html:br /><html:br /><html:br /><html:br />
+										<html:b>
+											الشاهد
+										</html:b>
+										<html:br></html:br>
+										أ
+										<html:input class="inputEntryAR" id="inpWitnessName"></html:input>
+										موظف مستشفى ميديور 24x7 ( لست طبيب المريض أو مخول لتقديم
+										الرعاية الصحية ) لقد شهدت أن المريض/نائب المريض/ولي امره قد
+										وقع هذا النموذج طواعية.
+									</html:div>
+									<!-- <Label class="textcolor" text="{i18n>txtWitness}" /> <Input
+										id="inWitness" class="inputbordercolor" /> -->
+									<Label class="textcolor" text="{i18n>txtIdNo}" />
+									<Input id="inWitnessIdNo" class="inputbordercolor" />
+									<Label class="textcolor" text="{i18n>txtSignDate}" />
+									<Button id="imgThree" text="{i18n>txtTapHere}" press="onClickSignature" />
+									<DateTimeInput id="inWitnessDT" class="inputbordercolor"
+										type="DateTime"></DateTimeInput>
+									<Label />
+									<Image id="imgThreeDisplay" width="300px" height="110px"></Image>
+									<core:Title text="" />
+									<html:div>
+										<html:b>
+											المترجم / المفسر
+										</html:b>
+										<html:br></html:br>
+										الى حد علمي, فإن المريض قد فهم ما قد ترجم إليه و طواعية قد وقع
+										على هذا النموذج
+									</html:div>
+									<Label class="textcolor" text="{i18n>txtTransInter}" />
+									<Input id="inTranslatorInter" class="inputbordercolor" />
+									<Label class="textcolor" text="{i18n>txtIdNo}" />
+									<Input id="inTranslatorInterIdNo" class="inputbordercolor" />
+									<Label class="textcolor" text="{i18n>txtSignDate}" />
+									<Button id="imgFour" text="{i18n>txtTapHere}" press="onClickSignature" />
+									<DateTimeInput id="inTranslatorInterDT" class="inputbordercolor"
+										type="DateTime"></DateTimeInput>
+									<Label />
+									<Image id="imgFourDisplay" width="300px" height="110px"></Image>
+								</f:content>
+							</f:SimpleForm>
+						</l:content>
+					</l:Grid>
+				</html:div>
+			</VBox>
+		</HBox>
+	</Panel>
+</core:FragmentDefinition>

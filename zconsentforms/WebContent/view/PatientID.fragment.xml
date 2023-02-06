@@ -1,0 +1,15 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Dialog title="{i18n>txtPatientId}" class="sapUiPopupWithPadding">
+		<content>
+			<Panel>
+				<Label text="{i18n>txtPatientId}" />
+				<Input value="" id="ipPatientID" placeholder="Enter Patient Id.." />
+			</Panel>
+		</content>
+		<beginButton>
+			<Button text="{i18n>txtSubmit}" type="Accept" press="handleOkButton" />
+		</beginButton>
+		<!-- 0010000225 -->
+	</Dialog>
+</core:FragmentDefinition>
