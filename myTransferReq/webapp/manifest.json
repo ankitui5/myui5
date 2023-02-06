@@ -1,0 +1,140 @@
+{
+	"_version": "1.7.0",
+	"sap.app": {
+		"id": "com.cpwdmyTransferReq",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"sourceTemplate": {
+			"id": "servicecatalog.connectivityComponent",
+			"version": "0.0.0"
+		},
+		"dataSources": {
+			"ZODATA_HR_PROC_TRANS_SRV": {
+				"uri": "/sap/opu/odata/sap/ZODATA_HR_PROC_TRANS_SRV/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/metadata.xml"
+				}
+			},
+			"ZODATA_HR_LOC_MASTER_SRV": {
+				"uri": "/sap/opu/odata/sap/ZODATA_HR_LOC_MASTER_SRV/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/ZODATA_HR_LOC_MASTER_SRV/metadata.xml"
+				}
+			},
+			"ZHR_ODATA_FILE_TRANSFER_SRV": {
+				"uri": "/sap/opu/odata/sap/ZHR_ODATA_FILE_TRANSFER_SRV/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/ZHR_ODATA_FILE_TRANSFER_SRV/metadata.xml",
+					"defaultUpdateMethod": "PUT"
+				}
+			}
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": ["sap_hcb", "sap_belize"]
+	},
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "com.cpwdmyTransferReq.view.App",
+			"type": "XML"
+		},
+		"dependencies": {
+			"minUI5Version": "1.30.0",
+			"libs": {
+				"sap.collaboration": {},
+				"sap.m": {},
+				"sap.ui.comp": {},
+				"sap.ui.core": {},
+				"sap.ui.layout": {},
+				"sap.ui.unified": {
+					"minVersion": ""
+				},
+				"sap.ushell": {},
+				"sap.uxap": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "com.cpwdmyTransferReq.i18n.i18n"
+				}
+			},
+			"ODataModel": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "TwoWay",
+					"defaultCountMode": "Request"
+				},
+				"dataSource": "ZODATA_HR_PROC_TRANS_SRV",
+				"preload": true
+			},
+			"ODataLocationModel": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneTime",
+					"defaultCountMode": "Request"
+				},
+				"dataSource": "ZODATA_HR_LOC_MASTER_SRV",
+				"preload": true
+			},
+			"LocalDataModel": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"preload": false
+			},
+			"LocalFileUploadModel": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"preload": false
+			},
+			"ODataFileUploadModel": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneTime",
+					"defaultCountMode": "Request",
+					"defaultUpdateMethod": "PUT"
+				},
+				"dataSource": "ZHR_ODATA_FILE_TRANSFER_SRV",
+				"preload": true
+			}
+		},
+		"resources": {
+			"css": [{
+				"uri": "css/style.css"
+			}]
+		}
+	}
+}

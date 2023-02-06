@@ -1,0 +1,157 @@
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZODATA_HR_PROC_TRANS_SRV" xml:lang="en" sap:schema-version="1">
+            <EntityType Name="ET_FETCH_EMP" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Pimsid"/>
+                </Key>
+                <Property Name="Ename" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Empl./appl.name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="WorkflowStatus" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Workflow Status" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Status" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RepComment" Type="Edm.String" Nullable="false" MaxLength="256" sap:unicode="false" sap:label="Represent Comment" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Loc1" Type="Edm.String" Nullable="false" MaxLength="35" sap:unicode="false" sap:label="Location First" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Loc1Text" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Location Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Pimsid" Type="Edm.String" Nullable="false" MaxLength="241" sap:unicode="false" sap:label="Long ID/Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="WorkflowComment" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Workflow Comment" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TrnsComment" Type="Edm.String" Nullable="false" MaxLength="256" sap:unicode="false" sap:label="Transfer Comment" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Loc2" Type="Edm.String" Nullable="false" MaxLength="35" sap:unicode="false" sap:label="Location Second" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Loc2Text" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Location Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Dob" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Character Field with Length 10" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Loc3" Type="Edm.String" Nullable="false" MaxLength="35" sap:unicode="false" sap:label="Location Third" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Loc3Text" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Location Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Officename" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Char20" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DsincePresStat" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Character Field with Length 10" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CurrPostStat" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="30 Characters" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DsincePresOff" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Character Field with Length 10" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PostingTo" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="30 Characters" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TotTenurePres" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Character Field with Length 10" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DetailHq" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Character 100" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TotTenureHq" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Character Field with Length 10" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EffPer" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Character Field with Length 10" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="ET_Represent" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Pimsid"/>
+                    <PropertyRef Name="Comment"/>
+                </Key>
+                <Property Name="Pimsid" Type="Edm.String" Nullable="false" MaxLength="241" sap:unicode="false" sap:label="Long ID/Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Comment" Type="Edm.String" Nullable="false" MaxLength="256" sap:unicode="false" sap:label="Comment" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Status Flag" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Message" Type="Edm.String" Nullable="false" MaxLength="256" sap:unicode="false" sap:label="Message" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="ET_Transfer" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Pimsid"/>
+                    <PropertyRef Name="Comment"/>
+                    <PropertyRef Name="Loc1"/>
+                    <PropertyRef Name="Loc2"/>
+                    <PropertyRef Name="Loc3"/>
+                </Key>
+                <Property Name="Pimsid" Type="Edm.String" Nullable="false" MaxLength="241" sap:unicode="false" sap:label="Long ID/Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Comment" Type="Edm.String" Nullable="false" MaxLength="256" sap:unicode="false" sap:label="Comment" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Loc1" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Loc2" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Loc3" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Status" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Message" Type="Edm.String" Nullable="false" MaxLength="256" sap:unicode="false" sap:label="Message" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="ET_Transfer_Approver" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="MPimsid"/>
+                    <PropertyRef Name="Pimsid"/>
+                    <PropertyRef Name="Loc1"/>
+                    <PropertyRef Name="Loc2"/>
+                    <PropertyRef Name="Loc3"/>
+                    <PropertyRef Name="MComment"/>
+                    <PropertyRef Name="Wid"/>
+                    <PropertyRef Name="Mode"/>
+                </Key>
+                <Property Name="MPimsid" Type="Edm.String" Nullable="false" MaxLength="241" sap:unicode="false" sap:label="Long ID/Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Pimsid" Type="Edm.String" Nullable="false" MaxLength="241" sap:unicode="false" sap:label="Long ID/Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Loc1" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Loc2" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Loc3" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MComment" Type="Edm.String" Nullable="false" MaxLength="256" sap:unicode="false" sap:label="Comment" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Wid" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Work Item ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Mode" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Approve or Reject" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Message" Type="Edm.String" Nullable="false" MaxLength="256" sap:unicode="false" sap:label="Message" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Status" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="ET_MGR_Comment" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="EmpPimsid"/>
+                </Key>
+                <Property Name="EmpPimsid" Type="Edm.String" Nullable="false" MaxLength="241" sap:unicode="false" sap:label="Long ID/Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MgrPimsid" Type="Edm.String" Nullable="false" MaxLength="241" sap:unicode="false" sap:label="Long ID/Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CStatus" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Current Status of workflow" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MgComment" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Manager Comment" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DateOfAct" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Date of Activity" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="ET_Employee_List" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="MPimsid"/>
+                </Key>
+                <Property Name="DirectManager" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Direct Manager" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Ename" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Empl./appl.name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Pimsid" Type="Edm.String" Nullable="false" MaxLength="241" sap:unicode="false" sap:label="Long ID/Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Dob" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Character Field with Length 10" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Officename" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Char20" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DsincePresStat" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Character Field with Length 10" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CurrPostStat" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="30 Characters" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DsincePresOff" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Character Field with Length 10" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PostingTo" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="30 Characters" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TotTenurePres" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Character Field with Length 10" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DetailHq" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Character 100" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TotTenureHq" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Character Field with Length 10" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EffPer" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Character Field with Length 10" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Status" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RepComment" Type="Edm.String" Nullable="false" MaxLength="256" sap:unicode="false" sap:label="Represent Comment" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TrnsComment" Type="Edm.String" Nullable="false" MaxLength="256" sap:unicode="false" sap:label="Transfer Comment" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Loc1" Type="Edm.String" Nullable="false" MaxLength="35" sap:unicode="false" sap:label="Location First" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Loc2" Type="Edm.String" Nullable="false" MaxLength="35" sap:unicode="false" sap:label="Location Second" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Loc3" Type="Edm.String" Nullable="false" MaxLength="35" sap:unicode="false" sap:label="Location Third" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Loc1Text" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Location Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Loc2Text" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Location Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Loc3Text" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Location Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MPimsid" Type="Edm.String" Nullable="false" MaxLength="241" sap:unicode="false" sap:label="Long ID/Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CStatus" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Current Status" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="ET_Forward_List" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="EmpPimsid"/>
+                </Key>
+                <Property Name="EmpPimsid" Type="Edm.String" Nullable="false" MaxLength="241" sap:unicode="false" sap:label="Long ID/Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Pernr" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Personnel no." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Ename" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Empl./appl.name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="ET_Forward_Submit" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="EmpPimsid"/>
+                    <PropertyRef Name="Pernr"/>
+                </Key>
+                <Property Name="EmpPimsid" Type="Edm.String" Nullable="false" MaxLength="241" sap:unicode="false" sap:label="Long ID/Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Pernr" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Personnel no." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Ename" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Empl./appl.name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityContainer Name="ZODATA_HR_PROC_TRANS_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="ET_FETCH_EMPSet" EntityType="ZODATA_HR_PROC_TRANS_SRV.ET_FETCH_EMP" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="ET_RepresentSet" EntityType="ZODATA_HR_PROC_TRANS_SRV.ET_Represent" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="ET_TransferSet" EntityType="ZODATA_HR_PROC_TRANS_SRV.ET_Transfer" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="ET_Transfer_ApproverSet" EntityType="ZODATA_HR_PROC_TRANS_SRV.ET_Transfer_Approver" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="ET_MGR_CommentSet" EntityType="ZODATA_HR_PROC_TRANS_SRV.ET_MGR_Comment" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="ET_Employee_ListSet" EntityType="ZODATA_HR_PROC_TRANS_SRV.ET_Employee_List" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="ET_Forward_ListSet" EntityType="ZODATA_HR_PROC_TRANS_SRV.ET_Forward_List" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="ET_Forward_SubmitSet" EntityType="ZODATA_HR_PROC_TRANS_SRV.ET_Forward_Submit" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+            </EntityContainer>
+            <atom:link
+                xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZODATA_HR_PROC_TRANS_SRV/$metadata"/>
+                <atom:link
+                    xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZODATA_HR_PROC_TRANS_SRV/$metadata"/>
+                </Schema>
+            </edmx:DataServices>
+        </edmx:Edmx>

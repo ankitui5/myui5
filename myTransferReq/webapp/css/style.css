@@ -1,0 +1,55 @@
+/*Manager App CSS*/
+/* Enter your custom styles here */
+.disablekb input {
+    pointer-events: none;
+}
+
+.sapMListTbl th{
+	background: #2f3c48;
+}
+
+.sapFactsheetUtiLabel, .sapMListTbl .sapMLabel {
+	color: #ffffff;
+}
+
+.sapUiForm.sapUiFormEdit .sapUiFormElementLbl>.sapMLabel{
+	font-weight:bold;
+}
+
+.sapMInputBaseIconContainer {
+	background:#333333;
+}
+
+.sapMInputBaseIcon{
+	color:#ffffff;
+}
+
+.sapMIBar-CTX .sapMTitle{
+	font-weight:bold;
+}
+
+.sapUiRGLContainerCont{
+	padding-left:0.02rem;
+}
+
+.sapContrast span.sapMBtnInner.sapMBtnAccept{
+	background-color:#008000;
+	color:#ffffff;
+}
+
+.sapContrast span.sapMBtnInner.sapMBtnReset{
+	background-color:#CC0000;
+	color:#ffffff;
+}
+
+.sapContrast.sapMFooter-CTX .sapMBtnInner, .sapContrast .sapMFooter-CTX .sapMBtnInner{
+	border-color :#cae4fb;
+}
+
+.sapMListTbl .sapMText, .sapMListTbl .sapMLabel{
+	font-weight:bold;
+}
+
+.sapMMsgView .sapMIBar.sapMHeader-CTX{
+	background-color:#7B68EE;
+}

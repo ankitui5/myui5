@@ -1,0 +1,41 @@
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZODATA_HR_LOC_MASTER_SRV" xml:lang="en" sap:schema-version="1">
+            <EntityType Name="ET_Loc_Master" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Werks"/>
+                </Key>
+                <Property Name="Werks" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="256" sap:unicode="false" sap:label="Location Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="NP_LOC_MASTER" Relationship="ZODATA_HR_LOC_MASTER_SRV.AN_LOC_MASTER" FromRole="FromRole_AN_LOC_MASTER" ToRole="ToRole_AN_LOC_MASTER"/>
+            </EntityType>
+            <Association Name="AN_LOC_MASTER" sap:content-version="1">
+                <End Type="ZODATA_HR_LOC_MASTER_SRV.ET_Loc_Master" Multiplicity="*" Role="FromRole_AN_LOC_MASTER"/>
+                <End Type="ZODATA_HR_LOC_MASTER_SRV.ET_Loc_Master" Multiplicity="*" Role="ToRole_AN_LOC_MASTER"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_AN_LOC_MASTER">
+                        <PropertyRef Name="Werks"/>
+                    </Principal>
+                    <Dependent Role="ToRole_AN_LOC_MASTER">
+                        <PropertyRef Name="Werks"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZODATA_HR_LOC_MASTER_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="ET_Loc_MasterSet" EntityType="ZODATA_HR_LOC_MASTER_SRV.ET_Loc_Master" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <AssociationSet Name="AN_LOC_MASTERSet" Association="ZODATA_HR_LOC_MASTER_SRV.AN_LOC_MASTER" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ET_Loc_MasterSet" Role="FromRole_AN_LOC_MASTER"/>
+                    <End EntitySet="ET_Loc_MasterSet" Role="ToRole_AN_LOC_MASTER"/>
+                </AssociationSet>
+            </EntityContainer>
+            <atom:link
+                xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZODATA_HR_LOC_MASTER_SRV/$metadata"/>
+                <atom:link
+                    xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZODATA_HR_LOC_MASTER_SRV/$metadata"/>
+                </Schema>
+            </edmx:DataServices>
+        </edmx:Edmx>

@@ -1,0 +1,144 @@
+<mvc:View controllerName="com.cpwdmyTransferReq.controller.App" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" xmlns:u="sap.ui.unified" xmlns="sap.m">
+	<App id="idAppControl">
+		<pages>
+			<Page title="{i18n>title}" showNavButton="true" navButtonPress="quitApp">
+				<content>
+					<VBox>
+						<ScrollContainer width="100%" horizontal="true" vertical="true" focusable="true">
+							<Table id="empDetails" growing="true" items="{LocalDataModel>/empDetails}" class="" selectionChange="onSelectedTableItem"
+								fixedLayout="false" mode="SingleSelectMaster">
+								<headerToolbar>
+									<Toolbar>
+										<content>
+											<Title id="headerToolbarID" width="100%"/>
+										</content>
+									</Toolbar>
+								</headerToolbar>
+								<columns>
+									<!--								<Column>
+										<Label text="" />
+								</Column>-->
+									<Column>
+										<Label text="{i18n>employeeName}"/>
+									</Column>
+									<Column>
+										<Label text="{i18n>pimsID}"/>
+									</Column>
+									<Column>
+										<Label text="{i18n>initStatus}" width="100%"/>
+									</Column>
+									<Column width="8rem">
+										<Label text="{i18n>DOB}" wrapping="true"/>
+									</Column>
+									<Column>
+										<Label text="{i18n>officeName}" wrapping="true"/>
+									</Column>
+									<Column>
+										<Label text="{i18n>currentStn}" wrapping="true"/>
+									</Column>
+									<Column>
+										<Label text="{i18n>dateSinceOffice}" wrapping="true"/>
+									</Column>
+									<Column>
+										<Label text="{i18n>underPosting}" wrapping="true"/>
+									</Column>
+									<Column>
+										<Label text="{i18n>totalHQPer}" wrapping="true"/>
+									</Column>
+									<Column>
+										<Label text="{i18n>effPeriod}" wrapping="true"/>
+									</Column>
+									<Column>
+										<Label text="{i18n>dateSincePresLoc}" wrapping="true"/>
+									</Column>
+									<Column>
+										<Label text="{i18n>totalTenure}" wrapping="true"/>
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem>
+										<cells class="">
+											<!--<RadioButton select="changeTableMode" />-->
+											<Text text="{LocalDataModel>Ename}"/>
+											<Text text="{LocalDataModel>Pimsid}"/>
+											<!--<Text text="{'LocalDataModel>CStatus'}"/>-->
+											<Text text="{path: 'LocalDataModel>Initiated', formatter:'com.cpwdmyTransferReq.util.Formatter.returnCurrentStatus'}"/>
+											<Text text="{LocalDataModel>Dob}"/>
+											<Text text="{LocalDataModel>Officename}"/>
+											<Text text="{LocalDataModel>CurrPostStat}"/>
+											<Text text="{LocalDataModel>DsincePresOff}"/>
+											<Text text="{LocalDataModel>PostingTo}"/>
+											<Text text="{LocalDataModel>TotTenureHq}"/>
+											<Text text="{LocalDataModel>EffPer}"/>
+											<Text text="{LocalDataModel>DsincePresStat}"/>
+											<Text text="{LocalDataModel>TotTenurePres}"/>
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+						</ScrollContainer>
+						<!--	<Label text=""/>-->
+						<form:SimpleForm editable="true" layout="ResponsiveGridLayout">
+							<form:content>
+								<core:Title text=""/>
+								<!--								<Label text="{i18n>myComment}" labelFor="txtComment" required="true"/>
+								<TextArea id="txtComment"  growing="true" width="70%" enabled="false"/>-->
+								<!--<Label text="Location Preference"/>-->
+								<Label labelFor="transferType" text="{i18n>transferType}" required="true"/>
+								<ComboBox id="transferType" class="disablekb input" width="70%" items="{LocalDataModel>/transferType}"
+									selectionChange="setVisibleSubTransfer">
+									<core:ListItem key="{LocalDataModel>key}" text="{LocalDataModel>text}"/>
+								</ComboBox>
+								<Label labelFor="subTransferType" text="{i18n>subtransferType}" required="true"/>
+								<ComboBox id="subTransferType" class="disablekb input" width="70%" items="{LocalDataModel>/subTransferType}" visible="false">
+									<core:ListItem key="{LocalDataModel>key}" text="{LocalDataModel>text}"/>
+								</ComboBox>
+								<Label labelFor="location" text="{i18n>location}" required="true"/>
+								<ComboBox id="location" class="disablekb input" width="70%" items="{LocalDataModel>/locationList}">
+									<core:ListItem key="{LocalDataModel>Werks}" text="{LocalDataModel>Name}"/>
+								</ComboBox>
+								<Label labelFor="fileUploader" text="{i18n>attachEvidence}" required="true"/>
+								<!--								<u:FileUploader
+									id="fileUploader"
+									name="myFileUpload"
+									uploadUrl="upload/"
+									tooltip="{i18n>uploadToTheBackend}"
+									uploadComplete="handleUploadComplete"/>
+								<Button width="50%"
+									text="Upload"
+									press="handleUploadPress"/>-->
+								<UploadCollection id="uploadReasonCollection" sameFilenameAllowed="false" multiple="true" uploadUrl="/sap/opu/odata/sap/ZHR_ODATA_FILE_TRANSFER_SRV/ET_SubmitSet" beforeUploadStarts="onFileBeforeUploadStarts"
+									uploadComplete="handleUploadComplete" maximumFileSize="1000" change="onChange"
+									maximumFilenameLength="100" uploadButtonInvisible="true" uploadEnabled="false"
+									fileDeleted="onFileDeleted"
+									fileType="{['jpg','txt','ppt', 'doc', 'xls', 'pdf', 'png']}" items ="{path:'LocalFileUploadModel>/items',
+									templateShareable:false}">
+									<items>
+										<UploadCollectionItem documentId="{LocalFileUploadModel>docId}" fileName="{LocalFileUploadModel>fileName}" mimeType="{LocalFileUploadModel>MIMETYPE}" url="{LocalFileUploadModel>Url}"
+											enableEdit="false" enableDelete="true" visibleDelete="true"
+											visibleEdit="false">
+										</UploadCollectionItem>
+									</items>
+								</UploadCollection>
+								<Label text="{i18n>rqstComment}" labelFor="requestorCmnt" required="true"/>
+								<TextArea id="requestorCmnt" growing="true" width="70%" enabled="false"/>
+								<core:Title text=""/>
+								<Label/>
+								<Button id="buttonForMgrMessage" text="{i18n>MgrMsgBtn}" type="Emphasized" press="onPressShowMgrMsg" width="80%"/>
+							</form:content>
+						</form:SimpleForm>
+					</VBox>
+				</content>
+				<footer>
+					<Bar>
+						<contentRight>
+							<Button id="btnReset" text="{i18n>Reset}" type="Emphasized" press="onSubmitConfirm" enabled="false"/>
+							<Button id="btnSubmit" text="{i18n>Submit}" type="Accept" press="onSubmitConfirm" enabled="false"/>
+						</contentRight>
+					</Bar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

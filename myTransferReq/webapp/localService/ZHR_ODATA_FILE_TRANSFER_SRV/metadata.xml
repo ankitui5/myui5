@@ -1,0 +1,42 @@
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZHR_ODATA_FILE_TRANSFER_SRV" xml:lang="en" sap:schema-version="1">
+            <EntityType Name="ET_Submit" m:HasStream="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="FileName"/>
+                    <PropertyRef Name="PIMS_ID"/>
+                    <PropertyRef Name="TTYPE"/>
+                    <PropertyRef Name="SUB_TYPE"/>
+                    <PropertyRef Name="File_No"/>
+                </Key>
+                <Property Name="FileName" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PIMS_ID" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TTYPE" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SUB_TYPE" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="File_No" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="ET_Master" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Pimsid"/>
+                </Key>
+                <Property Name="Pimsid" Type="Edm.String" Nullable="false" MaxLength="21" sap:unicode="false" sap:label="PIMS ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FileNo" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="File No" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FileName" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="File Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Ttype" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Transfer Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SubType" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Sub Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityContainer Name="ZHR_ODATA_FILE_TRANSFER_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="ET_SubmitSet" EntityType="ZHR_ODATA_FILE_TRANSFER_SRV.ET_Submit" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="ET_MasterSet" EntityType="ZHR_ODATA_FILE_TRANSFER_SRV.ET_Master" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+            </EntityContainer>
+            <atom:link
+                xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZHR_ODATA_FILE_TRANSFER_SRV/$metadata"/>
+                <atom:link
+                    xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZHR_ODATA_FILE_TRANSFER_SRV/$metadata"/>
+                </Schema>
+            </edmx:DataServices>
+        </edmx:Edmx>
