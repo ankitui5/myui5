@@ -1,0 +1,254 @@
+<mvc:View controllerName="com.cpwdfilemanage.controller.View1" 
+		  xmlns:html="http://www.w3.org/1999/xhtml" 
+		  xmlns:mvc="sap.ui.core.mvc"
+	      displayBlock="true" 
+	      xmlns:core="sap.ui.core" 
+	      xmlns:form="sap.ui.layout.form"
+	      xmlns="sap.m">
+	<App>
+		<pages>
+			<Page title="{i18n>title}">
+				<content>
+			<!--	<Toolbar height="2rem" class="ClassToolbar">
+						<ToolbarSpacer></ToolbarSpacer>
+							<Text id="idToolText"  />
+						<ToolbarSpacer></ToolbarSpacer>
+				</Toolbar>-->
+				<VBox>
+			<IconTabBar id="idIconTabBarNoIcons" select="handleIconTabBarSelect" expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding">
+				<items>
+					<IconTabFilter id="idtabfilterA" text="{i18n>Label-Initiator}" icon="sap-icon://initiative" key="A" tooltip="{i18n>Lable-TooltipA}">
+						<form:SimpleForm editable="true" layout="ResponsiveGridLayout">
+							<form:content>
+								<core:Title text=""/>
+								<Label text="{i18n>lablefileno}" labelFor="FileNo" required="true"/>
+								<Input id="idfileno" maxLength="25" />
+								<Label text="{i18n>labelsub}" labelFor="Subject" required="true"/>
+								<Input id="idsubject" maxLength="100"/>
+								<Label text="{i18n>labelrece}" labelFor="Receipent" required="true"/>
+								<Input id="receipent" valueHelpRequest="onF4Receipent" valueHelpOnly="true" showValueHelp="true" />
+								
+								<Label text="{i18n>labelAttach}" labelFor="Attachment"/>
+								<UploadCollection
+							        id="idUploadCollection"            			   
+							        sameFilenameAllowed="false" 
+							        multiple="false" 
+							        uploadComplete="onFileUploadComplete"
+							        fileDeleted="onFileDeleted"
+							        beforeUploadStarts="onFileBeforeUploadStarts"
+							        uploadUrl="/sap/opu/odata/sap/ZODATA_FILE_SUBMIT_SRV/ET_SubmitSet"
+							        change="onFileAttachUpload"                           
+							        uploadTerminated="onFileUploadTerminated"
+							        typeMissmatch="onFileTypeMissmatch"
+							        maximumFilenameLength="100"
+							        maximumFileSize="5"
+							        fileSizeExceed="onFileSizeExceed"
+							        fileType="{['pdf']}"
+							         items="{
+											 path: 'oUploadFilejModel>/items',
+											templateShareable: false
+										   }"
+													
+									uploadEnabled="true"
+									uploadButtonInvisible="false">
+									<items>
+										<UploadCollectionItem
+											documentId="{oUploadFilejModel>DocNo}"
+											fileName="{oUploadFilejModel>FileName}"
+											mimeType="{oUploadFilejModel>MimeType}"
+											url="{oUploadFilejModel>Url}"
+										    enableEdit="true"
+											enableDelete="true"
+											visibleDelete="false"
+											visibleEdit="false"
+											press="onFileUploadPress">
+										</UploadCollectionItem>
+									</items>
+							    </UploadCollection>
+								<core:Title text=""/>
+								<Label text="{i18n>labeltxtarea}" labelFor="txtComment" required="true"/>
+								<TextArea id="idComments" height="400px" maxLength="1000"/>
+							
+							</form:content>
+						</form:SimpleForm>	
+					</IconTabFilter>
+					
+					<IconTabFilter id="idtabfilterB" text="{i18n>Label-ApprovalStatus}" icon="sap-icon://order-status" key="B" tooltip="{i18n>Lable-TooltipB}">
+						<Table id="idtblStatusHead" visible="true" showNoData="false" class="tablegrid">
+								<columns>
+								
+									<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" >
+										<Label text="{i18n>Lable-FileNo}" design="Bold" />
+									</Column>
+									
+									<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" >
+										<Label text="{i18n>Lable-Subject}" design="Bold" />
+									</Column>
+									
+									<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" >
+										<Label text="{i18n>Lable-InitiatedDt}" design="Bold" />
+									</Column>
+									
+									
+									<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="14rem" >
+										<Label text="{i18n>Lable-PUser}" design="Bold" />
+									</Column>
+
+									<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" >
+										<Label text="{i18n>Lable-PDate}" design="Bold" />
+									</Column>
+
+								<!--	<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" >
+										<Label text="{i18n>Lable-Recepient}" design="Bold" />
+									</Column>-->
+
+									<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="14rem" >
+										<Label text="{i18n>Label-ApprovedBy}" design="Bold" />
+									</Column>
+									
+									<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" >
+										<Label text="{i18n>Label-ApprovedDate}" design="Bold" />
+									</Column>
+									
+									<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="4rem" >
+									<!--	<Label text="{i18n>Label-ApprovedDate}" design="Bold" />-->
+									</Column>
+								
+								</columns>
+							</Table>
+						<ScrollContainer vertical="true" horizontal="false" height="450px">	
+							<Table id="idtblStatus" visible="true" showNoData="true" items="{StatusJModel>/}" alternateRowColors="true" class="tablegrid2">
+								<columns>
+									<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" ></Column>
+									<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" ></Column>
+									<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" ></Column>
+									<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="14rem"></Column>
+									<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" ></Column>
+									<!--<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" ></Column>-->
+									<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="14rem"></Column>
+									<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" ></Column>
+									<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="4rem"></Column>
+								
+								</columns>
+								<items>
+									<ColumnListItem>
+										<customData>
+    										<core:CustomData key="myCustColor" value="{StatusJModel>Status}" writeToDom="true"></core:CustomData>
+   										</customData>
+										<cells>
+											<Text text="{StatusJModel>FileNo}" class="classcell" />
+											<Text text="{StatusJModel>Subject}" class="classcell" />
+											<Text text="{path:'StatusJModel>InitDate',formatter:'com.cpwdfilemanage.util.Formatter.formatMgrCommentDt'}" class="classcell" />
+											<Text text="{StatusJModel>PendingUser} ({StatusJModel>UName})" class="classcell"></Text>	
+											<Text text="{path: 'StatusJModel>PendingDate', formatter:'com.cpwdfilemanage.util.Formatter.formatMgrCommentDt'}" class="classcell" />
+											<!--<Text text="{StatusJModel>Recepient}" class="classcell" />-->
+											<Text text="{StatusJModel>AppByUser} ({StatusJModel>UNameS})" class="classcell" />
+											<Text text="{path:'StatusJModel>AppUserDate',formatter:'com.cpwdfilemanage.util.Formatter.formatMgrCommentDt'}" class="classcell" />
+											<Button text="File" type="Emphasized" press="onStatusShowFile" enabled="true" width="3rem"/>
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+						</ScrollContainer>	
+					</IconTabFilter>
+					
+					<IconTabFilter id="idtabfilterC" text="{i18n>Label-Approver}" icon="sap-icon://employee-approvals" key="C" tooltip="{i18n>Lable-TooltipC}">
+						<Table id="idtblApproverhead" visible="true" showNoData="false" class="tablegrid">
+								<columns>
+									
+									<Column minScreenWidth="Tablet" hAlign='Center' width="3rem" demandPopin="true" >
+										
+									</Column>
+									
+									<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" >
+										<Label text="{i18n>Lable-InitiatedUser}" design="Bold" />
+									</Column>
+
+									<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" >
+										<Label text="{i18n>Lable-SubmitedDate}" design="Bold" />
+									</Column>
+
+								
+									<Column minScreenWidth="Tablet" hAlign='Center'  demandPopin="true">
+										<Label text="{i18n>Lable-Subject}" design="Bold" />
+									</Column>
+
+									<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" >
+										<Label text="{i18n>Lable-FileNo}" design="Bold" />
+									</Column>
+									
+									<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" >
+										<!--<Label text="{i18n>Lable-Comments}" design="Bold" />-->
+									</Column>
+								</columns>
+							</Table>
+							<ScrollContainer vertical="true" horizontal="false" height="300px">
+							<Table id="idtblApprover" visible="true" showNoData="true" items="{ApproverJModel>/}" alternateRowColors="true" class="tablegrid2">
+								<columns>
+									
+									<Column minScreenWidth="Tablet" hAlign='Center' width="3rem" demandPopin="true" ></Column>
+									<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" ></Column>
+									<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" ></Column>
+									<Column minScreenWidth="Tablet" hAlign='Center'  demandPopin="true"></Column>
+									<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" ></Column>
+									<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" ></Column>
+								</columns>
+								<items>
+									<ColumnListItem>
+										<customData>
+    										<core:CustomData key="myCustColor" value="{ApproverJModel>Status}" writeToDom="true"></core:CustomData>
+   										</customData>
+										<cells>
+											<RadioButton groupName="GroupApprover" select="onSelectRadio" />
+											<Text text="{ApproverJModel>InitUser} ({ApproverJModel>UName})" class="classcell"></Text>
+											<Text text="{path:'ApproverJModel>InitDate',formatter:'com.cpwdfilemanage.util.Formatter.formatMgrCommentDt'}" class="classcell" />
+											<Text text="{ApproverJModel>Subject}" class="classcell" />
+											<Text text="{ApproverJModel>FileNo}" class="classcell" />
+											<!--<Text text="{ApproverJModel>CommentInit}" class="classcell" />-->
+											<Button icon="sap-icon://show" type="Emphasized" text="Show File" press="onShowFileBtn" enabled="false" />
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+						</ScrollContainer>
+						
+						<VBox id="idVcommentsBox" visible="false">
+							<form:SimpleForm editable="true" layout="ResponsiveGridLayout">
+							<form:content>
+								<core:Title text=""/>
+								<Label />
+								<!--<TextArea id="idPrevCmnts" height="200px" enabled="false"/>-->
+								<Button id="idbuttonForComents" text="{i18n>Label-btn-ShowPrevComnts}" type="Emphasized" press="onPressShowComments"  width="70%"/>
+								
+								<core:Title text=""/>
+								<Label text="{i18n>Label-AddNewCmnts}" labelFor="txtComment" required="false"/>
+								<TextArea id="idNewCmnts" height="200px" maxLength="1000"/>
+							
+							</form:content>
+						</form:SimpleForm>			
+						</VBox>
+						
+					</IconTabFilter>
+					
+				</items>
+			</IconTabBar>	
+					
+				
+					</VBox>
+				</content>
+				<footer>
+					<Bar>
+						<contentRight>
+							<Button id="idSend" text="{i18n>label-btn-Send}" type="Emphasized" icon="sap-icon://save" press="onSend" />
+							<Button id="idApprove" text="{i18n>label-btn-submit}" type="Emphasized" icon="sap-icon://accept" press="OnGoforAction" visible="false" enabled="false" />
+							<Button id="idforward" text="{i18n>label-btn-forward}" type="Emphasized" icon="sap-icon://forward" press="OnGoforAction" visible="false" enabled="false"/>
+							<!--<Button id="idreferback" text="{i18n>label-btn-referBack}" type="Emphasized" icon="sap-icon://sys-back-2" press="OnGoforAction" visible="false" enabled="false"/>-->
+							<!--<Button id="idreject" text="{i18n>label-btn-reject}" type="Reject" icon="sap-icon://decline" press="OnGoforAction" visible="false" enabled="false"/>-->
+						</contentRight>
+
+					</Bar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>
