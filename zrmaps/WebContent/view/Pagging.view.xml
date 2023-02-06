@@ -1,0 +1,104 @@
+<core:View width="100%"
+ 		   xmlns:core="sap.ui.core" 
+	       xmlns:viz="sap.viz.ui5.controls" 
+     	   xmlns:mvc="sap.ui.core.mvc"
+           xmlns="sap.m"
+           	xmlns:l="sap.ui.layout"
+           controllerName="zrmaps.view.Pagging"  
+	       xmlns:html="http://www.w3.org/1999/xhtml">     
+	      
+<html:style>
+.tblgrid .sapMListTblCell {
+    vertical-align: middle;
+    border: none;
+    background: rgb(91, 91, 146);
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.tblgrid2 .sapMListTblCell {
+    vertical-align: middle;
+    border: 0.2px solid #f5eaea;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.tblgrid .sapMListTblCell .sapMLabel {
+    vertical-align: middle;
+    line-height: 1.4;
+    color: white;
+}
+</html:style>	       
+	       
+
+<Page title="Pagging" class="sapUiSizeCompact header1" enableScrolling="true" busy="{oViewJModel>/busy}" 
+	  busyIndicatorDelay="{oViewJModel>/delay}">
+<content>
+<Table id="idClaimTable" showNoData="false" class="tblgrid">
+			<columns>
+				
+				<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="20rem">
+				<Label text="Request Number" design="Bold"  />
+				</Column>
+				
+				<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+				<Label text="MarketDesc" design="Bold" />
+				</Column>
+				
+				<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+				<Label text="ProdCatDesc" design="Bold" />
+				</Column>
+				
+				<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+				<Label text="TestCatDesc" design="Bold" />
+				</Column>
+				
+				<Column minScreenWidth="Tablet" width="20rem" demandPopin="true" hAlign="Center">
+				<Label text="Status" design="Bold" />
+				</Column>
+				
+				<Column minScreenWidth="Tablet"  demandPopin="true" hAlign="Center">
+				<Label text="" design="Bold" />
+				</Column>
+			</columns>
+		</Table>
+		
+		<ScrollContainer vertical="true" horizontal="false" height="450px">
+			<Table id="idClaimDataTable" items="{TableJModel>/}" growing="true" growingThreshold="10"
+				   visible="true" showNoData="true" class="tblgrid2">
+				<columns>
+				<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="20rem"></Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center"></Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center"></Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center"></Column> 
+				<Column minScreenWidth="Tablet" width="20rem" demandPopin="true" hAlign="Center"></Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center"></Column>
+			</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{TableJModel>RequestNumber}" />
+							<Text text="{TableJModel>MarketDesc}" />
+							<Text text="{TableJModel>ProdCatDesc}" />
+							<Text text="{TableJModel>TestCatDesc}" />
+							<Text text="{TableJModel>Status}" />
+							<Button text="View Details" enabled="true" type="Emphasized" icon="sap-icon://show" press="onViewDetails" />
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</ScrollContainer>	
+ 
+	
+</content>
+	<footer>
+		<Toolbar>
+			<Label text="JK Tyre and Industries Ltd."></Label>
+		</Toolbar>
+	</footer>
+	</Page>
+</core:View>

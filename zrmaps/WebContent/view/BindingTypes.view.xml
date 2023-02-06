@@ -1,0 +1,48 @@
+<core:View xmlns:core="sap.ui.core" 
+		   xmlns:mvc="sap.ui.core.mvc"
+		   xmlns:m ="sap.m.MultiComboBox"
+		   xmlns="sap.m" 
+		   xmlns:table="sap.ui.table"
+		   xmlns:f="sap.ui.layout.form"
+	       xmlns:l="sap.ui.layout"	
+	       controllerName="zrmaps.view.BindingTypes" 
+	       xmlns:html="http://www.w3.org/1999/xhtml"> 
+<html:style>
+
+</html:style>	       
+	           
+<Page title="Sales Order" level="h4" class="sapUiStdPage" enableScrolling="true">
+<content>
+
+<f:SimpleForm id="SimpleFormToolbar1" minWidth="1024" class="sapUiFormResGrid sapUiSizeCompact" maxContainerCols="6" 
+			  editable="true" layout="ResponsiveGridLayout" labelSpanL="4" labelSpanM="4" emptySpanL="1" emptySpanM="1" 
+			  columnsL="2" columnsM="3" >
+		  
+	<f:content>
+		<core:Title text="Header Details" />
+		<Label text="Property Binging" />
+		<Input value="{TableJmodel>/name}" id="idordertype"  liveChange="" change="" /> 
+		
+		<Label text="Aggrigation Binding" />
+		<Select selectedKey="" forceSelection="false" enabled="true" id="idDropF4" change="">
+		</Select>
+		
+		<Label text="Element Binding" />
+		<Input id="companyInput" binding="{/TableJmodel2}" value="{name}" tooltip="The name of the company is '{name}'"/>
+		
+		<core:Title text="Header Details" />			
+		
+	</f:content> 
+	</f:SimpleForm>
+
+</content>
+  
+<footer>
+	<Bar>
+	<contentRight>
+																										
+	</contentRight>
+	</Bar>
+	</footer>
+</Page>
+</core:View>

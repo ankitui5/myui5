@@ -1,0 +1,53 @@
+<core:View xmlns:core="sap.ui.core" 
+		   xmlns:mvc="sap.ui.core.mvc"
+		   xmlns="sap.m" 
+	        xmlns:viz="sap.viz.ui5.controls" 
+	        xmlns:viz.data="sap.viz.ui5.data"
+	       xmlns:viz.title="sap.viz.ui5.types.Title"
+	       xmlns:layout="sap.ui.layout"
+	       xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+	      
+	       controllerName="zrmaps.view.View2" 
+	       xmlns:html="http://www.w3.org/1999/xhtml">        
+<html:style>
+
+ 
+</html:style>           
+<Page title="Test App2" level="h4" class="sapUiStdPage" enableScrolling="true">
+<content>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<viz:VizFrame id="oVizFrame" vizProperties="{title:{text:'',visible:true}}"   busy="false" busyIndicatorDelay="1000"  visible="true" uiConfig="" vizType="column" legendVisible="true">
+ <viz:dataset> 
+    <viz.data:FlattenedDataset data="{FitmentChartData>/}">
+        <viz.data:dimensions>
+            <viz.data:DimensionDefinition name="Claim Status" value="{FitmentChartData>Status}" />
+        </viz.data:dimensions>
+         
+        <viz.data:measures>
+            <viz.data:MeasureDefinition group="1" name="ClaimCount" value="{FitmentChartData>Count}" /> 
+            <viz.data:MeasureDefinition group="1" name="ClaimStatus1" value="{FitmentChartData>Status}" /> 
+             
+        </viz.data:measures>
+    </viz.data:FlattenedDataset>
+</viz:dataset> 
+ 
+<viz:feeds>
+    <viz.feeds:FeedItem id="value2" uid="primaryValues" type="Measure" values="Claim Count" />
+    <viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="ClaimStatus" />
+    <viz.feeds:FeedItem uid="value2" type="Dimension" values="ClaimStatus1" />  
+</viz:feeds>
+</viz:VizFrame> 
+	
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->	
+</content>
+  
+<footer>
+	<Bar>
+	<contentRight>
+		<Button text="Button1" press="onClick1" type="Accept"  visible="true" />
+		<Button text="Fragments" press="onFrag" type="Accept"  visible="true" /> 	
+	</contentRight>
+	</Bar>
+	</footer>
+</Page>
+</core:View>

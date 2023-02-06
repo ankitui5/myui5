@@ -1,0 +1,816 @@
+<core:View xmlns:core="sap.ui.core" 
+		   xmlns:mvc="sap.ui.core.mvc"
+		   xmlns:m ="sap.m.MultiComboBox"
+		   xmlns="sap.m" 
+		   xmlns:table="sap.ui.table"
+		   xmlns:f="sap.ui.layout.form"
+	       xmlns:l="sap.ui.layout"	
+	       xmlns:p="sap.f"
+	       controllerName="zrmaps.view.View1" 
+	       xmlns:html="http://www.w3.org/1999/xhtml"> 
+<html:style>
+.tblgrid .sapMListTblCell {
+		    vertical-align: middle;
+		    border: 1.1px solid #d6aeae;
+		    background: #f4f4f6; 
+			}
+			
+</html:style>	       
+	           
+<Page title="Test App" level="h4" class="sapUiStdPage" enableScrolling="true">
+<content>
+	<f:SimpleForm id="SimpleFormToolbar1" minWidth="1024" class="sapUiFormResGrid sapUiSizeCompact" maxContainerCols="6" 
+			  editable="true" layout="ResponsiveGridLayout" labelSpanL="4" labelSpanM="4" emptySpanL="1" emptySpanM="1" 
+			  columnsL="2" columnsM="3" >
+		  
+	<f:content>
+		<core:Title text="Header Details" />
+		<Label text="" />
+		<Button text="test" press="ontest" type="Accept" />
+		<Label text="First Name" />
+		<Input value="{jModel>/firstName}" id="idName" liveChange="validateCharacter" change="" maxLength="35" />
+		
+		
+		<Label text="Text" />
+		<Text id="idtext" valueFormat = "yyyy-MM-DD"  /> 
+		<!-- <Text text="abc" /> -->	
+		
+		<Label text="Full Name" /> 
+		<Input id="idFullName" value="{jModel>/lastName}" liveChange="ValidateName" /> 
+		
+		<Label text="Phone No." />
+		<Input id="idPhone"  liveChange="NumberValid" maxLength="10"/>
+		
+		<Label text="Drop Down F4" required="true" />
+		<Select selectedKey="" forceSelection="false" enabled="true" id="idDropF4" change="">
+		</Select>
+		
+		<Label text="F4" />
+		<Input id="idF4" value="" valueHelpRequest="onF4" valueHelpOnly="false" showValueHelp="true" liveChange="onLive"/>
+		 
+		<Label text="StateF4" />
+		<Input id="idf4State" value="" valueHelpRequest="onF4State" valueHelpOnly="false" showValueHelp="true"/>
+		
+		<Label text="Image" />
+		<Image src="" id="idBinaryimg" visible="true" width="50px" height="50px" press="onPreviewImage" densityAware="false" alt="No Image"></Image>
+	
+		<!-- <Image src="https://cdn2.iconfinder.com/data/icons/metro-ui-dock/512/Excel_-_Google_Docs.png" visible="true" width="50px" height="50px" press="onPreviewImage" densityAware="false" alt="No Image"></Image> -->
+	   
+		<core:Title text="" />
+		<Label text="Date Piker" visible="true"/>  
+		<DatePicker value="" enabled="true" visible="true" id="idatePiker" change = "onchangeDate" 
+					valueFormat = "yyyy-MM-DD" maxDate="" minDate=""/>
+		
+		<Label text="Date Piker2" visible="true"/>  
+		<DatePicker value="" enabled="true" visible="true" id="idatePiker2" change = "onchangeDate2" 
+					valueFormat = "yyyy-MM-DD" maxDate="" minDate=""/>
+		
+		
+		<Label text="Date Range" visible="true"/>
+		<DateRangeSelection enabled="true" visible="true"  id="iddaterange"/>			
+					
+		<Label text="Date" visible="true"/> 
+		<Text id="idtext1" valueFormat = "yyyy-MM-DD"  />	
+		
+		<Label text="Drop Down" required="true" />
+		<Select selectedKey="" forceSelection="false" enabled="true" id="idDropD" change="onChangeDropD">
+			<items>
+				<core:Item text="Text 1" key="T1" />
+				<core:Item text="Text 2" key="T2" />
+			</items>
+		</Select>
+				 
+		<Label text="State" /> 
+		<Input id="idState" value=""  valueHelpRequest="onState" valueHelpOnly="true" showValueHelp="true"/>
+		
+		<Label text="District" />
+		<Input id="iddist" value="" enabled="false" valueHelpRequest="ondist" valueHelpOnly="true" showValueHelp="true"/>
+		
+		<Label text="City" />
+		<Input id="idCity" value="" enabled="false"/>
+		
+		<Button id="target" type="Transparent" icon="sap-icon://cursor-arrow" iconFirst="false" class="sapUiTinyMargin"
+      			text="mouseover Here">
+    </Button>
+    
+    
+    
+        <ResponsivePopover contentWidth="100%" id="popover" showHeader="false">
+          <content>
+            <!-- <p:Avatar src="http://openui5.org/resources/OpenUI5_newlogo_orange_only.png"
+              class="sapUiSmallMargin" displaySize="XL" imageFitType="Contain" /> -->
+            <Text text="{jModel>/firstName}"></Text>  
+          </content>
+        </ResponsivePopover>
+      
+		
+		<!-- <Label text="Image" />
+		<Image class="bildAbstand" id="logo1" mode="Image" src="zrmaps.MIMEs.img.jk" width="70%"/> -->
+		
+	</f:content> 
+	</f:SimpleForm>
+		
+	<f:SimpleForm id="SimpleFrm" minWidth="1024" class="clabc" maxContainerCols="6" editable="true" layout="ResponsiveGridLayout"  
+			  columnsL="1" columnsM="1" >
+	<f:content>
+	<Label id="idrem" text="Remarks" design="Bold"/>
+	<TextArea rows="2" value="{EmployeeInfo>/Remarks}" maxLength="100" width="95%"  enabled="false" id="idremarks"/>
+	</f:content></f:SimpleForm>	
+	
+	<Label id="idrem2" text="Remarks2" design="Bold"/>
+	<TextArea id="idRemarks" rows="15" cols="15" maxLength="1000" showExceededText="true" value="" width="63%" 
+					placeholder="Resignation Note(Max 1000 Character) "></TextArea>
+		
+<html:hr/>
+
+
+
+<!-- ********************************************************************************************************************************* -->
+<f:SimpleForm id="SimpleFormToolbar2" minWidth="1024" class="sapUiFormResGrid sapUiSizeCompact" maxContainerCols="6" 
+			  editable="true" layout="ResponsiveGridLayout" labelSpanL="4" labelSpanM="4" emptySpanL="1" emptySpanM="1" 
+			  columnsL="2" columnsM="3" >
+		  
+	<f:content>
+		<core:Title text="" />
+		<Label text="Ammount 1" />
+		<Input id="idAmt1" value="{MYjsonModel>/Country}"  maxLength="4" liveChange="NumberValid"/> 
+			
+		<Label text="Ammount 2" /> 
+		<Input id="idAmt2" value="{MYjsonModel>/RegionCode}" maxLength="4" liveChange="NumberValid"/> 
+		
+		<core:Title text="" />
+		<Label text="Final Ammount" visible="true"/>  
+		<Input value="{MYjsonModel>/Region}" id="idfinalAmt" enabled="false"/>
+		
+		<Label text="" visible="true"/> 
+		<Button icon="sap-icon://add" press="onAdd" type="Emphasized" id="Id_Add" >
+			<layoutData>
+			  <l:GridData span="XL2 L2 M1 S1"/>
+			</layoutData>
+		</Button>
+		
+		<Button icon="sap-icon://less" press="onLess" type="Emphasized" id="Id_Less" >
+			<layoutData>
+			  <l:GridData span="XL2 L2 M1 S1"/>
+			</layoutData>
+		</Button>
+		
+		<Button icon="sap-icon://decline" press="onMulti" type="Emphasized" id="Id_Multi" >
+			<layoutData>
+			  <l:GridData span="XL2 L2 M1 S1"/>
+			</layoutData>
+		</Button>
+			
+	</f:content>
+	</f:SimpleForm>	
+<html:hr/>
+<!-- ********************************************************************************************************************************* -->
+<Panel>
+<f:SimpleForm id="SimpleFormToolbar3" minWidth="1024" class="sapUiFormResGrid sapUiSizeCompact" maxContainerCols="6" 
+			  editable="true" layout="ResponsiveGridLayout" labelSpanL="4" labelSpanM="4" emptySpanL="1" emptySpanM="1" 
+			  columnsL="2" columnsM="3" >
+		  
+	<f:content>
+		<core:Title text="" />
+		
+		<Label text="Time" />
+		<DateTimeInput id="DTI2" type="Time" placeholder="Enter Time .." class="sapUiSmallMarginBottom" />
+		
+		<Label text="Date Time" />
+		<DateTimeInput id="DTI3" type="DateTime" placeholder="Enter Date &amp; Time .." class="sapUiSmallMarginBottom" />
+	
+	<DateTimeInput id="DTI4" type="DateTime" placeholder="Enter Date &amp; Time .." class="sapUiSmallMarginBottom" />
+		<core:Title text="" />
+		
+		<Label text="Serial number" tooltip="Serial number. Digits and capital letters allowed"/>
+		<MaskInput mask="CCCC-CCCC-CCCC" placeholderSymbol="_" placeholder="Enter serial number">
+			<rules>
+				<MaskInputRule maskFormatSymbol="C" regex="[A-Z0-9]"/>
+			</rules>
+		</MaskInput>
+		
+		<Label text="Product activation key" tooltip="Product activation key. Starts with 'SAP' followed by digits and capital letters"/>
+		<MaskInput mask="SAP-CCCCC-CCCCC" placeholderSymbol="_" placeholder="Enter activation key">
+			<rules>
+				<MaskInputRule maskFormatSymbol="C" regex="[A-Z0-9]"/>
+			</rules>
+		</MaskInput>
+
+		<Label text="ISBN" tooltip="ISBN"/>
+		<MaskInput mask="999-99-999-9999-9" placeholderSymbol="_" placeholder="Enter ISBN"/>
+		
+		<Label text="Rating Indicator default size" labelFor="RI_default"/>
+		<RatingIndicator liveChange="onStarRating" id="RI_default" maxValue="6" class="sapUiSmallMarginBottom" value="2" tooltip="Rating Tooltip" />
+		
+	</f:content>
+	</f:SimpleForm>	
+
+</Panel>
+<html:hr/>	
+<!-- ********************************************************************************************************************************* -->
+<Panel>
+<f:SimpleForm id="SimpleFormToolbar4" minWidth="1024" class="sapUiFormResGrid sapUiSizeCompact" maxContainerCols="6" 
+			  editable="true" layout="ResponsiveGridLayout" labelSpanL="4" labelSpanM="4" emptySpanL="1" emptySpanM="1" 
+			  columnsL="2" columnsM="3" >
+		  
+	<f:content>
+		<core:Title text="" />
+			<l:VerticalLayout class="sapUiSmallMargin" >
+	        <Label id = "iO" text= "IO" design = "Bold"/>
+	        <Input type = "Text" width = "20%"/>
+	        <Input type = "Date" width = "35%" />
+  		</l:VerticalLayout>
+		
+	
+		<core:Title text="" />
+		<Label text="ISBN" tooltip="ISBN"/>
+		<MaskInput mask="999-99-999-9999-9" placeholderSymbol="_" placeholder="Enter ISBN"/>
+		
+		<Label text="Rating Indicator default size" labelFor="RI_default"/>
+		<RatingIndicator id="RI_defaultt" maxValue="5" class="sapUiSmallMarginBottom" value="4" tooltip="Rating Tooltip" />
+		
+		
+	</f:content>
+	</f:SimpleForm>	
+
+</Panel>
+<html:hr/>	
+
+<!-- ********************************************************************************************************************************* -->
+<f:SimpleForm id="SimpleFormToolbar5" minWidth="1024" class="sapUiFormResGrid sapUiSizeCompact" maxContainerCols="6" 
+			  editable="true" layout="ResponsiveGridLayout" labelSpanL="4" labelSpanM="4" emptySpanL="1" emptySpanM="1" 
+			  columnsL="2" columnsM="3" >
+		  
+	<f:content>
+		<core:Title text="" />
+		<Label text="Only Number" />
+		<Input id="idinput1" value=""  maxLength="4" liveChange="onOnlyNumber"/> 
+			
+		<Label text="Only Char" /> 
+		<Input id="idinput2" value="" maxLength="4" liveChange="onOnlyChar"/> 
+		
+		<Label text="Validate Special Char" visible="true"/>  
+		<Input id="idinput5" value="" liveChange="onValidateSpeciealChar"   />
+		
+		<core:Title text="" />
+		<Label text="Upper Case" visible="true"/>  
+		<Input id="idinput3" value="" liveChange="onUpper" />
+		
+		<Label text="Input 4" visible="true"/>  
+		<Input id="idinput4" value="" liveChange="onTakeoneDigitAfterPoint"   />
+		
+		<Label text="Last four Num" visible="true"/>  
+		<Input id="idinput6" value="" change="onLastFourDigitNum"   />
+		
+
+		
+		
+			
+	</f:content>
+	</f:SimpleForm>	
+<html:hr/>
+<!-- ********************************************************************************************************************************* -->
+
+<!-- ********************************************************************************************************************************* -->
+<!-- Its Not Working in sap ui5 version 1.52.18 -->
+	<Table id="samplesTable" headerText="Color Palette in a Popover" class="sapUiLargeMarginBottom">
+		<columns>
+			<Column>
+				<Text text="Description"/>
+			</Column>
+			<Column width="30%">
+				<Text text="Action"/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<Label text='Default set of colors with both "Default Color" and "More Colors..." buttons'/>
+					<Button press="openFullSample" icon="sap-icon://text-color"/>
+				</cells>
+			</ColumnListItem>
+			<ColumnListItem>
+				<cells>
+					<Label text='Default set of colors without any additional buttons'/>
+					<Button press="openMinimalSample" icon="sap-icon://color-fill"/>
+				</cells>
+			</ColumnListItem>
+			<ColumnListItem>
+				<cells>
+					<Label text='Custom set of colors with "More Colors..." button'/>
+					<Button press="openCustomColorsSample" icon="sap-icon://color-fill"/>
+				</cells>
+			</ColumnListItem>
+			<ColumnListItem>
+				<cells>
+					<Label text='Two custom colors with "Default Color" button'/>
+					<Button press="openMinimalSampleWithDefaultColorButton" icon="sap-icon://palette"/>
+				</cells>
+			</ColumnListItem>
+
+		</items>
+	</Table>
+<!-- ********************************************************************************************************************************* -->
+<IconTabBar id="idIconTabBar" expanded="true" select="onTabSelected" >
+	<items>
+		<IconTabFilter text="TAB1" key="Tab1Key" iconColor="Positive">
+			<Toolbar id="idToolbar" >	
+			<ToolbarSpacer />
+			<Button id="idAddBtn" type="Emphasized" icon="sap-icon://add" press="addNewTransaction" visible="true" />
+			</Toolbar> 
+
+<Panel>
+
+			
+<Table id="tblDetail1" items="{TranDetailsJModel>/}"  visibleRowCount="10" class="tblgrid" visible="true" inset="false" 
+	   width="100%" fixedLayout="false" showOverlay="false" select="" swipe="both" growing="true" wrapping="true" growingThreshold="50">
+	
+	<columns>
+	
+	<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="10rem">
+	<Label text="Customer"/>
+	</Column>
+	
+	
+	<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="10rem">
+	<Label text="Transaction Type" />
+	</Column>
+	
+	
+	<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="10rem">
+	<Label text="matnr" visible="true"/>
+	</Column>
+		
+	<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="11rem">
+	<Label text="SKU"/>
+	</Column>
+	
+	<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="11rem">
+	<Label text="Service" />
+	</Column>
+	
+	
+	<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="8rem">
+	<Label text="Registration No" />
+	</Column> 
+	
+	<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="8rem">
+	<Label text="Registration No2" />
+	</Column>
+	
+	 
+				
+	<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="6rem">
+	<Label text="Remove" />
+	</Column>
+	
+	</columns>
+	<items>
+	<ColumnListItem>
+	
+	<cells>
+		<Input showSuggestion="true" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="onCustomerName" value="" /> 
+				
+				
+		<l:VerticalLayout >	 	
+				
+		<Select items="" forceSelection="false" change="onChangeTransactionType" selectedKey="" enabled="true">
+			<items>
+			<core:Item text="abc" key="xyz" />
+			<core:Item text="abc1" key="xyZ1" />
+			</items>
+		</Select>
+		
+		<Select items="" forceSelection="false" change="onChangeTransactionType" selectedKey="" enabled="true">
+			<items>
+			<core:Item text="abc" key="zyz" />
+			<core:Item text="abc1" key="zyz" />
+			</items>
+		</Select> 
+		
+		 </l:VerticalLayout> 
+		
+		
+		 
+		<Input value=""  visible="true" />
+		
+		<Input showSuggestion="true" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="onMaterial" value=""  enabled="true" />
+				
+		<MultiComboBox autoAdjustWidth="true" items="{Service>/}" showSecondaryValues="true"  enabled="true" selectedKeys="" >
+		<core:Item  additionalText="" key="{Service>Service}" text="{Service>Text}"></core:Item>
+		</MultiComboBox>
+					
+		<Input  value="" liveChange="upperCase" enabled="true" valueHelpRequest="onRegNo"  showValueHelp="true" valueHelpOnly="true" /> 
+		<Input value=""  visible="true" />						
+		<Button icon="sap-icon://delete" press="onRemoveTransDetail" type="Reject" tooltip="Delete Item" />
+				
+		
+		
+	</cells>
+	</ColumnListItem>
+	
+	</items>
+	</Table> 
+	</Panel>
+</IconTabFilter>
+		
+<IconTabFilter text="TAB2" key="TAB2Key" iconColor="Positive">
+<ScrollContainer horizontal="true">
+	
+	<table:Table id="tblDetail2" rows="" fixedColumnCount="3" mode="MultiSelect" growing="false" showNoData="false" visibleRowCount="2" >	
+		<table:columns>
+			<table:Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="10rem">
+				<Label text="Name"/>
+				<table:template>
+					<Input showSuggestion="true" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="onCustomerName" value="" /> 
+				</table:template>
+			</table:Column>
+			
+			<table:Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="10rem">
+				<Label text="Name"/>
+				<table:template>     
+					<Input showSuggestion="true" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="onCustomerName" value="" /> 
+				</table:template>
+			</table:Column>
+			
+			<table:Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="10rem">
+				<Label text="Name"/>
+				<table:template>
+					<Input showSuggestion="true" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="onCustomerName" value="" /> 
+				</table:template>
+			</table:Column>
+			
+			<table:Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="15rem">
+				<Label text="Name"/>
+				<table:template>
+					<Input showSuggestion="true" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="onCustomerName" value="" /> 
+				</table:template>
+			</table:Column>
+			
+			<table:Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="15rem">
+				<Label text="Name"/>
+				<table:template>
+					<Input showSuggestion="true" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="onCustomerName" value="" /> 
+				</table:template>
+			</table:Column>
+			
+			<table:Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="15rem">
+				<Label text="Name"/>
+				<table:template>
+					<Input showSuggestion="true" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="onCustomerName" value="" /> 
+				</table:template>
+			</table:Column>
+			
+			<table:Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="15rem">
+				<Label text="Name"/>
+				<table:template>
+					<Input showSuggestion="true" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="onCustomerName" value="" /> 
+				</table:template>
+			</table:Column>
+			
+			<table:Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="15rem">
+				<Label text="Name"/>
+				<table:template>
+					<Input showSuggestion="true" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="onCustomerName" value="" /> 
+				</table:template>
+			</table:Column>
+			
+			
+		</table:columns>
+	</table:Table>
+		
+</ScrollContainer>	
+</IconTabFilter> 
+
+
+<IconTabFilter text="TAB3" key="TAB2Key3" iconColor="Positive">
+<core:Icon size="1.5rem" src="sap-icon://sorting-ranking" press="onPressSorter" visible="true" tooltip="sort options"></core:Icon>
+<SearchField id="searchField1" tooltip="{i18n>worklistSearchTooltip}" search="onSearch1" >
+	<layoutData>
+		<l:GridData span="XL2 L3 M2 S2"/>
+	</layoutData>
+</SearchField>
+<Table class="tblgrid2" showNoData="false"> 
+		<columns>
+			<Column width="14rem" minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+				<Label text="Product Name" design="Bold"/>
+			</Column>
+			
+								
+			<Column width="8rem" minScreenWidth="Tablet" hAlign='Center'	demandPopin="true">
+			<Label text="Cost" design="Bold"/>
+			</Column>
+			
+			
+			<Column width="10rem" minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+				<Label text="Product Type" design="Bold"/>
+			</Column>
+			
+		</columns>
+</Table>			
+<ScrollContainer vertical="true" horizontal="false" height="400px" >
+<Table id="idtab3table"  items="{TableJmodel>/}" showNoData="true" alternateRowColors="true"
+	   fixedColumnCount="3" itemPress="displayRequest" class="tblgrid2"> 
+		<columns>
+			<Column width="14rem" minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+				
+			</Column>
+			
+								
+			<Column width="8rem" minScreenWidth="Tablet" hAlign='Center'	demandPopin="true">
+			
+			</Column>
+			
+			
+			<Column width="10rem" minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+				
+			</Column>
+			
+		</columns>				
+		 
+					
+		<items>
+			 <ColumnListItem >
+				<cells>
+					<Text text="{TableJmodel>ProductName}" />
+             		<Text text="{TableJmodel>Cost}" />  		   
+					<Text text="{TableJmodel>ProductType}" />
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table> 
+</ScrollContainer>	
+</IconTabFilter> 
+
+<!-- ******************************************************************************************************* -->
+
+<IconTabFilter text="TAB4" key="TAB2Key4" iconColor="Positive">
+<core:Icon size="1.5rem" src="sap-icon://sorting-ranking" visible="true" tooltip="sort options"></core:Icon>
+<!-- <SearchField id="searchField2" tooltip="{i18n>worklistSearchTooltip}" search="onSearch2" >
+	<layoutData>
+		<l:GridData span="XL2 L3 M2 S2"/>
+	</layoutData>
+</SearchField> -->
+<f:SimpleForm  minWidth="1024" maxContainerCols="3" editable="true" layout="ResponsiveGridLayout"
+		       labelSpanL="4" labelSpanM="4" emptySpanL="1" emptySpanM="1" columnsL="2" columnsM="3" class="editableForm">
+		<f:content>
+		 <core:Title id="V_1" level="h4" text="Selection Criteria" visible="false"/>
+		    
+		    <Label text="Product Name" design="Bold"/>
+			<Input id="idprdname" valueHelpRequest="onClaimF4" valueHelpOnly="false" showValueHelp="true" />
+		    
+		    <Label text="Cost" design="Bold"/>
+			<Input id="idCost" valueHelpRequest="onTicketNoHelp" valueHelpOnly="false"	 showValueHelp="true"/>		
+			 
+			
+			 
+			<core:Title id="V_01"  text="" visible="false"/>
+			 <Label text="Product Type" design="Bold"/>
+			 <Input id="idPrdType" valueHelpRequest="onStencil" valueHelpOnly="false" showValueHelp="true" />
+			
+			<Button id="btnSearch" text="Go" type="Emphasized" press="onSearch2">
+			        <layoutData>
+					<l:GridData span="XL2 L1 M2 S2"/>
+					</layoutData>
+			</Button>
+			
+			<Button id="btnSearch1" text="Clear" type="Emphasized" press="onClear">
+			        <layoutData>
+					<l:GridData span="XL2 L2 M1 S1"/>
+					</layoutData>
+			</Button>
+				
+				<Label text="Ticket Date" design="Bold"/>
+			<DateRangeSelection visible="false"	id="idDateRange" change="handleDate" valueFormat="yyyy-MM-dd" />	
+		</f:content>
+	</f:SimpleForm>
+<Table class="tblgrid2" showNoData="false"> 
+		<columns>
+			<Column width="14rem" minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+				<Label text="Product Name" design="Bold"/>
+			</Column>
+			
+								
+			<Column width="8rem" minScreenWidth="Tablet" hAlign='Center'	demandPopin="true">
+			<Label text="Cost" design="Bold"/>
+			</Column>
+			
+			
+			<Column width="10rem" minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+				<Label text="Product Type" design="Bold"/>
+			</Column>
+			
+		</columns>
+</Table>			
+<ScrollContainer vertical="true" horizontal="false" height="400px" >
+<Table id="idtab3table2"  items="{TableJmodel>/}" showNoData="true" alternateRowColors="true"
+	   fixedColumnCount="3" itemPress="displayRequest" class="tblgrid2"> 
+		<columns>
+			<Column width="14rem" minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+				
+			</Column>
+			
+								
+			<Column width="8rem" minScreenWidth="Tablet" hAlign='Center'	demandPopin="true">
+			
+			</Column>
+			
+			
+			<Column width="10rem" minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+				
+			</Column>
+			
+		</columns>				
+		 
+					
+		<items>
+			 <ColumnListItem >
+				<cells>
+					<Text text="{TableJmodel>ProductName}" />
+             		<Text text="{TableJmodel>Cost}" />  		   
+					<Text text="{TableJmodel>ProductType}" />
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table> 
+</ScrollContainer>	
+</IconTabFilter> 
+
+<!-- <IconTabFilter text="TAB3" key="TAB3Key" iconColor="Positive">
+<Toolbar id="idToolbar1" >	
+			<ToolbarSpacer /> 
+			<Button id="idAddBtn2" type="Emphasized" icon="sap-icon://add" press="addNewTransaction" visible="true" />
+			</Toolbar> 
+<Table xmlns="sap.m" id="idItemTable" class="tableBorder" items="{TranDetailsJModel>/}" visible="true" inset="false" width="100%"
+        includeItemInSelection="false" showUnread="false" noDataText="" showNoData="false" enableBusyIndicator="true" 
+        modeAnimationOn="true" showSeparators="Inner" swipeDirection="Both" backgroundDesign="Translucent"
+	    fixedLayout="false" showOverlay="false" select="" swipe="both" growing="true" wrapping="true" growingThreshold="50" 
+	    visibleRowCount="2" fixedColumnCount="3"> 
+
+      <columns>
+          <Column xmlns="sap.m" hAlign="Center" vAlign="Middle" visible="true">
+            <Text xmlns="sap.m" visible="true" text="{i18n>MaterialNumber}" textDirection="Inherit" wrapping="false" textAlign="Begin">
+            </Text>
+          </Column>
+      </columns>
+
+        <items>
+          <ColumnListItem xmlns="sap.m" visible="true" type="Inactive" class="tableBorder" unread="false" selected="false" tap=""
+						  detailTap="" press="" detailPress="">
+				<cells>
+				<Input value="hello"  visible="true" />		  
+				</cells>		  
+		 </ColumnListItem>
+        </items>
+ </Table>
+
+
+</IconTabFilter> -->
+
+<IconTabFilter text="TAB5" key="TAB5Key" iconColor="Positive">
+
+<UploadCollection
+			id="UploadCollection"
+			maximumFilenameLength="55"
+			maximumFileSize="10"
+			multiple="false"
+			change="onChange"
+			fileSizeExceed="onFileSizeExceed"
+			selectionChange="onSelectionChange"
+			typeMissmatch="onTypeMissmatch"
+			uploadComplete="onUploadComplete"
+			beforeUploadStarts="onBeforeUploadStarts"
+			items="{path: 'uPloadCollectionJmodel>/',templateShareable: false}"
+			mode="MultiSelect">
+			<toolbar>
+				<OverflowToolbar id="myId">
+					<Title id="attachmentTitle" />
+					<ToolbarSpacer />
+					<Button
+						id="downloadButton"
+						text="Download"
+						press="onDownloadItem"
+						enabled="false"
+						type="Transparent" />
+					<Button
+						id="versionButton"
+						text="Upload a new version"
+						press="onVersion"
+						enabled="false"
+						type="Transparent" />
+					<UploadCollectionToolbarPlaceholder/>
+				</OverflowToolbar>
+			</toolbar>
+			<items>
+				<UploadCollectionItem
+					documentId="{uPloadCollectionJmodel>documentId}"
+					fileName="{uPloadCollectionJmodel>fileName}"
+					mimeType="{uPloadCollectionJmodel>mimeType}"
+					thumbnailUrl="{uPloadCollectionJmodel>thumbnailUrl}"
+					url="{uPloadCollectionJmodel>url}"
+					enableEdit="false"
+					enableDelete="false"
+					visibleDelete="false"
+					visibleEdit="false"
+					attributes=""
+					statuses=""
+					selected="{selected}">
+					<attributes>
+						<ObjectAttribute
+							title=""
+							text=""
+							active="" />
+					</attributes>
+					<statuses>
+						<ObjectStatus title="" text="" state="" />
+					</statuses>
+				</UploadCollectionItem>
+			</items>
+		</UploadCollection>
+
+
+</IconTabFilter>
+
+
+<IconTabFilter icon="sap-icon://attachment" iconColor="Neutral" design="Horizontal" text="Attachment" key="Attachment">
+	<content>
+		<core:Fragment id="AttachmentFrag"  fragmentName="zrmaps.view.UploadCollectionFrag" type="XML" />
+	</content>
+</IconTabFilter>
+
+<IconTabFilter design="Horizontal" text="TAB7" key="TAB7Key">
+	<content>
+	<Table id="idWalkTable1" showNoData="false" visible="true" class="tblgrid">
+				<headerToolbar>
+						<Toolbar height="2rem">
+							<ToolbarSpacer></ToolbarSpacer>
+							<Button id="idAddWalkRow" icon="sap-icon://add-activity" text="Add Item" press="onAddNewRow" ></Button>
+						</Toolbar>
+				</headerToolbar>
+			<columns>
+			
+				<Column minScreenWidth="Tablet" demandPopin="true" width="8rem" hAlign="Center">
+				<Label text="Table Data1" />
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" width="10rem" hAlign="Center">
+				<Label text="Table Data2" />
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" width="10rem" hAlign="Center">
+				<Label text="Table Data3" />
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" width="5rem" hAlign="Center">
+				<Label text="Action" />
+				</Column>
+				
+			</columns>
+		</Table>
+		<Table id="idTableAddRow" items="{AddRowJModel>/}" showNoData="true" alternateRowColors="true" class="tblgrid" visible="true">
+			<columns>
+				
+				<Column minScreenWidth="Tablet" demandPopin="true" width="8rem" hAlign="Center"></Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" width="10rem" hAlign="Center"></Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" width="10rem" hAlign="Center"></Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" width="5rem" hAlign="Center"></Column>
+				
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+					
+						<Input maxLength="16" value="{AddRowJModel>rowData1}"></Input>
+						<Input value="{AddRowJModel>rowData2}"></Input>
+						<Input value="{AddRowJModel>rowData3}"></Input>
+						<Button icon="sap-icon://delete" press="onDeleteRow" type="Reject"></Button>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+	</content>
+</IconTabFilter>
+
+</items>
+</IconTabBar>
+
+</content>
+  
+<footer>
+	<Bar>
+	<contentRight>
+		<Button text="Pagging" press="onPaging" type="Accept" id="Idpaging" visible="true" />
+		<Button text="Cross App Nvg" press="oncrossngv" type="Accept" id="Idcrossappngv" visible="true" />
+		<Button text="Review and Save" press="onReview" type="Accept" id="Id_bt2" visible="true" /> 			
+		<!-- <Button text="Submit For Day" press="onSubmit" type="Accept" id="Id_bt3" visible="true" /> -->		
+		<Button text="Next" press="onNext" type="Accept" id="Id_bt4" visible="true" />	
+		<Button text="Next=>" press="onNext2" type="Accept" id="Id_bt5" visible="true" />	
+		<Button text="View4" press="onNext4" type="Accept" id="Id_bt6" visible="true" />	
+		<Button text="View5" press="onNext5" type="Accept" id="Id_bt7" visible="true" />
+		<Button text="Reading" press="onNext6" type="Accept" id="Id_bt8" visible="true" />
+		<Button text="Attachment_Mstr" press="onNext7" type="Accept" id="Id_bt9" visible="true" />
+		<Button text="Master Details" press="onNext8" type="Accept" id="Id_bt10" visible="true" />	
+		<Button text="Sales Order" press="onSalesOrder" type="Accept" id="Id_bt11" />		
+		<Button text="BindingTypes" press="onBindingTypes" type="Accept" id="Id_bt12" />																								
+	</contentRight>
+	</Bar>
+	</footer>
+</Page>
+</core:View>

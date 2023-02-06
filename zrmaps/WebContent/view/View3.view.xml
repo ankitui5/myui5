@@ -1,0 +1,31 @@
+<core:View xmlns:core="sap.ui.core" 
+		   xmlns:mvc="sap.ui.core.mvc"
+		   xmlns="sap.m" 
+	        xmlns:viz="sap.viz.ui5.controls" 
+	        xmlns:viz.data="sap.viz.ui5.data"
+	       xmlns:viz.title="sap.viz.ui5.types.Title"
+	       xmlns:layout="sap.ui.layout"
+	       xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+	      
+	       controllerName="zrmaps.view.View3" 
+	       xmlns:html="http://www.w3.org/1999/xhtml">        
+           
+<Page title="Test Page3" level="h4" class="sapUiStdPage" enableScrolling="true">
+<content>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+ <viz:VizFrame  xmlns="sap.viz" id="idVizFrame" uiConfig="" busyIndicatorDelay="1000"  busy="false" vizType="column" width="40%"  height="80%" legendVisible="true">
+
+</viz:VizFrame>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->	
+</content>
+  
+<footer>
+	<Bar>
+	<contentRight>
+		<Button text="Button1" press="btn" type="Accept"  visible="true" />
+		<Button text="Fragments" press="btn" type="Accept"  visible="true" /> 	
+	</contentRight>
+	</Bar>
+	</footer>
+</Page>
+</core:View>

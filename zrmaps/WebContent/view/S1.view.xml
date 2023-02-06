@@ -1,0 +1,258 @@
+<core:View 
+
+ 		   xmlns:core="sap.ui.core" 
+		   xmlns:mvc="sap.ui.core.mvc"
+		   xmlns="sap.m"
+		   xmlns:d= "sap.m.LabelDesign.Bold"    	
+		   xmlns:u="sap.ui.unified"
+		   xmlns:f="sap.ui.layout.form"
+	       xmlns:l="sap.ui.layout"
+	       xmlns:sc="sap.suite.ui.commons" 	
+	       xmlns:fb="sap.ui.comp.filterbar"
+	       class="sapUiSizeCompact" 
+	       controllerName="zrmaps.view.S1" 
+	       xmlns:html="http://www.w3.org/1999/xhtml">      
+	          
+
+<Page title="Attachment Master" level="h4" class=" pageTitle sapUiStdPage" enableScrolling="false">
+<content>
+<VBox>
+	<f:SimpleForm id="myForm1" layout="ResponsiveGridLayout" editable="true" maxContainerCols="2" labelSpanL="4" labelSpanM="3"
+        		  emptySpanL="2" emptySpanM="2" columnsL="2" columnsM="2" minWidth="1024" class=" padding label sapUiFormResGrid" >
+		<f:content>
+		<core:Title/>
+			<Label text="Application" design="Bold"/>
+			<Select change="onMasterChange" id ="idMaster">
+					<core:Item key="01" text="Race"/>
+					<core:Item key="02" text="Test Request"/>
+					<core:Item key="03" text="Test Plan"/>
+					<core:Item key="04" text="Fitment And Inspection(Field Testing)"/>
+					<core:Item key="05" text="Claim Inspection By Dealer"/>
+			</Select>
+					
+			<Label text="Race Number" design="Bold"/>
+			<Input  id="idRace" showValueHelp="true" valueHelpOnly="true" visible="false"/>
+					
+			<Label text="Test Request Number" design="Bold"/>
+			<Input id="idTstRequest"  showValueHelp="true" valueHelpOnly="true" visible="false"/>
+					
+			<Label text="Test Plan Number" design="Bold"/>
+			<Input id="idTestPlan" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="onTstPlanNo" visible="false"/>
+					
+			<Label text="Fitment And Inspection Number" design="Bold"/>
+			<Input  id="idFTI" showValueHelp="true" valueHelpOnly="true" visible="false"/>
+					
+			<Label text="Claim Inspection Number" design="Bold"/>
+			<Input id="idClaimIBD" showValueHelp="true" valueHelpOnly="true" visible="false"/>
+					
+			<core:Title/>
+			
+			<Label text="Vechile Number" design="Bold"/>
+			<Input id="idVechileNumber" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="onVechileNumber" visible="false"/>
+			
+			<Label text="Date" design="Bold"/>
+			<DatePicker id="fromDate" visible="false">
+			<layoutData>
+				<l:GridData span="L3"/>
+			</layoutData>
+			</DatePicker>
+
+			<!-- <Label text="To" design="Bold">
+			<layoutData>
+					<l:GridData span="L0"/>
+				</layoutData>
+			</Label> -->
+			
+			<DatePicker id="toDate" visible="false">
+			<layoutData>
+					<l:GridData span="L3"/>
+				</layoutData>
+			</DatePicker>	
+			
+			
+			
+			<Label></Label>
+			<Button id="idSearch" text="Search" visible="false" type="Emphasized" press="onSearch" >
+				<layoutData>
+					<l:GridData span="L3"/>
+				</layoutData>
+			</Button>
+			<Button id="idClear" text="Clear" visible="false" type="Emphasized" press="onClear" >
+				<layoutData>
+					<l:GridData span="L3"/>
+				</layoutData>
+			</Button>
+	</f:content>
+</f:SimpleForm>
+		<Toolbar id="toolbarCT" class="clstoolbar">
+						<ToolbarSpacer></ToolbarSpacer>
+						<Text text="Legend :" TextColor="#e78c07"></Text>
+<!-- 					
+ 						<core:Icon src="sap-icon://approvals" color="#5dcc6a">
+							<core:layoutData>
+								<FlexItemData growFactor="1" />
+							</core:layoutData>
+						</core:Icon>
+						<Text text="Approve"></Text>	
+							
+						 <core:Icon src="sap-icon://approvals" color="#1AD3F9">
+							<core:layoutData>
+								<FlexItemData growFactor="1" />
+							</core:layoutData>
+						</core:Icon>
+						<Text text="Pending by PTG for Approval"></Text>		
+						
+						
+						<core:Icon src="sap-icon://approvals" color="#D94C4C">
+							<core:layoutData>
+								<FlexItemData growFactor="1" />
+							</core:layoutData>
+						</core:Icon>
+						<Text text="Pending by PDC for Approval"></Text>	 -->
+						
+						
+						<core:Icon src="sap-icon://status-completed" color="#C7D94C">
+							<core:layoutData>
+								<FlexItemData growFactor="1" />
+							</core:layoutData>
+						</core:Icon>
+						<Text text="Completed"></Text>	
+						
+						<core:Icon src="sap-icon://decline" color="#e78c07">
+							<core:layoutData>
+								<FlexItemData growFactor="1" />
+							</core:layoutData>
+						</core:Icon>
+						<Text text="In Process"></Text>	
+						
+						
+						
+						
+							
+						<!-- 
+						<core:Icon src="sap-icon://cart" color="#34352E">
+							<core:layoutData>
+								<FlexItemData growFactor="1" />
+							</core:layoutData>
+						</core:Icon>
+						<Text text="Cart"></Text>
+						<ToolbarSpacer /> 
+						</Toolbar> -->
+						
+<!-- 						<Toolbar id="toolbarCT1" class="clstoolbar1">
+						<ToolbarSpacer></ToolbarSpacer>
+						<core:Icon src="sap-icon://edit" color="#DBF91A">
+							<core:layoutData>
+								<FlexItemData growFactor="1" />
+							</core:layoutData>
+						</core:Icon>
+						<Text text="Send back for Modification"></Text>
+						
+						
+						
+						<core:Icon src="sap-icon://accept" color="#1AD3F9">
+							<core:layoutData>
+								<FlexItemData growFactor="1" />
+							</core:layoutData>
+						</core:Icon>
+						<Text text="Pending by PTG for Acceptance"></Text>
+						 -->
+						
+
+						<ToolbarSpacer />
+					</Toolbar>
+</VBox>
+
+<Table id="attachmentHeader" showNoData="false" class="tblgrid">
+									<columns>
+										<Column	width="20em" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+											<Label text="Test Plan#" design="Bold" />
+										</Column>
+										
+										<Column width="10em" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+											<Label text="Test Plan Date" design="Bold"/>
+										</Column>
+
+										<Column width="10em" hAlign="Center"  minScreenWidth="Tablet" demandPopin="true">
+											<Label text="Fitment No#" design="Bold"/>
+										</Column>
+										
+										<Column width="10em" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+											<Label text="Vehicle No#"  design="Bold"/>
+										</Column>
+												
+										<Column width="10em" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+											<Label text="Kms(Covered)"  design="Bold" />
+										</Column>
+																						
+										<Column width="10em" hAlign="Center"  minScreenWidth="Tablet" demandPopin="true">
+											<Label text="Status" design="Bold" />
+										</Column>
+										
+										<Column width="10em" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+											<Label text="Images" design="Bold" />
+										</Column>
+									</columns>
+</Table>
+
+<ScrollContainer vertical="true" horizontal="false" height="360px">	 	
+<Table id="attachmentTable" items="{FtDocJModel>/}" visible="true"  showNoData="false" class="tblgrid1">
+									<columns>
+										<Column	width="20em" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+											
+										</Column>
+										
+										<Column width="10em" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+											
+										</Column>
+
+										<Column width="10em" hAlign="Center"  minScreenWidth="Tablet" demandPopin="true">
+										
+										</Column>
+										
+										<Column width="10em" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+											
+										</Column>
+																				
+										<Column width="10em" hAlign="Center"  minScreenWidth="Tablet" demandPopin="true">
+											
+										</Column>
+										
+										<Column width="10em" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+											
+										</Column>
+										
+										<Column width="10em" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+											
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem>
+											<cells>
+												<Text text="{FtDocJModel>PlanNumber}" />
+											    <Text text="{path:'FtDocJModel>PlanDate', formatter:'zrmaps.util.Formatter.date1' }" />
+												<Text text="{FtDocJModel>FitmentNumber}" />
+												<Text text="{FtDocJModel>VehicleNumber}" />
+												<Text text="{FtDocJModel>KmsCovered}" />
+												<core:Icon src="{path:'FtDocJModel>Status', formatter:'zrmaps.util.Formatter.setIcon'}" 
+														   color="{path:'FtDocJModel>Status', formatter:'zrmaps.util.Formatter.setColor'}" />
+				
+												<Button icon="sap-icon://attachment" press="onButtonPress" />
+											</cells>
+										</ColumnListItem>
+
+									</items>
+		</Table>
+</ScrollContainer>		
+	</content>
+	<footer>
+		<Toolbar>
+		<Label text="JK Tyre and Industries Ltd."/>
+
+		</Toolbar>
+	</footer>
+	
+	
+	
+</Page>
+</core:View>

@@ -1,0 +1,137 @@
+<core:View width="100%"
+ 		   xmlns:core="sap.ui.core" 
+	       xmlns:viz="sap.viz.ui5.controls" 
+     	   xmlns:mvc="sap.ui.core.mvc"
+           xmlns="sap.m"
+           	xmlns:l="sap.ui.layout"
+           controllerName="zrmaps.view.View5"  
+           xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds" 
+           xmlns:viz.data="sap.viz.ui5.data"
+	       xmlns:html="http://www.w3.org/1999/xhtml">     
+
+<Page title="Claim Status" class="sapUiSizeCompact header1" enableScrolling="true" busy="{oViewJModel>/busy}" 
+	  busyIndicatorDelay="{oViewJModel>/delay}">
+<content>
+
+
+	<!-- <l:VerticalLayout
+		class="sapUiContentPadding"
+		width="20%">
+		<l:content>
+			<Text text="Regular Mode" class="sapUiSmallMarginBottom" />
+			<ProgressIndicator
+				class="sapUiSmallMarginBottom"
+				percentValue="90"
+				displayValue="FitmentComplete"
+				showValue="true"
+				state="None" />
+			<ProgressIndicator
+				class="sapUiSmallMarginBottom"
+				percentValue="50"
+				displayValue="Fitment Running"
+				showValue="true"
+				state="Error" />
+			<ProgressIndicator
+				class="sapUiSmallMarginBottom"
+				percentValue="{PlanComp}"
+				displayValue="Plan Complete"
+				showValue="true"
+				state="Success" />
+			<ProgressIndicator
+				class="sapUiSmallMarginBottom"
+				percentValue="25"
+				displayValue="Plan Running"
+				showValue="true"
+				state="Warning" />
+			<ProgressIndicator
+				class="sapUiSmallMarginBottom"
+				percentValue="25"
+				displayValue="Total Fitment"
+				showValue="true"
+				state="Warning" />
+			<ProgressIndicator
+				class="sapUiSmallMarginBottom"
+				percentValue="95"
+				displayValue="Total Plan"
+				showValue="true"
+				state="Warning" />	
+		
+		
+		</l:content>
+	</l:VerticalLayout> -->
+
+	<!-- <viz:VizFrame  xmlns="sap.viz" id="idVizFrame" uiConfig="" busyIndicatorDelay="1000"  busy="false" vizType="column" width="40%"  height="80%" legendVisible="true">
+	
+	</viz:VizFrame> --> 
+	
+<!-- *************************************************************************************************************** -->	
+	
+
+	
+
+
+<!-- *************************************************************************************************************** -->
+<!--  
+ <viz:VizFrame id="oVizFrame" busy="false" busyIndicatorDelay="1000"  visible="true" uiConfig="" vizType="column" legendVisible="true">
+
+<viz:dataset> 
+    <viz.data:FlattenedDataset data="{PlanDetalCountJmodel>/}">
+        <viz.data:dimensions>
+            <viz.data:DimensionDefinition name="Location" value="{PlanDetalCountJmodel>Name1}" />
+        </viz.data:dimensions>
+        <viz.data:measures>
+            <viz.data:MeasureDefinition group="1" name="PlanComp" value="{PlanDetalCountJmodel>PlanComp}" />
+            <viz.data:MeasureDefinition group="1" name="PlanRunn" value="{PlanDetalCountJmodel>PlanRunn}" />
+            <viz.data:MeasureDefinition group="1" name="TotalPlan" value="{PlanDetalCountJmodel>TotalPlan}" />
+        </viz.data:measures>
+    </viz.data:FlattenedDataset>
+</viz:dataset>
+ 
+<viz:feeds>
+    <viz.feeds:FeedItem id="value1" uid="primaryValues" type="Measure" values="PlanComp" />
+    <viz.feeds:FeedItem id="value2" uid="primaryValues" type="Measure" values="PlanRunn" />
+    <viz.feeds:FeedItem id="value3" uid="primaryValues" type="Measure" values="TotalPlan" />
+    <viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="CLocation" />
+</viz:feeds>
+</viz:VizFrame>  
+  -->
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ <viz:VizFrame id="oVizFrame" busy="false" busyIndicatorDelay="1000"  visible="true" uiConfig="" vizType="column" legendVisible="true">
+
+<viz:dataset> 
+    <viz.data:FlattenedDataset data="{/book}">
+        <viz.data:dimensions>
+            <viz.data:DimensionDefinition name="Claim Status" value="{Item Category}" />
+        </viz.data:dimensions>
+        <viz.data:measures>
+            <viz.data:MeasureDefinition group="1" name="Revenue" value="{Revenue}" />
+            <viz.data:MeasureDefinition group="1" name="Count" value="{Cost}" />
+            <viz.data:MeasureDefinition group="1" name="Profit" value="{Profit}" />
+        </viz.data:measures>
+    </viz.data:FlattenedDataset>
+</viz:dataset>
+ 
+<viz:feeds>
+    <viz.feeds:FeedItem id="value1" uid="primaryValues" type="Measure" values="Revenue" />
+    <viz.feeds:FeedItem id="value2" uid="primaryValues" type="Measure" values="Count" />
+    <viz.feeds:FeedItem id="value3" uid="primaryValues" type="Measure" values="Profit" />
+    <viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Claim Status" />
+</viz:feeds>
+</viz:VizFrame>   
+	
+	</content>
+	<footer>
+			<Toolbar>
+			<Label text="JK Tyre and Industries Ltd."></Label>
+			</Toolbar>
+	</footer>
+	</Page>
+</core:View>

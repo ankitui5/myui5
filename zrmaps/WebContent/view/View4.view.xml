@@ -1,0 +1,56 @@
+<core:View xmlns:core="sap.ui.core" 
+		   xmlns:mvc="sap.ui.core.mvc"
+		   xmlns="sap.m" 
+		   xmlns:l="sap.ui.layout" 
+		   controllerName="zrmaps.view.View4"
+	       xmlns:html="http://www.w3.org/1999/xhtml">
+
+<Page title="Analysis"  id="HeaderIdTit" class="rootPage ">
+<content>
+	<html:canvas id="radarChart1" class="my_chart001"></html:canvas>
+		
+<!-- ******************************************************************************************************************** -->		
+		<Toolbar class="toolbar2">
+	        <ToolbarSpacer></ToolbarSpacer>
+	           <Text text="Claim Status Details"></Text>
+	        <ToolbarSpacer></ToolbarSpacer>
+	   </Toolbar>
+
+<!-- ******************************************************************************************************************** -->
+<HBox>
+	<Table visible="true" id="table" itemPress="itemPress" class="TFtable">
+		<columns>
+			<Column
+				minScreenWidth="Tablet"
+				hAlign="Center" visible="false">
+				<Label design="Bold" text="Status" />
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				hAlign="Center">
+				<Label  design="Bold" text="Status" />
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				hAlign="Center">
+				<Label design="Bold" text="Total Claim" />
+			</Column>
+		</columns>
+		<items>
+			
+		</items>
+	</Table>
+</HBox>
+<!-- ******************************************************************************************************************** -->			
+</content>
+<!-- ******************************************************************************************************************** -->
+<footer>
+	<OverflowToolbar id="otbFooter">
+	<ToolbarSpacer></ToolbarSpacer>
+		<Button press="showChart" text="Show Graphical Data" visible="false"></Button>
+	<ToolbarSpacer></ToolbarSpacer>
+	</OverflowToolbar>
+</footer>
+</Page>
+	
+</core:View>
