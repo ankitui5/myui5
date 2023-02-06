@@ -1,0 +1,16 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:form="sap.ui.layout.form"
+	xmlns:layout="sap.ui.layout" xmlns:imcam="openui5.camera">
+	<Dialog title="Filter by Status" contentWidth="60px" contentHeight="80px">
+		<content>
+			<VBox class="stylefragfilter">
+					<HBox>
+						<Button id="idNewAllotment" text="New Allotment" press="OnStatusFilter2" width="120px" />
+						<Button id="idinspected" text="Occupied" press="OnStatusFilter2" width="120px"/>
+					</HBox>
+			</VBox>
+		</content>
+		<buttons>
+			<Button type="Emphasized" text="Close" tootltip="Close" press="onCloseFilterfrag"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

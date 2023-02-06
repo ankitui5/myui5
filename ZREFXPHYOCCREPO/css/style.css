@@ -1,0 +1,133 @@
+/*REFXInspection Form App CSS*/
+/* Enter your custom styles here */
+.disablekb input {
+    pointer-events: none;
+}
+
+/*.sapMListTbl th{
+	background: #346187;
+}*/
+
+.tablegrid .sapMListTblCell.sapMListTblHeaderCell {
+    vertical-align: middle;
+    border: none;
+    background: #0b5a80;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.sapFactsheetUtiLabel, .sapMListTbl .sapMLabel {
+	color: #ffffff !important;
+	font-weight: bold;
+}
+
+.sapUiForm.sapUiFormEdit .sapUiFormElementLbl>.sapMLabel{
+	font-weight:bold;
+}
+
+.sapMInputBaseIconContainer {
+	background:#333333;
+}
+
+.sapMInputBaseIcon{
+	color:#ffffff;
+}
+
+.sapMIBar-CTX .sapMTitle{
+	font-weight:bold;
+}
+
+.sapUiRGLContainerCont{
+	padding-left:0.02rem;
+}
+
+.sapContrast span.sapMBtnInner.sapMBtnAccept{
+	background-color:#008000;
+	color:#ffffff;
+}
+
+.sapContrast span.sapMBtnInner.sapMBtnReject{
+	background-color:#CC0000;
+	color:#ffffff;
+}
+
+.sapContrast.sapMFooter-CTX .sapMBtnInner, .sapContrast .sapMFooter-CTX .sapMBtnInner{
+	border-color :#cae4fb;
+}
+
+
+
+.sapMMsgView .sapMIBar.sapMHeader-CTX{
+	background-color:#7B68EE;
+}
+.sapMUCNoDataPage {
+	display:none;
+}
+
+.custclass.sapMPanel>.sapMPanelHdr, .sapMPanelWrappingDiv, .sapMPanelWrappingDivTb{
+	background-color: #346187 !important;
+}
+
+.sapMPanelHdr{
+	color:#ffffff !important;
+	font-weight:bold;
+	font-size: 1rem;
+	height: 2.70rem;
+}
+/*.sapMPanelExpandableIcon{
+	color:#ffffff !important;
+}*/
+/*.sapMPanelWrappingDiv .sapUiIconPointer{
+		color:#ffffff !important;
+}*/
+
+.sapMOHR .sapMOHRAttr .sapMObjectAttributeTitle{
+	font-weight: bold;
+	white-space: normal;
+}
+
+.sapMPanelWrappingDiv>.sapMBtn, .sapMPanelWrappingDivTb>.sapMBtn {
+    background-color: #8eb4da;
+    color: white !important;
+}
+
+.ClassToolbar{
+	background-color: #eae9ec;
+}
+.sapMOHRStates {
+    display: inline-block;
+    box-sizing: border-box;
+    vertical-align: top;
+    padding-top: 1rem;
+    width: 100%;
+    max-width: 95rem;
+    margin-top: -20px !important;
+}
+.classAddColor{
+	background-color: #45b5b5
+}
+.logoimage{
+	width: 50%;
+    height: 50%;
+    margin-left: 201px;
+}
+
+.setStyleTilebtn {
+	margin-left: 259px;
+	margin-top: 136px;
+}
+
+.styleimage {
+	float: right;
+    margin-right: 27px;
+    height: 60px;
+    width: 60px;
+    margin-bottom: -32px;
+}
+
+.styleIdAttachfrag {
+	margin-left: 124px;
+	margin-top: 25px;
+}

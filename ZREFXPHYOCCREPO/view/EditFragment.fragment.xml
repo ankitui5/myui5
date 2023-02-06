@@ -1,0 +1,16 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:form="sap.ui.layout.form"
+	xmlns:layout="sap.ui.layout">
+	<Dialog id="idAttachiddetails" title="Attach Details" contentWidth="60px" contentHeight="80px">
+		<content>
+			<VBox class="styleIdAttachfrag">
+					<HBox>
+					<Button id="idfileAttachButton1" icon="sap-icon://attachment" press="onAttachAlloteeId" tooltip="Attach Your Id"/>
+					<Button id="idcameraButton2" icon="sap-icon://camera" press="oncaptureAlloteeId" tooltip="Open camera"/>
+					</HBox>
+			</VBox>
+		</content>
+		<buttons>
+			<Button type="Emphasized" text="Close" tootltip="Close" press="onCloseEditfrag"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

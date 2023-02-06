@@ -1,0 +1,135 @@
+<mvc:View
+	controllerName="com.phyOccuReport.controller.Detail"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:semantic="sap.m.semantic"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout"
+	xmlns:m="sap.m"
+	xmlns:footerbar="sap.ushell.ui.footerbar">
+ 
+	<semantic:DetailPage id="page" navButtonPress="onNavBack" showNavButton="{device>/system/phone}" title="{i18n>detailTitle}({InventoryData>/Alid})"
+						 busy="{detailView>/busy}" busyIndicatorDelay="{detailView>/delay}">
+
+	<semantic:content>
+		<Panel expandable="true" headerText="{i18n>Label-Service-Centre-Details}" expanded="true" class="custclass">
+			<ObjectHeader id="idsvcCenterDtls" class="sapUiResponsivePadding--header" responsive="true">
+			
+					<ObjectAttribute title="{i18n>Label-Service-Centre}" text="{InventoryData>/Zscname}" tooltip="{InventoryData>/Zscname}"/>
+					<ObjectAttribute title="{i18n>Label-Circle}" text="{InventoryData>/Circle}" />
+					<ObjectAttribute title="{i18n>Label-Phone}" text="{InventoryData>/Pphoneno}" />
+					<ObjectAttribute title="Service Centre Code" text="{InventoryData>/Zsccode}"/>
+					<ObjectAttribute title="{i18n>Label-Division}" text="{InventoryData>/Division}" />
+					<ObjectAttribute title="{i18n>Label-Email}" text="{InventoryData>/Pemailid}" />
+					<ObjectAttribute title="{i18n>Label-Zone}" text="{InventoryData>/Zzone}" />
+					<ObjectAttribute title="{i18n>Label-Sub-Division}" text="{InventoryData>/Subdivision}" />
+				
+			
+			</ObjectHeader>
+		</Panel>
+		
+		<Panel expandable="true" headerText="{i18n>Label-Quarter-Details}" >
+			<ObjectHeader id="idqrtrDetails" class="sapUiResponsivePadding--header" responsive="true">
+				
+				<ObjectAttribute title="{i18n>Label-QuarterNo}" text="{InventoryData>/QuarterDesc}" />
+				<ObjectAttribute title="SAP HID" text="{InventoryData>/Imkey}"/>
+				<ObjectAttribute title="{i18n>Label-Sector}" text="{InventoryData>/Sector}" />
+				<ObjectAttribute title="{i18n>Label-Floor}" text="{InventoryData>/Floor}" />
+				<ObjectAttribute title="{i18n>Label-DOE-HID}" text="{InventoryData>/Doehid}" />
+				<ObjectAttribute title="{i18n>Label-Type}" text="{InventoryData>/Type}" />
+				<ObjectAttribute title="{i18n>Label-Block}" text="{InventoryData>/Block}" />
+				<ObjectAttribute title="CPWD HID" text="{InventoryData>/Cpwdhid}"/>
+				<ObjectAttribute title="{i18n>Label-Locality}" text="{InventoryData>/Locality}" />
+				<ObjectAttribute title="{i18n>Label-Pool}" text="{InventoryData>/Pool}" />
+				
+			</ObjectHeader>
+		</Panel>
+		
+		<Panel expandable="true" headerText="{i18n>Lable-Allottee-Details}" >
+			<m:Image id="idAlotteeimg" class="styleimage" press="onPressImg"></m:Image>
+			<ObjectHeader id="idalotteeDtls" class="sapUiResponsivePadding--header" responsive="true">
+
+				<ObjectAttribute title="{i18n>Label-Name}" text="{InventoryData>/Name}" />
+				<ObjectAttribute title="{i18n>Label-Mobile}" text="{InventoryData>/Bpphoneno}" />
+				<ObjectAttribute title="{i18n>Label-Identity-CardNo}" text="{InventoryData>/Idcardno}" />
+				<ObjectAttribute title="{i18n>Label-Designation}" text="{InventoryData>/Designation}" />
+				<ObjectAttribute title="{i18n>Label-AAN}" text="{InventoryData>/Aan}" />
+				<ObjectAttribute title="{i18n>Label-Department}" text="{InventoryData>/Department}" />
+				<ObjectAttribute title="{i18n>Label-EmailID}" text="{InventoryData>/Bpemailid}" />
+								
+			</ObjectHeader>
+		</Panel>
+		
+		<Panel expandable="true" headerText="{i18n>Label-Allottment-Details}" >
+			<ObjectHeader id="idallotmentDtls" class="sapUiResponsivePadding--header" responsive="true">
+				
+				<ObjectAttribute title="{i18n>Label-AllottmentID}" text="{InventoryData>/Alid}" />
+				<ObjectAttribute title="{i18n>Label-Authority-SlipNo}" text="{InventoryData>/Aslipno}" />
+				<ObjectAttribute title="{i18n>Label-Date-of-Allottment}" text="{path:'InventoryData>/Dateofallot',formatter:'com.phyOccuReport.util.Formatter.formatDate1'}" />
+				<ObjectAttribute title="{i18n>Label-Date-of-Issue}" text="{path:'InventoryData>/Dateofissue',formatter:'com.phyOccuReport.util.Formatter.formatDate1'}" />
+				<ObjectAttribute title="{i18n>Label-Date-of-Acceptance}" text="{path:'InventoryData>/Dateofaccept',formatter:'com.phyOccuReport.util.Formatter.formatDate1'}" />
+				<ObjectAttribute title="{i18n>Label-Authority-Slip-Valid-Date}" text="{path:'InventoryData>/Validtill',formatter:'com.phyOccuReport.util.Formatter.formatDate1'}" />
+				<!--<ObjectAttribute title="{i18n>Label-Physical-Occupation-on}" text="{InventoryData>/req}" />
+				<ObjectAttribute title="{i18n>Label-Technical-Occupied-on}" text="{path:'InventoryData>/Toccupyon',formatter:'com.phyOccuReport.util.Formatter.formatDate1'}" />-->
+				
+			</ObjectHeader>
+		</Panel>
+						
+			<l:VerticalLayout class="sapUiContentPadding" width="100%">
+				<!--<Input id="xyz" liveChange="onlive"/>-->
+				<Text text="{i18n>Label-Additional-Comments}" class="sapUiTinyMarginTop"/>
+				<TextArea id="idbriefdesc" maxLength="225" width="100%" enabled="{EnabledModel>/Enabled}" value="{InventoryData>/Acomments}"/>
+			</l:VerticalLayout>	
+						
+			<Toolbar height="2rem" class="ClassToolbar">
+				<Text id="idPhysical" text="{i18n>Label-Physical-Condition}" class="clInvUpd"/>
+				<ToolbarSpacer></ToolbarSpacer>
+			</Toolbar>					
+		
+		
+		<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false"
+					     emptySpanXL="0" emptySpanL="4" emptySpanM="0" emptySpanS="0" columnsXL="2"	columnsL="1" columnsM="1" singleContainerFullSize="false">
+			<form:content>
+				<Label text="{i18n>Label-Switch}" />
+				<Switch id="idSwitch" state="false" customTextOn="FN" customTextOff="AF" change="onSwitch" enabled="{EnabledModel>/Enabled}">
+					<layoutData>
+						<FlexItemData growFactor="2" />
+					</layoutData>
+				</Switch>
+				<Label text="{i18n>Label-Received-by-Allotte-Date}" labelFor="TimeRequired" required="true"/>
+				<DatePicker id="idAllotteDate" width="132px" placeholder="Enter Date" change="onTechOccuDateChange" enabled="false"/>
+				<HBox id="idHbox" class="styleHbox">
+					<Button type="Emphasized" id="idEditbtn" text="Edit" tootltip="Edit" press="OnClickEdit" width="45px" enabled="{EnabledModel>/Enabled}"/>
+					<Button type="Emphasized" id="idViewAttach" icon="sap-icon://attachment" tootltip="View Attachment" press="OnViewAttachment"/>
+				</HBox>
+				<!--<DatePicker id="idAllotteDate" width="15rem" placeholder="Enter Date" enabled="{EnabledModel>/Enabled}"/>-->
+				
+				<Label text="{i18n>Label-Attach-Button}" labelFor="Attach Images" />
+				<Button icon="sap-icon://attachment" type="Emphasized" press="OnPressAttach" width="5px" />
+			</form:content>
+		</form:SimpleForm>
+		
+		
+	</semantic:content>
+	<semantic:customFooterContent>
+		<HBox height="100%" width="100%" justifyContent="Start">
+			<Button text="Generate Draft" id="idDraft" press="onPressDraft" visible="false" type="Emphasized" tooltip="Draft" enabled="{EnabledModel>/Enabled}"/>
+			<!--<Button text="Generate OTP" visible="false" id="idOTP" press="onGenerateOTP" type="Emphasized" tooltip="Generate OTP"/>-->
+			<Button text="Generate OTP" visible="false" id="idOTP" press="onTempGenerateOTP" type="Emphasized" tooltip="Generate OTP"/>
+		</HBox>
+		<HBox height="100%" width="100%" justifyContent="End">
+			<Button id="submitRep" text="Submit" visible="false" press="_onSubmit" enabled="{EnabledModel>/Enabled}"/>
+			<Button icon="sap-icon://print" text="Print Preview" press="onPressSmartFormPrint" type="Emphasized" tooltip="Print"/>
+		</HBox>
+			
+	</semantic:customFooterContent>
+	
+	<!--<semantic:mainAction>
+		<semantic:MainAction id="submitRep" text="Submit" press="_onSubmit" enabled="{EnabledModel>/Enabled}"/>
+	</semantic:mainAction>	-->
+
+	</semantic:DetailPage>
+
+			
+</mvc:View>

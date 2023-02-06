@@ -1,0 +1,22 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:form="sap.ui.layout.form"
+	xmlns:layout="sap.ui.layout">
+	<Dialog title="Enter OTP" contentWidth="400px" contentHeight="170px">
+		<content>
+			<form:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+				adjustLabelSpan="false" emptySpanXL="0" emptySpanL="4" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="1" columnsM="1"
+				singleContainerFullSize="false">
+				<form:content>
+					<Label design="Bold"/>
+					<Text id="idText" text="" class="styleOTP"/>
+					<Label design="Bold"/>
+					<Input id="idOTP" maxLength="6" placeholder="Enter OTP"></Input>
+				</form:content>
+			</form:SimpleForm>
+		</content>
+		<buttons>
+			<Button type="Emphasized" id="idOTPSubmit" text="Submit" press="OnSaveOTP"/>
+			<Button type="Emphasized" id="idResend" text="Resend OTP" enabled="false" press="onResendOTP"/>
+			<Button type="Emphasized" id="idOTPCancel" text="Cancel" press="OnOTPfragCancel"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

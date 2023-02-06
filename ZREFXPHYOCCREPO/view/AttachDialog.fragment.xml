@@ -1,0 +1,56 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:upload="sap.m.upload">
+	<Dialog title="Upload File" contentWidth="680px" contentHeight="450px">
+		<content>
+			<Label labelFor="uploadPicCollection"/>
+			<UploadCollection class="dropbox" 
+								id="idUploadCollection" 
+								noDataText="Please choose your files" 
+								noDataDescription=""
+								sameFilenameAllowed="false" 
+								fileDeleted="onFileDelete" 
+								uploadComplete="onFileUploadComplete" 
+								beforeUploadStarts="onFileBeforeUploadStarts"
+								uploadUrl="/sap/opu/odata/sap/ZREFX_PHYSICAL_OCC_ODATA_SRV/ET_ATTACHSet" 
+								fileType="[txt,pdf,jpg,jpeg,png,xlsx,doc,ppt]" 
+								change="onFileAttachUpload"
+								maximumFilenameLength="100" 
+								maximumFileSize="25" 
+								fileSizeExceed="onFileSizeExceed"
+								items="{ path: 'oUploadFilejModel>/Array', templateShareable: false }" 
+								instantUpload="false" 
+								mode="SingleSelectMaster" 
+								multiple="false">
+				
+				<toolbar>
+					<OverflowToolbar>
+						<Title id="attachmentTitle"/>
+						<ToolbarSpacer/>
+						<Button id="deleteButton" text="Delete" press="onFileDeletePress" enabled="true" type="Transparent"/>
+						<UploadCollectionToolbarPlaceholder/>
+					</OverflowToolbar>
+				</toolbar>
+				
+				<items>
+					<UploadCollectionItem documentId="{oUploadFilejModel>uniqueid}" 
+											fileName="{oUploadFilejModel>FileName}" 
+											mimeType="{oUploadFilejModel>MimeType}"
+											url="{oUploadFilejModel>Url}" 
+											visibleDelete="false" 
+											enableDelete="false" 
+											visibleEdit="false" 
+											enableEdit="false" 
+											press="onFileUploadPress"
+											selected="false">
+					</UploadCollectionItem>
+				</items>
+				
+			</UploadCollection>
+			
+			
+		</content>
+		<buttons>
+			<Button type="Emphasized" text="Submit" press="_callSubmitAttach" width="auto" enabled="{EnabledModel>/Enabled}"/>
+			<Button type="Emphasized" text="Close" press="onFragClose"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

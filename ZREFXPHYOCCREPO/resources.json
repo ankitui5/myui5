@@ -1,0 +1,124 @@
+{
+    "resources": [
+        {
+            "name": "img/CPWD_Logo.png"
+        },
+        {
+            "name": "img/cpwd_logo_min.png"
+        },
+        {
+            "name": "manifest.json"
+        },
+        {
+            "name": "controller/ErrorHandler.js"
+        },
+        {
+            "name": "controller/Master.controller.js"
+        },
+        {
+            "name": "controller/App.controller.js"
+        },
+        {
+            "name": "controller/Detail.controller.js"
+        },
+        {
+            "name": "controller/ListSelector.js"
+        },
+        {
+            "name": "controller/BaseController.js"
+        },
+        {
+            "name": "localService/mockserver.js"
+        },
+        {
+            "name": "localService/metadata.xml"
+        },
+        {
+            "name": "localService/ZREFX_ALLOTMENT_SRV/metadata.xml"
+        },
+        {
+            "name": "view/DetailNoObjectsAvailable.view.xml"
+        },
+        {
+            "name": "view/DetailObjectNotFound.view.xml"
+        },
+        {
+            "name": "view/EditFragment.fragment.xml"
+        },
+        {
+            "name": "view/App.view.xml"
+        },
+        {
+            "name": "view/OTP.fragment.xml"
+        },
+        {
+            "name": "view/AttachDialog.fragment.xml"
+        },
+        {
+            "name": "view/statusFilter.fragment.xml"
+        },
+        {
+            "name": "view/Detail.view.xml"
+        },
+        {
+            "name": "view/AttachEfile.fragment.xml"
+        },
+        {
+            "name": "view/NotFound.view.xml"
+        },
+        {
+            "name": "view/TempOTP.fragment.xml"
+        },
+        {
+            "name": "view/Master.view.xml"
+        },
+        {
+            "name": ".user.project.json"
+        },
+        {
+            "name": ".project.json"
+        },
+        {
+            "name": "Component.js"
+        },
+        {
+            "name": "css/ui5-customization-m.Panel.css"
+        },
+        {
+            "name": "css/style.css"
+        },
+        {
+            "name": "index.html"
+        },
+        {
+            "name": "Component-preload.js",
+            "merged": true
+        },
+        {
+            "name": "model/formatter.js"
+        },
+        {
+            "name": "model/Utility.js"
+        },
+        {
+            "name": "model/ModelHandler.js"
+        },
+        {
+            "name": "model/models.js"
+        },
+        {
+            "name": "util/Formatter.js"
+        },
+        {
+            "name": "neo-app.json"
+        },
+        {
+            "name": "i18n/i18n.properties",
+            "raw": "i18n/i18n.properties"
+        },
+        {
+            "name": "resources.json",
+            "merged": true
+        }
+    ]
+}

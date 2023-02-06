@@ -1,0 +1,97 @@
+<mvc:View
+	controllerName="com.phyOccuReport.controller.Master"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m"
+	xmlns:semantic="sap.m.semantic">
+
+	<semantic:MasterPage id="page" title="{masterView>/title}" navButtonPress="onNavBack" showNavButton="true">
+		
+		<semantic:subHeader>
+			<Bar id="headerBar">
+				<contentMiddle>
+					<SearchField id="searchField" showRefreshButton="{= !${device>/support/touch} }" 
+								 tooltip="{i18n>masterSearchTooltip}" width="100%" liveChange="onSearch">
+					</SearchField>
+				</contentMiddle>
+			</Bar>
+		</semantic:subHeader>
+
+		<semantic:content>
+			<PullToRefresh
+				id="pullToRefresh"
+				visible="{device>/support/touch}"
+				refresh="onRefresh" />
+			<!-- For client side filtering add this to the items attribute: parameters: {operationMode: 'Client'}}" -->
+		<List id="list" items="{
+						path: 'ModelAllotmentId>/results',
+							sorter: {
+								path: 'Name',
+								descending: false
+							},
+						groupHeaderFactory: '.createGroupHeader'
+					}"
+				busyIndicatorDelay="{masterView>/delay}"
+				noDataText="{masterView>/noDataText}"
+				mode="{= ${device>/system/phone} ? 'None' : 'SingleSelectMaster'}"
+				growing="true"
+				growingScrollToLoad="true"
+				updateFinished="onUpdateFinished"
+				selectionChange="onSelectionChange">
+				<infoToolbar>
+					<Toolbar
+						active="true"
+						id="filterBar"
+						visible="{masterView>/isFilterBarVisible}"
+						press="onOpenViewSettings">
+						<Title
+							id="filterBarLabel"
+							text="{masterView>/filterBarLabel}" />
+					</Toolbar>
+				</infoToolbar>
+				<items>
+					<ObjectListItem type="{= ${device>/system/phone} ? 'Active' : 'Inactive'}"
+									press="onSelectionChange" title="Allotment ID" number="{ModelAllotmentId>Alid}">
+					<!--<firstStatus>
+						<ObjectStatus text="{ModelAllotmentId>Floor}" />
+					</firstStatus>-->
+					<firstStatus>
+						<ObjectStatus title="Status" text="{ModelAllotmentId>Status}"
+									  state="{path:'ModelAllotmentId>Status',formatter:'com.phyOccuReport.util.Formatter.retrunStatusColor'}"/>
+					</firstStatus>
+					
+					<!--<secondStatus>
+						<ObjectStatus title="Status" text="{ModelAllotmentId>Status}"
+									  state="{path:'ModelAllotmentId>Status',formatter:'com.phyOccuReport.util.Formatter.retrunStatusColor'}"/>
+					</secondStatus>-->
+					<!--<ObjectAttribute title="Name" text="{ModelAllotmentId>Name}"/>
+					<ObjectAttribute text="{ModelAllotmentId>Type}"/>-->
+					<ObjectAttribute title="Quarter No." text="{ModelAllotmentId>QuarterDesc}" tooltip="{ModelAllotmentId>QuarterDesc}"/>
+					
+					
+					</ObjectListItem>
+				</items>
+			</List>
+			
+		</semantic:content>
+		<semantic:customFooterContent>
+		<!--<VBox id="idVBox">
+			<core:Icon size="1.5rem" src="sap-icon://add-filter" press="onPressFilter" visible="true" tooltip="sort options"></core:Icon>
+		</VBox>	-->
+		
+		<VBox id="idVBox">
+			<Button id="idStatus" text="Status" tooltip="Filter by Status" press="OnStatus"></Button>
+				<!--<FacetFilter id="idFacetFilter" type="Light" showPersonalization="true" confirm="handleConfirm" lists="{LocalDataModel>/FilterValues}"
+					reset="handleFacetFilterReset">
+					<FacetFilterList mode="MultiSelect" title="{LocalDataModel>type}" key="{LocalDataModel>key}"
+						items="{path:'LocalDataModel>values', templateShareable: true}">
+						<FacetFilterItem text="{LocalDataModel>type}" key="{LocalDataModel>key}"/>
+					</FacetFilterList>
+				</FacetFilter>-->
+				<!-- A demo table will be appended here -->
+			</VBox>
+		</semantic:customFooterContent>
+
+	</semantic:MasterPage>
+
+</mvc:View>

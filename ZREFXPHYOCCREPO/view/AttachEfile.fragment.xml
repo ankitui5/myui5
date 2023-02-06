@@ -1,0 +1,58 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:upload="sap.m.upload" xmlns:mvc="sap.ui.core.mvc">
+	<Dialog title="Upload File" contentWidth="680px" contentHeight="450px">
+		<content>
+			<Label labelFor="uploadPicCollection"/>
+			<UploadCollection class="dropbox" id="idUploadCollectionIDCard" noDataText="Please choose your files" noDataDescription=""
+				sameFilenameAllowed="false" fileDeleted="onFileDelete" uploadComplete="onFileUploadIdCardComplete" beforeUploadStarts="onFileBeforeUploadIdCardStarts"
+				uploadUrl="/sap/opu/odata/sap/ZREFX_PHYSICAL_OCC_ODATA_SRV/ET_ATTACHSet" fileType="[txt,pdf,jpg,jpeg,png,xlsx,doc,ppt,docx,xls]"
+				change="onFileAttachIdCardUpload" maximumFilenameLength="100" maximumFileSize="25" fileSizeExceed="onFileIdCardSizeExceed"
+				items="{ path: 'oFileUploadIdCardModel>/Array', templateShareable: false }" instantUpload="false" mode="SingleSelectMaster" multiple="false">
+				<toolbar>
+					<OverflowToolbar>
+						<Title id="attachmentTitle"/>
+						<ToolbarSpacer/>
+						<Button id="iddeleteButtonIDCard" text="Delete" press="onAllotteeDeletePress" enabled="false" type="Transparent"/>
+						<UploadCollectionToolbarPlaceholder/>
+					</OverflowToolbar>
+				</toolbar>
+				<items>
+					<UploadCollectionItem documentId="{oFileUploadIdCardModel>uniqueid}" fileName="{oFileUploadIdCardModel>FileName}" mimeType="{oFileUploadIdCardModel>MimeType}"
+						url="{oFileUploadIdCardModel>Url}" visibleDelete="false" enableDelete="false" visibleEdit="false" enableEdit="false" press="onFileUploadPress"
+						selected="false" ></UploadCollectionItem>
+				</items>
+			</UploadCollection>
+			<!--			<upload:UploadSet class="dropbox" id="idUploadCollection" noDataText="Please choose your files" noDataDescription=""
+				sameFilenameAllowed="false" afterItemRemoved="onFileDelete"  fireUploadCompleted="onFileUploadComplete"
+				fireBeforeUploadStarts="onFileBeforeUploadStarts" uploadUrl="/sap/opu/odata/sap/ZREFX_ALLOTMENT_SRV/FileSet"
+				fileTypes="[txt,pdf,jpg,jpeg,png,xlsx,doc,ppt]" selectionChanged="onFileAttachUpload" maxFileNameLength="100" maxFileSize="25"
+				fileSizeExceeded="onFileSizeExceed" items="{ path: 'oFileUploadModel>/Array', templateShareable: false }" instantUpload="false">
+				<upload:items>
+					<upload:UploadSetItem fileName="{oFileUploadModel>FileName}" mediaType="{oFileUploadModel>MimeType}"
+						url="{oFileUploadModel>Url}" visibleRemove="true" enabledRemove="true" visibleEdit="false">
+					</upload:UploadSetItem>
+				</upload:items>
+			</upload:UploadSet>-->
+			<Table id="imageTable" items="{onAttachCameraIdCrdModel>/results}" growing="true" fixedLayout="false" sticky="ColumnHeaders,HeaderToolbar">
+				<columns>
+					<Column>
+						<Label text=""/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells class="">
+							<VBox>
+								<Text text="{onAttachCameraIdCrdModel>ZfileName}"/>
+								<Image src="{onAttachCameraIdCrdModel>ZfileValue}" width="200px" press="onAlloteeImageSelection"/>
+							</VBox>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+		<buttons>
+			<Button type="Emphasized" id="uploadSAPButton" text="Submit" press="onUploadIdCardtoSAP" width="auto"/>
+			<Button type="Emphasized" text="Close" press="_callCloseIDCard"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,44 @@
+<mvc:View controllerName="com.phyOccuReport.controller.BaseController"
+		  xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+		  xmlns:form="sap.ui.layout.form">
+	
+	<Page title="{i18n>notFoundTitle}">
+		<content>
+			<!--<form:SimpleForm>
+				<form:content>
+					<Image id="idImage" width="50%" height="50%" class="logoimage"/>
+				</form:content>
+			</form:SimpleForm>-->
+			<VBox class="setStyleTilebtn">
+				<HBox>
+					<GenericTile id="idNewallottile" class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
+					header="New Allotment" press="OnTilebtnpress">
+						<!--<TileContent unit="Unit" footer="Footer">
+					<ImageContent src="sap-icon://home-share"/>
+				</TileContent>-->
+					</GenericTile>
+					<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Occupied" press="OnTilebtnpress">
+						<!--<TileContent unit="Unit" footer="Footer">
+					<ImageContent src="sap-icon://home-share"/>
+				</TileContent>-->
+					</GenericTile>
+				</HBox>
+				
+			</VBox>
+		</content>
+	</Page>
+	
+	
+<!--	<MessagePage
+		id="page"
+		title="{i18n>notFoundTitle}"
+		text="{i18n>notFoundText}"
+		icon="{sap-icon://document}"
+		description=""
+		showNavButton="{device>/system/phone}"
+		navButtonPress="onNavBack">
+		
+		
+	</MessagePage>-->
+
+</mvc:View>
