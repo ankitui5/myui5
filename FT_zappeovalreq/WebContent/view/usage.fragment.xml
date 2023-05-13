@@ -1,0 +1,61 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Dialog showHeader="true" title="Vehicle Detail" class="sapUiSizeCompact" contentWidth="40%" >
+	<content>
+	<f:SimpleForm  minWidth="1024"
+		maxContainerCols="2" editable="true" layout="ResponsiveGridLayout"
+		labelSpanL="6" labelSpanM="4" emptySpanL="3" emptySpanM="3" columnsL="3"
+		columnsM="1" class="editableForm">
+		<f:content>
+		
+			<Label text="Vehicle Make" required="true" />
+			<Select items="{Model>/F4VehicleMakeSet}"
+										forceSelection="false">
+										<items>
+											<core:Item text="{Model>VehicleMake}" key="{Model>VehicleSeq}" />
+										</items>
+									</Select>
+			<Label text="Vehicle Model" />
+			<Input></Input>
+			
+			<Label text="Configuration" required="true"/>
+			<Select items="{Model>/F4VehicleConfigSet}"
+										forceSelection="false">
+										<items>
+											<core:Item text="{Model>Config_Name}" key="{Model>Config_Name}" />
+										</items>
+									</Select>
+			<Label text="Testing Axle" required="true"/>
+			<Select items="{Model>/F4TestingAxleSet}"
+										forceSelection="false">
+										<items>
+											<core:Item text="{Model>AxelDescription}" key="{Model>AxelNumber}" />
+										</items>
+									</Select>
+			<Label text="Application" required="true"/>
+			<Select items="{Model>/F4VehicleApplicationSet}"
+										forceSelection="false">
+										<items>
+											<core:Item text="{Model>AppDescription}" key="{Model>AppNumber}" />
+										</items>
+									</Select>
+			<Label text="Fitment Axle" required="true"/>
+			<Select items="{Model>/F4FitmentAxleSet}"
+										forceSelection="false">
+										<items>
+											<core:Item text="{Model>FitmentDescription}" key="{Model>FitmentNumber}" />
+										</items>
+									</Select>
+			<Label text="Dual Spacing" />
+			<Input maxLength="20" />
+			<Label text="Additional Comments" />
+			<Input></Input>
+		</f:content>
+	</f:SimpleForm>
+	</content>
+		<buttons>
+		<Button text="Save"   visible="true" press="addVehicleDetail" />
+		<Button text="Cancel"   visible="true" press="onVehicleDetailClose" />		
+		</buttons>	
+</Dialog>
+</core:FragmentDefinition>

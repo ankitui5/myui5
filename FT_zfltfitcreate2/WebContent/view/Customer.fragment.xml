@@ -1,0 +1,90 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core" 
+	xmlns:l="sap.ui.layout"
+	xmlns:fb="sap.ui.comp.filterbar"
+	height="100%"
+	class="frg">
+	
+	<Dialog xmlns="sap.m" title="Select : Customer" afterClose= "onCustomerfrgClose"
+			class="sapUiSizeCompact col col1" contentWidth="1024px" contentHeight="824px">
+	
+	<content>
+		
+	<l:VerticalLayout width="100%" class="newlab header label1">
+	
+		<fb:FilterBar reset="onReset" search="onSearch" showRestoreButton="true" showClearButton="true">
+			<fb:filterItems>
+				<fb:FilterItem  label="Customer Type" name="a">
+					<fb:control>
+						<Select forceSelection="false" id="idCustomerType">
+				      	<items>
+					    	<core:Item text="Indirect Fleet" key="I" />
+					    	<core:Item text="Direct Fleet" key="D" />
+					    	<core:Item text="Customer" key="C" />
+				      	</items>	
+			       	</Select>
+					</fb:control>
+				</fb:FilterItem>
+				
+				<fb:FilterItem label="Customer Name" name="b">
+					<fb:control>
+						<Input  id="idInpCustomer" maxLength="40" />
+					</fb:control>
+				</fb:FilterItem>
+				
+				<fb:FilterItem label="Phone No." name="d">
+					<fb:control>
+						<Input  id="idPhone1" liveChange="NumberValid" maxLength="10"/>
+					</fb:control>				
+				</fb:FilterItem>
+			</fb:filterItems>
+		 </fb:FilterBar>		
+	</l:VerticalLayout>
+		
+<!-- 		<Toolbar>
+		<ToolbarSpacer></ToolbarSpacer>
+		<Button id="idCreateCustomer" text="Create New Customer" press="onCustomer" icon="sap-icon://activate"></Button>
+		</Toolbar>
+ -->		
+	</content>
+								
+<Table id="idCustomerTable" items="{CartListSetJModel>/}" mode="" class=" tablabel">
+    <columns class="sapMTitle">
+	      <Column minScreenWidth="Tablet" width="10em" demandPopin="true" hAlign="Center">
+	        <Text text="Mobile1" /> 
+	      </Column>
+	      
+	      <Column minScreenWidth="Tablet" width="10em" demandPopin="true" hAlign="Center">
+	        <Text text="Type" />    
+	      </Column>
+	      
+	      <Column minScreenWidth="Tablet" width="15em" demandPopin="true" hAlign="Center">
+				<Text text="Name" /> 
+	      </Column>
+	      
+	      <Column minScreenWidth="Tablet" width="15em" demandPopin="true" hAlign="Center">
+				<Text text="State" /> 
+	      </Column>
+	      
+	      <Column minScreenWidth="Tablet" width="15em" demandPopin="true" hAlign="Center">
+				<Text text="Location" /> 
+	      </Column>
+    </columns>
+    <items>
+      <ColumnListItem type ="Active" press="displayRequest" >
+        <cells>
+      		<Text text="{CartListSetJModel>Mobile1}" />
+      		<Text text="{CartListSetJModel>TypeDesc}" />                        
+      		<Text text="{CartListSetJModel>Name}" />                        
+      		<Text text="{CartListSetJModel>State}" />
+      		<Text text="{CartListSetJModel>Location}" />
+        </cells>
+      </ColumnListItem>
+    </items>
+ </Table>
+  
+		<endButton>
+			<Button text="Cancel" press="onCustomerfrgClose" />
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

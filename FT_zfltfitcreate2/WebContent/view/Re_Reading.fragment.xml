@@ -1,0 +1,116 @@
+<core:FragmentDefinition xmlns="sap.m"
+						xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Dialog showHeader="true" icon="sap-icon://task" id="iD1King_V2" title="Reading Details" 
+			class="sapUiSizeCompact boldTxt" contentWidth="70%" >
+	<content>
+
+
+	<f:SimpleForm maxContainerCols="2" editable="true" layout="ResponsiveGridLayout"
+					labelSpanL="5" labelSpanM="5" 
+					emptySpanL="2" emptySpanM="2" 
+					columnsL="2" columnsM="2" class="editableForm">
+		<f:content>
+			<core:Title text="Old Readings"></core:Title>
+						<Label text="Inflation Pressure (PSI)" design="Bold" />
+							<Select enabled="false" id="idEarSped12O" forceSelection="false" selectedKey="{readingModel>/IpCondition}">
+								<core:Item text="Hot" key="H" />
+								<core:Item text="Cold" key="C" />
+							</Select>
+						
+						<Label text="IP (PSI)" design="Bold" />
+						<Input enabled="false" id="idEarCon12O" value=""/>
+
+						<Label text="Hardness (Shore A)" design="Bold" />
+						<Input enabled="false" id="idHardnessO" value=""/>
+
+						<Label text="Original NSD (mm)" design="Bold" />
+						<Input enabled="false" id="idOriNsdO" value=""/>
+
+						<Label id="idGrooveG1LblO" text="G1 (mm)" design="Bold" visible="false"/>
+						<Input enabled="false" id="idGrooveG1O" visible="false" value=""/>
+
+						<Label id="idGrooveG2LblO" text="G2 (mm)" design="Bold" visible="false"/>
+						<Input enabled="false" id="idGrooveG2O" visible="false" value=""/>
+
+						<Label id="idGrooveG3LblO" text="G3 (mm)" design="Bold" visible="false"/>
+						<Input enabled="false" id="idGrooveG3O" visible="false" value=""/>
+						
+						<Label id="idGrooveG4LblO" text="G4 (mm)" design="Bold" visible="false"/>
+						<Input enabled="false" id="idGrooveG4O" visible="false" value=""/>
+
+						<Label id="idGrooveG5LblO" text="G5 (mm)" design="Bold" visible="false"/>
+						<Input enabled="false" id="idGrooveG5O" visible="false" value=""/>
+						
+						<Label id="idGrooveG6LblO" text="G6 (mm)" design="Bold" visible="false"/>
+						<Input enabled="false" id="idGrooveG6O" visible="false" value=""/>
+			
+						<Label text="MinNsd (mm) " required="false" design="Bold" visible="false" />
+						<Input enabled="false" id="idMinNsdO" visible="false" value=""/>
+
+						<Label text="Remarks" design="Bold" />
+						<TextArea enabled="false" id="idRemarksO" rows="2" growing="true" maxLength="99" value="" />
+			
+		<core:Title text="New Readings"></core:Title>
+			<Label text="Inflation Pressure (PSI)" required="true" design="Bold" />
+				<Select enabled="true" id="id1EarSped12" forceSelection="false" selectedKey="{RereadingModel>/IpCondition}">
+					<core:Item text="Hot" key="H" />
+					<core:Item text="Cold" key="C" />
+				</Select>
+			
+			<Label text="IP (PSI)" required="true" design="Bold" />
+			<Input enabled="true" id="id1EarCon12" valueHelpOnly="true" maxLength="3" showValueHelp="false" 
+					change="onIpPsiChange" value="" liveChange="NumberPSIValid" />
+
+			<Label text="Hardness (Shore A)" required="true" design="Bold" />
+			<Input enabled="true" id="id1Hardness" valueHelpOnly="true" maxLength="4" showValueHelp="false" 
+				change="" value=""  liveChange="NumberHardnessValid"/>	
+
+			<Label text="Original NSD (mm)" required="false" design="Bold" />
+			<Input enabled="false" id="id1OriNsd" maxLength="5" valueHelpRequest="" 
+					liveChange="onNumberValid" valueHelpOnly="true" showValueHelp="false" value="" />
+
+			<Label id="id1GrooveG1Lbl" text="G1 (mm)" required="true" design="Bold" visible="false"/>
+			<Input enabled="true" id="id1GrooveG1" maxLength="5" valueHelpOnly="true" showValueHelp="false" 
+					value="" liveChange="onNumberValidChange1" change="checkMaxGrooveRe" visible="false"/>
+
+			<Label id="id1GrooveG2Lbl" text="G2 (mm)" required="true" design="Bold" visible="false"/>
+			<Input enabled="true" id="id1GrooveG2" maxLength="5" visible="false"
+					valueHelpOnly="true" showValueHelp="false" value="" liveChange="onNumberValidChange1" 
+					change="checkMaxGrooveRe"/>
+			
+			<Label id="id1GrooveG3Lbl" text="G3 (mm)" required="true" design="Bold"  visible="false"/>
+			<Input enabled="true" id="id1GrooveG3" maxLength="5" visible="false"
+					valueHelpOnly="true" showValueHelp="false" value="" liveChange="onNumberValidChange1"
+					change="checkMaxGrooveRe"/>
+			
+			<Label id="id1GrooveG4Lbl" text="G4 (mm)" design="Bold" required="true" visible="false"/>
+			<Input enabled="true" id="id1GrooveG4" maxLength="5" visible="false"
+				valueHelpOnly="true" showValueHelp="false" value="" liveChange="onNumberValidChange1" 
+				change="checkMaxGrooveRe"/>
+
+			<Label id="id1GrooveG5Lbl" text="G5 (mm)" required="true" design="Bold" visible="false"/>
+			<Input enabled="true" id="id1GrooveG5" maxLength="5" visible="false"
+					valueHelpOnly="true" showValueHelp="false" value="" liveChange="onNumberValidChange1"
+					change="checkMaxGrooveRe"/>
+			
+			<Label id="id1GrooveG6Lbl" text="G6 (mm)" required="true" design="Bold" visible="false"/>
+			<Input enabled="true" id="id1GrooveG6" maxLength="5" visible="false"
+				valueHelpOnly="true" showValueHelp="false" value="" liveChange="onNumberValidChange1" 
+				change="checkMaxGrooveRe"/>
+
+			<Label text="MinNsd (mm) " required="false" design="Bold" visible="false" />
+			<Input enabled="false" id="id1MinNsd" maxLength="5" valueHelpRequest="" valueHelpOnly="true" 
+					showValueHelp="false" value="" visible="false" />
+				
+			<Label text="Remarks"  design="Bold" />
+			<TextArea enabled="true" id="id1Remarks" rows="2" growing="true" maxLength="99" value="" />
+		
+		</f:content>
+	</f:SimpleForm>
+	</content>
+		<buttons>
+		<Button text="Save" visible="true" press="onSaveReReading" />
+		<Button text="Cancel" visible="true" press="onReReadingClose" />
+		</buttons>	
+</Dialog>
+</core:FragmentDefinition>
