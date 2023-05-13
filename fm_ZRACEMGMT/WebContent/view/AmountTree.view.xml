@@ -1,0 +1,49 @@
+<mvc:View controllerName="ZRACEMGMT.view.AmountTree" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.ui.table"
+        xmlns:mvc="sap.ui.core.mvc"
+        xmlns:m="sap.m"
+        xmlns:u="sap.ui.unified"
+        xmlns:core="sap.ui.core">
+<html:style>
+        @media (min-width: 1024px)
+.sapMSplitContainerHideMode > .sapMSplitContainerDetail .sapUiResponsiveMargin, .sapUiResponsiveMargin {
+    margin: 0rem 0rem !important;
+}
+</html:style>
+<m:Page title="Master List" class="" enableScrolling="true">
+				
+<m:content>
+			
+			<TreeTable
+                    id="TreeTableBasic"
+                    rows="{path:'/', parameters: {arrayNames:['children']}}"
+                    enableSelectAll="false"
+                    ariaLabelledBy="title"
+                    visibleRowCount="9"
+                    rowHeight = "48"
+                   >
+                <columns>
+                    <Column width="13rem" hAlign="Center">
+                        <m:Label text="PARTICULARS" design="Bold"/>
+                        <template>
+                            <m:Text text="{Name}"/>
+                        </template>
+                    </Column>
+                    <Column width="9rem" hAlign="Center">
+                        <m:Label text="Amount (in Lakhs)" design="Bold"/>
+                        <template>
+                            <m:Input enabled="{Enabled}" value="{Amount}" liveChange="onAmountChange"/>
+                        </template>
+                    </Column>
+                </columns>
+            </TreeTable>
+        <!--     </m:ScrollContainer> -->
+			</m:content>
+			<m:footer>
+					<m:Toolbar>
+						<m:ToolbarSpacer />
+						<m:Button text="Back" type="Accept" press="onNavBack" id="backBtn"></m:Button>
+						
+						</m:Toolbar>
+				</m:footer>
+		</m:Page>
+</mvc:View>

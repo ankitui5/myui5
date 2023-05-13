@@ -1,0 +1,238 @@
+<core:View controllerName="zretreaddboard.view.View1" 
+			xmlns:core="sap.ui.core"
+			xmlns:mvc="sap.ui.core.mvc" 
+			xmlns="sap.m" 
+			xmlns:f="sap.ui.layout.form"
+			xmlns:viz="sap.viz.ui5.controls"
+			xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+			xmlns:viz.data="sap.viz.ui5.data"
+			xmlns:l="sap.ui.layout"
+			xmlns:cl="sap.ui.commons.layout"
+			xmlns:layout="sap.ui.layout"
+			height="100%"
+			xmlns:html="http://www.w3.org/1999/xhtml" 
+			>
+<html:style>
+.clStyle {
+	left: 0px;
+	top: 0px;
+	height: 50%; 
+	width: 100%;
+	display: block;
+	cursor: default;
+	background-color: rgb(216, 207,207);
+}
+.sapUiSizeCompact .sapMPageHeader .sapMIBar .sapMBarLeft, .sapUiSizeCompact .sapMPageFooter .sapMIBar .sapMBarLeft, .sapUiSizeCompact .sapMPageHeader .sapMIBar .sapMBarRight, .sapUiSizeCompact .sapMPageFooter .sapMIBar .sapMBarRight, .sapUiSizeCompact .sapMPageHeader .sapMIBar .sapMBarPH, .sapUiSizeCompact .sapMPageFooter .sapMIBar .sapMBarPH {
+	background-color: gainsboro !important;
+}
+.sapMBarPH {
+	background-color: gainsboro !important;
+}
+.sapMBarContainer.sapMBarPH {
+	height: 2.3rem !important;
+}
+.sapUiFormContainerTitle>.sapUiFormTitle {
+	border-bottom: 0px solid #000 !important;
+}
+.sapMDialog>header.sapMDialogTitle .sapMTitle {
+	color: #000000 !important;
+}.sapMBarPH {
+	background-color: gainsboro !important;
+}
+.sapMBarContainer.sapMBarPH {
+	height: 2.3rem !important;
+}
+.sapMIBar-CTX .sapMTitle {
+	font-weight: bold !important;
+	color: #000000 !important;
+}
+.sapUiFormContainerTitle>.sapUiFormTitle {
+	border-bottom: 0px solid #000 !important;
+}
+.sapMDialog>header.sapMDialogTitle .sapMTitle {
+	color: #000000 !important;
+}
+</html:style>
+
+<Page title="" id="idtitle" visible="true" class="background" design="Bold" backgroundDesign="Solid">
+<content>
+
+<cl:MatrixLayout width="100%">
+<cl:MatrixLayoutRow>
+<cl:MatrixLayoutCell>
+<VBox alignItems="Center" alignContent="Center" backgroundDesign="Translucent">
+
+<HBox alignItems="Center" alignContent="Center" backgroundDesign="Translucent" backgroundColor="" >
+	<Label text="Tread-in Date:" design="Bold" required="true"		visible="false"/>
+		<VBox width="2px">
+		</VBox>
+	<DatePicker id="idFromDate" width="8rem" displayFormat="dd.MM.yyyy" change="handletreaddatefrom"		visible="false" />
+		<VBox width="2px">
+		</VBox>
+	<Text text="To" class="clto" 		visible="false" />
+		<VBox width="2px">
+		</VBox>
+	<DatePicker id="idToDate" width="8rem" displayFormat="dd.MM.yyyy" change="handletreaddateto"		visible="false" />
+	
+		<Label text="Category" design="Bold" required="true"/>
+			<VBox width="2px">
+			</VBox>
+		<Select id="idRepairCategory" forceSelection="false" width="10rem" change="onCategoryChange">
+			<core:Item text="Radial" key="R"></core:Item>
+			<core:Item text="Bias" key="N"></core:Item>
+		</Select>
+		
+</HBox>
+
+
+<HBox alignItems="Center" alignContent="Center">
+		
+		
+			<VBox width="2px">
+			</VBox>
+			
+		<Label text="Tread Pattern:" design="Bold" class="clmtrl"/>
+			<VBox width="2px">
+			</VBox>
+		<Input id="IdMaterial" valueHelpRequest="onMaterialHelp" valueHelpOnly="true" showValueHelp="true" width="22rem"/>
+			<VBox width="2px">
+				<Label text=" "></Label>
+			</VBox>
+		<Button id="btnSearch"  type="Emphasized" press="onBeltSearch" icon="sap-icon://search" />
+			<VBox width="2px">
+			<Label text=""></Label>
+			</VBox>
+</HBox>
+
+</VBox>
+
+<viz:VizFrame class="clStyle" id="oVizFrame1" width="100%" height= "500px" busy="false" busyIndicatorDelay="1000" visible="true" 
+				uiConfig="{'applicationSet': 'fiori'}" vizType="bar" legendVisible="true">
+	
+	<viz:dataset>
+	    	<viz.data:FlattenedDataset data="{BeltTyreFormData>/}">
+	            <viz.data:dimensions> 
+		            <viz.data:DimensionDefinition name="Belt Status" value="{BeltTyreFormData>Axis}" />
+		        </viz.data:dimensions>
+		        <viz.data:measures>
+		            <viz.data:MeasureDefinition group="1" name="Bias" value="{BeltTyreFormData>BQty}" />
+		            <viz.data:MeasureDefinition group="1" name="Radial" value="{BeltTyreFormData>RQty}" />
+		        </viz.data:measures>
+		</viz.data:FlattenedDataset>
+	</viz:dataset>
+	
+	<viz:feeds>
+	    <viz.feeds:FeedItem id="value4" uid="primaryValues" type="Measure" values="Bias"/>
+	    <viz.feeds:FeedItem id="value5" uid="primaryValues" type="Measure" values="Radial"/>
+
+	    <viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Belt Status" />
+	</viz:feeds>
+
+</viz:VizFrame>
+
+
+</cl:MatrixLayoutCell>
+
+<cl:MatrixLayoutCell>
+<VBox alignItems="Center" alignContent="Center" backgroundDesign="Translucent">
+
+<HBox alignItems="Center" alignContent="Center" backgroundDesign="Translucent" backgroundColor="" >
+	<Label text="Casing-in Date:" design="Bold" required="true" 		visible="false"/>
+		<VBox width="2px">
+		</VBox>
+	<DatePicker id="idFromDate1" width="8rem" displayFormat="dd.MM.yyyy" change="handledatefrom"		visible="false" />
+		<VBox width="2px">
+		</VBox>
+	<Text text="To" class="clto"		visible="false"/>
+		<VBox width="2px">
+		</VBox>
+	<DatePicker id="idToDate1" width="8rem" displayFormat="dd.MM.yyyy" change="handledateto"		visible="false"/>
+	
+	<Label text="Status:" design="Bold"/>
+		<VBox width="2px">
+		</VBox>
+	<Select id="IdStatus" width="10rem" forceSelection="true" change="OnStatus" />
+</HBox>
+
+<HBox>
+<Label text="Customer:" design="Bold" class="clmtrl"/>
+	<VBox width="2px">
+	</VBox>
+	<Input id="IdCustomer" valueHelpRequest="onCustomerHelp" valueHelpOnly="true" showValueHelp="true"/>
+		<VBox width="2px">
+		<Label text=" "></Label>
+		</VBox>
+		
+	<Label text="Customer Type:" design="Bold" class="clmtrl"/>
+	<VBox width="2px">
+	</VBox>
+	<Select id="IdCustType" width="9rem"  forceSelection="true" change="OnCustType" >
+			<items>
+				<core:Item text="" key="A" />
+				<core:Item text="Fleet" key="F" />
+				<core:Item text="Walk-in" key="W" />
+			</items>
+	</Select>
+
+		<VBox width="2px">
+		<Label text=" "></Label>
+		</VBox>	
+				
+	<VBox width="2px">
+	<Label text=" "></Label>
+	</VBox>
+	<Button id="btnSearch1"  type="Emphasized" press="onCasingSearch" icon="sap-icon://search" text="Search"/>
+		<VBox width="2px">
+		<Label text=" "></Label>
+	</VBox>
+</HBox>
+</VBox>
+
+<viz:VizFrame class="clStyle" id="oVizFrame2" width="100%" height= "500px" busy="false" 
+				busyIndicatorDelay="1000" visible="true"
+				uiConfig="{'applicationSet': 'fiori'}" vizType="column"  
+				legendVisible="true"
+				>
+	<viz:dataset>
+	    	<viz.data:FlattenedDataset data="{CasingFormData>/}">
+	            <viz.data:dimensions> 
+		            <viz.data:DimensionDefinition name="Casing Status" value="{CasingFormData>Axis}" />
+		        </viz.data:dimensions>
+		        <viz.data:measures>
+		            <viz.data:MeasureDefinition group="1" name="Fleet" value="{CasingFormData>FQty}" />
+		            <viz.data:MeasureDefinition group="1" name="Walk-In" value="{CasingFormData>WQty}" />
+		           
+		        </viz.data:measures>
+		</viz.data:FlattenedDataset>
+	</viz:dataset>
+	
+	<viz:feeds>
+	    <viz.feeds:FeedItem id="value1" uid="primaryValues" type="Measure" values="Fleet" />
+	    <viz.feeds:FeedItem id="value2" uid="primaryValues" type="Measure" values="Walk-In" />
+
+	    <viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Casing Status" />
+	</viz:feeds>
+</viz:VizFrame>
+ </cl:MatrixLayoutCell>
+
+
+</cl:MatrixLayoutRow>
+</cl:MatrixLayout> 
+
+</content>
+<footer>
+	<Bar>
+	<contentLeft>
+	</contentLeft>
+	<contentMiddle>
+		
+	</contentMiddle>
+	<contentRight>
+		<Button text="Clear Filters" press="onClearFilter" icon="sap-icon://clear-filter" type="Emphasized" />
+		<Button text="Detail View" press="onDetailView" icon="sap-icon://document-text" type="Emphasized" id="idDetailView" />
+	</contentRight>
+	</Bar>
+</footer>
+</Page>
+
+</core:View>

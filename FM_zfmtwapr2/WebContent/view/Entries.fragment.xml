@@ -1,0 +1,99 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Dialog showHeader="false" id="iDKing" class="sapUiSizeCompact" contentWidth="70%" >
+	<subHeader>
+			<Bar>
+				<contentMiddle>
+					<Text text="Details" />
+				</contentMiddle>
+				
+			</Bar>
+		</subHeader> 
+	<content>
+	<HBox justifyContent="SpaceBetween">
+	<ObjectStatus id="IdObjN1"
+		state="Success"		 />
+		<ObjectStatus id="IdObjN3"
+				
+				state="Success" />
+				<ObjectStatus id="IdObjN2"
+				
+				state="Success" />
+	</HBox>
+	<f:SimpleForm  minWidth="1024"
+		maxContainerCols="2" editable="true" layout="ResponsiveGridLayout"
+		labelSpanL="4" labelSpanM="4" emptySpanL="1" emptySpanM="1" columnsL="3"
+		columnsM="2" class="editableForm">
+		<f:content>
+			<core:Title text="        Previous Reading" />
+				<Label text="IP Condition"  />
+			<Select id="idEarSped" enabled="false" forceSelection="false" selectedKey="{Recodings>/IpCondition}">
+			<core:Item text="Hot" key="H"  ></core:Item>
+				<core:Item text="Cold" key="C"  ></core:Item>
+			</Select>
+				<Label text="IP (PSI)"  />
+			<Input enabled="false" id="idEarCon" change="onIpPsiChange" valueHelpRequest="InsGpCodeHelp"
+				valueHelpOnly="true" showValueHelp="false" value="{Recodings>/IpPsi}" liveChange="NumberValid" />
+				<Label text="New Tyre NSD (mm)" design="Bold"  />
+			<Input enabled="false" id="idEarRou1"  valueHelpRequest="InsGpCodeHelp"
+				valueHelpOnly="true" showValueHelp="false" value="{Recodings>/OrigNsd}" />
+				<Label text="G1 (mm)" required="true" />
+			<Input enabled="false" id="idEarLed1"  valueHelpRequest="InsGpCodeHelp"
+				valueHelpOnly="true" showValueHelp="false" value="{Recodings>/G1Nsd}" liveChange="NumberValid" change="onGCha"/>
+				<Label text="G2 (mm)" required="true" />
+			<Input enabled="false" id="idEarSped1"  valueHelpRequest="InsGpCodeHelp"
+				valueHelpOnly="true" showValueHelp="false" value="{Recodings>/G2Nsd}" liveChange="NumberValid" />
+				<Label text="G3 (mm)" required="true" />
+			<Input enabled="false" id="idEarCon1"  valueHelpRequest="InsGpCodeHelp"
+				valueHelpOnly="true" showValueHelp="false" value="{Recodings>/G3Nsd}" liveChange="NumberValid"/>
+				<Label text="G4 (mm)"  />
+			<Input enabled="false" id="idEarGvw"  valueHelpRequest="InsGpCodeHelp"
+				valueHelpOnly="true" showValueHelp="false" value="{Recodings>/G4Nsd}" liveChange="NumberValid" />
+				<Label text="Remarks"  />
+			<TextArea enabled="false" id="idEarPSI1"  maxLength="50" value="{Recodings>/Remarks}" />	
+			
+			
+			
+			<core:Title text="Current Reading" />
+			<Label text="IP Condition" required="true" />
+			<Select enabled="true" id="idNIp" forceSelection="false">
+			<core:Item text="Hot" key="H"  ></core:Item>
+				<core:Item text="Cold" key="C"  ></core:Item>
+			</Select>
+				<Label text="IP (PSI)" required="true" />
+			<Input enabled="true" id="idNPsi"  valueHelpRequest="InsGpCodeHelp"
+				valueHelpOnly="true" maxLength="3" showValueHelp="false"  change="onIpPsiChange"  liveChange="NumberValidPSI" />
+
+				<!-- <Label text="KM Suspended" liveChange="NumberValid" />
+			<Input enabled="true" id="idNKm"  maxLength="6" valueHelpRequest="InsGpCodeHelp"
+				valueHelpOnly="true" showValueHelp="false" liveChange="validSuspended" /> -->
+				<Label text="KM Covered" liveChange="NumberValid" />
+			<Input enabled="false" id="idKMCVD"  maxLength="6" valueHelpRequest="InsGpCodeHelp"
+				valueHelpOnly="true" value="{Recodings>/KmCovered}" showValueHelp="false" liveChange="validSuspended" />
+				
+				<Label text="G1 (mm)" required="true" />
+			<Input enabled="true" id="idNG1" maxLength="4" valueHelpRequest="InsGpCodeHelp"
+				valueHelpOnly="true" showValueHelp="false" liveChange="NsdValid" change="onGCha"/>
+				<Label text="G2 (mm)" required="true" />
+			<Input enabled="true" id="idNG2" maxLength="4"  valueHelpRequest="InsGpCodeHelp"
+				valueHelpOnly="true" showValueHelp="false" liveChange="NsdValid" />
+				<Label text="G3 (mm)" required="true" />
+			<Input enabled="true" id="idNG3"  maxLength="4" valueHelpRequest="InsGpCodeHelp"
+				valueHelpOnly="true" showValueHelp="false" liveChange="NsdValid"/>
+				<Label text="G4 (mm)"  />
+			<Input enabled="true" id="idNG4" maxLength="4" valueHelpRequest="InsGpCodeHelp"
+				valueHelpOnly="true" showValueHelp="false"  liveChange="NsdValid" />
+
+				<Label text="Remarks"  />
+			<TextArea enabled="true" id="idNRem" maxLength="100" />		
+				
+		</f:content>
+	</f:SimpleForm>
+	</content>
+		<buttons>
+<!-- 		<Button text="Close"  visible="true" press="onTabelFilterClose" />	 -->
+		<Button text="Save"   visible="true" press="onTabelEntrieOk" />
+		<Button text="Cancel"   visible="true" press="onTabelEntriesClose" />		
+		</buttons>	
+</Dialog>
+</core:FragmentDefinition>

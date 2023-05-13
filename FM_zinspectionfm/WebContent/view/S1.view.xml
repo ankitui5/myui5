@@ -1,0 +1,279 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout"	controllerName="zinspectionfm.view.S1" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="Inspection Report" level="h4" class="sapUiStdPage" enableScrolling="false">
+		<content>
+		<VBox>    
+		<Panel>
+		<Toolbar height="2rem" class="jhClass">
+		<Title id="lblFleet" class="titlecls" text="" level="H6" titleStyle="H6" textAlign="Center" width="100%"></Title>
+		</Toolbar>
+		</Panel>
+		<f:SimpleForm  minWidth="1024"
+		maxContainerCols="2" editable="true" layout="ResponsiveGridLayout"
+		labelSpanL="4" labelSpanM="4" emptySpanL="1" emptySpanM="1" columnsL="3"
+		columnsM="3" class="editableForm">
+		<f:content>
+		
+		<core:Title id="V_1" level="h4" text="Selection Critera" visible="false"/>
+		
+		<Label text="Reg. No" design="Bold"/>
+		<Input id="inpRegNo" valueHelpRequest="onVehicleRegNoHelp" valueHelpOnly="true" showValueHelp="true"/>
+			 
+		<core:Title id="V_01"  text="" visible="false"/>
+			  
+		<Label id="lblDate" text="Date Range" design="Bold" >
+	    <layoutData>
+		<l:GridData span="XL3 L3 M3 S2"/>
+		</layoutData>
+		</Label>
+		
+		<DatePicker id="fromDate"  displayFormat="dd.MM.yyyy" change="handledatefrom">
+		            
+				<layoutData>
+					<l:GridData span="XL6 L4 M3 S2"/>
+				</layoutData>
+			</DatePicker>
+			<Text text="  to  ">
+				<layoutData>
+					<l:GridData span="XL1 L1 M1 S1"/>
+				</layoutData>
+			</Text>
+			<DatePicker id="toDate"  displayFormat="dd.MM.yyyy" change="handledateto">
+				<layoutData>
+					<l:GridData span="XL6 L4 M3 S2"/>
+				</layoutData>
+			</DatePicker>
+						
+		
+		<core:Title  visible="false"/>
+			
+		<Button id="btnSearch" text="Search" type="Emphasized" press="onSearch">
+		<layoutData>
+		<l:GridData span="XL3 L3 M3 S3"/>
+		</layoutData>
+		</Button>
+			
+		<Button id="btnclr" text="Clear" type="Emphasized" press="onClear">
+		<layoutData>
+		<l:GridData span="XL3 L3 M3 S3"/>
+		</layoutData>
+		</Button>
+		</f:content>
+		</f:SimpleForm>	
+		
+	
+		<Panel id="Panel2" visible="false" class="copa_sec">
+     	<Table id="tableVehicleF" items="" visible="true" showNoData="false">
+		
+		<headerToolbar>
+		<Toolbar>
+		<Title id="tableText1" level="H2" />
+		<ToolbarSpacer></ToolbarSpacer>
+		<!-- <Button text="Filter" press="onFilter" icon="sap-icon://filter" type="Emphasized"></Button> -->
+		<Button tooltip="View Settings" icon="sap-icon://drop-down-list" press="handleViewSettingsDialogButtonPressed" />
+		<Button text="Download" press="onDownload" icon="sap-icon://download" type="Emphasized"></Button>
+		</Toolbar>
+		</headerToolbar>
+		
+		<columns>
+		<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+		<Label text="Regn No" width="5em" design="Bold"/>
+		</Column>
+		<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+		<Label text="Configuration" design="Bold"/>
+		</Column>
+		<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+		<Label text="Inspection Number" design="Bold"/>
+		</Column>
+		<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+		<Label text="Inspection Date" design="Bold"/>
+		</Column>
+		
+		<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+		<Label text="Inspection Hub" design="Bold"/>
+		</Column>
+		
+		<Column minScreenWidth="Tablet" hAlign='Center' width="3em" demandPopin="true">
+		<Label text="" design="Bold"/>
+		</Column>
+		<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" visible="false">
+		<Label text="HubCode" design="Bold"/>
+		</Column>
+		</columns>
+		</Table>
+		<!-- Start -->
+		<ScrollContainer id="idScroll" height="300px" horizontal="true" vertical="true" focusable="true">
+		<Table id="tableVehicleF1" items="{TableVehicleJModel>/}" visible="true" showNoData="false" alternateRowColors="true">
+		<columns>
+		
+		<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+		</Column>
+		
+		<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+		</Column>
+		
+		<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+		</Column>
+		
+		<Column minScreenWidth="Tablet" hAlign='Center'	demandPopin="true">
+		</Column>
+		
+		<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+		</Column>
+		
+		<Column minScreenWidth="Tablet" hAlign='Center' width="3em" demandPopin="true">
+		</Column>
+		
+		<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" visible="false">
+		<!-- <Label text="HubCode" design="Bold"/> -->
+		</Column>
+		</columns>
+		<items>
+		<ColumnListItem>
+		<cells>
+		
+		<Text text="{TableVehicleJModel>RegNo}" />
+		<Text text="{TableVehicleJModel>ConfigCodeDesc}" />
+		<Text text="{TableVehicleJModel>InspNo}" />
+		<Text text="{path:'TableVehicleJModel>InspDate',formatter:'zinspectionfm.view.formatter.date1'}" />
+		<Text text="{TableVehicleJModel>InspHub}" />
+		<Button icon= "sap-icon://show" press="onPrint"  type="Emphasized"/>
+		<Text text= "{TableVehicleJModel>HubCode}"/>
+		
+		</cells>
+		</ColumnListItem>
+		</items>
+		</Table>
+		</ScrollContainer>
+		</Panel>
+		<!--  End -->
+		
+		<!-- Second table start COMMERCIAL TPT ORAGANIZATION  -->
+		<Panel id="Panel1" visible="false" class="copa_sec">
+		<Toolbar id="toolbarCT">
+		<ToolbarSpacer></ToolbarSpacer>
+		<Text text="Contract Type :  "></Text>
+		<core:Icon src="sap-icon://inventory" color="#1C4C98" >
+        <core:layoutData>
+        <FlexItemData growFactor="1" />
+        </core:layoutData>
+        </core:Icon>
+        <Text text="Charge Per KM "></Text>
+		<core:Icon src="sap-icon://settings"  color="#031E48" >
+        <core:layoutData>
+        <FlexItemData growFactor="1" />
+        </core:layoutData>
+        </core:Icon>
+        <Text text="Service Contract "></Text>
+    	<ToolbarSpacer></ToolbarSpacer>
+        </Toolbar>
+    
+		<Table id="tableVehicle" items="" visible="true" showNoData="false">
+		
+		<headerToolbar>
+		<Toolbar>
+		<Title id="tableText" level="H2" />
+		<ToolbarSpacer></ToolbarSpacer>
+		<Button tooltip="View Settings" icon="sap-icon://drop-down-list" press="handleViewSettingsDialogButtonPressed" />
+		<Button text="Download" press="onDownload1" icon="sap-icon://download" type="Emphasized"></Button>
+		</Toolbar>
+		</headerToolbar>
+		<columns>
+		
+		<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+		<Label text="Regn No" width="5em" design="Bold"/>
+		</Column>
+		
+		<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+		<Label text="Configuration" design="Bold"/>
+		</Column>
+		
+		<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+		<Label text="Inspection Number" design="Bold"/>
+		</Column>
+		
+		<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+		<Label text="Inspection Date" design="Bold"/>
+		</Column>
+		
+		<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+		<Label text="Inspection Hub" design="Bold"/>
+		</Column>
+		
+		<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+		<Label text="Contract Type" design="Bold"/>
+		</Column>
+		
+		<Column minScreenWidth="Tablet" hAlign='Center' width="3em" demandPopin="true">
+		<Label text="" design="Bold"/>
+		</Column>
+		
+		<Column minScreenWidth="Tablet" hAlign='Center' width="3em" demandPopin="true" visible="false">
+		<Label text="" design="Bold"/>
+		</Column>
+		
+		</columns>
+		</Table>
+		<!-- Start -->
+		
+		<ScrollContainer id="idScroll1" height="300px" horizontal="true" vertical="true" focusable="true">
+		<Table id="tableVehicle1" items="{TableVehicleF1JModel>/}" visible="true" showNoData="false" alternateRowColors="true">
+		<columns>
+		<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+		</Column>
+		
+		<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+		</Column>
+		
+		<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+		</Column>
+		
+		<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+		</Column>
+		
+		<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+		</Column>
+		
+		<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+		</Column>
+		
+		<Column minScreenWidth="Tablet" hAlign='Center' width="3em" demandPopin="true">
+		<!-- <Label text="" design="Bold"/> -->
+		</Column>
+		<Column minScreenWidth="Tablet" hAlign='Center' visible="false">
+		<!-- <Label text="HUB CODE" design="Bold"/> -->
+		</Column>
+		</columns>
+		<items>
+		<ColumnListItem >
+		
+		<cells>
+		
+		<Text text="{TableVehicleF1JModel>RegNo}" />
+		<Text text="{TableVehicleF1JModel>ConfigCodeDesc}" />
+		<Text text="{TableVehicleF1JModel>InspNo}" />
+		<Text text="{path:'TableVehicleF1JModel>InspDate',formatter:'zinspectionfm.view.formatter.date1'}" />
+		<Text text="{TableVehicleF1JModel>InspHub}" />
+	    <core:Icon src="{path:'TableVehicleF1JModel>ContractType',formatter: 'zinspectionfm.view.formatter.setIcon'}"
+				   color="{path:'TableVehicleF1JModel>ContractType', formatter: 'zinspectionfm.view.formatter.setColor'}"/>
+		<Button icon= "sap-icon://show" press="onPrint1"  type="Emphasized"/>
+		<Text text="{TableVehicleF1JModel>HubCode}" />
+		</cells>
+		
+		</ColumnListItem>
+		</items>
+		</Table>
+		</ScrollContainer>
+ 		
+ 		<!--  End -->
+		</Panel>
+		</VBox>
+	    </content>
+		<footer >
+		<Bar id="idFooter">
+		<contentRight>
+		</contentRight>
+		</Bar>
+	</footer>
+	</Page>
+</core:View>

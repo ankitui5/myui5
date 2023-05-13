@@ -1,0 +1,273 @@
+<core:View 	xmlns:core="sap.ui.core" 
+			xmlns:mvc="sap.ui.core.mvc" 
+			xmlns="sap.m" 
+			xmlns:f="sap.ui.layout.form"
+			xmlns:l="sap.ui.layout"	
+			controllerName="ZRACEMGMT.view.S1" 
+			class="sapUiSizeCompact" 
+			xmlns:html="http://www.w3.org/1999/xhtml" >
+
+<html:style>
+
+</html:style>
+
+<Page title="RACE Management" level="h4" class="sapUiStdPage" enableScrolling="false" height="100%">
+	<content>
+	  <f:SimpleForm  minWidth="1024" maxContainerCols="3" editable="true" layout="ResponsiveGridLayout"
+		       labelSpanL="4" labelSpanM="4" emptySpanL="1" emptySpanM="1" columnsL="2" columnsM="3" class="editableForm">
+		<f:content>
+		 
+		 <core:Title id="V_1" level="h4" text="" visible="false"/>
+		    
+		   <!--  <Label text="Race Number" design="Bold"/>
+			<Input id="IdRaceNo" valueHelpRequest="OnHelpshowRaceNo" valueHelpOnly="true" showValueHelp="true" /> --> 
+		    
+			<Text text="RACE Category:" class="clRaceType">
+				<layoutData>
+						<l:GridData span="XL4 L3 M2 S1"/>
+				</layoutData>
+			</Text> 
+			<Select id="selectRaceFilter" forceSelection="false" required="true" selectedKey="" items="{raceTypeJModel>/}">
+				<items>
+					<core:Item text="{raceTypeJModel>Description}" key="{raceTypeJModel>Type}" />
+				</items>
+					<layoutData>
+						<l:GridData span="XL4 L5 M2 S1"/>
+					</layoutData>	
+				</Select>
+				
+			<Text text="Calendar Year:" class="clFicYear">
+			<layoutData>
+				<l:GridData span="XL4 L2 M2 S1"/>
+				</layoutData>
+			</Text>
+			
+			<Input id="IdFisalYer"  valueHelpOnly="false" showValueHelp="false">
+				<layoutData>
+				<l:GridData span="XL4 L2 M2 S1"/>
+				</layoutData> 
+			</Input>	
+			
+			<core:Title id="V_01"  text="" visible="false"/>
+			<!-- <Label text="Location" design="Bold"/> -->
+			<Text text="Location:" class="clLocation">
+				<layoutData>
+				<l:GridData span="XL4 L2 M2 S1"/>
+				</layoutData>
+			</Text>
+			<Input  id="IdPlant" valueHelpOnly="true" valueHelpRequest="onPlantHelp" showValueHelp="true" >
+				<layoutData>
+					<l:GridData span="XL4 L3 M2 S1"/>
+				</layoutData>
+			</Input>
+					
+			<!-- <Label text="Race Status" design="Bold"/> -->
+			<Text text="RACE Status:" class="clStatus">
+				<layoutData>
+				<l:GridData span="XL4 L2 M2 S1"/>
+				</layoutData>
+			</Text>
+			<Select id="idRaceStatus" forceSelection="false" change="onStatusChange" width="100%" selectedKey=""  >
+				<items>
+					<core:Item text="All" key="" />
+					<core:Item text="Pending For My Approval" key="M" />
+					<core:Item text="Partial Approved" key="P" />
+					<core:Item text="Approved" key="A" />
+					<core:Item text="Rejected" key="R" />
+				</items>
+				
+				<layoutData>
+				<l:GridData span="XL4 L5 M2 S1"/>
+				</layoutData>
+			</Select>
+						
+		</f:content>
+	</f:SimpleForm>
+	
+		<Toolbar id="toolbarCT2" class="clstoolbar">
+						<ToolbarSpacer></ToolbarSpacer>
+						<Text text="Legend :" TextColor="#e78c07"></Text>
+						
+						<!-- <core:Icon src="sap-icon://begin" color="#0973f7">
+							<core:layoutData>
+								<FlexItemData growFactor="1" />
+							</core:layoutData>
+						</core:Icon>
+						<Text text="Initiated"></Text> -->
+						
+						<core:Icon src="sap-icon://pending" color="#f3cf1c">
+							<core:layoutData>
+								<FlexItemData growFactor="1" />
+							</core:layoutData>
+						</core:Icon>
+						<Text text="Pending For My Approval"></Text>
+						
+						<core:Icon src="sap-icon://account" color="#eb8b46">
+							<core:layoutData>
+								<FlexItemData growFactor="1" />
+							</core:layoutData>
+						</core:Icon>
+						<Text text="Partial Approved"></Text>
+						 	
+ 						<core:Icon src="sap-icon://employee-approvals" color="#13c213">
+							<core:layoutData>
+								<FlexItemData growFactor="1" />
+							</core:layoutData>
+						</core:Icon>
+						<Text text="Approved"></Text>
+						
+						<core:Icon src="sap-icon://decline" color="#ff0000">
+							<core:layoutData>
+								<FlexItemData growFactor="1" />
+							</core:layoutData>
+						</core:Icon>
+						<Text text="Rejected" />
+						
+						<ToolbarSpacer />
+						<Button id="btnSearch" text="Search" type="Emphasized" press="onSearch"></Button>
+						<Button id="btnSearch1" text="Clear" type="Emphasized" press="onClear"></Button>
+						<Button press="onDownload" icon="sap-icon://download" type="Emphasized"></Button>
+					</Toolbar>
+
+ 
+<Table id="Headertable"  showNoData="false" class="tblgrid"> 
+		<columns>
+			<Column width="3rem" minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+				<Label text="RACE No." design="Bold"/>
+			</Column>
+			
+			<Column width="2rem" minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+				<Label text="Location" design="Bold"/>
+			</Column>
+			
+			<Column width="4rem" minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+				<Label text="Initiator" design="Bold"/>
+			</Column>
+				
+			<Column width="2rem" minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+				<Label text="Category" design="Bold"/>
+			</Column>	
+					
+			<Column width="2rem" minScreenWidth="Tablet" hAlign='Center'	demandPopin="true">
+				<Label text="Type" design="Bold"/>
+			</Column>
+			
+			<Column width="15rem" minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+				<Label text="Description" design="Bold"/>
+			</Column>
+									
+			<Column width="3rem" minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+				<Label text="Amt(in Lakhs)" design="Bold"/>
+			</Column>
+						
+								
+			<Column width="2rem" minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+				<Label text="Status" design="Bold"/>
+			</Column>
+			
+			<Column width="1rem" minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+				<Label text="" design="Bold"/>
+			</Column>
+			
+			<Column width="1rem" minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+				<Label text="" design="Bold"/>
+			</Column>
+		</columns>
+</Table>
+
+<ScrollContainer vertical="true" horizontal="false" height="400px" >
+<Table id="idReportTable"  items="{RaceListSetModel>/}" showNoData="true" alternateRowColors="true"
+		fixedColumnCount="3" itemPress="displayRaceDetails" class="tblgrid2">
+		<columns>
+			<Column width="3rem" minScreenWidth="Tablet" hAlign='Center' demandPopin="true" />
+			<Column width="2rem" minScreenWidth="Tablet" hAlign='Center' demandPopin="true" />
+			<Column width="4rem" minScreenWidth="Tablet" hAlign='Center' demandPopin="true" />	
+			<Column width="2rem" minScreenWidth="Tablet" hAlign='Center' demandPopin="true" />	
+			<Column width="2rem" minScreenWidth="Tablet" hAlign='Center' demandPopin="true" />
+			<Column width="15rem" minScreenWidth="Tablet" hAlign='Center' demandPopin="true" />	
+			<Column width="3rem" minScreenWidth="Tablet" hAlign='Center' demandPopin="true" />	
+			<Column width="2rem" minScreenWidth="Tablet" hAlign='Center' demandPopin="true" />
+			<Column width="1rem" minScreenWidth="Tablet" hAlign='Center' demandPopin="true" />
+			<Column width="1rem" minScreenWidth="Tablet" hAlign='Center' demandPopin="true" />
+		</columns>
+
+		<items>
+			 <ColumnListItem type="Active">
+			 <customData>
+    			 <core:CustomData key="myCustColor" value="{RaceListSetModel>Status}" writeToDom="true"></core:CustomData>
+   			 </customData>
+			 
+				<cells>
+					<Text text="{RaceListSetModel>RaceNumber}" class="classcell"/>
+					 <Text text="{RaceListSetModel>Plant}" class="classcell"/> 
+					 <Text text="{RaceListSetModel>Initiator}" class="classcell" /> 
+					 <Text text="{RaceListSetModel>CatDesc}" class="classcell" />
+					 <Text text="{RaceListSetModel>TypeDesc}" class="classcell"/>
+             		 
+             		
+             		 <Text text="{RaceListSetModel>Title1}" class="classcell"/>		    
+					 <!-- <Text text="{RaceListSetModel>RaceAmount}"/> -->
+					 <Input value="{RaceListSetModel>RaceAmount}" enabled="false" class="classcell" />	
+					<core:Icon src="{path:'RaceListSetModel>Status', formatter: 'ZRACEMGMT.util.Formatter.setIcon'}"
+             		   color="{path:'RaceListSetModel>Status', formatter: 'ZRACEMGMT.util.Formatter.setColor'}" /> 
+       				 <Button icon="sap-icon://accept" type="Accept" press="onAprrove" tooltip="Approve" />
+        			 <Button icon="sap-icon://decline" type="Reject" press="onReject" tooltip="Reject"/> 
+        			 
+        			  <ResponsivePopover title="Approval Status" contentWidth="40%" placement="Left" resizable="true" showHeader="true">
+			          <content>
+			            <Table id="ifPopovertbl" class="tblgrid" showNoData="false"> 
+							<columns>
+								<Column width="8rem" minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+									<Label text="Approver" design="Bold"/>
+								</Column>
+										
+								<Column width="2rem" minScreenWidth="Tablet" hAlign='Center'	demandPopin="true">
+									<Label text="Approval Date" design="Bold"/>
+								</Column>
+							</columns>
+						</Table>
+						<Table id="ifPopovertbl1"  items="{RaceApprovalStatusModel>/}" showNoData="true" alternateRowColors="true"
+							fixedColumnCount="3" class="tblgrid2">
+							<columns>
+								<Column width="8rem" minScreenWidth="Tablet" hAlign='Center' demandPopin="true" />
+								<Column width="2rem" minScreenWidth="Tablet" hAlign='Center' demandPopin="true" />
+							</columns>	
+							<items>
+								 <ColumnListItem type="Active">
+								 <customData>
+    			 					<core:CustomData key="myCustColor2" value="{RaceApprovalStatusModel>ApprovalDate}" writeToDom="true"></core:CustomData>
+   			 					</customData>
+									<cells>
+										<Text text="{RaceApprovalStatusModel>Pernr}" class="classcell" />
+										<Text text="{path:'RaceApprovalStatusModel>ApprovalDate', formatter: 'ZRACEMGMT.util.Formatter.date2'}" class="classcell" />
+					             	</cells>
+								</ColumnListItem>
+							</items>		
+						</Table>
+			          </content>
+       				 </ResponsivePopover>
+             		 
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table> 
+</ScrollContainer>
+
+</content>
+<footer>
+		<Toolbar>
+			<Label text="JK Tyre and Industries Ltd."></Label>
+		</Toolbar>
+		<Bar>
+			<contentRight>
+			<Button text="Create RACE" enabled="true" visible="true" type="Accept"
+					press="onCreateRace" id="idCreateRace" icon="sap-icon://create" />
+					
+			<!-- <Button text="Approval List" enabled="true" visible="true" type="Accept"
+					press="onShowApprovalList" id="idApprovalList" icon="sap-icon://approvals" /> -->		
+			</contentRight>
+		</Bar>
+</footer>
+
+</Page>
+</core:View>

@@ -1,0 +1,186 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+
+	<Dialog showHeader="false" class="sapUiSizeCompact" contentWidth="40%" draggable="true" >
+	<subHeader>
+			<Bar>
+				<contentMiddle>
+					<Label text="Service Details" design="Bold" />
+				</contentMiddle>
+			</Bar>
+		</subHeader> 
+	<content>
+	
+<!-- 	Cut -->
+	<Panel id="IdCutPannel" visible="false">
+	<f:SimpleForm  minWidth="1024" maxContainerCols="2" editable="true" layout="ResponsiveGridLayout"
+		labelSpanL="4" labelSpanM="4" emptySpanL="1" emptySpanM="1" columnsL="3"
+		columnsM="2" class="editableForm">
+		<f:content>
+				<Label text="Type of Cut"  />
+				<Select enabled="true" id="idTypeCut"  forceSelection="false" selectedKey="" >
+					<core:Item text="Tread Cut" key="Tread_Cut"  ></core:Item>
+					<core:Item text="Sidewall Cut" key="Sidewall_Cut"  ></core:Item>
+				</Select>
+				
+				<Label text="Width of Cut (cm)"  />
+				<Input enabled="true" id="idcutwid" maxLength="4" valueHelpRequest="InsGpCodeHelp"
+						valueHelpOnly="true" showValueHelp="false" value="{Recodings>/IpPsi}" liveChange="NumPoint" />
+				
+				<Label text="Patch Size"  />
+				<Input enabled="true" id="idcutsz" maxLength="4"  valueHelpRequest="InsGpCodeHelp"
+					valueHelpOnly="true" showValueHelp="false" value="{Recodings>/Gvw}" liveChange="NumPoint" />
+ 				</f:content>
+	</f:SimpleForm>
+	</Panel>
+		
+<!-- 		Nitrogen --> 
+	<Panel id="IdNitroPanl" visible="false">
+	<f:SimpleForm  minWidth="1024" maxContainerCols="2" editable="true" layout="ResponsiveGridLayout"
+				labelSpanL="4" labelSpanM="4" emptySpanL="1" emptySpanM="1" columnsL="3"
+				columnsM="2" class="editableForm">
+		<f:content>
+			<Label text="Nitrogen Filling"  />
+			<Select enabled="true" id="idNtPur"  forceSelection="false" selectedKey="" >
+				<core:Item text="Complete Fill-Up" key="P"  ></core:Item>
+				<core:Item text="Top-Up" key="T"  ></core:Item>
+			</Select>
+		</f:content>
+	</f:SimpleForm>
+	</Panel>
+		
+<!-- 		Rotation -->
+	<Panel id="IdRotationpanl" visible="false">
+	<f:SimpleForm  minWidth="1024" maxContainerCols="2" editable="true" layout="ResponsiveGridLayout"
+				labelSpanL="4" labelSpanM="4" emptySpanL="1" emptySpanM="1" columnsL="3"
+				columnsM="2" class="editableForm">
+		<f:content>
+			<Label text="Rotation on Axles"  />
+			<Select enabled="true" id="idRTax"  forceSelection="false" selectedKey="" >
+				
+				<core:Item text="Yes" key="Y"  ></core:Item>
+				<core:Item text="No" key="N"  ></core:Item>
+				</Select>
+				<Label text="Rotation on Wheel Rim"  />
+			<Select enabled="true" id="idRTWR"  forceSelection="false" selectedKey="" >
+				
+				<core:Item text="Yes" key="Y"  ></core:Item>
+				<core:Item text="No" key="N"  ></core:Item>
+				</Select>
+				</f:content>
+	</f:SimpleForm>
+		</Panel>
+		
+		<Panel id="IdAlinmntpanl" visible="false">
+		<Table id="tblalinmnt" mode="None" select="OnTableSelect">
+				<columns>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Label design="Bold" text="Alignment Angle" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Label design="Bold" text="Before Adjustments" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Label design="Bold" text="After Adjustments" />
+					</Column>
+				</columns>
+				<items>
+				<ColumnListItem >
+							<cells>
+								<Text text="Total Toe (mm)"></Text>
+								<Input id="ID1" liveChange="NumHyphen" maxLength="7"></Input>
+								<Input id="ID11" liveChange="NumHyphen" maxLength="7"></Input>
+							</cells>
+						</ColumnListItem>
+				<ColumnListItem >
+							<cells>
+							<Text text="Thrust Angle"></Text>
+								<Input id="ID2" liveChange="NumHyphen" maxLength="7"></Input>
+								<Input id="ID21" liveChange="NumHyphen" maxLength="7"></Input>
+							</cells>
+						</ColumnListItem>
+						<ColumnListItem >
+							<cells>
+							<Text text="Scrub Angle"></Text>
+								<Input id="ID3" liveChange="NumHyphen" maxLength="7"></Input>
+								<Input id="ID31" liveChange="NumHyphen" maxLength="7"></Input>
+							</cells>
+						</ColumnListItem>
+				</items>
+			</Table>
+			<Label text="Remarks on Tyre Wear:" design="Bold"/>
+			<TextArea id="ID4" maxLength="150" width="100%">
+			</TextArea>	
+		</Panel>
+		
+		<Panel id="IdBlapanl" visible="false">
+			<Label text="Weight added in (grams):" design="Bold"/>
+			<Input id="IDweig" width="100%" maxLength="3" liveChange="NumValid">
+			</Input>
+		</Panel>
+		
+		<Panel id="IdTMrem" visible="false">
+		<f:SimpleForm  minWidth="1024" maxContainerCols="2" editable="true" layout="ResponsiveGridLayout"
+					labelSpanL="4" labelSpanM="4" emptySpanL="1" emptySpanM="1" columnsL="3"
+					columnsM="2" class="editableForm">
+		<f:content>
+			<Label text="Tyre Change Method"  />
+			<Select enabled="true" id="idRTyCh"  forceSelection="false" selectedKey="" >				
+				<core:Item text="Manual" key="1"  ></core:Item>
+				<core:Item text="Wrench" key="2"  ></core:Item>
+			</Select>
+		</f:content>
+		</f:SimpleForm>
+		</Panel>
+		
+		<Panel id="IdTFW" visible="false">
+		<f:SimpleForm  minWidth="1024" maxContainerCols="2" editable="true" layout="ResponsiveGridLayout"
+					labelSpanL="4" labelSpanM="4" emptySpanL="1" emptySpanM="1" columnsL="3"
+					columnsM="2" class="editableForm">
+		<f:content>
+			<Label text="Tyre Change Method"  />
+			<Select enabled="true" id="idRTyCh1"  forceSelection="false" selectedKey="" >			
+				<core:Item text="Manual" key="1"  ></core:Item>
+				<core:Item text="Wrench" key="2"  ></core:Item>
+			</Select>				
+		</f:content>
+		</f:SimpleForm>	
+		</Panel>
+
+<!-- Tyre Mounting -->
+		<Panel id="IdMount" visible="false">
+		<f:SimpleForm  minWidth="1024" maxContainerCols="2" editable="true" layout="ResponsiveGridLayout"
+					labelSpanL="4" labelSpanM="4" emptySpanL="1" emptySpanM="1" columnsL="3"
+					columnsM="2" class="editableForm">
+		<f:content>
+			<Label text="Tyre Fitment Method"  />
+			<Select enabled="true" id="idMountSelect"  forceSelection="false" selectedKey="" >
+				<core:Item text="Manual" key="1"  ></core:Item>
+				<core:Item text="Automatic" key="2"  ></core:Item>
+			</Select>
+		</f:content>
+		</f:SimpleForm>
+		</Panel>
+
+<!-- Tyre DeMounting -->
+		<Panel id="IdDeMount" visible="false">
+		<f:SimpleForm  minWidth="1024" maxContainerCols="2" editable="true" layout="ResponsiveGridLayout"
+					labelSpanL="4" labelSpanM="4" emptySpanL="1" emptySpanM="1" columnsL="3"
+					columnsM="2" class="editableForm">
+		<f:content>
+			<Label text="Tyre Removal Method"  />
+			<Select enabled="true" id="idDeMountSelect"  forceSelection="false" selectedKey="" >
+				<core:Item text="Manual" key="1"  ></core:Item>
+				<core:Item text="Automatic" key="2"  ></core:Item>
+			</Select>
+		</f:content>
+		</f:SimpleForm>
+		</Panel>		
+				
+		</content>
+		<buttons>
+<!-- 		<Button text="Close"  visible="true" press="onTabelFilterClose" />	 -->
+		<Button text="OK"   visible="true" press="onCutOk" />
+		<Button text="Cancel"   visible="true" press="onCutClose" />		
+		</buttons>	
+</Dialog>
+</core:FragmentDefinition>

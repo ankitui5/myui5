@@ -1,0 +1,25 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+<Dialog xmlns="sap.m" title="Fleet Managment" class="sapUiSizeCompact" contentWidth="520px" contentHeight="100px">
+		<content>
+	    <l:Grid defaultSpan="L12 M12 S12" width="auto" position="Center">
+			<l:content>
+				<f:SimpleForm minWidth="1024" maxContainerCols="2"
+						      editable="true" layout="ResponsiveGridLayout" labelSpanL="2"
+						      labelSpanM="2"  emptySpanL="0" emptySpanM="0" columnsL="2"
+						      columnsM="2">
+				<f:content>
+					<Label  text="Select Fleet" />
+					<Input id="idFleet" valueHelpRequest="onFleetFragment" showValueHelp="true" valueHelpOnly="true"/>
+				</f:content>
+				</f:SimpleForm>
+			</l:content>
+		</l:Grid>
+		</content>
+		<beginButton>
+			<Button text="OK" press="onFleetOkButton" />
+		</beginButton>
+		<endButton>
+			<Button text="Cancel" press="onFleetCloseCancel" />
+		</endButton>
+</Dialog>
+</core:FragmentDefinition>

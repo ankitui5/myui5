@@ -1,0 +1,38 @@
+<core:FragmentDefinition xmlns="sap.ui.table"
+        xmlns:mvc="sap.ui.core.mvc"
+        xmlns:m="sap.m"
+        xmlns:u="sap.ui.unified"
+        xmlns:core="sap.ui.core">
+	<m:Dialog title=""  contentWidth="55%" state="Success">
+		<TreeTable id="TreeTableBasicDisplay"
+			rows="{path:'amountModel>/', parameters: {arrayNames:['children']}}"
+			enableSelectAll="false" ariaLabelledBy="title" visibleRowCount="9"
+			rowHeight="48">
+                <columns>
+                    <Column width="20rem" hAlign="Center">
+                        <m:Label text="PARTICULARS" design="Bold"/>
+                        <template>
+                            <m:Text text="{amountModel>Text}"/>
+                        </template>
+                    </Column>
+                    
+                    <Column width="14rem" hAlign="Center">
+                        <m:Label text="Amount(in Lakhs)" design="Bold"/>
+                        <template>
+                            <m:Input enabled="false" value="{amountModel>Amount}" />
+                            </template>
+                    </Column>
+                    
+                    <Column width="15rem" hAlign="Center">
+                        <m:Label text="WBS" design="Bold"/>
+                        <template>
+                            <m:Text text="{amountModel>WBS}"/>
+                            </template>
+                    </Column>
+                </columns>
+            </TreeTable>
+		<m:endButton>
+			<m:Button text="OK" press="onCloseRaceAmountDispDialog"/>
+		</m:endButton>
+	</m:Dialog>
+</core:FragmentDefinition>

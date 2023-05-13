@@ -1,0 +1,354 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.ui.layout.form" 
+			xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified" controllerName="ZRACEMGMT.view.Create" 
+			xmlns:html="http://www.w3.org/1999/xhtml" xmlns:t="sap.ui.table">
+		
+<html:style>
+.background1{
+background-color:#E20E47; 
+ padding:2px;
+ 
+.label{
+ color:4AEDF3;
+ }
+}
+
+.leftLabel .sapUiRespGridMedia-Std-Phone.sapUiFormResGridCont > .sapUiFormElementLbl:not(.sapUiRespGridSpanS12) > .sapMLabel, .sapUiRespGridMedia-Std-Tablet.sapUiFormResGridCont > .sapUiFormElementLbl:not(.sapUiRespGridSpanM12) > .sapMLabel, .sapUiRespGridMedia-Std-Desktop.sapUiFormResGridCont > .sapUiFormElementLbl:not(.sapUiRespGridSpanL12) > .sapMLabel, .sapUiRespGridMedia-Std-LargeDesktop.sapUiFormResGridCont > .sapUiFormElementLbl:not(.sapUiRespGridSpanXL12) > .sapMLabel {
+    text-align: left !important;
+    float: none;
+    position: relative;
+}
+
+.hide .sapUiSizeCompact .sapUiFormContainerTitle > .sapUiFormTitle {
+    display: none;
+}
+</html:style>
+
+<Page title="Create RACE" id="displayRace" busy="{oViewJModel>/busy}" busyIndicatorDelay="{oViewJModel>/delay}">
+			<headerContent>
+			<Button icon="sap-icon://menu" tooltip="Menu" press="menu" visible="false"/>
+			</headerContent>
+	<content>
+	<Panel>
+
+	<IconTabBar id="idheaderinfo" expanded="true" select="selectedTab"
+						class="sapUiResponsiveContentPadding iconTabBar">
+	<items>
+
+<IconTabFilter iconColor="Positive" design="Bold" text="Header details" key="HeaderInfo">
+							    
+<f:SimpleForm id="TRHeaderFormEdit" minWidth="1024" maxContainerCols="1" editable="true" layout="ResponsiveGridLayout" title=""
+		labelSpanL="5" labelSpanM="5" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2" visible="true" class="hide leftLabel">
+	<f:content>
+		<core:Title id="Hd_1" text="HEADER DETAILS" class="hide" />
+			
+			
+			<Label id="fiscal_Year" text="Calendar Year" design="Bold" />
+			<Input id="fiscal_YearInp" enabled="false" maxLength="4" value="" />
+			
+			<Label text="Race Category" design="Bold" required="true" />
+			<Select id="idRaceCat" change="onRacCatChange" forceSelection="false" enabled="true" width="100%" />
+			
+			<!-- <Label id="race_type" text="RACE Type" required="false" design="Bold" />
+			<Select id="selectRace" forceSelection="false" required="true" selectedKey="" 
+					items="{raceTypeJModel>/}" change="onRaceChange" enabled="false">
+			<items>
+				<core:Item text="{raceTypeJModel>Description}" key="{raceTypeJModel>Type}" />
+			</items>
+		</Select> -->
+		 <Label id="race_type" text="RACE Type" required="true" design="Bold" />
+			<Select id="selectRace" forceSelection="false" required="true" selectedKey="" 
+					items="" change="onRaceChange" enabled="false">
+			<!-- <items>
+				<core:Item text="{raceTypeJModel>Description}" key="{raceTypeJModel>Type}" />
+			</items> -->
+		</Select>
+			
+			<Label id="plant" text="Plant" design="Bold"/>
+			<Input id="plantInp" enabled="false" maxLength="4" value="" visible="false" />
+			
+			<Label id="race_depart" text="RACE Department" design="Bold" />
+			<Input id="race_departInp" enabled="false" />
+			
+			<Label id="race_deptext" text="RACE Department Text" design="Bold" />
+			<Input id="race_depart_text" enabled="false"  />
+			
+			<Label id="doc_Date" text="Document Date" design="Bold"/>
+			<DatePicker displayFormat="short" id="doc_DateInp" enabled="false" value="" visible="false" />
+			
+			<Label id="Race_apprv" text="RACE Approval Date"  design="Bold" />
+			<DatePicker displayFormat="short" id="Race_apprvInp" enabled="false" value="" />
+			
+			<Label id="Race_amt" text="RACE Amount (in Lakhs)" design="Bold" />
+			<Input id="Race_amtInp" enabled="false"  maxLength="14" change="onRaceChange" value="" />
+			<!-- <Input id="Race_amtInp" enabled="false" type="Number" maxLength="14" change="onRaceChange" value="" /> -->
+			
+			<Label id="Race_amtSplit" text="Split RACE Amount(in Lakhs)" design="Bold" />
+			<Link  id="Race_amtInpSplit" enabled="true" press="addNewItem" text="Add RACE Amount" />
+			
+		<core:Title id="HD_2" text="" />
+		
+			<Label id="title" text="Title" required="true" design="Bold" />
+			<TextArea rows="2" maxLength="40" enabled="true" id="titleInp" value="" />
+			
+			<Label id="brief_Desc" text="Brief Description" design="Bold" />
+			<TextArea rows="2" maxLength="80" enabled="true" id="brief_DescInp" value="" />
+			
+			<Label id="Scedule_Date" text="Scheduled Completion Date" required="true" design="Bold" />
+			<DatePicker displayFormat="short" id="Scedule_DateInp" enabled="true" value="" valueFormat="dd/MM/yyyy" change="onChangeDate" />
+			
+			<Label id="gain_expected" text="100% Gain Expected Date" required="true" design="Bold" />
+			<DatePicker displayFormat="short" id="gain_expectedInp" enabled="true" value="" valueFormat="dd/MM/yyyy" change="onChangeDate1" />
+			
+			<Label id="longTxtLbl" text="Long Text" design="Bold" />
+			<Link text="Add Justification" press="onJustfifation" />
+			    	
+		</f:content>
+	</f:SimpleForm>
+
+<Panel id="longTestPanel" visible="false">
+		     <TextArea rows="2" width="100%" maxLength="132"  id="longTxt" value="" />
+</Panel>
+
+<t:Table id="idRaceTable"  title="" selectionMode="None" visibleRowCountMode="Fixed"
+				                     visibleRowCount="0" width="50%">
+				       <t:toolbar>
+							<Toolbar >
+							<Title text="RACE Amount Breakup"></Title>
+								<ToolbarSpacer />
+								<Button icon="sap-icon://add"
+	 								press="addNewItem" tooltip="Add Item" type="Accept"/>
+							</Toolbar>
+						</t:toolbar>
+						<t:columns>
+							<t:Column width="40%" hAlign="Center">
+								<Label text="Plant" design="Bold"/>
+								<t:template>
+									<Input id="id_Input_RaceType_WL" type="Text" showSuggestion="true" showValueHelp="true" 
+										       valueHelpOnly="true" valueHelpRequest="onTyreLocationHelp" 
+										       visible="true" value="{RaceType}" tooltip="{RaceType}"/>
+							</t:template>
+						</t:Column>
+					<t:Column width="40%" hAlign="Center">
+						<Label text="Amount (in Lakhs)" design="Bold"/>
+						<t:template>
+						  <Input enabled="false" value="{RaceAmount}"></Input>
+						</t:template>
+					</t:Column>
+					
+					<t:Column width="10%" hAlign="Center">
+						<Label text="" design="Bold"/>
+						<t:template>
+							<Button id="idRaceAmountTblAddBtn" icon="sap-icon://washing-machine"
+							        press="onAddRaceAmount" tooltip="Add Amount" type="Emphasized"/>
+						</t:template>
+					</t:Column>
+					</t:columns>
+					<t:Column width="10%" hAlign="Center">
+						<Label text="" design="Bold"/>
+						<t:template>
+							<Button id="idRaceAmountTblDelBtn" icon="sap-icon://delete"
+							        press="onRemoveRace" tooltip="Delete Item" type="Reject"/>
+						</t:template>
+					</t:Column>
+					
+</t:Table>
+
+</IconTabFilter>
+
+<IconTabFilter iconColor="Positive" text="Approval Status" key="ApprovalInfo">
+
+
+			<Table id="idApproverTable">
+    <headerToolbar>
+      <Toolbar>
+        <Title text="Approver Status" level="H2"/>
+      </Toolbar>
+    </headerToolbar>
+    <columns>
+      <Column
+        minScreenWidth="Tablet"
+        demandPopin="true"
+        hAlign="Center">
+        <Text text="Designation"/>
+      </Column>
+      <Column
+        minScreenWidth="Tablet"
+        demandPopin="true"
+        hAlign="Center">
+        <Text text="Comments" />
+      </Column>
+      <Column
+        minScreenWidth="Tablet"
+        width="10em"
+        demandPopin="true"
+        hAlign="Center">
+        <Text text="Amount" />
+      </Column>
+    </columns>
+    <items>
+      <ColumnListItem>
+        <cells>
+          
+          	<Input
+            value="{Pernr}" enabled="false"/>
+            <Input
+            value="{ItemText}" enabled="false"/>
+              <Input
+            value="{RaceApprovalAmount} Rs(in Lakhs)" enabled="false"/> 
+       
+        </cells>
+      </ColumnListItem>
+    </items>
+  </Table>
+			
+</IconTabFilter>
+
+<IconTabFilter iconColor="Positive" text="Total cost" key="CostInfo">
+								
+<f:SimpleForm id="TRTOTALCOSTFormEdit" minWidth="1024" maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" title=""
+		labelSpanL="5" labelSpanM="5" emptySpanL="4" emptySpanM="4" columnsL="1" columnsM="2" visible="true">
+		<f:content>
+			<core:Title id="TC_1" text="TOTAL COST INVOLVED (IN LAKHS)"/>
+			
+			
+			<Label id="landed_cost" text="Landed Cost at JK" design="Bold"/>
+			<Input  id="landed_costInp" type="Number" enabled="true" value="" liveChange="liveTotalcost"/>
+			
+			<Label id="other_Expenses" text="Any Other Expenses" design="Bold"/>
+			<Input  id="other_ExpensesInp" type="Number" enabled="true" value="" liveChange="liveTotalcost"/>
+			
+			<Label id="operative_Expenses" text="Pre-Operative Expenses" design="Bold"/>
+			<Input  id="operative_ExpensesInp" type="Number" enabled="true" value="" liveChange="liveTotalcost"/>
+			
+			<Label id="Erection_Commissioning" text="Erection and Commissioning" design="Bold"/>
+			<Input  id="Erection_CommissioningInp" type="Number" enabled="true" value="" liveChange="liveTotalcost"/>
+			
+			<Label id="Contigency_Expense" text="Contigency Expense" design="Bold"/>
+			<Input  id="Contigency_ExpenseInp" type="Number" enabled="true" value="" liveChange="liveTotalcost"/>
+			
+			<Label id="Total_Cost" text="Total Cost Involved" design="Bold"/>
+			<Input  id="Total_CostInp" enabled="false" value=""/>
+	
+		</f:content>
+	</f:SimpleForm>
+							
+</IconTabFilter>
+
+<IconTabFilter iconColor="Positive" text="Gain/Saving" key="GainInfo">
+							    
+							    <Table id="idGainTable" 
+    items="{Displaymodel>/NavToGain/results}">
+    <headerToolbar>
+      <Toolbar>
+        <Title text="Gain and Savings" level="H2"/>
+      </Toolbar>
+    </headerToolbar>
+    <columns>
+      <Column
+        minScreenWidth="Tablet"
+        demandPopin="true"
+        width="10em"
+        hAlign="Center">
+        <Text text="Item Number" />
+      </Column>
+      <Column
+        minScreenWidth="Tablet"
+        demandPopin="true"
+        hAlign="Center">
+        <Text text="Item Description" />
+      </Column>
+      <Column
+        minScreenWidth="Tablet"
+        demandPopin="true"
+        hAlign="Center">
+        <Text text="Item text" />
+      </Column>
+    </columns>
+    <items>
+      <ColumnListItem>
+        <cells>
+          
+          	<Input
+            value="{Displaymodel>ItemNo}" enabled="false"/>
+            <Input
+            value="{Displaymodel>ItemDescription}" enabled="false"/>
+              <Input
+            value="{Displaymodel>ItemText}" maxLength="80" enabled="true"/>
+       
+        </cells>
+      </ColumnListItem>
+    </items>
+  </Table>
+							
+</IconTabFilter>
+							
+
+
+<IconTabFilter iconColor="Positive" text="Attachments" key="attachment">
+
+						
+ <UploadCollection
+        				   id="UploadCollection"            			   
+         				   width = "700px"
+         				   sameFilenameAllowed="false" 
+                           iconOnly="true" 
+                           multiple="false" 
+                           buttonOnly="true" 
+                           icon="sap-icon://add-photo" 
+                           uploadComplete="onUploadComplete"
+                           fileDeleted="onFileDeleted"
+                           beforeUploadStarts="onBeforeUploadStarts"
+                           uploadUrl="/sap/opu/odata/sap/ZAPS_UTILITY_SRV/ImageUploadSet"
+                           change="onAttachUpload"                           
+        				   uploadTerminated="onUploadTerminated"
+        				   typeMissmatch="onTypeMissmatch"
+        				   maximumFilenameLength="100"
+        				   maximumFileSize="5"
+        				   fileSizeExceed="onFileSizeExceed"
+                           items="{
+						          path: 'oUploadModel>/items',
+						          templateShareable: false
+						        }"
+						
+						        uploadEnabled="true"
+						        uploadButtonInvisible="false"
+						        
+				    >
+				        <items>
+				          <UploadCollectionItem
+				            documentId="{oUploadModel>DocNo}"
+				            fileName="{oUploadModel>FileName}"
+				            mimeType="{oUploadModel>MimeType}"
+				            url="{oUploadModel>Url}"
+				         
+				            enableEdit="true"
+				            enableDelete="true"
+				
+				            visibleDelete="true"
+				            visibleEdit="false"
+				            press="onUploadPress"
+				          >
+				          </UploadCollectionItem>
+				        </items>
+                           
+                           </UploadCollection> 
+					
+							</IconTabFilter>
+
+		 </items>
+		</IconTabBar>
+							
+	</Panel>
+					
+</content>
+<footer>
+		<Toolbar>
+			<ToolbarSpacer />
+			<Button text="Approve" enabled="true" type="Accept" visible="false" press="onAccept" id="apprvBtn" />
+			<Button text="Reject" enabled="true" type="Reject" visible="false" press="onReject" id="rejectBtn" />
+			<Button text="Save" icon="sap-icon://save" enabled="true" type="Accept" visible="true" press="onSave" id="saveBtn" />
+			<Button text="Back" enabled="true" visible="true" type="Accept" press="onBack" id="idBack" icon="sap-icon://nav-back" />
+		</Toolbar>
+</footer>
+	</Page>
+</core:View>

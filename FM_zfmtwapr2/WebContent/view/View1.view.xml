@@ -1,0 +1,190 @@
+<core:View xmlns:core="sap.ui.core" 
+		   xmlns:mvc="sap.ui.core.mvc"
+		   xmlns="sap.m" 
+		   xmlns:f="sap.ui.layout.form"
+	       xmlns:l="sap.ui.layout"	
+	       controllerName="zfmtwapr2.view.View1" 
+	       xmlns:html="http://www.w3.org/1999/xhtml"
+	       displayBlock="true" class="sapUiSizeCompact">     
+<Page title="Service Requests (Truck Wheel)" style="font-weight:bold" level="h4" 
+	  class="sapUiSizeCompact" enableScrolling="true">
+  <content>
+ 
+ <html:style>
+ .panel1 .sapMPanelContent {
+    padding: 0.1rem !important;
+    box-sizing: border-box;
+    overflow: auto;
+    white-space: normal;
+<!--background-color: white !important; -->
+}
+ </html:style> 
+
+<Toolbar height="2rem" class="jhClass">
+<Title id="HeaderIdTit" class="titlecls" text="" level="H6" titleStyle="H6" textAlign="Center" width="100%"></Title>
+</Toolbar> 
+ 
+<!-- ***************************************************************************************** -->
+<f:SimpleForm  minWidth="1024" maxContainerCols="2" editable="true" layout="ResponsiveGridLayout"
+				labelSpanL="4" labelSpanM="4" emptySpanL="1" emptySpanM="1" columnsL="2" columnsM="1" class="sapUiSizeCompact">
+	<f:content>
+		<core:Title text=""/>
+			<Label text="Request Date" />
+			<DateRangeSelection enabled="true" visible="true"  id="idSearchDate" change="handleDateChange" valueFormat="yyyy-MM-dd"/>
+			
+			<Label text="Vehicle Number" />
+			<Input id="idSearchVehicle" valueHelpRequest="onVehicleHelp" valueHelpOnly="true" showValueHelp="true" />
+										
+			<Label text="Truck Wheel Service Center"  visible="false"/>
+			<Input id="idSearchTruckCenter" valueHelpRequest="onTruckCenterHelp" valueHelpOnly="true" showValueHelp="true"  visible="false"/>
+			
+		<core:Title text="" />	
+			
+	
+			<Label text="Request Status" />
+			<Select id="idSearchStatus" change="onChangeStatus" forceSelection="false">
+				<items>
+					<core:Item text="Pending for Approval" key="P" />
+					<core:Item text="Approved" key="A" />
+					<core:Item text="Completed" key="C" />
+					<core:Item text="Rejected" key="R" />
+					<core:Item text="Revised" key="E" />
+					<core:Item text="Cancelled" key="X" />
+				</items>
+			</Select>
+			
+			<Label text="" />
+			<Button id="btnClear" text="Clear" press="onClear" type="Emphasized" />
+			<Button id="btnSearch" text="Search" press="onSearch" type="Emphasized" />
+	</f:content>
+</f:SimpleForm>
+
+<Panel id="Panel1" visible="true" class="panel1">
+	
+				<Toolbar id="toolbarCT" >
+						<ToolbarSpacer />
+						<Text text="Legend :" TextColor="#e78c07" />
+						
+						<core:Icon src="sap-icon://account" color="#000000" font-weight="bold">
+							<core:layoutData>
+								<FlexItemData growFactor="1" />
+							</core:layoutData>
+						</core:Icon>
+						<Text text="Pending for Approval" />
+
+						<core:Icon src="sap-icon://employee-approvals" color="#2b7d2b">
+							<core:layoutData>
+								<FlexItemData growFactor="1" />
+							</core:layoutData>
+						</core:Icon>
+ 						<Text text="Approved" />
+ 						
+ 						<core:Icon src="sap-icon://accept" color="#2b7d2b">
+							<core:layoutData>
+								<FlexItemData growFactor="1" />
+							</core:layoutData>
+						</core:Icon>
+ 						<Text text="Completed" />
+
+						<core:Icon src="sap-icon://decline" color="#ff0000">
+							<core:layoutData>
+								<FlexItemData growFactor="1" />
+							</core:layoutData>
+						</core:Icon>						
+						<Text text="Rejected" />
+						
+						<core:Icon src="sap-icon://synchronize" color="#e78c07">
+							<core:layoutData>
+								<FlexItemData growFactor="1" />
+							</core:layoutData>
+						</core:Icon>
+						<Text text="Revised" />
+						
+						<core:Icon src="sap-icon://cancel" color="#ff0000">
+							<core:layoutData>
+								<FlexItemData growFactor="1" />
+							</core:layoutData>
+						</core:Icon>
+						<Text text="Cancelled" />
+						
+						<ToolbarSpacer />
+					</Toolbar>
+			</Panel>
+   
+<!-- ***************************************************************************************** -->
+
+	<Table id="tableVehicleF" showNoData="false">
+						<columns>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign='Center'>
+									<Label text="Customer" />
+								</Column>
+								<Column minScreenWidth="Tablet"	demandPopin="true" hAlign='Center'>
+									<Label text="Service Number" />
+								</Column>
+								<Column minScreenWidth="Tablet"	demandPopin="true" hAlign='Center'>
+									<Label text="Rev. No." />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign='Center'>
+									<Label text="Registration No." />
+								</Column>
+								<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+									<Label text="Estimated Cost" />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign='Center'>
+									<Label text="Proposed Cost"  />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign='Center'>
+									<Label text="Date"  />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign='Center'>
+									<Label text="Status"  />
+								</Column>
+								<Column />
+						</columns>
+	</Table>
+						
+		<ScrollContainer id="idScroll" horizontal="true" vertical="true" focusable="true">
+		
+				<Table id="tableVehicleF1" items="{CartListSetJModel>/}" alternateRowColors="true" visibleRowCount="5">
+ 						<columns>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign='Center' />
+								<Column minScreenWidth="Tablet"	demandPopin="true" hAlign='Center' />
+								<Column minScreenWidth="Tablet"	demandPopin="true" hAlign='Center' />
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign='Center' />
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign='Center' />
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign='Center' />
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign='Center' />
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign='Center' />
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign='Center' />
+							</columns>
+ <items>
+						      <ColumnListItem >
+						        <cells>
+						      		<Text text="{CartListSetJModel>FleetName}" />
+						            <Text text="{CartListSetJModel>ServiceNo}" />
+						            <Text text="{CartListSetJModel>RevNo}" />
+						            <Link text="{CartListSetJModel>RegNo}" press="displayRequest" />
+						            <Text text="{CartListSetJModel>EstimatedCost}" />
+						            <Text text="{CartListSetJModel>ProposedCost}" />
+						            <Text text="{path:'CartListSetJModel>Date', formatter: 'zfmtwapr2.util.Formatter.date'}" />
+						            <!--  <Text text="{CartListSetJModel>Status}" /> -->
+						            <core:Icon src="{path:'CartListSetJModel>Status', formatter: 'zfmtwapr2.util.Formatter.setIcon'}"
+             		   						 color="{path:'CartListSetJModel>Status', formatter: 'zfmtwapr2.util.Formatter.setColor'}" /> 
+						            <Button icon="sap-icon://print" press="OnPrint" />				              
+						        </cells>
+						      </ColumnListItem>
+</items>
+				</Table>
+		</ScrollContainer>
+  
+  </content>
+  <footer >
+		<Bar id="idFooter">
+			<contentRight>
+			
+			</contentRight>
+		</Bar>
+	</footer>
+  
+</Page>
+</core:View>

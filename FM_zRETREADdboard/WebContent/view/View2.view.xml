@@ -1,0 +1,265 @@
+<core:View controllerName="zretreaddboard.view.View2" 
+			xmlns:core="sap.ui.core"
+			xmlns:mvc="sap.ui.core.mvc" 
+			xmlns="sap.m" 
+			xmlns:f="sap.ui.layout.form"
+			xmlns:viz="sap.viz.ui5.controls"
+			xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+			xmlns:viz.data="sap.viz.ui5.data"
+			xmlns:l="sap.ui.layout"
+			xmlns:cl="sap.ui.commons.layout"
+			xmlns:layout="sap.ui.layout"
+			height="100%"
+			xmlns:html="http://www.w3.org/1999/xhtml" 
+			>
+			
+<html:style>
+.sapMListTbl .sapMText, .sapMListTbl .sapMLabel {
+	font-size: smaller;
+	color: #333333;
+	font-weight: bold;
+}
+.sapUiSizeCompact .sapMPageHeader .sapMIBar .sapMBarLeft, .sapUiSizeCompact .sapMPageFooter .sapMIBar .sapMBarLeft, .sapUiSizeCompact .sapMPageHeader .sapMIBar .sapMBarRight, .sapUiSizeCompact .sapMPageFooter .sapMIBar .sapMBarRight, .sapUiSizeCompact .sapMPageHeader .sapMIBar .sapMBarPH, .sapUiSizeCompact .sapMPageFooter .sapMIBar .sapMBarPH {
+	background-color: gainsboro !important;
+}
+.sapMBarPH {
+	background-color: gainsboro !important;
+}
+.sapMBarContainer.sapMBarPH {
+	height: 2.3rem !important;
+}
+.sapUiFormContainerTitle>.sapUiFormTitle {
+	border-bottom: 0px solid #000 !important;
+}
+.sapMDialog>header.sapMDialogTitle .sapMTitle {
+	color: #000000 !important;
+}
+.sapMBarPH {
+	background-color: gainsboro !important;
+}
+.sapMBarContainer.sapMBarPH {
+	height: 2.3rem !important;
+}
+.sapMIBar-CTX .sapMTitle {
+	font-weight: bold !important;
+	color: #000000 !important;
+}
+.sapUiFormContainerTitle>.sapUiFormTitle {
+	border-bottom: 0px solid #000 !important;
+}
+.sapMDialog>header.sapMDialogTitle .sapMTitle {
+	color: #000000 !important;
+}
+</html:style>
+
+<Page id="idtitle" titleLevel="H2" enableScrolling="false" class="sapUiSizeCompact background" design="Bold" backgroundDesign="Solid">
+<content>
+
+ <f:SimpleForm minWidth="1024" maxContainerCols="3" editable="true" layout="ResponsiveGridLayout"
+				labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="3" class="editableForm">
+		<f:content>
+
+		<core:Title id="V_1" level="h4"/>
+		<Label text="Casing-In Date" design="Bold"  required="true"/>
+		<DatePicker id="fromDate"  displayFormat="dd.MM.yyyy" change="handledatefrom">
+		    <layoutData>
+				<l:GridData span="XL4 L3 M2 S1"/>
+			</layoutData>
+		</DatePicker>
+			<Text text="To" class="clStyleTo">
+				<layoutData>
+				<l:GridData span="XL1 L1 M1 S1"/>
+				</layoutData>
+			</Text>
+		  <DatePicker id="toDate"  displayFormat="dd.MM.yyyy" change="handledateto" class="styledateto">
+			<layoutData>
+				<l:GridData span="XL4 L3 M2 S1"/>
+			</layoutData>
+	      </DatePicker>
+		
+		<Label text="Customer" design="Bold"/>
+		<Input id="IdCustomer" valueHelpRequest="onCustomerHelp" valueHelpOnly="true" showValueHelp="true"  width="15rem"/>
+		
+		<Label text="Customer Type" design="Bold"/>
+		<Select id="IdCustomerType" width="15rem" forceSelection="true" change="OnDropDownChange" >
+			<items>
+				<core:Item text="" key="A" />
+				<core:Item text="Fleet" key="F" />
+				<core:Item text="Walk-In" key="W" />
+			</items>
+			<layoutData>
+			  <l:GridData span="XL6 L5 M1 S1"/>
+			</layoutData>
+		</Select> 
+		
+		
+		<core:Title id="V_3"  text="" visible="false"/>
+		
+		
+		<Label text="Goods Receipt No" design="Bold"/>
+		<Input id="IdGRN" valueHelpRequest="onF4GRN" valueHelpOnly="true" showValueHelp="true"  width="15rem"/>
+	
+		<Label text="Stencil Number" design="Bold"/>
+		<Input id="IdStencil" valueHelpRequest="onStencilHelp" valueHelpOnly="true" showValueHelp="true"  width="15rem"/>
+	
+		<Label text="Status" design="Bold"/>
+		<Select id="IdStatus" width="16rem" selectedKey="" MaxLength="20" forceSelection="true" enabled="true">
+			<layoutData>
+			  <l:GridData span="XL6 L5 M1 S1"/>
+			</layoutData>
+		</Select> 
+		
+		<Label text="" />
+		<Button icon="sap-icon://search" text="Search" type="Emphasized" press="onSearch">
+			<layoutData>
+			  <l:GridData span="XL3 L3 M1 S1"/>
+			</layoutData>
+		</Button>
+		
+		<Button text="Clear" type="Emphasized" press="onClear" id="btn_Clear">	
+			<layoutData>
+				<l:GridData span="XL2 L2 M1 S1"/>
+			</layoutData>
+		</Button> 
+				
+		</f:content>
+</f:SimpleForm> 
+
+<Panel id="Panel1" class="Custom_Panel1">
+		<Toolbar id="toolbarCT" class="styletoolbar1">
+			<ToolbarSpacer />
+				<Text text="Status:" TextColor="#e78c07" />
+				<core:Icon src="sap-icon://vehicle-repair" color="#9c062c" font-weight="bold">
+					<core:layoutData>
+						<FlexItemData growFactor="1" />
+					</core:layoutData>
+				</core:Icon>	
+				<Text text="Under Repair"/>
+				
+				<core:Icon src="sap-icon://complete" color="#008000">
+					<core:layoutData>
+						<FlexItemData growFactor="1" />
+					</core:layoutData>
+				</core:Icon>
+ 				<Text text="Repaired" />		
+ 				
+ 				<core:Icon src="sap-icon://technical-object" color="#06979c">
+					<core:layoutData>
+						<FlexItemData growFactor="1" />
+					</core:layoutData>
+				</core:Icon>
+ 				<Text text="Repaired not required" />	
+ 				
+ 				<core:Icon src="sap-icon://inventory" color="green">
+					<core:layoutData>
+						<FlexItemData growFactor="1" />
+					</core:layoutData>
+				</core:Icon>
+ 				<Text text="Dispatched" />					
+			<ToolbarSpacer />
+		</Toolbar>
+		<Toolbar id="toolbarCT1" class="styletoolbar2" >
+			<ToolbarSpacer />
+				<Text text="Customer Type:" TextColor="#e78c07" />
+				<core:Icon src="sap-icon://customer-and-supplier" color="#6600cc" font-weight="bold">
+					<core:layoutData>
+						<FlexItemData growFactor="1" />
+					</core:layoutData>
+				</core:Icon>	
+				<Text text="Fleet"/>
+				
+				<core:Icon src="sap-icon://customer" color="#33cc33">
+					<core:layoutData>
+						<FlexItemData growFactor="1" />
+					</core:layoutData>
+				</core:Icon>
+ 				<Text text="Walk-In" />		
+ 			<ToolbarSpacer />
+ 			<Button text="Download" press="onDownload" icon="sap-icon://download" type="Emphasized"></Button>
+		</Toolbar>
+		
+
+		<Table id="idRetreadTyreOut" showNoData="false" class="tblgrid">
+			<columns>
+				<Column  minScreenWidth="Tablet" width="8rem" demandPopin="true" hAlign="Center">
+					<Label text="Customer" design="Bold"/> 
+				</Column>
+				<Column  minScreenWidth="Tablet" width="8rem" demandPopin="true" hAlign="Center">
+					<Label text="Stencil No." design="Bold"/> 
+				</Column>
+				<Column  minScreenWidth="Tablet" width="6rem" demandPopin="true" hAlign="Center">
+					<Label text="Company" design="Bold" /> 
+				</Column>
+				<Column  minScreenWidth="Tablet" width="8rem" demandPopin="true" hAlign="Center">
+					<Label text="Tyre Size" design="Bold"/> 
+				</Column>
+				<Column  minScreenWidth="Tablet" width="12rem" demandPopin="true" hAlign="Center">
+					<Label text="Pattern" design="Bold" /> 
+				</Column>
+				<Column  minScreenWidth="Tablet" width="5rem" demandPopin="true" hAlign="Center">
+					<Label text="Casing Type" design="Bold" /> 
+				</Column>
+				<Column  minScreenWidth="Tablet" width="5rem" demandPopin="true" hAlign="Center">
+					<Label text="Casing Grade" design="Bold" /> 
+				</Column>
+				<Column  minScreenWidth="Tablet" width="8rem" demandPopin="true" hAlign="Center">
+					<Label text="Tread Pattern" design="Bold" /> 
+				</Column>
+				<Column  minScreenWidth="Tablet" width="3rem" demandPopin="true" hAlign="Center">
+					<Label text="Status" design="Bold" /> 
+				</Column>
+				<Column  minScreenWidth="Tablet" width="4rem" demandPopin="true" hAlign="Center">
+					<Label text="Cust. Type" design="Bold"/> 
+				</Column>
+			</columns>
+		</Table>
+		
+		<ScrollContainer vertical="true" horizontal="false" height="300px">
+			<Table id="idRetreadTyreOut1" items="{CasingJModelData>/}" visible="true" class="tblgrid2" showNoData="true" alternateRowColors="true">
+				<columns>
+					<Column  minScreenWidth="Tablet" width="8rem" demandPopin="true" hAlign="Center"></Column>
+					<Column  minScreenWidth="Tablet" width="8rem" demandPopin="true" hAlign="Center"></Column>
+					<Column  minScreenWidth="Tablet" width="6rem" demandPopin="true" hAlign="Center"></Column>
+					<Column  minScreenWidth="Tablet" width="8rem" demandPopin="true" hAlign="Center"></Column>
+					<Column  minScreenWidth="Tablet" width="12rem" demandPopin="true" hAlign="Center"></Column>
+					<Column  minScreenWidth="Tablet" width="5rem" demandPopin="true" hAlign="Center"></Column>
+					<Column  minScreenWidth="Tablet" width="5.5rem" demandPopin="true" hAlign="Center"></Column>
+					<Column  minScreenWidth="Tablet" width="8rem" demandPopin="true" hAlign="Center"></Column>
+					<Column  minScreenWidth="Tablet" width="3rem" demandPopin="true" hAlign="Center"></Column>
+					<Column  minScreenWidth="Tablet" width="3.5rem" demandPopin="true" hAlign="Center"></Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{CasingJModelData>CustomerName}"/>
+							<Text text="{CasingJModelData>StnclNumber}"/>
+							<Text text="{CasingJModelData>TypeCompDesc}"/>
+							<Text text="{CasingJModelData>SizeDesc}"/>
+							<Text text="{CasingJModelData>Maktx}"/>
+							<Text text="{CasingJModelData>TyreType}"/>
+							<Text text="{CasingJModelData>LocDesc}"/>
+							<Text text="{CasingJModelData>TMaktx}"/>
+							<core:Icon src="{path:'CasingJModelData>Status', formatter: 'zretreaddboard.util.Formatter.setIcon'}"
+										color="{path:'CasingJModelData>Status', formatter: 'zretreaddboard.util.Formatter.setColor'}" />
+							<core:Icon src="{path:'CasingJModelData>CType', formatter: 'zretreaddboard.util.Formatter.setIcon1'}"
+										color="{path:'CasingJModelData>CType', formatter: 'zretreaddboard.util.Formatter.setColor1'}" />
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</ScrollContainer>
+		
+</Panel>
+</content>
+	<footer>
+		<Bar>
+			<contentLeft>	
+			</contentLeft>
+			<contentRight>
+				<Button text="Back" press="onBack" icon="sap-icon://nav-back" type="Emphasized"  visible="true" />
+			</contentRight>
+		</Bar>
+	</footer>
+
+	</Page>
+</core:View>

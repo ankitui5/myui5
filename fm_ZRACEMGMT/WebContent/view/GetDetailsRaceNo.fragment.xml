@@ -1,0 +1,167 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout"
+	
+	xmlns:fb="sap.ui.comp.filterbar"
+	height="100%">
+			
+	<Dialog xmlns="sap.m" title="RACE"
+		class="sapUiSizeCompact" contentWidth="1124px" contentHeight="824px" afterClose="onAfterClose">
+		<content>	
+		
+		<l:VerticalLayout width="100%">
+	<!-- 	<Label text="FilterBar"/> -->
+		<fb:FilterBar reset="onReset" search="onSearch" showRestoreButton="true" showClearButton="true">
+			<fb:filterItems>		
+				
+				<fb:FilterItem label="RACE No" name="b">
+					<fb:control> 
+						<Input  id="IdRaceNo" showValueHelp="true" valueHelpOnly="false" valueHelpRequest="OnHelpshowRaceNo"/>
+					</fb:control>				
+				</fb:FilterItem>
+				
+			
+				
+				<fb:FilterItem label="Fiscal Year" name="c">
+					<fb:control>
+						<!-- <DatePicker displayFormat="yyyy" id="IdFisalYer" enabled="true" value="" change="" /> -->
+						<Input  id="IdFisalYer" />
+					</fb:control>				
+				</fb:FilterItem>
+				
+				<fb:FilterItem label="RACE Type" name="d">
+					<fb:control>
+				<!-- 	<Input  id="IdRaceType"  /> -->
+						<!-- <Select id="selectRace" forceSelection="false" required="true" selectedKey="" 
+					items="{raceTypeJModel>/}" change="">
+				<items>
+					<core:Item text="{raceTypeJModel>Description}" key="{raceTypeJModel>Type}" />
+				</items>
+		</Select> -->
+					<Select id="selectRaceFilter" forceSelection="false" required="true" selectedKey="" 
+								items="{raceTypeJModel>/}">
+						<items>
+							<core:Item text="{raceTypeJModel>Description}" key="{raceTypeJModel>Type}" />
+						</items>
+					</Select>
+					</fb:control>				
+				</fb:FilterItem>
+				
+				<fb:FilterItem label="Plant" name="e">
+					<fb:control>
+						<Input  id="IdPlant" valueHelpOnly="true" valueHelpRequest="onPlantHelp" showValueHelp="true" />
+					</fb:control>				
+				</fb:FilterItem>
+				
+				<fb:FilterItem label="Title" name="f">
+					<fb:control>
+						<Input  id="IdTitle"/>
+					</fb:control>				
+				</fb:FilterItem>
+				
+								
+			</fb:filterItems>
+			
+						
+					
+					
+	    </fb:FilterBar>		
+	</l:VerticalLayout>
+		
+			</content>
+								
+	<Table id="idApproverTable" items="{RaceListSetModel>/}" mode="">
+    <headerToolbar>
+     <!-- <Panel id="Panel1" visible="true" class="panel1"> -->
+      <Toolbar id="toolbarCT" >
+        <!-- <Label text="Items" level="H2"/>  -->
+						<ToolbarSpacer />
+						<Text text="Legend :" TextColor="#e78c07" />
+						
+						<core:Icon src="sap-icon://account" color="#000000" font-weight="bold">
+							<core:layoutData>
+								<FlexItemData growFactor="1" />
+							</core:layoutData>
+						</core:Icon>
+						<Text text="Partial Approved" />
+
+						<core:Icon src="sap-icon://employee-approvals" color="#2b7d2b">
+							<core:layoutData>
+								<FlexItemData growFactor="1" />
+							</core:layoutData>
+						</core:Icon>
+ 						<Text text="Approved" />
+ 						
+						<core:Icon src="sap-icon://decline" color="#ff0000">
+							<core:layoutData>
+								<FlexItemData growFactor="1" />
+							</core:layoutData>
+						</core:Icon>
+						<Text text="Rejected" />
+						<ToolbarSpacer /> 
+			
+      </Toolbar>
+  <!-- </Panel> -->
+    </headerToolbar>
+    <columns class="sapMTitle">
+    
+      <Column minScreenWidth="Tablet" width="10em" demandPopin="true" hAlign="Center">
+        <Text text="RACE No" />  
+      </Column>
+      
+      <Column  minScreenWidth="Tablet" width="5em" demandPopin="true" hAlign="Center">
+        <Text text="RACE Type" /> 
+      </Column>
+      
+      <Column minScreenWidth="Tablet" width="5em" demandPopin="true" hAlign="Center">
+        <Text text="Plant" /> 
+      </Column>
+      
+      <Column minScreenWidth="Tablet" width="10em" demandPopin="true" hAlign="Center">
+        <Text text="Amount(in Lakhs)" /> 
+      </Column>      
+      
+      <Column minScreenWidth="Tablet" width="5em" demandPopin="true" hAlign="Center">
+        <Text text="Title" /> 
+      </Column>
+      
+      <Column minScreenWidth="Tablet" width="5em" demandPopin="true" hAlign="Center">
+        <Text text="Status" /> 
+      </Column>
+      
+      <Column minScreenWidth="Tablet" width="15em" demandPopin="true" hAlign="Center">
+        <Text text="Owner" /> 
+      </Column>
+      
+       <Column visible="false"></Column>
+    </columns>
+    <items>
+      <ColumnListItem >
+        <cells>
+      		 <Link text="{RaceListSetModel>RaceNumber}"  press="displayRaceDetails"/>
+            
+            <Text text="{RaceListSetModel>RaceType}"/>
+            
+             <Text text="{RaceListSetModel>Plant}"/>
+             
+             <Text text="{RaceListSetModel>RaceAmount}"/>
+
+            <Text text="{RaceListSetModel>Title1}" />
+            
+            <core:Icon src="{path:'RaceListSetModel>Status', formatter: 'ZRACEMGMT.util.Formatter.setIcon'}"
+             		   color="{path:'RaceListSetModel>Status', formatter: 'ZRACEMGMT.util.Formatter.setColor'}" /> 
+             <Text text="{RaceListSetModel>PersonName}" /> 		   
+              
+        </cells>
+      </ColumnListItem>
+    </items>
+  </Table>
+		<!-- <beginButton>
+			<Button text="OK" press="onCustomerfrg" />
+			
+		</beginButton> -->
+		<endButton>
+			
+			<Button text="Cancel" press="onCustomerfrgClose" />
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

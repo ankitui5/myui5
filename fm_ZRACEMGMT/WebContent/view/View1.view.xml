@@ -1,0 +1,481 @@
+<core:View xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified"
+	controllerName="ZRACEMGMT.view.View1"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:t="sap.ui.table">
+	<html:style>
+		.background{
+		background-color:#13D2B3;
+		padding:2px;
+		}
+
+
+		.sapMListTblHeader .sapMCb{
+		display:none !important
+
+		}
+		.editableForm .sapUiFormTitle{
+		color:black !important;
+
+		}
+		.titlecls .sapMTitle > span {
+		color: #ffffff !important;
+		}
+		.jhClass{
+		background-color:rgba(255, 255, 255, 0.8) !important;
+		}
+.ClassRaceNo{
+ color:red;
+}		
+
+	</html:style>
+	<Page title="Display RACE" id="displayRace" busy="{oViewJModel>/busy}" busyIndicatorDelay="{oViewJModel>/delay}">
+		<headerContent>
+			<Button icon="sap-icon://menu" tooltip="Menu" press="menu" visible="false" />
+		</headerContent>
+
+		<content>
+			<Panel>
+				<Toolbar class="toolbar">
+					<Label text="RACE Number" design="Bold" id="idlbelRaceNo"></Label>
+					<Input id="raceNumberInput" submit="bindView" width="15em"
+						editable="true" enabled="true" valueHelpRequest="showRacef4"
+						showValueHelp="true" valueHelpOnly="false"></Input>
+					<Button enabled="true" type="Emphasized"
+						icon="sap-icon://show" press="bindView" id="raceNoBtn"></Button>
+
+					<ToolbarSpacer></ToolbarSpacer>
+					<ObjectStatus id="lblStatus"
+						class="sapUiSmallMarginBottom"
+						text="{path:'Status', formatter:'ZRACEMGMT.util.Formatter.status'}"
+						state="{path:'Status', formatter:'ZRACEMGMT.util.Formatter.statusColor'}" />
+				</Toolbar>
+
+				<IconTabBar id="idheaderinfo" expanded="true"
+					select="selectedTab"
+					class="sapUiResponsiveContentPadding iconTabBar">
+					<items>
+
+						<IconTabFilter iconColor="Positive" design="Bold"
+							text="Header details" key="HeaderInfo">
+
+							<f:SimpleForm id="TRHeaderFormEdit" minWidth="1024"
+								maxContainerCols="1" editable="true"
+								layout="ResponsiveGridLayout" title="" labelSpanL="5"
+								labelSpanM="5" emptySpanL="0" emptySpanM="0" columnsL="2"
+								columnsM="2" visible="true">
+								<f:content>
+									<core:Title id="Hd_1" text="HEADER DETAILS" />
+
+
+									<Label id="fiscal_Year" text="Calendar Year" design="Bold" />
+									<Input id="fiscal_YearInp" enabled="false"
+										value="{FiscalYear}" />
+										
+									<Label text="Race Category" design="Bold" />
+									<Input id="idRaceCat" enabled="false" value="{CatDesc}" />	
+
+									<Label id="race_type" text="RACE Type" design="Bold" />
+									<Input id="race_typeInp" enabled="false"
+										value="{TypeDesc}" />
+
+									<Label id="plant" text="Plant" design="Bold" visible="false"/>
+									<Input id="plantInp" enabled="false" value="{Plant}" visible="false"/>
+
+									<Label id="race_depart" text="RACE Department"
+										design="Bold" />
+									<Input id="race_departInp" enabled="false"
+										value="{RaceDepartment}" />
+										
+									<Label id="race_deptext" text="RACE Department Text"
+										design="Bold" />
+									<Input id="race_dep_text" enabled="false"
+										value="{DepartmentText}" />		
+
+									<Label id="doc_Date" text="Document Date" design="Bold" visible="false" />
+									<Input id="doc_DateInp" enabled="false" visible="false"
+										value="{path:'DocumentDate', formatter:'ZRACEMGMT.util.Formatter.date1'}" />
+
+									<Label id="Race_apprv" text="RACE Approval Date"
+										design="Bold" />
+									<Input id="Race_apprvInp" enabled="false"
+										value="{path:'RaceApprovalDate', formatter:'ZRACEMGMT.util.Formatter.date1'}" />
+
+									<Label id="Race_amt" text="RACE Amount (in Lakhs)"
+										design="Bold" />
+									<Input id="Race_amtInp" enabled="false"
+										value="{RaceAmount}" />
+										
+									<Label id="Race_amtSplit" text="Split RACE Amount(in Lakhs)" design="Bold" visible="false"/>
+									<Link  id="Race_amtInpSplit" enabled="true" press="addNewItem" text="Add RACE Amount" visible="false"/>
+
+
+									<core:Title id="HD_2" text="" />
+								
+									<Label id="title" text="Title" design="Bold" />
+									<TextArea rows="2" maxLength="40" enabled="false"
+										id="titleInp" value="{Title1}" />
+									<Label id="titlL2" text="Title" design="Bold" />
+									<TextArea rows="2" maxLength="40" visible="false"
+										enabled="true" id="title2" value="{Title1}" />
+
+									<Label id="brief_Desc" text="Brief Description"
+										design="Bold" />
+									<TextArea rows="2" maxLength="80" enabled="false"
+										id="brief_DescInp" value="{BriefDescription1}" />
+									<Label id="brfDescL2" text="Brief Description"
+										design="Bold" />
+									<TextArea rows="2" maxLength="80" visible="false"
+										enabled="true" id="brief_Desc2" value="{BriefDescription1}" />
+
+									<Label id="Scedule_Date" text="Scheduled Completion Date"
+										design="Bold" />
+									<Input id="Scedule_DateInp" enabled="false"
+										value="{path:'ScheduledComplitionDate', formatter:'ZRACEMGMT.util.Formatter.date1'}" />
+
+									<Label id="gain_expected" text="100% Gain Expected Date"
+										design="Bold" />
+									<Input id="gain_expectedInp" enabled="false"
+										value="{path:'TotalGainExpectedDate', formatter:'ZRACEMGMT.util.Formatter.date1'}" />
+
+									<Label id="longTxtLbl" text="Justification" design="Bold" />
+									<Link text="Show Justification" press="onJustfifation"></Link>
+
+
+
+								</f:content>
+							</f:SimpleForm>
+
+							<Panel id="longTestPanel" visible="false">
+								<TextArea rows="2" width="100%" maxLength="132"
+									enabled="false" id="longTxt" value="{TextDescription}" />
+							</Panel>
+				<t:Table id="idRaceTable"  title="" selectionMode="None" visibleRowCountMode="Fixed"
+				    visibleRowCount="1" width="60%" rows ="{raceTableJModel>/}">
+				      <t:toolbar>
+							<Toolbar >
+							<Title text="RACE Amount Breakup"></Title>
+								<ToolbarSpacer />
+								<Button icon="sap-icon://add" visible="false" id="idHeaderAddBtn"
+	 								press="addNewItem" tooltip="Add Item" type="Accept"/>
+							</Toolbar>
+						</t:toolbar> 
+						<t:columns>
+							<t:Column width="50%" hAlign="Center">
+								<Label text="Plant" design="Bold"/>
+								<t:template>
+									<Input id="id_Input_RaceType_WL" type="Text" showSuggestion="true" showValueHelp="true" 
+										       valueHelpOnly="true" valueHelpRequest="onTyreLocationHelp" enabled="false"
+										       visible="true" value="{raceTableJModel>Plant}" tooltip="{raceTableJModel>Plant}"/>
+							</t:template>
+						</t:Column>
+					<t:Column width="30%" hAlign="Center">
+						<Label text="Amount (in Lakhs)" design="Bold"/>
+						<t:template>
+						  <Input enabled="false" value="{raceTableJModel>RaceAmount}"></Input>
+						</t:template>
+					</t:Column>
+					
+					<t:Column width="10%" hAlign="Center" visible="false" id="idRaceTblAddColumn">
+						<Label text="" design="Bold"/>
+						<t:template>
+							<Button id="idRaceAmountTblAddBtn" icon="sap-icon://lead"
+							        press="onAddRaceAmount" tooltip="Add Item" type="Accept"/>
+						</t:template>
+					</t:Column>
+					
+					<t:Column width="10%" hAlign="Center" visible="false" id="idRaceTblDelColumn">
+						<Label text="" design="Bold"/>
+						<t:template>
+							<Button id="idRaceAmountTblDelBtn" icon="sap-icon://delete"
+							        press="onRemoveRace" tooltip="Delete Item" type="Reject"/>
+						</t:template>
+					</t:Column>
+					<t:Column width="20%" hAlign="Center" id="idRaceTblDisplayColumn">
+						<Label text="" design="Bold"/>
+						<t:template>
+							<Button id="idRaceAmountTblDispBtn" icon="sap-icon://display"
+							        press="onDisplayRace" tooltip="Display Item" type="Accept"/>
+						</t:template>
+					</t:Column>
+					</t:columns>
+			</t:Table>
+			</IconTabFilter>
+			
+			<IconTabFilter iconColor="Positive"
+							text="Approval Status" key="ApprovalInfo">
+
+							<Table id="idApproverTable"
+								items="{/d/results/0/NavToApprove/results}"><!--class="background" -->
+								<headerToolbar>
+									<Toolbar>
+										<Title text="Approver Status" level="H2" />
+									</Toolbar>
+								</headerToolbar>
+								<columns>
+									<Column minScreenWidth="Tablet" demandPopin="true"
+										hAlign="Center">
+										<Text text="Designation" />
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true"
+										hAlign="Center">
+										<Text text="Comments" />
+									</Column>
+									<Column minScreenWidth="Tablet" width="10em"
+										demandPopin="true" hAlign="Center">
+										<Text text="Amount" />
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem>
+										<cells>
+
+											<Input value="{Pernr}" enabled="false" />
+											<Input value="{ItemText}" enabled="false" />
+											<Input value="{RaceApprovalAmount}" enabled="false" />
+
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+						</IconTabFilter>
+
+
+						<IconTabFilter iconColor="Positive"
+							text="Total cost" key="CostInfo">
+
+							<f:SimpleForm id="TRTOTALCOSTFormEdit"
+								minWidth="1024" maxContainerCols="1" editable="true"
+								layout="ResponsiveGridLayout" title="" labelSpanL="5"
+								labelSpanM="5" emptySpanL="4" emptySpanM="4" columnsL="1"
+								columnsM="1" visible="true">
+								<f:content>
+									<core:Title id="TC_1"
+										text="TOTAL COST INVOLVED (IN LAKHS)" />
+
+
+									<Label id="landed_cost" text="Landed Cost at JK"
+										design="Bold" />
+									<Input id="landed_costInp" enabled="false"
+										value="{LandedCost}" />
+
+									<Label id="other_Expenses" text="Any Other Expenses"
+										design="Bold" />
+									<Input id="other_ExpensesInp" enabled="false"
+										value="{AnyOtherExpense}" />
+
+									<Label id="operative_Expenses"
+										text="Pre-Operative Expenses" design="Bold" />
+									<Input id="operative_ExpensesInp" enabled="false"
+										value="{PreOperativeExpense}" />
+
+									<Label id="Erection_Commissioning"
+										text="Erection and Commissioning" design="Bold" />
+									<Input id="Erection_CommissioningInp" enabled="false"
+										value="{ErectionCommissioning}" />
+
+									<Label id="Contigency_Expense" text="Contigency Expense"
+										design="Bold" />
+									<Input id="Contigency_ExpenseInp" enabled="false"
+										value="{ContigencyExpense}" />
+
+									<Label id="Total_Cost" text="Total Cost Involved"
+										design="Bold" />
+									<Input id="Total_CostInp" enabled="false"
+										value="{parts:[{path: 'LandedCost'},{path: 'AnyOtherExpense'},{path: 'PreOperativeExpense'},{path: 'ErectionCommissioning'},{path: 'ContigencyExpense'}] , formatter: 'ZRACEMGMT.util.Formatter.total'}" />
+
+
+
+
+								</f:content>
+							</f:SimpleForm>
+
+						</IconTabFilter>
+
+						<IconTabFilter iconColor="Positive"
+							text="Gain/Saving" key="GainInfo">
+
+
+
+
+							<Table id="idGainTable"
+								items="{/d/results/0/NavToGain/results}">
+								<headerToolbar>
+									<Toolbar>
+										<Title text="Gain and Savings" level="H2" />
+									</Toolbar>
+								</headerToolbar>
+								<columns>
+									<Column minScreenWidth="Tablet" demandPopin="true"
+										width="10em" hAlign="Center">
+										<Text text="Item Number" />
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true"
+										hAlign="Center">
+										<Text text="Item Description" />
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true"
+										hAlign="Center">
+										<Text text="Item text" />
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem>
+										<cells>
+
+											<Input value="{ItemNo}" enabled="false" />
+											<Input value="{ItemDescription}" enabled="false" />
+											<Input value="{ItemText}" enabled="false" />
+
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+
+
+
+
+						</IconTabFilter>
+
+						<IconTabFilter iconColor="Positive"
+							text="Attachments" key="attachment">
+
+							<UploadCollection
+        				   id="UploadCollection"            			   
+         				   width = "700px"
+         				   sameFilenameAllowed="false" 
+                           iconOnly="true" 
+                           multiple="false" 
+                           buttonOnly="true" 
+                           icon="sap-icon://add-photo" 
+                           uploadComplete="onUploadComplete"
+                           fileDeleted="onFileDeleted"
+                           beforeUploadStarts="onBeforeUploadStarts"
+                           uploadUrl="/sap/opu/odata/sap/ZAPS_UTILITY_SRV/ImageUploadSet"
+                           change="onAttachUpload"                           
+        				   uploadTerminated="onUploadTerminated"
+        				   typeMissmatch="onTypeMissmatch"
+        				   maximumFilenameLength="100"
+        				   maximumFileSize="5"
+        				   fileSizeExceed="onFileSizeExceed"
+                           items="{
+						          path: 'oUploadModel>/items',
+						          templateShareable: false
+						        }"
+						
+						        uploadEnabled="false"
+						        uploadButtonInvisible="true"
+						        
+				    >
+				        <items>
+				          <UploadCollectionItem
+				            documentId="{oUploadModel>DocNo}"
+				            fileName="{oUploadModel>FileName}"
+				            mimeType="{oUploadModel>MimeType}"
+				            url="{oUploadModel>Url}"
+				         
+				            enableEdit="false"
+				            enableDelete="false"
+				
+				            visibleDelete="false"
+				            visibleEdit="false"
+				            press="onUploadPress"
+				          >
+				          </UploadCollectionItem>
+				          </items>
+                           
+                           </UploadCollection>  
+
+
+
+						</IconTabFilter>
+
+						<!-- work sumit -->
+
+						<IconTabFilter iconColor="Positive" text="RACE aps"
+							key="RaceapsInfo" visible="false">
+
+							<Table id="" items="" class="background"><!-- {/d/results/0/NavToApprove/results} -->
+								<!-- <headerToolbar> <Toolbar> <Title text="Approver Status" level="H2"/> 
+									</Toolbar> </headerToolbar> -->
+								<columns>
+									<Column minScreenWidth="Tablet" demandPopin="true"
+										hAlign="Center">
+										<Text text="Designation" />
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true"
+										hAlign="Center">
+										<Text text="Comments" />
+									</Column>
+									<Column minScreenWidth="Tablet" width="10em"
+										demandPopin="true" hAlign="Center">
+										<Text text="Amount" />
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem>
+										<cells>
+
+											<Input value="" enabled="false" /><!-- {Pernr} -->
+											<Input value="" enabled="false" /><!-- {ItemText} -->
+											<Input value="" enabled="false" /><!-- {RaceApprovalAmount} -->
+
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+						</IconTabFilter>
+					</items>
+				</IconTabBar>
+			</Panel>
+
+			
+
+
+		</content>
+		<footer> 
+			<Toolbar>
+				<ToolbarSpacer />
+				
+				<!-- <Button text="Edit" icon="sap-icon://edit" enabled="true" type="Emphasized"
+					visible="true" press="onRaceEdit" id="idEdit"></Button> -->
+					
+				<!-- <Button text="Send For Correction" enabled="true" type="Accept"
+					visible="false" press="onCorrection" id="idCorrection"></Button> -->
+					
+				<Button text="Approve" icon="sap-icon://accept" enabled="true" type="Emphasized"
+					visible="true" press="onAprrove" id="apprvBtn"></Button>
+				
+				<Button text="Reject" icon="sap-icon://decline" enabled="true" type="Emphasized"
+					visible="true" press="onReject" id="rejectBtn"></Button>
+				
+				<Button text="Save and Update" enabled="true" type="Emphasized"
+					 press="onSave" id="idSaveUpdate" visible="false"></Button> 
+				
+				<Button text="Back" enabled="true" visible="true" type="Emphasized"
+					press="onBack" id="idBack" icon="sap-icon://nav-back" />	
+			
+			
+			
+			
+				<!-- <Button text="Change Description" enabled="true" type="Accept"
+					visible="{path:'RaceEditAllow', formatter:'ZRACEMGMT.util.Formatter.editBtn'}"
+					press="onEdit" id="editBtn"></Button>
+				<Button text="Edit" enabled="true" type="Accept"
+					press="onRaceEdit" id="editRaceBtn"
+					visible="{path:'RaceEditAllow', formatter:'ZRACEMGMT.util.Formatter.editBtn'}"></Button>
+				<Button text="Update" enabled="true" type="Accept"
+					visible="false" press="onUpdate" id="updateBtn"></Button>
+				<Button text="Cancel" enabled="true" type="Reject"
+					visible="false" press="onCancel" id="CancelBtn"></Button>
+				<Button text="Approve" enabled="true" type="Accept"
+					visible="false" press="onAccept" id="apprvBtn"></Button>
+				<Button text="Reject" enabled="true" type="Reject"
+					visible="false" press="onReject" id="rejectBtn"></Button>
+				<Button text="Save and Update" enabled="true" type="Accept"
+					 press="onSave" id="idSaveUpdate" visible="false"></Button> -->
+			</Toolbar>
+		</footer>
+	</Page>
+</core:View>

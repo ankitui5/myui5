@@ -1,0 +1,104 @@
+{
+	"categories": [{
+			"name": "ADDITIONS OTHER THAN MACHINERY",
+			"amount": 15,
+			"enabled": false,
+			"categories": [{
+					"name": "Furniture & Fixtures",
+					"enabled": true,
+					"amount": 1,
+					"currency": "EUR",
+					"size": "S"
+				}, {
+					"name": "Office Equipment",
+					"enabled": true,
+					"amount": 2,
+					"currency": "EUR",
+					"size": "M"
+				}, {
+					"name": "Vehicles",
+					"enabled": true,
+					"amount": 3,
+					"currency": "USD",
+					"size": "L"
+				}, {
+					"name": "Software and Hardware Cost",
+					"enabled": true,
+					"amount": 4,
+					"currency": "USD",
+					"size": "L"
+				}, {
+					"name": "Steel Wheels",
+					"enabled": true,
+					"amount": 5,
+					"currency": "USD",
+					"size": "L"
+				}
+
+			]
+		},
+
+		{
+			"name": "Total",
+			"amount": 15,
+			"enabled": false
+		},
+
+		{
+			"name": "PLANT & MACHINERY- NORMAL",
+			"amount": 14,
+			"enabled": false,
+			"categories": [{
+					"name": "MOULDS",
+					"amount": 4,
+					"enabled": false
+				}, {
+					"name": "MAINTENANCE CAPEX AT PLANTS ",
+					"amount": 10,
+					"enabled": false,
+					"categories": [{
+						"name": "Banbury Chamber Replacement / Upgradation",
+						"amount": 2,
+						"enabled": true,
+						"currency": "USD"
+					}, {
+						"name": "Cost Reduction Projects ",
+						"amount": 4,
+						"enabled": false,
+						"categories": [{
+							"name": "- Energy Saving Projects",
+							"enabled": true,
+							"amount": 2,
+							"currency": "USD"
+						}, {
+							"name": "- Others",
+							"enabled": true,
+							"amount": 2,
+							"currency": "USD"
+						}]
+					}, {
+						"name": "Regular Maintenance ",
+						"amount": 4,
+						"enabled": false,
+						"categories": [{
+							"name": "- Technology",
+							"enabled": true,
+							"amount": 2,
+							"currency": "USD"
+						}, {
+							"name": "- Others",
+							"enabled": true,
+							"amount": 2,
+							"currency": "USD"
+						}]
+					}]
+				}
+
+			]
+		}, {
+			"name": "Total",
+			"amount": 14,
+			"enabled": false
+		}
+	]
+}
