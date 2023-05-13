@@ -1,0 +1,37 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Dialog showHeader="true" title="G5" class="sapUiSizeCompact">
+	<subHeader>
+			<Bar>
+				<contentMiddle>
+					<Text text="Sub Details" />
+				</contentMiddle>
+				
+			</Bar>
+		</subHeader> 
+	<content>
+	<f:SimpleForm 
+		maxContainerCols="2" editable="true" layout="ResponsiveGridLayout"
+		labelSpanL="1" labelSpanM="1" emptySpanL="1" emptySpanM="1" columnsL="1"
+		columnsM="1" class="editableForm">
+		<f:content>
+			
+		<core:Title text="Fill Groove" />	
+			<Label text="L1" required="true" />
+			<Input enabled="true" value="{G5l1nsd}" maxLength="5" liveChange="onNumberValidChange5"/>
+			<Label text="L2" required="true" />
+			<Input enabled="true" value="{G5l2nsd}" maxLength="5" liveChange="onNumberValidChange5"/>
+			<Label text="L3 " required="true" />
+			<Input enabled="true" value="{G5l3nsd}" maxLength="5" liveChange="onNumberValidChange5"/>
+			<Label text="L4"  />
+			<Input enabled="true" value="{G5l4nsd}" maxLength="5" liveChange="onNumberValidChange5"/>
+				
+		</f:content>
+	</f:SimpleForm>
+	</content>
+		<buttons>
+		<Button text="Save"   visible="true" press="onTpressG1" />
+		<Button text="Cancel"   visible="true" press="onCloseG1" />		
+		</buttons>	
+</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,13 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="Material"
+		growingThreshold="10"
+		class="sapUiPopupWithPadding sapUiSizeCompact"
+		liveChange="_handleMaterialIdValueHelpSearch"
+		search="_handleMaterialIdValueHelpSearch"
+		confirm="_handleMaterialIdValueHelpClose"
+		cancel="_handleMaterialIdValueHelpClose">
+	</SelectDialog>
+</core:FragmentDefinition>

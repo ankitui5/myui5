@@ -1,0 +1,87 @@
+<core:FragmentDefinition xmlns="sap.m"
+						xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Dialog showHeader="true" icon="sap-icon://task" id="iDKing_V2" title="Reading Details" 
+			class="sapUiSizeCompact boldTxt" contentWidth="20%" >
+
+	<content>
+
+	<f:SimpleForm 
+					maxContainerCols="1" editable="true" layout="ResponsiveGridLayout"
+					labelSpanL="4" labelSpanM="4" emptySpanL="3" emptySpanM="3" columnsL="1"
+					columnsM="1" class="editableForm">
+		<f:content>
+			
+			<Label text="Inflation Pressure (PSI)"  required="true" design="Bold" />
+				<Select enabled="true" id="idEarSped12" forceSelection="false" selectedKey="{readingModel>/IpCondition}">
+					<core:Item text="Hot" key="H" />
+					<core:Item text="Cold" key="C" />
+				</Select>
+			
+			<Label text="IP (PSI)" required="true" design="Bold" />
+			<Input enabled="true" id="idEarCon12" valueHelpOnly="true" maxLength="3" showValueHelp="false"  
+					change="onIpPsiChange" value="" liveChange="NumberPSIValid" />
+           
+			<Label text="Hardness (Shore A)" required="true" design="Bold" />
+			<Input enabled="true" id="idHardness" valueHelpOnly="true" maxLength="4" showValueHelp="false"  
+				change="" value=""  liveChange="NumberHardnessValid"/>
+				
+		  <!--  <Label text="GVW (Tons)" required="false" design="Bold" />
+				<Input enabled="true" id="idGvw" valueHelpOnly="true" maxLength="30" showValueHelp="false"  
+				change="" value="{readingModel>/GVW}"  /> -->		
+           
+            <Label text="Original NSD (mm)" required="false" design="Bold" />
+			<Input enabled="false" id="idOriNsd" maxLength="5" valueHelpRequest="" 
+				liveChange="onNumberValid" valueHelpOnly="true" showValueHelp="false" value="" />
+           
+			<Label id="idGrooveG1Lbl" text="G1 (mm)" required="true" design="Bold" visible="false"/>
+			<Input enabled="true" id="idGrooveG1" maxLength="5" valueHelpOnly="true" showValueHelp="false" 
+				   value="" liveChange="onNumberValidChange" change="checkMaxGroove" visible="false"/>
+           
+          <Label id="idGrooveG2Lbl" text="G2 (mm)" required="true" design="Bold" visible="false"/>
+			<Input enabled="true" id="idGrooveG2" maxLength="5" visible="false"
+				   valueHelpOnly="true" showValueHelp="false" value="" liveChange="onNumberValidChange" 
+				   change="checkMaxGroove"/>
+			
+		  <Label id="idGrooveG3Lbl" text="G3 (mm)" required="true" design="Bold"  visible="false"/>
+			<Input enabled="true" id="idGrooveG3"  maxLength="5" visible="false"
+				   valueHelpOnly="true" showValueHelp="false" value="" liveChange="onNumberValidChange"
+				   change="checkMaxGroove"/>
+			
+		  <Label id="idGrooveG4Lbl" text="G4 (mm)"  design="Bold" required="true" visible="false"/>
+			<Input enabled="true" id="idGrooveG4" maxLength="5" visible="false"
+				valueHelpOnly="true" showValueHelp="false" value="" liveChange="onNumberValidChange" 
+				change="checkMaxGroove"/>
+				
+		 <Label id="idGrooveG5Lbl" text="G5 (mm)" required="true" design="Bold" visible="false"/>
+			<Input enabled="true" id="idGrooveG5"  maxLength="5" visible="false"
+				   valueHelpOnly="true" showValueHelp="false" value="" liveChange="onNumberValidChange"
+				   change="checkMaxGroove"/>
+			
+		  <Label id="idGrooveG6Lbl" text="G6 (mm)" required="true" design="Bold" visible="false"/>
+			<Input enabled="true" id="idGrooveG6" maxLength="5" visible="false"
+				valueHelpOnly="true" showValueHelp="false" value="" liveChange="onNumberValidChange" 
+				change="checkMaxGroove"/>		 
+         
+         
+		  <Label text="MinNsd (mm) " required="false" design="Bold" visible="false" />
+			<Input enabled="false" id="idMinNsd" maxLength="5" valueHelpRequest="" valueHelpOnly="true" 
+				   showValueHelp="false" value="" visible="false" />
+						  	
+			   
+			<!-- <Label text="Status"  required="true" design="Bold" />
+				<Select enabled="true" id="idStatus" forceSelection="false" selectedKey="{readingModel>/IpCondition}">
+				<core:Item text="OK" key="1" />
+					<core:Item text="Not Ok" key="2" />
+				</Select> -->
+				
+		<Label text="Remarks"  design="Bold" />
+			<TextArea enabled="true" id="idRemarks" maxLength="100" value="" />	
+		</f:content>
+	</f:SimpleForm>
+	</content>
+		<buttons>
+		<Button text="Save"   visible="true" press="onSaveReading" />
+		<Button text="Cancel"   visible="true" press="onReadingClose" />		
+		</buttons>	
+</Dialog>
+</core:FragmentDefinition>

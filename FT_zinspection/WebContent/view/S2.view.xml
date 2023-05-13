@@ -1,0 +1,417 @@
+<core:View xmlns:core="sap.ui.core"
+			xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns="sap.m"
+			xmlns:f="sap.ui.layout.form" xmlns:t="sap.ui.table"
+			xmlns:l="sap.ui.layout" xmlns:uxap="sap.uxap"
+			controllerName="zinspection.view.S2"
+			xmlns:html="http://www.w3.org/1999/xhtml">
+
+<html:style>
+	.boldTxt {
+		font-weight:bold !important
+}
+	.myStateError{
+		border-color: #e52929 !important;
+		border-width: 2px !important;
+}
+	.stencilUpper .sapMInputBaseInner{
+		text-transform: uppercase !important;
+}
+	.customHeader{
+		background: cadetblue !important;
+		height: 2rem !important;
+}
+	.customHeaderText{
+		color: white !important;
+}
+	.sapMListTblHeader .sapMCb{
+		display:none !important
+
+}
+	.jhClass .sapMTitle > span {
+		color: #000000 !important;
+		font-weight: bold
+		!important;
+}
+	.jhClass{
+		background-color:rgba(255, 255, 255, 0.8) !important;
+}
+	.sapUiSizeCompact .sapUiFormContainerTitle > .sapUiFormTitle{
+		height: 2rem;
+		line-height: 2rem;
+		color: black !important;
+		font-weight: bold !important;
+}
+	.bkg{
+		background-color:#467ddeb0;
+}
+	.sapMITBFilter .sapMITBText {
+	    width: 10rem !important;
+	    color: #346288 !important;
+	    font-weight: bold !important;
+}
+	.sapMTB-Transparent-CTX .sapMLabel {
+		font-weight: normal;
+		font-family: Arial, Helvetica, sans-serif;
+		text-shadow: 0 1px 0 #ffffff;
+		color: #000000;
+}
+
+</html:style>
+
+	<Page title="Create Fitment" class="sapUiSizeCompact" design="Bold">
+
+		<content>
+			<IconTabBar id="id_IconTabBar_ctp_WL" select="handleIconTabBarSelect" expandable="false" class="bkg">
+				<items>
+
+<!-- ******************************************************************************************************* -->
+
+			<IconTabFilter icon="sap-icon://BusinessSuiteInAppSymbols/icon-detailed-view"
+							text="VEHICLE DETAILS" design="Vertical" key="D"
+							tooltip="VEHICLE DETAILS" id="idVehDtlTabFilter">
+
+						<Toolbar design="Solid" class="customHeader">
+
+							<ToolbarSpacer />
+								<Label id="idHeaderLabel2" design="Bold" class="customHeaderText" />
+							<ToolbarSpacer />
+						</Toolbar>
+				<f:SimpleForm id="TRHeaderFormEdit" minWidth="1024"
+							maxContainerCols="1" editable="true"
+							layout="ResponsiveGridLayout" title="" labelSpanL="5"
+							labelSpanM="5" emptySpanL="0" emptySpanM="0" columnsL="3"
+							columnsM="3" visible="true" class="">
+						<f:content>
+							<core:Title id="VD_1" text="Vehicle Details" class="vehDetails" />
+
+								<Label required="true" text="Vehicle Reg. Number" design="Bold" />
+								<Input id="FVehicleNoEdit"  maxLength="20" liveChange="charNum" change="onVehicleNoChange"/>		
+									
+									<Button press="onVehicleDetails" text="Go" type="Emphasized" id="IdGo" >
+									 	<layoutData>
+											<l:GridData span="XL2 L2 M2 S2"/>
+										</layoutData>
+									</Button>
+									
+								<Label required="true" text="Customer" design="Bold" />
+								<Input id="idCustomerName" value="{vehicleDetailsSetJModel>/Name}" enabled="{vehicleEnableJModel>/enable}"
+									valueHelpRequest="onCustomerName" valueHelpOnly="true" visible = "true" showValueHelp="true" />
+
+								<Label visible="false"/>
+								<Input id="idMobile1" visible="false" value="{vehicleDetailsSetJModel>/Mobile1}" />
+								
+								<Label text="Customer Type" design="Bold" />
+								<Select forceSelection="false" id="idCustType" selectedKey="{vehicleDetailsSetJModel>/Type}" 
+										enabled="false" >
+							      	<items>
+								    	<core:Item text="Indirect Fleet" key="I" />
+								    	<core:Item text="Direct Fleet" key="D" />
+								    	<core:Item text="Customer" key="C" />
+							      	</items>	
+						       	</Select>
+						       	
+								<Label id="idStateLbl" text="State" design="Bold" visible="false" />
+								<Input id="idState" value="{vehicleDetailsSetJModel>/State}" 
+										enabled="false" visible="false"/>
+								
+								<Label id="idLocationLbl" text="Location/City" design="Bold" visible="false" />
+								<Input id="idLocation" value="{vehicleDetailsSetJModel>/Location}" 
+										enabled="false" visible="false"/>
+								
+								<Label text="Vehicle Make" design="Bold" required="true" />
+								<Select id="VehicleMakeID" items="{path:'VehicleMakeJModel>/', templateShareable:false}"
+										forceSelection="false" selectedKey="{vehicleDetailsSetJModel>/VehicleSeq}" 
+										enabled="{vehicleEnableJModel>/enable}">
+										<items>
+											<core:Item text="{VehicleMakeJModel>VehicleMake}" key="{VehicleMakeJModel>VehicleSeq}" />
+										</items>
+								</Select>								
+								
+								<Label text="Vehicle Model" design="Bold" required="true" />
+								<Input id="VehicleModelID" maxLength="20" 
+			 							value="{vehicleDetailsSetJModel>/VehicleModel}"
+			 							enabled="{vehicleEnableJModel>/enable}" />
+			 							
+								<Label text="Configuration" design="Bold" required="true" />
+								<Select id="ConfigurationIDID" items="{path:'ConfigurationJModel>/', templateShareable:false}"
+										forceSelection="false" selectedKey="{vehicleDetailsSetJModel>/ConfigCode}" 
+										enabled="{vehicleEnableJModel>/enable}">
+										<items>
+											<core:Item text="{ConfigurationJModel>ConfigDesc}" key="{ConfigurationJModel>ConfigCode}" />
+										</items>
+								</Select>		
+								
+								<Label text="Chasis No" design="Bold" />
+								<Input id="ChasisNoID" value="{vehicleDetailsSetJModel>/ChassisNo}" visible="true" maxLength="20"  />
+								
+								<Label text="Engine No" design="Bold" />
+								<Input id="EngineNooID" value="{vehicleDetailsSetJModel>/EngineNo}" visible="true" maxLength="20"  />
+
+								<Label text="Mechanical Condition" design="Bold" required="true" />
+								<Select id="idmccon" forceSelection="false" enabled="{vehicleEnableJModel>/enable}"
+										selectedKey="{vehicleDetailsSetJModel>/MechCond}" change="onMechanicalReason" >
+									<core:Item text="OK" key="Y" />
+									<core:Item text="NOT OK" key="N" />
+								</Select>
+								
+								<Label id="idReasonLbl" text="Reason" design="Bold" visible="false" />
+								<Select id="idReason" visible="false" enabled="{vehicleEnableJModel>/enable}"
+										items="{path:'mechanicalSetJModel>/', templateShareable:false}"
+										forceSelection="false" change="onMechanicalReason" 
+										selectedKey="{vehicleDetailsSetJModel>/MechCondReason}">
+									<core:Item text="{mechanicalSetJModel>Desc}"
+												key="{mechanicalSetJModel>CondReason}" />
+								</Select>
+
+						<core:Title id="VD_2" text="" />
+
+								<Label id="LFitmentDateeEdit" text="Fitment Date" design="Bold" 
+								       required="true"/>
+								<DatePicker id="FFitmentDateEdit"
+											displayFormat="dd-MM-yyyy"
+											change="changeFitmetDate" valueFormat="yyyy-MM-dd" 
+											enabled="true" />
+								
+								<Label required="true" id="LRegistrationYearEdit" text="Registration Year" design="Bold" />
+								<Input id="FRegistrationYearEdit" maxLength="4" liveChange="NumberValidYear" change="onYearChange" 
+										value="{vehicleDetailsSetJModel>/RegYear}" enabled="{vehicleEnableJModel>/enable}" />
+								
+								<Label id="LVehicleCCEdit" text="Vehicle CC" required="true" design="Bold" />
+								<Input id="FVehicleCCEdit" change="" liveChange="NumberValid" maxLength="5" 
+										value="{vehicleDetailsSetJModel>/VechCc}" enabled="{vehicleEnableJModel>/enable}" />
+								
+								<Label id="LAvgRunningSpeedEdit" text="Avg Running Speed" design="Bold" />
+								<Input id="FAvgRunningSpeedEdit" liveChange="NumberValid" maxLength="2" 
+										value="{vehicleDetailsSetJModel>/AvgSpeed}" enabled="{vehicleEnableJModel>/enable}"/>
+								
+								<Label id="LLoopDistanceEdit" text="Loop Distance" design="Bold" />
+								<Input id="FLoopDistanceEdit" maxLength="5" liveChange="NumberValid" 
+										value="{vehicleDetailsSetJModel>/LoopDist}" enabled="{vehicleEnableJModel>/enable}"/>
+								
+								<Label text="GVW (Tons)" design="Bold" />
+								<Input id="idEarApp1" valueHelpRequest="InsGpCodeHelp" valueHelpOnly="true"
+										showValueHelp="false" maxLength="4" liveChange="NumberGVWValid" 
+										value="{vehicleDetailsSetJModel>/Gvw}" enabled="{vehicleEnableJModel>/enable}"/>
+								
+								<Label text="Milometer Working" design="Bold" required="true" />
+								<Select id="idEarPSI" forceSelection="false" change="onMiloMeter" 
+										selectedKey="{vehicleDetailsSetJModel>/MiloWork}">
+									<core:Item text="Yes" key="Y" />
+									<core:Item text="No" key="N" />
+								</Select>
+								
+								<Label text="Milometer Reading" design="Bold" required="true" />
+								<Input id="idMilReading" visible="false" maxLength="7" liveChange="NumberValid" setValueState="Error" 
+										value="{vehicleDetailsSetJModel>/MiloReading}"/>
+								
+								<Label id="LGoodsCarriedEdit" text="Goods Carried" tooltip="Goods Carried" design="Bold" />
+								<TextArea rows="2" maxLength="100" id="FGoodsCarriedEdit" value="{vehicleDetailsSetJModel>/GoodsCarried}"/>
+						
+						<core:Title id="VD_3" text="" />
+
+								<Label id="LWeatherIDEdit" text="Climate" design="Bold" />
+								<Text text="" textAlign="End" />
+								
+								<Label>
+									<layoutData>
+										<l:GridData span="XL1 L1 M1 S1" />
+									</layoutData>
+								</Label>
+								<Text text="Max Temp: " textAlign="End" >
+									<layoutData>
+										<l:GridData span="XL4 L4 M4 S4" />
+									</layoutData>
+								</Text>
+								<Input id="FLWeatherIDMaxEdit" maxLength="5" liveChange="TempRex" value="{vehicleDetailsSetJModel>/MaxTemp}"/>
+								<Text text="Min Temp: " textAlign="End">
+									<layoutData>
+										<l:GridData span="XL3 L3 M3 S3" />
+									</layoutData>
+								</Text>
+								<Input id="FLWeatherIDMinEdit" maxLength="5" liveChange="TempRex1" value="{vehicleDetailsSetJModel>/MinTemp}"/>
+								
+								<Label id="LRoadConditionEdit" text="Road Condition (%)" design="Bold" />
+								<Text text="" textAlign="End" />
+								
+								<Label>
+									<layoutData>
+										<l:GridData span="XL1 L1 M1 S1" />
+									</layoutData>
+								</Label>
+								<Text text="On-Road:" textAlign="End">
+									<layoutData>
+										<l:GridData span="XL4 L4 M4 S4" />
+									</layoutData>
+								</Text>
+								<Input min="0" max="100" id="FRoadConditionEdit"
+										maxLength="3" liveChange="NumberValidPercentage" tooltip="ON-Road %" 
+										value="{vehicleDetailsSetJModel>/OnRoad}"/>
+								<Text text="Off-Road:" textAlign="End">
+									<layoutData>
+										<l:GridData span="XL3 L3 M3 S3" />
+									</layoutData>
+								</Text>
+								<Input min="0" max="100" id="FOFFRoadConditionEdit"
+										maxLength="3" liveChange="NumberValidPercentage" tooltip="OFF-Road %" 
+										value="{vehicleDetailsSetJModel>/OffRoad}"/>
+									
+								<Label id="LPrecipitationPercentageEdit" text="Precipitation (%)" design="Bold" />
+								<Input min="0" id="FPrecipitationPercentageEdit" maxLength="3" liveChange="NumberValidPercentage" 
+										value="{vehicleDetailsSetJModel>/Pricit}"/>
+								
+								<Label id="LRouteConditionEdit" text="Terrain" design="Bold" />
+								<Select id="FRouteConditionEdit" forceSelection="false" selectedKey="{vehicleDetailsSetJModel>/Terrain}">
+									<core:Item text="Long Haul Highway" key="01" />
+									<core:Item text="Hilly" key="02" />
+									<core:Item text="Short Haul" key="03" />
+								</Select>
+								
+								<Label id="LPreTyreDetailsEdit" text="Previous Tyre Details" design="Bold" />
+								<TextArea rows="2" maxLength="100" id="FPreTyreDetailsEdit" tooltip="Previous Tyre Details" 
+										value="{vehicleDetailsSetJModel>/TyreDetails}"/>
+
+							</f:content>
+						</f:SimpleForm>
+
+	<Table id="idRouteTable" visible="true" showNoData="true">
+				<headerToolbar>
+					<Toolbar design="Solid" class="customHeader">
+						<Image src="https://cdn.iconscout.com/public/images/icon/premium/png-512/deliver-location-truck-transport-travel-logistic-34d9317fb35234b0-512x512.png"
+								width="2rem" height="2rem" />
+						<Label text="Route" level="H1" class="customHeaderText" />
+						<ToolbarSpacer></ToolbarSpacer>
+					</Toolbar>	
+				</headerToolbar>
+					<columns>
+						<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+							<Label text="From: State" design="Bold" />
+						</Column>
+						<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+							<Label text="From: District" design="Bold" />
+						</Column>
+						<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+							<Label text="To: State" design="Bold" />
+						</Column>
+						<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+							<Label text="To: District" design="Bold" />
+						</Column>
+					</columns>
+				<items>
+						<ColumnListItem>
+						<cells>
+						
+							<Input id="idStateFrom" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onFromStateChange"/>
+							<Input id="idDistrictFrom" valueHelpOnly="true" showValueHelp="true" enabled="false" valueHelpRequest="onFromDistrictChange"/>
+							<Input id="idStateTo" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onToStateChange"/>
+							<Input id="idDistrictTo" valueHelpOnly="true" showValueHelp="true"  enabled="false" valueHelpRequest="onToDistrictChange"/>
+							
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+
+	</IconTabFilter>
+
+<!-- ***************************************************************************************** -->
+
+		<IconTabFilter icon="sap-icon://legend"
+						text="FITMENT" design="Vertical" key="B" tooltip="FITMENT"
+						id="idFitmentTabFilter">
+				<Toolbar design="Solid" class="customHeaderText">
+					<Label design="Bold" text="Test Methodology" />
+					<Text id="idTestMethodology"></Text>
+							<ToolbarSpacer />
+							<Label text="Test Plan Number" design="Bold"/>
+							<Text id="idHeaderLabel1"></Text>
+							<ToolbarSpacer />
+							<Label design="Bold" text="Vehicle No" />
+							<Text id="idVehicleNo"></Text>
+				</Toolbar>
+
+			<ScrollContainer horizontal="true">
+						<Table id="idFitmentDetailsTable2" visible="true"
+								showNoData="true" items="{FitmentDetailsJModel>/}"
+								updateFinished="onFitmentUpdateFinished">
+						<!-- 		
+								<Table id="idFitmentDetailsTable2" visible="true"
+								showNoData="true" items="{fitmentTableModel>/}"
+								updateFinished="onFitmentUpdateFinished"> -->
+							<headerToolbar>
+									<Toolbar design="Solid" class="customHeader">
+										<Image src="https://cdn.iconscout.com/public/images/icon/premium/png-512/deliver-location-truck-transport-travel-logistic-34d9317fb35234b0-512x512.png"
+												width="2rem" height="2rem" />
+										<Label text="Fitment Details" level="H1" class="customHeaderText" />
+										<ToolbarSpacer />
+										<!-- <Button id="FitmentTableAddItemButton" type="Accept"
+												icon="sap-icon://add" press="addFitmentRow" tooltip="Add Item" /> -->
+									</Toolbar>
+								</headerToolbar>
+
+								<columns>
+									<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="10rem">
+										<Label text="Position" design="Bold" />
+									</Column>
+									
+									<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="10rem">
+										<Label text="Stencil No." design="Bold" />
+									</Column>
+									
+									<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="15rem">
+										<Label text="Material" design="Bold" />
+									</Column>
+
+									<!-- <Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="5rem">
+										<Label text="Readings" design="Bold" />
+									</Column> -->
+
+									<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="4rem">
+										<Label text="" design="Bold" />
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem>
+										<cells>
+											<Select items="{path:'TyrePositionJModel>/', templateShareable:false}"
+													change="onPostionChange" width="12rem" forceSelection="false"
+													selectedKey="{FitmentDetailsJModel>Position}">
+												<items>
+													<core:Item
+														text="{TyrePositionJModel>Position}"
+														key="{TyrePositionJModel>Position}" />
+												</items>
+											</Select>
+											<!--{fitmentTableModel>StencilNo}  -->
+											<Input value="{FitmentDetailsJModel>StencilNo}" enabled="false"
+												valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onF4Stencil"
+												maxLength="12" width="12rem" change="onStencilChange" class="stencilUpper" />
+											
+											<Input value="{FitmentDetailsJModel>Maktx}" enabled="false"></Input>
+
+											<!-- <Button icon="sap-icon://activity-2" type="Emphasized" class="cellPadding " press="onReadingPress" /> -->
+											<Button icon="sap-icon://delete" press="onDeleteFitmentRow" type="Reject" />
+
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+						</ScrollContainer>
+					</IconTabFilter>
+
+<!-- ***************************************************************************************** -->
+
+				</items>
+			</IconTabBar>
+
+		</content>
+		<footer>
+			<Bar>
+				<contentRight>
+					<Button text="Review and Submit" press="onReviewAndSave"
+							type="Accept" id="idReviewSaveBtn" icon="sap-icon://save" />
+					<Button icon="sap-icon://sys-cancel" text="Home Page" class="icon-save" 
+							type="Reject" press="onReject" id="idreject1"/>
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</core:View>

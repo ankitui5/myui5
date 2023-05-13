@@ -1,0 +1,749 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+			xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:t="sap.ui.table" 
+			xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified" controllerName="zreqcreate.view.View1"
+			xmlns:html="http://www.w3.org/1999/xhtml">
+	
+	<html:style>
+
+	
+
+	</html:style>
+	
+<Page title="TEST REQUEST CREATE" class="mainPage" id="displayRace">
+
+		<content>
+			<Panel>
+
+				<IconTabBar id="idTestReqCreateTabBar" expanded="true" select="handleIconTabBarSelect"
+					class="sapUiResponsiveContentPadding iconTabBar" expandable="false">
+					<items>
+
+		<IconTabFilter iconColor="Positive" design="Bold" text="TEST REQUIREMENTS" key="testRequire">
+
+			<f:SimpleForm id="TRHeaderFormEdit" minWidth="1024"
+						class="headerDetails" maxContainerCols="1" editable="true"
+						layout="ResponsiveGridLayout" title="" labelSpanL="5"
+						labelSpanM="5" emptySpanL="0" emptySpanM="0" columnsL="2"
+						columnsM="2" visible="true">
+						<f:content>
+						<core:Title id="Hd_1" text="HEADER DETAILS" />
+
+									<Label id="marketLbl" text="Market" design="Bold" required="true" />
+									<Select id="selectMarket" change="onChangeMarket" items="{Model>/F4MarketSet}"
+										forceSelection="false">
+										<items>
+											<core:Item text="{Model>MarketDesc}" key="{Model>Market}" />
+										</items>
+									</Select>
+
+									<Label id="productCatLbl" text="Product Category" design="Bold" required="true" />
+									<Select id="selectProductCat" change="onChangeProdCate" enabled="false"
+											items="" forceSelection="false">
+											<!-- {Model>/F4ProductCatSet} <items>
+												<core:Item text="{Model>ProdDesc}" key="{Model>ProdCat}" />
+											</items> -->
+									</Select>
+
+									<Label id="NominalLbl" text="Nominal Section" design="Bold" required="true" />
+									<Select id="selectNominal" items="" enabled="false"
+											forceSelection="false" change="onChangeNominal">
+									</Select>
+
+									<Label id="testLbl" text="Test Category" design="Bold" required="true" />
+									<Select id="selectTestcat" items="{Model>/F4TestCategorySet}"
+										forceSelection="false" change="onChangeTestCat">
+										<items>
+											<core:Item text="{Model>CatDesc}" key="{Model>Category}" />
+										</items>
+									</Select>
+
+									<Label id="prodTyreLbl" text="Product Type" design="Bold" required="true" />
+									<Select id="selectProdTyre" items="" forceSelection="false" change="onChangeProdType">
+										<items>
+											<core:Item text="Regular" key="R" />
+											<core:Item text="Experimental/NPD" key="E" />
+										</items>
+									</Select>
+									
+									<Label id="plantLbl" text="Plant" design="Bold" required="true" />
+									<Select id="selectPlant" items="{Model>/F4LocationSet?$filter=Indicator eq 'M'}"	
+											forceSelection="false" selectedKey="{Plant}">	
+												<items>
+													<core:Item text="{Model>Name1}" key="{Model>Werks}" />
+												</items>
+									</Select>
+
+					<core:Title id="HD_2" text="" />
+
+									<Label id="testReqLbl" text="Test Requirement" design="Bold" required="true" />
+									<Select id="selectTestreq" change="testReqChange"
+										items="{Model>/F4TestRequirementSet}" forceSelection="false">
+										<items>
+											<core:Item text="{Model>TestReqDesc}" key="{Model>TestReq}" />
+										</items>
+									</Select>
+
+									<Label id="testObjLbl" text="Test Objective" design="Bold" required="true" />
+									<Select id="selectTestObj" items="{Model>/F4TestObjectiveSet}"
+										forceSelection="false" change="onChangeTestObj">
+										<items>
+											<core:Item text="{Model>TestObjDesc}" key="{Model>TestObj}" />
+										</items>
+									</Select>
+
+									<Label id="testMethodLbl" text="Test Methodology" design="Bold" required="true" />
+									<Select id="selectTestMethod" items="{Model>/F4TestMethodologySet}"
+										forceSelection="false" change="onChangeTestMethod">
+										<items>
+											<core:Item text="{Model>TestMethDesc}" key="{Model>TestMeth}" />
+										</items>
+									</Select>
+
+									<Label id="testTypeLbl" text="Test Type" design="Bold" required="true" />
+									<Select id="selectTesttype" items="{Model>/F4TestTypeSet}"
+										forceSelection="false" change="onChangeTestType">
+										<items>
+											<core:Item text="{Model>TestTypeDesc}" key="{Model>TestType}" />
+										</items>
+									</Select>
+
+									<Label id="modiLbl" text="Modification" design="Bold" required="true" />
+									<TextArea rows="2" width="100%" maxLength="132" enabled="true" 
+											id="longTxt" value="" placeholder="Modifications*"  liveChange="onChangeModify"/>
+
+								</f:content>
+					</f:SimpleForm>
+
+					<Panel id="longTestPanel" visible="false">
+							</Panel>
+						</IconTabFilter>
+
+
+		<IconTabFilter iconColor="Positive" text="Tyre Details"
+							key="tyreDetails" >
+
+				<t:Table id="TyreDetailTable" rows="" title="" class="customTyreDetail"
+								selectionMode="None" visibleRowCountMode="Fixed"
+								visibleRowCount="1">
+						<t:toolbar>
+									<Toolbar id="UITyreTableToolbar">
+										<Title id="UITyreTableTitle" level="H2" text="Tyre Details"
+											visible="true" />
+										<ToolbarSpacer />
+										<Button id="UICreateTableAddItemButton" icon="sap-icon://add"
+			 								press="addItemTyreDetail" tooltip="Add Item" type="Accept"/>
+									</Toolbar>
+						</t:toolbar>
+								<t:columns>
+									<t:Column width="2rem" hAlign="Center">
+										<Label text="#" design="Bold"/>
+										<t:template>
+											<Text text=""></Text>
+										</t:template>
+									</t:Column>
+									
+									
+									<t:Column width="11rem" hAlign="Center">
+										<Label text="Test Type" design="Bold"/>
+										<t:template>
+											<Select items="{Model>/F4CompCodeSet}" forceSelection="false" change="onChangeTableTestType"
+											selectedKey="{TestType}">
+												<items>
+													<core:Item text="{Model>ComName}" key="{Model>CompCode}" />
+												</items>
+											</Select>
+										</t:template>
+									</t:Column>
+									
+									<t:Column width="8rem" hAlign="Center">
+										<Label text="Tyre Size Desc" design="Bold"/>
+										<t:template>
+											<Input enabled="false" value="{TyreSize}" maxLength="40"></Input>
+										</t:template>
+									</t:Column>
+									<t:Column width="5rem" hAlign="Center">
+										<Label text="Group" design="Bold"/>
+										<t:template>
+											<Text text="{Group}" />
+										</t:template>
+									</t:Column>
+									<t:Column width="10rem" hAlign="Center" >
+										<Label text="Group Description" design="Bold" required="true"/>
+										<t:template>
+											<Input value="{GroupDesc}" maxLength="40"/>
+										</t:template>
+									</t:Column>
+									<t:Column width="20rem" hAlign="Center">
+										<Label text="Material" design="Bold" required="true"/>
+										<t:template>
+											<!-- <Input valueHelpRequest="Materialf4" valueHelpOnly="true"
+												showValueHelp="false" value="{Material}"/> -->
+											<Input id="id_Input_Material_WL" type="Text" showSuggestion="true" showValueHelp="true" valueHelpOnly="true"
+												valueHelpRequest="handleMaterialIdValueHelp"  visible="true" value="{MaterialDesc}" tooltip="{MaterialDesc}"/>
+										</t:template>
+									</t:Column>
+									<t:Column width="6rem" hAlign="Center">
+										<Label text="Ply Rating" design="Bold" required="true"/>
+										<t:template>
+											<Input value="{PlyRating}" showSuggestion="true" showValueHelp="true" valueHelpOnly="true"
+												valueHelpRequest="onPlyFragment"  visible="true"/>
+										</t:template>
+									</t:Column>
+									<t:Column width="6rem" hAlign="Center">
+										<Label text="Load Index" design="Bold" required="true"/>
+										<t:template>
+											<Input value="{LoadIndex}" showSuggestion="true" showValueHelp="true" valueHelpOnly="true"
+												valueHelpRequest="onLoadFragment"/>
+										</t:template>
+									</t:Column>
+									<t:Column width="8rem" hAlign="Center">
+										<Label text="Speed Rating" design="Bold" required="true"/>
+										<t:template>
+											<Input value="{SpeedRating}" showSuggestion="true" showValueHelp="true" valueHelpOnly="true"
+												valueHelpRequest="onSpeedFragment"/>
+										</t:template>
+									</t:Column>
+									<t:Column width="8rem" hAlign="Center">
+										<Label text="No. of Tyres" design="Bold" required="true"/>
+										<t:template>
+											<Input maxLength="3"  value="{NoOfTyres}" liveChange="onNoOFTyreChange"  change="onChangeNoOfTyres"/>
+										</t:template>
+									</t:Column>
+									<t:Column width="8rem" hAlign="Center">
+										<Label text="Discount" design="Bold"/>
+										<t:template>
+											<Input enabled="true" maxLength="5"
+											valueHelpOnly="true" showValueHelp="false" value="{Discount}" liveChange="onDiscountChange" />
+										</t:template>
+									</t:Column>
+									
+									
+									<t:Column width="10rem" hAlign="Center">
+										<Label text="Plant" design="Bold"/>
+										<t:template>
+											 <Select items="{Model>/F4LocationSet?$filter=Indicator eq 'M'}"	
+												forceSelection="false" selectedKey="{Plant}">	
+												<items>
+													<core:Item text="{Model>Name1}" key="{Model>Werks}" />
+												</items>
+											</Select>
+										</t:template>
+									</t:Column>
+									
+									<t:Column width="6rem" hAlign="Center">
+										<Label text="Inflated NSD" design="Bold"/>
+										<t:template>
+											<CheckBox selected="{Infnsd}"></CheckBox>
+										</t:template>
+									</t:Column>
+									<t:Column width="6rem" hAlign="Center">
+										<Label text="NSD" design="Bold" required="true"/>
+										<t:template>
+											<Input enabled="true" maxLength="5" onsapfocusleave="onNSDleave"
+											valueHelpOnly="true" showValueHelp="false" value="{NSD}" liveChange="onNSDChange" />
+										</t:template>
+									</t:Column>
+
+									<t:Column width="6rem" hAlign="Center">
+										<Label text="Groove No." design="Bold" required="true"/>
+										<t:template>
+											<Select showSecondaryValues="true" change="grooveChange" width="100%"
+												forceSelection="false" enabled="false" selectedKey="{GrooveNumbers}">
+												<items>
+													<core:Item text="1" key="1" />
+													<core:Item text="2" key="2" />
+													<core:Item text="3" key="3" />
+													<core:Item text="4" key="4" />
+													<core:Item text="5" key="5" />
+													<core:Item text="6" key="6" />
+
+												</items>
+											</Select>
+										</t:template>
+									</t:Column>
+									<t:Column width="6rem" hAlign="Center">
+										<Label text="G1" design="Bold"/>
+										<t:template>
+											<Input  value="{G1}" enabled="false" liveChange="onGrooveValidChange" maxLength="5"></Input>
+										</t:template>
+									</t:Column>
+									<t:Column width="6rem" hAlign="Center">
+										<Label text="G2" design="Bold"/>
+										<t:template>
+											<Input value="{G2}" enabled="false" liveChange="onGrooveValidChange" change="onGrooveLiveChange" maxLength="5"></Input>
+										</t:template>
+									</t:Column>
+									<t:Column width="6rem" hAlign="Center">
+										<Label text="G3" design="Bold"/>
+										<t:template>
+											<Input  value="{G3}" enabled="false" liveChange="onGrooveValidChange" change="onGrooveLiveChange" maxLength="5"></Input>
+										</t:template>
+									</t:Column>
+									<t:Column width="6rem" hAlign="Center">
+										<Label text="G4" design="Bold"/>
+										<t:template>
+											<Input  value="{G4}" enabled="false" liveChange="onGrooveValidChange" change="onGrooveLiveChange" maxLength="5"></Input>
+										</t:template>
+									</t:Column>
+									<t:Column width="6rem" hAlign="Center">
+										<Label text="G5" design="Bold"/>
+										<t:template>
+											<Input value="{G5}" enabled="false" liveChange="onGrooveValidChange" change="onGrooveLiveChange" maxLength="5"></Input>
+										</t:template>
+									</t:Column>
+									<t:Column width="6rem" hAlign="Center">
+										<Label text="G6" design="Bold"/>
+										<t:template>
+											<Input value="{G6}" enabled="false" liveChange="onGrooveValidChange" change="onGrooveLiveChange" maxLength="5"></Input>
+										</t:template>
+									</t:Column>
+									<t:Column width="11rem" hAlign="Center">
+										<Label text="Overall Diameter" design="Bold" required="true"/>
+										<t:template>
+											<Input enabled="true" maxLength="7"
+											valueHelpOnly="true" showValueHelp="false" value="{OverallDiameter}" liveChange="onDiameterValidChange" />
+										</t:template>
+									</t:Column>
+									<t:Column width="11rem" hAlign="Center">
+										<Label text="Section Width(mm)" design="Bold" required="true"/>
+										<t:template>
+											<Input enabled="true" maxLength="6"
+											valueHelpOnly="true" showValueHelp="false" value="{SectionWidth}" liveChange="onNumberValidChange" />
+										</t:template>
+									</t:Column>
+									<t:Column width="11rem" hAlign="Center">
+										<Label text="Tread Arc Width(mm)" design="Bold" required="true"/>
+										<t:template>
+											<Input enabled="true" maxLength="6"
+											valueHelpOnly="true" showValueHelp="false" value="{TreadArcWidth}" liveChange="onNumberValidChange" />
+										</t:template>
+									</t:Column>
+									<t:Column width="11rem" hAlign="Center">
+										<Label text="Weight(Kgs)" design="Bold"/>
+										<t:template>
+											<Input enabled="true" maxLength="6"
+											valueHelpOnly="true" showValueHelp="false" value="{Weight}" liveChange="onNumberValidChange" />
+										</t:template>
+									</t:Column>
+									<t:Column width="11rem" hAlign="Center">
+										<Label text="Tread Width(mm)" design="Bold" required="true"/>
+										<t:template>
+											<Input enabled="true" maxLength="6"
+											valueHelpOnly="true" showValueHelp="false" value="{TreadWidth}" liveChange="onNumberValidChange" />
+										</t:template>
+									</t:Column>
+									
+									<t:Column width="11rem" hAlign="Center">
+										<Label text="Stencil From" design="Bold"/>
+										<t:template>
+											<Input value="{StencilFrom}" maxLength="12"></Input>
+										</t:template>
+									</t:Column>
+									<t:Column width="11rem" hAlign="Center">
+										<Label text="Stencil To" design="Bold"/>
+										<t:template>
+											<Input value="{StencilTo}" maxLength="12"></Input>
+										</t:template>
+									</t:Column>
+									<t:Column width="11rem" hAlign="Center" visible="false" id="ptQtyCol">
+										<Label text="PT Quantity" design="Bold"/>
+										<t:template>
+											<Input value="{PTQty}" enabled="true" liveChange="onLiveChangePtQty" change="onChangePtQty"></Input>
+										</t:template>
+									</t:Column>
+									<t:Column width="11rem" hAlign="Center" visible="false" id="ftQtyCol">
+										<Label text="FT Quantity" design="Bold"/>
+										<t:template>
+											<Input value="{FtQty}" enabled="false"></Input>
+										</t:template>
+									</t:Column>
+									<t:Column width="11rem" hAlign="Center">
+										<Label text="Additional Comments" design="Bold"/>
+										<t:template>
+											<Input value="{AdditionalComments}" maxLength="255"></Input>
+										</t:template>
+									</t:Column>
+									<t:Column width="5rem" hAlign="Center">
+										<Label text="" />
+										<t:template>
+											<Button id="UICreateTableRemoveItemButtonUsage" icon="sap-icon://delete"
+											press="onRemoveVehicleDetail" type="Reject" tooltip="Delete Item" />
+										</t:template>
+									</t:Column>
+
+								</t:columns>
+							</t:Table>
+						
+						</IconTabFilter>
+
+						<IconTabFilter iconColor="Positive" visible="true"
+							text="USAGE DETAILS" key="usageDetails" >
+
+							<f:SimpleForm class="headerDetails" columnsL="2"
+								columnsM="2" editable="true" emptySpanL="0" emptySpanM="0"
+								labelSpanL="3" labelSpanM="3" layout="ResponsiveGridLayout"
+								maxContainerCols="2" title="">
+								<f:content>
+									<core:Title text="Usage Details" />
+									<Label id="Lloadingpattern" text="Load Segment"></Label>
+									<MultiComboBox autoAdjustWidth="true" id="loadsegment"
+										items="{Model>/F4LoadSegmentSet}" showSecondaryValues="true">
+										<core:Item id="loadsegment_item" additionalText=""
+											key="{Model>LaodSegment}" text="{Model>SegmentDesc}"></core:Item>
+									</MultiComboBox>
+									<Label id="recpsiLbl" text="PSI Rec."></Label>
+									<Input id="recPsi" enabled="true" maxLength="3"
+											valueHelpOnly="true" showValueHelp="false" liveChange="onRecommendPSIChange" />
+
+									<core:Title id="UD_2" text="" />
+
+									<Label id="fitmntRimLbl" text="Fitment Rim(Rec)" required="true"></Label>
+									<Input id="fitmntRim" maxLength="40"/>
+									<Label id="fitmntAlt" text="Fitment Rim(Alt)"></Label>
+									<Input id="FitmentAlt" maxLength="40"/>
+
+								</f:content>
+							</f:SimpleForm>
+
+			<t:Table id="vehiclDetail" title="" selectionMode="None" visibleRowCountMode="Fixed"	visibleRowCount="0">
+								<t:toolbar>
+									<Toolbar id="UIUsageTableToolbar">
+										<Title id="UIUsageTableTitle" level="H2" text="Vehicle Details"
+											visible="true" />
+										<ToolbarSpacer />
+										<Button id="UICreateTableAddItemButtonUsage" icon="sap-icon://add"
+											press="addNewVehicleDetail" tooltip="Add Item" type="Accept"/>
+									</Toolbar>
+								</t:toolbar>
+				<t:columns>
+					<t:Column width="24rem" hAlign="Center" >
+						<Label text="Vehicle Make" design="Bold"/>
+						<t:template>
+							<Select items="{Model>/F4VehicleMakeSet}"
+										forceSelection="false" selectedKey="{VehicleMake}">
+										<items>
+											<core:Item text="{Model>VehicleMake}" key="{Model>VehicleSeq}" />
+										</items>
+									</Select>
+						</t:template>
+					</t:Column>
+					<t:Column width="12rem" hAlign="Center" >
+						<Label text="Vehicle Model" design="Bold"/>
+						<t:template>
+							<Input value="{VehicleModel}" maxLength="20"></Input>
+						</t:template>
+					</t:Column>
+					<t:Column width="15rem" hAlign="Center" >
+						<Label text="Configuration" design="Bold"/>
+						<t:template>
+							<Select items="{Model>/F4VehicleConfigSet}"
+										forceSelection="false" selectedKey="{VehicleConfig}">
+										<items>
+											<core:Item text="{Model>ConfigDesc}" key="{Model>ConfigCode}" />
+										</items>
+									</Select>
+						</t:template>
+					</t:Column>
+					<t:Column width="11rem" hAlign="Center" >
+						<Label text="Testing Axle" design="Bold"/>
+						<t:template>
+							<Select items="{Model>/F4TestingAxleSet}"
+										forceSelection="false" selectedKey="{TestingAxle}">
+										<items>
+											<core:Item text="{Model>AxelDescription}" key="{Model>AxelNumber}" />
+										</items>
+									</Select>
+						</t:template>
+					</t:Column>
+					<t:Column width="20rem" hAlign="Center" >
+						<Label text="Application" design="Bold"/>
+						<t:template>
+							<Select items="{Model>/F4VehicleApplicationSet}"
+										forceSelection="false" selectedKey="{VehicleApplication}">
+										<items>
+											<core:Item text="{Model>AppDescription}" key="{Model>AppNumber}" />
+										</items>
+									</Select>
+						</t:template>
+					</t:Column>
+					<t:Column width="11rem" hAlign="Center" >
+						<Label text="Fitment Axle" design="Bold"/>
+						<t:template>
+							<Select items="{Model>/F4FitmentAxleSet}"
+										forceSelection="false" change="onChangeFitmentAxle" selectedKey="{FitmentAxle}">
+										<items>
+											<core:Item text="{Model>FitmentDescription}" key="{Model>FitmentNumber}" />
+										</items>
+									</Select>
+						</t:template>
+					</t:Column>
+					<t:Column width="11rem" hAlign="Center" >
+						<Label text="Dual Spacing(mm)" design="Bold"/>
+						<t:template>
+							<Input maxLength="6" enabled="false" value="{DualSpacing}" liveChange="onNumberValidChange"/>
+						</t:template>
+					</t:Column>
+					<t:Column width="11rem" hAlign="Center" >
+						<Label text="Additional Comments" design="Bold"/>
+						<t:template>
+							<Input maxLength="100" value="{Remarks}"/>
+						</t:template>
+					</t:Column>
+					<t:Column width="5rem" hAlign="Center" >
+						<Label text="" />
+						<t:template>
+							<Button id="idUsageDetailsTblDelBtn" icon="sap-icon://delete"
+							press="onRemoveUsageDetail" tooltip="Delete Item" type="Reject"/>
+						</t:template>
+					</t:Column>
+				</t:columns>
+			</t:Table>
+
+
+						</IconTabFilter>
+
+						<IconTabFilter iconColor="Positive" text="TYRE AVAILABILITY DETAILS"
+							key="tyreAvailDetails" >
+
+
+							<f:SimpleForm id="AwailabiltyFormEdit" class="headerDetails"
+								minWidth="1024" maxContainerCols="1" editable="true"
+								layout="ResponsiveGridLayout" title="" labelSpanL="6"
+								labelSpanM="6" emptySpanL="0" emptySpanM="0" columnsL="2"
+								columnsM="2" visible="true">
+								<f:content>
+									<core:Title id="Hd_2" text="TYRE AVAILABILITY DETAILS" />
+
+										
+									<Label id="tyreProdDateLbl" text="Expected Test Tyre Production Date"
+										design="Bold"  required="true"/>
+									<DatePicker id="tyreProdDateInp"
+										enabled="true" value="" change="expectProdDate" 
+										displayFormat="dd-MM-yyyy" valueFormat="yyyy-MM-dd"/>
+
+									<Label id="projctStatusLbl" text="Project Status" design="Bold"/>
+									<Select id="selectProjctStatus" items="{Model>/F4ProjectStatusSet}"
+										forceSelection="false">
+										<items>
+											<core:Item text="{Model>ProjStatusDesc}" key="{Model>ProjStatus}" />
+										</items>
+									</Select>
+									<DatePicker id="projctstatusInp"
+										enabled="true" value="" displayFormat="dd-MM-yyyy" 
+										valueFormat="yyyy-MM-dd" change="expectProjDate" />
+
+									<Label id="expectedPlantDateLbl" text="Expected Availability at Plant Date"
+										design="Bold"  required="true"/>
+
+									<DatePicker id="expectedPlantDateInp"
+										enabled="true" value="" change="expectPlantDate"
+										displayFormat="dd-MM-yyyy" valueFormat="yyyy-MM-dd"/>
+
+									<core:Title id="HD_3" text="" />
+
+									<Label id="dispatchDateLbl" text="Expected Dispatch Date"
+										design="Bold"  required="true"/>
+									<DatePicker id="dispatchDateInp"
+										enabled="false" value="" change="expectDispatchDate"
+										displayFormat="dd-MM-yyyy" valueFormat="yyyy-MM-dd"/>
+
+									<Label id="availabilityDateLbl" text="Expected Availability Date"
+										design="Bold" />
+									<DatePicker id="availabilityDateInp"
+										enabled="false" value="" displayFormat="dd-MM-yyyy" valueFormat="yyyy-MM-dd"/>
+
+
+									<Label id="commencementDateLbl" text="Expected Test Commencement Date"
+										design="Bold" />
+									<DatePicker id="commencementDateInp"
+										enabled="false" value="" displayFormat="dd-MM-yyyy" valueFormat="yyyy-MM-dd"/>
+
+
+								</f:content>
+							</f:SimpleForm>
+
+							<Panel id="longTestPanel2" visible="true">
+								<TextArea rows="2" width="100%" maxLength="255"
+									enabled="true" id="longTxt2" value="" placeholder="Special Comments" />
+							</Panel>
+
+						</IconTabFilter>
+
+						<IconTabFilter iconColor="Positive" text="CALLBACK REQUIREMENT"
+							key="callBackReq" >
+							
+							<t:Table
+							    id="CALLBACKDetail"
+				rows=""
+				title=""
+				selectionMode="None"
+				visibleRowCountMode="Fixed"
+				visibleRowCount="0">
+								<t:toolbar>
+									<Toolbar id="UICallBackTableToolbar">
+										<Title id="UICallbackTableTitle" level="H2" text="CALLBACK REQUIREMENT"
+											visible="true" />
+										<ToolbarSpacer />
+										<Button id="UICreateTableAddItemButtonCallback" icon="sap-icon://add"
+											press="addNewCallbackDetail" tooltip="Add Item" type="Accept"/>
+									</Toolbar>
+								</t:toolbar>
+				<t:columns>
+					<t:Column width="11rem" hAlign="Center">
+						<Label text="Identified Location" design="Bold"/>
+						<t:template>
+					
+									<Select items="{Model>/F4LocationSet?$filter=Indicator eq 'E'}"
+											forceSelection="false" width="100%" selectedKey="{Location}">														
+										<items>
+											<core:Item text="{Model>Name1}" key="{Model>Werks}" />
+										</items>
+									</Select>
+						</t:template>
+					</t:Column>
+					<t:Column width="17rem" hAlign="Center">
+						<Label text="Material" design="Bold"/>
+						<t:template>
+							<Select items="{materialJson>/}" id="usageMaterial"
+										forceSelection="false" width="100%" selectedKey="{Material}" change="onCallbackMaterialChange">
+										<items>
+											<core:Item text="({materialJson>Group}:{materialJson>GroupDesc}:{materialJson>MaterialDesc})" key="{materialJson>Group}" />
+										</items>
+									</Select>
+						</t:template>
+					</t:Column>
+					<t:Column width="8rem" hAlign="Center">
+						<Label text="No. of Tyres" design="Bold"/>
+						<t:template>
+							
+							<Input maxLength="3"  value="{NoOfTyres}" liveChange="onUsageTyreChange"  />
+						</t:template>
+					</t:Column>
+					<t:Column width="8rem" hAlign="Center">
+						<Label text="% Wear" design="Bold"/>
+						<t:template>
+							<Input  value="{Wear}" liveChange="onPerChange" maxLength="5"></Input>
+							
+						</t:template>
+					</t:Column>
+					<t:Column width="11rem" hAlign="Center">
+						<Label text="Analysis Destination" design="Bold"/>
+						<t:template>
+							<Select items="{Model>/F4LocationSet?$filter=Indicator eq 'A'}" showSecondaryValues="true"
+									forceSelection="false" selectedKey="{Werks}">
+										<items>
+											<core:Item text="{Model>Name1}" key="{Model>Werks}" />
+										</items>
+									</Select>
+						</t:template>
+					</t:Column>
+					<t:Column width="11rem" hAlign="Center">
+						<Label text="Stage" design="Bold"/>
+						<t:template>
+							<!-- <Select items="{Model>/F4StageSet}"
+										forceSelection="false" selectedKey="{Stage}">
+										<items>
+											<core:Item text="{Model>Stage}" key="{Model>Stage}" />
+										</items>
+									</Select> -->
+									<Select items="{stageJModel>/}"
+										forceSelection="false" selectedKey="{Stage}">
+										<items>
+											<core:Item text="{stageJModel>StageDesc}" key="{stageJModel>Stage}" />
+										</items>
+									</Select>
+						</t:template>
+					</t:Column>
+					<t:Column width="11rem" hAlign="Center">
+						<Label text="Analysis Reason" design="Bold"/>
+						<t:template>
+							<Input value="{AnalysisReason}" maxLength="150" ></Input>
+						</t:template>
+					</t:Column>
+					<t:Column width="5rem">
+						<Label text="" design="Bold"/>
+						<t:template>
+							<Button id="idCallBackTblDelBtn" icon="sap-icon://delete"
+							press="onRemoveCallBackDetail" tooltip="Delete Item" type="Reject"/>
+						</t:template>
+					</t:Column>
+				</t:columns>
+			</t:Table>
+
+						</IconTabFilter>
+
+
+						<IconTabFilter iconColor="Positive" text="DOCUMENTS"
+							key="docs">
+
+		<UploadCollection
+        				   id="UploadCollection"            			   
+         				   width = "700px"
+         				   sameFilenameAllowed="false" 
+                           iconOnly="true" 
+                           multiple="false" 
+                           buttonOnly="true" 
+                           icon="sap-icon://add-photo" 
+                           uploadComplete="onUploadComplete"
+                           fileDeleted="onFileDeleted"
+                           beforeUploadStarts="onBeforeUploadStarts"
+                           uploadUrl="/sap/opu/odata/sap/ZAPS_UTILITY_SRV/ImageUploadSet"
+                           change="onAttachUpload"                           
+        				   uploadTerminated="onUploadTerminated"
+        				   typeMissmatch="onTypeMissmatch"
+        				   maximumFilenameLength="100"
+        				   maximumFileSize="5"
+        				   fileSizeExceed="onFileSizeExceed"
+                           items="{
+						          path: 'oUploadModel>/items',
+						          templateShareable: false
+						        }"
+						
+						        uploadEnabled="true"
+						        uploadButtonInvisible="false"
+						        
+				    >
+				        <items>
+	<UploadCollectionItem
+				            documentId="{oUploadModel>DocNo}"
+				            fileName="{oUploadModel>FileName}"
+				            mimeType="{oUploadModel>MimeType}"
+				            url="{oUploadModel>Url}"
+				         
+				            enableEdit="true"
+				            enableDelete="true"
+				
+				            visibleDelete="true"
+				            visibleEdit="false"
+				            press="onUploadPress"
+				          >
+				          </UploadCollectionItem>
+				        </items>
+                           
+                           </UploadCollection>    
+
+						</IconTabFilter>
+
+					</items>
+				</IconTabBar>
+
+			</Panel>
+
+
+
+
+		</content>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer />
+				<Button text="Reset" enabled="true" type="Reject" visible="true"
+					press="onReset" id="clearBtn" icon="sap-icon://reset"></Button>
+				<Button text="Review and Submit" enabled="true" type="Accept" visible="true"
+					press="onReviewAndSaveRequest" id="saveBtn" icon="sap-icon://save"></Button>
+				<Button text="Add to Cart" enabled="true" type="Emphasized"
+					visible="true" press="onAddReqToCart" id="CancelBtn" icon="sap-icon://cart-4"></Button>
+
+			</Toolbar>
+		</footer>
+	</Page>
+</core:View>

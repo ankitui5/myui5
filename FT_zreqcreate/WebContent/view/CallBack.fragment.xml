@@ -1,0 +1,52 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Dialog showHeader="true" title="Call Back" class="sapUiSizeCompact" contentWidth="40%" >
+	<content>
+	<f:SimpleForm  minWidth="1024"
+		maxContainerCols="2" editable="true" layout="ResponsiveGridLayout"
+		labelSpanL="6" labelSpanM="4" emptySpanL="3" emptySpanM="3" columnsL="3"
+		columnsM="1" class="editableForm">
+		<f:content>
+		
+			<Label text="Identified Location" required="true" />
+			<Select items="{Model>/F4TestTypeSet}" forceSelection="false">
+										<items>
+											<core:Item text="{Model>TestTypeDesc}" key="{Model>TestType}" />
+										</items>
+									</Select>
+			
+			<Label text="Material" required="true"/>
+			<Select items="{Model>/}" forceSelection="false">
+										<items>
+											<core:Item text="{Model>PlyRatingDesc}" key="{Model>PlyRating}" />
+										</items>
+									</Select>
+			<Label text="No. of Tyres" />
+			<Input maxLength="20" />
+			<Label text="Percentage Wear" />
+			<Input></Input>
+			<Label text="Analysis Destination" required="true"/>
+			<Select items="{Model>/F4PlantSet}" showSecondaryValues="true" forceSelection="false">
+										<items>
+											<core:Item text="{Model>Name}" key="{Model>Werks}" />
+										</items>
+									</Select>
+			<Label text="Stage" />
+			<Select items="{Model>/F4StageSet}" forceSelection="false">
+										<items>
+											<core:Item text="{Model>Stage}" key="{Model>Stage}" />
+										</items>
+									</Select>
+		
+			<Label text="Analysis Reason" />
+			<Input></Input>
+			
+		</f:content>
+	</f:SimpleForm>
+	</content>
+		<buttons>
+		<Button text="Save"   visible="true" press="addNewItemVehicle" />
+		<Button text="Cancel"   visible="true" press="onCallTabelEntriesClose" />		
+		</buttons>	
+</Dialog>
+</core:FragmentDefinition>

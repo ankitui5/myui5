@@ -1,0 +1,62 @@
+<core:FragmentDefinition
+  xmlns="sap.m"
+  xmlns:core="sap.ui.core"
+>
+  <Dialog title="Attachments">
+    <content>
+      <UploadCollection
+        				   id="UploadCollection1"
+         				   width = "700px"
+         				   sameFilenameAllowed="false" 
+                           iconOnly="true" 
+                           multiple="false" 
+                           buttonOnly="true" 
+                           icon="sap-icon://add-photo" 
+                           uploadComplete="onUploadComplete2"
+                           fileDeleted="onFileDeleted2"
+                           beforeUploadStarts="onBeforeUploadStarts2"
+                           uploadUrl="/sap/opu/odata/sap/ZAPS_UTILITY_SRV/ImageUploadSet"
+                           change="onAttachUpload2"
+        				   uploadTerminated="onUploadTerminated2"
+        				   typeMissmatch="onTypeMissmatch2"
+        				   maximumFilenameLength="100"
+        				   maximumFileSize="10"
+        				   fileSizeExceed="onFileSizeExceed2"
+                           items="{
+						          path: 'oUploadModel2>/items',
+						          templateShareable: false
+						        }"
+						        uploadEnabled="true"
+						        uploadButtonInvisible="false"	
+						        >
+				        <items>
+				          <UploadCollectionItem
+				            id="idupload"
+				             documentId="{oUploadModel2>DocNo}"
+				            fileName="{oUploadModel2>FileName}"
+				            mimeType="{oUploadModel2>MimeType}"
+				            url="{oUploadModel2>Url}"
+				            pos="{oUploadModel2>Pos}"
+				         
+				            enableEdit="true"
+				            enableDelete="true"
+				
+				            visibleDelete="true"
+				            visibleEdit="false"
+				            press="onUploadPress2"
+				          >
+				          </UploadCollectionItem>
+				        </items>
+                           
+       </UploadCollection>
+
+    </content>
+    <endButton>
+      <Button
+        text="OK"
+        press="onOKUploadDialog"
+      ></Button>
+    </endButton>
+
+  </Dialog>
+</core:FragmentDefinition>

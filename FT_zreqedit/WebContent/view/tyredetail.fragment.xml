@@ -1,0 +1,115 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Dialog showHeader="true" title="Tyre Detail" class="sapUiSizeCompact" contentWidth="40%" >
+	<content>
+	<f:SimpleForm  minWidth="1024"
+		maxContainerCols="2" editable="true" layout="ResponsiveGridLayout"
+		labelSpanL="6" labelSpanM="4" emptySpanL="3" emptySpanM="3" columnsL="3"
+		columnsM="1" class="editableForm">
+		<f:content>
+		
+			<Label text="Test Type" required="true" /> 
+			<Select items="{Model>/F4CompCodeSet}"
+				forceSelection="false">
+				<items>
+					<core:Item text="{Model>ComName}" key="{Model>CompCode}" />
+				</items>
+			</Select>
+			<Label text="Tyre Size" required="true"/>
+			<Input enabled="false"></Input>	
+			<Label text="Group Desc" visible="true" required="true" />
+			<Input></Input>
+			<Label text="Material" required="true" />
+			<Input  valueHelpRequest="Materialf4"
+				valueHelpOnly="true" showValueHelp="false"/>
+			<Label text="Ply Rating" required="true"/>
+			<Select items="{Model>/F4PlyRatingSet}"
+				forceSelection="false">
+				<items>
+					<core:Item text="{Model>PlyRatingDesc}" key="{Model>PlyRating}" />
+				</items>
+			</Select>
+			<Label text="Load Index" required="true"/>
+			<Select items="{Model>/F4LoadSegmentSet}"
+				forceSelection="false">
+				<items>
+					<core:Item text="{Model>SegmentDesc}" key="{Model>LaodSegment}" />
+				</items>
+			</Select>
+			<Label text="Speed rating" />
+			<Select items="{Model>/F4SpeedRatingSet}"
+				forceSelection="false">
+				<items>
+					<core:Item text="{Model>SpeedRateDesc}" key="{Model>SpeedRate}" />
+				</items>
+			</Select>
+			<Label text="No. of Tyres" />
+			<Input maxLength="20" />
+			<Label text="Discount" />
+			<Input></Input>
+			<Label text="Plant" required="true"/>
+			<Select items="{Model>/F4PlantSet}" showSecondaryValues="true"
+				forceSelection="false">
+				<items>
+					<core:Item text="{Model>Name}" key="{Model>Werks}" />
+				</items>
+			</Select>
+			<CheckBox text="Inflated NSD" selected="false" />
+			<Label text="NSD(mm)" />
+			<Input type="Number"></Input>
+			<Label text="groove No." />
+			<Select  showSecondaryValues="true" change="grooveChange"
+				forceSelection="false">
+				<items>
+					<core:Item text="1" key="1" />
+					<core:Item text="2" key="2" />
+					<core:Item text="3" key="3" />
+					<core:Item text="4" key="4" />
+					<core:Item text="5" key="5" />
+					<core:Item text="6" key="6" />
+					
+				</items>
+			</Select>
+			<Label text="G1(mm)" />
+			<Input type="Number" maxLength="2"></Input>
+			<Label text="G2(mm)" />
+			<Input type="Number" enabled="false" maxLength="2"></Input>
+			<Label text="G3(mm)" />
+			<Input type="Number" enabled="false" maxLength="2"></Input>
+			<Label text="G4(mm)" />
+			<Input type="Number" enabled="false" maxLength="2"></Input>
+			<Label text="G5(mm)" />
+			<Input type="Number" enabled="false" maxLength="2"></Input>
+			<Label text="G6(mm)" />
+			<Input type="Number" enabled="false" maxLength="2"></Input>
+			<Label text="Overall Diameter(mm)" />
+			<Input></Input>
+			<Label text="section width(mm)" />
+			<Input></Input>
+			<Label text="Tread Arc width(mm)" />
+			<Input></Input>
+			<Label text="Weight(Kgs)" />
+			<Input></Input>
+			<Label text="Tread Width(mm)" />
+			<Input></Input>
+			<Label text="Additional Comments" />
+			<Input></Input>
+			<Label text="Stencil From" visible="true"/>
+			<Input/>
+			<Label text="Stencil To" visible="true"/>
+			<Input/>
+			<Label text="PT Qty" visible="false"/>
+			<Input visible="false"/>
+			<Label text="FT Qty" visible="false"/>
+			<Input visible="false"/>
+			
+			
+		</f:content>
+	</f:SimpleForm>
+	</content>
+		<buttons>
+		<Button text="Save"   visible="true" press="onTabelEntrieOk" />
+		<Button text="Cancel"   visible="true" press="onTabelEntriesClose" />		
+		</buttons>	
+</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,129 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Dialog showHeader="false" id="iDKing" class="sapUiSizeCompact" contentWidth="70%" >
+	<subHeader>
+			<Bar>
+				<contentMiddle>
+					<Text text="Details" />
+				</contentMiddle>
+				
+			</Bar>
+		</subHeader> 
+	<content>
+	<HBox justifyContent="SpaceBetween">
+	<ObjectStatus id="IdObj2"
+		state="Success"		 />
+		<ObjectStatus id="IdObj4"
+				
+				state="Success" />
+				<ObjectStatus id="IdObj3"
+				
+				state="Success" />
+	</HBox>
+	<f:SimpleForm  minWidth="1024"
+		maxContainerCols="2" editable="true" layout="ResponsiveGridLayout"
+		labelSpanL="4" labelSpanM="4" emptySpanL="1" emptySpanM="1" columnsL="2"
+		columnsM="2" class="editableForm">
+		<f:content>
+			<core:Title text="Previous Reading" />
+			<Label text="Inflation Pressure (PSI)"  />
+			<Select id="idEarSped" enabled="false" forceSelection="false" selectedKey="{Recodings>/IpCondition}">
+			<core:Item text="Hot" key="H"  ></core:Item>
+				<core:Item text="Cold" key="C"  ></core:Item>
+			</Select>
+			<Label text="Hardness (Shore A)"  />
+			<Input enabled="false" value="{}" />
+			<Label text="Orginal Nsd (mm)" design="Bold"  />
+			<Input enabled="false" value="{}" />
+			<Label text="G1 (mm)" required="true" />
+			<Input enabled="false" value="{}" />
+			<Label text="G2 (mm)" required="true" />
+			<Input enabled="false" value="{}" />
+			<Label text="G3 (mm)" required="true" />
+			<Input enabled="false" value="{}" />
+				<Label text="G4 (mm)"  />
+			<Input enabled="false" value="{}" />
+			<Label text="G5 (mm)"  />
+			<Input enabled="false" value="{}"  />
+			<Label text="G6 (mm)"  />
+			<Input enabled="false" value="{}" />
+			<Label text="MinNsd (mm) "  />
+			<Input enabled="false" value="{}"/>
+			<Label text="KM Suspended"  />
+			<Input enabled="false" value="{}"/>
+			<Label text="KM Covered"  />
+			<Input enabled="false" value="{}"/>
+			<Label text="Project Milage"  />
+			<Input enabled="false" value="{}"/>
+			<Label text="Tread Wear"  />
+			<Input enabled="false" value="{}"/>
+			<Label text="Type of Wear"  />
+			<Input enabled="false" value="{}"/>
+			<Label text="Gravity "  />
+			<Input enabled="false" value="{}"/>
+			<Label text="PWA"  />
+			<Input enabled="false" value="{}"/>
+			<Label text="Status"  />
+			<Input enabled="false" value="{}"/>
+			<Label text="Remarks"  />
+			<Input enabled="false" value="{}"/>
+			
+			
+			<core:Title text="Current Reading" />
+			<Label text="Inflation Pressure (PSI)"  />
+			<Select id="idEarSpedCR" enabled="false" forceSelection="false" selectedKey="{Recodings>/IpCondition}">
+			<core:Item text="Hot" key="H"  ></core:Item>
+				<core:Item text="Cold" key="C"  ></core:Item>
+			</Select>
+			<Label text="Hardness (Shore A)"  />
+			<Input enabled="false" value="{}" />
+			<Label text="Orginal Nsd (mm)" design="Bold"  />
+			<Input enabled="false" value="{}" />
+			<Label text="G1 (mm)" required="true" />
+			<Input enabled="false" value="{}" />
+			<Label text="G2 (mm)" required="true" />
+			<Input enabled="false" value="{}" />
+			<Label text="G3 (mm)" required="true" />
+			<Input enabled="false" value="{}" />
+			<Label text="G4 (mm)"  />
+			<Input enabled="false" value="{}" />
+			<Label text="G5 (mm)"  />
+			<Input enabled="false" value="{}"  />
+			<Label text="G6 (mm)"  />
+			<Input enabled="false" value="{}" />
+			
+			<Label text="MinNsd (mm) "  />
+			<Input enabled="false" value="{}"/>
+			<Label text="KM Suspended"  />
+			<Input id="idKmSus" enabled="false" value="{}" liveChange="onKMSuspend"/>
+			
+			<Label text="KM Covered"  />
+			<Input id="idKmCov" enabled="false" value="{}"/>
+			
+			<Label text="Project Milage"  />
+			<Input enabled="false" value="{}"/>
+			<Label text="Tread Wear"  />
+			<Input enabled="false" value="{}"/>
+			<Label text="Type of Wear"  />
+			<Input enabled="false" value="{}"/>
+			<Label text="Gravity "  />
+			<Input enabled="false" value="{}"/>
+			<Label text="PWA"  />
+			<Input enabled="false" value="{}"/>
+			<Label text="Status"  />
+			<Input enabled="false" value="{}"/>
+			<Label text="Remarks"  />
+			<Input enabled="false" value="{}"/>
+				
+				
+				
+		</f:content>
+	</f:SimpleForm>
+	</content>
+		<buttons>
+<!-- 		<Button text="Close"  visible="true" press="onTabelFilterClose" />	 -->
+		<Button text="Save"   visible="true" press="onTabelEntrieOk" />
+		<Button text="Cancel"   visible="true" press="onTabelEntriesClose" />		
+		</buttons>	
+</Dialog>
+</core:FragmentDefinition>

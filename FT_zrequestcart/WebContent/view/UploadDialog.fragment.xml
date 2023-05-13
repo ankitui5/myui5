@@ -1,0 +1,57 @@
+<core:FragmentDefinition
+  xmlns="sap.m"
+  xmlns:core="sap.ui.core"
+>
+  <Dialog title="Attachments">
+    <content>
+      <UploadCollection
+        id="UploadCollection"
+        maximumFilenameLength="100"
+        maximumFileSize="5"
+        multiple="false"
+        uploadUrl="/sap/opu/odata/sap/ZAPS_UTILITY_SRV/ImageUploadSet"
+        change="onChange"
+        fileDeleted="onFileDeleted"
+        filenameLengthExceed="onFilenameLengthExceed"
+        fileRenamed="onFileRenamed"
+        fileSizeExceed="onFileSizeExceed"
+        selectionChange="onSelectionChange"
+        typeMissmatch="onTypeMissmatch"
+        uploadComplete="onUploadComplete"
+        beforeUploadStarts="onBeforeUploadStarts"
+        fileType="jpg,png,bmp,jpeg,pdf"
+        uploadTerminated="onUploadTerminated"
+        items="{
+          path: 'oUploadModel>/items',
+          templateShareable: false
+        }"
+
+        uploadEnabled="true"
+        uploadButtonInvisible="false"
+      >
+        <items>
+          <UploadCollectionItem
+            documentId="{oUploadModel>documentId}"
+            fileName="{oUploadModel>fileName}"
+            mimeType="{oUploadModel>mimeType}"
+            url="{oUploadModel>url}"
+            enableEdit="true"
+            enableDelete="true"
+
+            visibleDelete="true"
+            visibleEdit="false"
+            press="onUploadPress"
+          >
+          </UploadCollectionItem>
+        </items>
+      </UploadCollection>
+    </content>
+    <endButton>
+      <Button
+        text="OK"
+        press="onOKUploadDialog"
+      ></Button>
+    </endButton>
+
+  </Dialog>
+</core:FragmentDefinition>

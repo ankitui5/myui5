@@ -1,0 +1,417 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	 xmlns="sap.m" xmlns:f="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified" controllerName="zRequestCart.view.View1"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<html:style>
+
+		.sapMListTblHeader .sapMCb{
+		display:none !important
+
+		}
+		.editableForm .sapUiFormTitle{
+		color:black !important;
+
+		}
+		.titlecls .sapMTitle > span {
+		color: #ffffff !important;
+		}
+		.jhClass{
+		background-color:rgba(255, 255, 255, 0.8) !important;
+		}
+
+	</html:style>
+	<Page title="TEST REQUEST Edit" class="mainPage" id="displayRace">
+
+		<content>
+			<Panel>
+
+				<IconTabBar id="idheaderinfo" expanded="true" select="selectedTab"
+					class="sapUiResponsiveContentPadding iconTabBar">
+					<items>
+
+						<IconTabFilter iconColor="Positive" design="Bold"
+							text="TEST REQUIREMENTS" key="zTestRequire">
+
+							<f:SimpleForm id="TRHeaderFormEdit" minWidth="1024" class="headerDetails"
+								maxContainerCols="1" editable="true" layout="ResponsiveGridLayout"
+								title="" labelSpanL="5" labelSpanM="5" emptySpanL="0"
+								emptySpanM="0" columnsL="2" columnsM="2" visible="true">
+								<f:content>
+									<core:Title id="Hd_1" text="HEADER DETAILS" />
+
+
+									<Label id="marketLbl" text="Market" design="Bold"
+										required="true" />
+									<Select id="selectMarket" change="onChangeMarket" items="{Model>/F4MarketSet}"
+										forceSelection="false">
+										<items>
+											<core:Item text="{Model>MarketDesc}" key="{Model>Market}" />
+										</items>
+									</Select>
+
+									<Label id="productCatLbl" text="Product Cat" design="Bold"
+										required="true" />
+									<Select id="selectProductCat" change="onChangeProdCate" items=""
+										forceSelection="false">
+										
+									</Select>
+
+									<Label id="NominalLbl"  text="Nominal Section" design="Bold"
+										required="true" />
+									<Select id="selectNominal" items="" enabled="false"
+										forceSelection="false">
+									</Select>
+
+									<Label id="testLbl" text="Test Cat." design="Bold"
+										required="true" />
+									<Select id="selectTestcat" items="{Model>/F4TestCategorySet}"
+										forceSelection="false">
+										<items>
+											<core:Item text="{Model>CatDesc}" key="{Model>Category}" />
+										</items>
+									</Select>
+									
+									<Label id="prodTyreLbl" text="Prod Type" design="Bold"
+										required="true" />
+									<Select id="selectProdTyre" items=""
+										forceSelection="false">
+										<items>
+											<core:Item text="Regular, NPD" key="R" />
+											<core:Item text="Experimental" key="E" />
+										</items>
+									</Select>
+
+
+
+									<core:Title id="HD_2" text="" />
+									
+									<Label id="testReqLbl" text="Test Requirement" design="Bold"
+										required="true"  />
+									<Select id="selectTestreq" change="testReqChange" items="{Model>/F4TestRequirementSet}"
+										forceSelection="false">
+										<items>
+											<core:Item text="{Model>TestReqDesc}" key="{Model>TestReq}" />
+										</items>
+									</Select>
+
+									<Label id="testObjLbl" text="Test objective" design="Bold"
+										required="true" />
+									<Select id="selectTestObj" items="{Model>/F4TestObjectiveSet}"
+										forceSelection="false">
+										<items>
+											<core:Item text="{Model>TestObjDesc}" key="{Model>TestObj}" />
+										</items>
+									</Select>
+
+									<Label id="testMethodLbl" text="Test Methodology" design="Bold"
+										required="true" />
+									<Select id="selectTestMethod" items="{Model>/F4TestMethodologySet}"
+										forceSelection="false">
+										<items>
+											<core:Item text="{Model>TestMethDesc}" key="{Model>TestMeth}" />
+										</items>
+									</Select>
+
+									<Label id="testTypeLbl" text="Test Type" design="Bold"
+										required="true" />
+									<Select id="selectTesttype" items="{Model>/F4TestTypeSet}"
+										forceSelection="false">
+										<items>
+											<core:Item text="{Model>TestTypeDesc}" key="{Model>TestType}" />
+										</items>
+									</Select>
+									
+									<Label id="modiLbl" text="Modification" design="Bold"
+										required="true" />
+									
+									<TextArea rows="2" width="100%" maxLength="132"
+									enabled="true" id="longTxt" value="" placeholder="Modifications*" />
+									
+
+								</f:content>
+							</f:SimpleForm>
+
+							<Panel id="longTestPanel" visible="false">
+							</Panel>
+						</IconTabFilter>
+
+
+						<IconTabFilter iconColor="Positive" text="Tyre Details"
+							key="tyreDetail">
+
+							<Table id="tableVehicle" items="">
+								<headerToolbar>
+									<Toolbar>
+										<Title id="tableText" text="Tyre Detail" level="H2" />
+										<ToolbarSpacer></ToolbarSpacer>
+										<Button press="addNewItem" icon="sap-icon://add"></Button>
+									</Toolbar>
+								</headerToolbar>
+								<columns> 
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Label text="Test Type" />
+									</Column>
+									<Column minScreenWidth="Tablet" width="7em" demandPopin="true">
+										<Label text="Tyre Size Desc" />
+									</Column>
+									<Column minScreenWidth="Tablet" width="5em" demandPopin="true">
+										<Label text="Group" />
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Label text="Group Desc" />
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Label text="Material" />
+									</Column>
+									<Column minScreenWidth="Tablet" width="5em" demandPopin="true">
+										<Label text="" />
+									</Column>
+								</columns>
+
+							</Table>
+
+						</IconTabFilter>
+
+						<IconTabFilter iconColor="Positive" visible="true" text="USAGE DETAILS"
+							key="usageDetails">
+							
+				<f:SimpleForm class="headerDetails" columnsL="2" columnsM="2" editable="true" emptySpanL="0" emptySpanM="0" labelSpanL="3" labelSpanM="3"
+				layout="ResponsiveGridLayout" maxContainerCols="2" title="">
+				<f:content>
+					<core:Title text="Usage Details"/>
+					<Label id="Lloadingpattern" text="Load Segment"></Label>
+					<MultiComboBox autoAdjustWidth="true" id="loadsegment" items="{Model>/F4LoadSegmentSet}" showSecondaryValues="true">
+						<core:Item id="loadsegment_item" additionalText="" key="{Model>LaodSegment}" text="{Model>SegmentDesc}"
+							></core:Item>
+					</MultiComboBox>
+					<Label id="recpsiLbl" text="Recommended PSI"></Label>
+					<Input id="recPsi"/>
+					
+					<core:Title id="UD_2" text="" />
+					
+					<Label id="fitmntRimLbl" text="Fitment Rim(Rec)"></Label>
+					<Input id="fitmntRim"/>
+					<Label id="fitmntAlt" text="Fitment Rim(Alt)"></Label>
+					<Input id="FitmentAlt"/>
+					
+				</f:content>
+			</f:SimpleForm>
+	
+				 <Table id="vehiclDetail" visible="true" items="" class="Custom_Table">
+				     <headerToolbar>
+									<Toolbar>
+										<Title id="tableText1" text="Vehicle Detail" level="H2" />
+										<ToolbarSpacer></ToolbarSpacer>
+										<Button press="addNewVehicleDetail" icon="sap-icon://add"></Button>
+									</Toolbar>
+								</headerToolbar>
+							<columns>
+								<Column minScreenWidth="Tablet" demandPopin="true">
+									<Label text="Vehicle Make" design="Bold"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" visible="true">
+									<Label text="Vehicle Model" design="Bold"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" visible="true">
+									<Label text="Configuration" design="Bold"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" visible="true">
+									<Label text="testing Axle" design="Bold"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" visible="true">
+									<Label text="Application" design="Bold"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" visible="true">
+									<Label text="Fitment Axle" design="Bold"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" visible="true">
+									<Label text="Dual Spacing" design="Bold"/>
+								</Column>
+						<!-- 		<Column minScreenWidth="Tablet" demandPopin="true" visible="true">
+									<Label text="Additional Comm." design="Bold"/>
+								</Column> -->
+								<Column minScreenWidth="Tablet" width="3em" demandPopin="true" visible="true">
+									<Label text="" design="Bold"/>
+								</Column>
+							</columns>
+						
+
+						</Table>
+
+						</IconTabFilter>
+
+						<IconTabFilter iconColor="Positive" text="TYRE AVAILABILITY DETAILS"
+							key="tyreAwailDetails">
+
+
+						    <f:SimpleForm id="AwailabiltyFormEdit" class="headerDetails" minWidth="1024"
+								maxContainerCols="1" editable="true" layout="ResponsiveGridLayout"
+								title="" labelSpanL="6" labelSpanM="6" emptySpanL="0"
+								emptySpanM="0" columnsL="2" columnsM="2" visible="true">
+								<f:content>
+									<core:Title id="Hd_2" text="TYRE AVAILABILITY DETAILS" />
+
+
+									<Label id="tyreProdDateLbl" text="Expected Test Tyre Production Date" design="Bold"
+										required="true" />
+									<DatePicker displayFormat="short"   id="tyreProdDateInp" enabled="true" value=""/>
+
+									<Label id="projctStatusLbl" text="Project Status" design="Bold"
+										required="true" />
+									<Select id="selectProjctStatus" items="{Model>/F4ProjectStatusSet}"
+										forceSelection="false">
+										<items>
+											<core:Item text="{Model>ProjStatusDesc}" key="{Model>ProjStatus}" />
+										</items>
+									</Select>
+									<DatePicker displayFormat="short"   id="projctstatusInp" enabled="true" value=""/>
+
+									<Label id="expectedPlantDateLbl" text="Expected Availability at Plant Date" design="Bold"
+										required="true" />
+									
+									<DatePicker displayFormat="short"   id="expectedPlantDateInp" enabled="true" value=""/>
+									
+
+									
+
+
+
+									<core:Title id="HD_3" text="" />
+
+
+
+									<!-- <Label id="title" text="Title" design="Bold"/> <TextArea rows="2" 
+										maxLength="100" enabled="false" id="titleInp" value="{Title1}" /> <Label 
+										id="titlL2" text="Title" design="Bold"/> <TextArea rows="2" maxLength="100" 
+										visible="false" enabled="true" id="title2" value="{Title1}" /> -->
+
+									<Label id="dispatchDateLbl" text="Expected Dispatch Date" design="Bold"
+										required="true" />
+									<DatePicker displayFormat="short"   id="dispatchDateInp" enabled="true" value=""/>
+
+									<Label id="availabilityDateLbl" text="Expected Availability Date" design="Bold"
+										required="true" />
+									<DatePicker displayFormat="short"   id="availabilityDateInp" enabled="true" value=""/>
+									
+
+									<Label id="commencementDateLbl" text="Expected Test Commencement Date" design="Bold"
+										required="true" />
+									<DatePicker displayFormat="short"   id="commencementDateInp" enabled="true" value=""/>
+
+
+								</f:content>
+							</f:SimpleForm>
+
+							<Panel id="longTestPanel2" visible="true">
+								<TextArea rows="2" width="100%" maxLength="132"
+									enabled="true" id="longTxt2" value="" placeholder="Special Comments" />
+							</Panel>
+						    
+						</IconTabFilter>
+
+						<IconTabFilter iconColor="Positive" text="CALLBACK REQUIREMENT"
+							key="tyreAwailDetails">
+
+						    
+						    <Table id="CALLBACKDetail" visible="true" items="" class="Custom_Table">
+				     <headerToolbar>
+									<Toolbar>
+										<Title id="tableText2" text="CALLBACK REQUIREMENT" level="H2" />
+										<ToolbarSpacer></ToolbarSpacer>
+										<Button press="addCallBack" icon="sap-icon://add"></Button>
+									</Toolbar>
+								</headerToolbar>
+							<columns>
+								<Column minScreenWidth="Tablet" demandPopin="true">
+									<Label text="Identified Location" design="Bold"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" visible="true">
+									<Label text="Material" design="Bold"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" visible="true">
+									<Label text="No. of Tyres" design="Bold"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" visible="true">
+									<Label text="Percentage Wear" design="Bold"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" visible="true">
+									<Label text="Analysis Destination" design="Bold"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" visible="true">
+									<Label text="Stage" design="Bold"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" visible="true">
+									<Label text="Analysis Reason" design="Bold"/>
+								</Column>
+								<Column minScreenWidth="Tablet" width="3em" demandPopin="true" visible="true">
+									<Label text="" design="Bold"/>
+								</Column>
+							</columns>
+						
+
+						</Table>
+
+						</IconTabFilter>
+
+
+						<IconTabFilter iconColor="Positive" text="DOCUMENTS" key="documents">
+
+				<!-- 			<UploadCollection id="fileupload" class="createAttachment"
+								
+								maximumFilenameLength="100"
+								maximumFileSize="5"
+								multiple="false"
+								change="onChange"
+								uploadUrl="/sap/opu/odata/sap/ZHREXPENSE_SRV/Upload_DocSet"
+								filenameLengthExceed="onFilenameLengthExceed" 
+								fileDeleted="onFileDeleted"
+								filenameLengthExceed="onFilenameLengthExceed"
+						        fileRenamed="onFileRenamed"
+						        fileSizeExceed="onFileSizeExceed"
+						        selectionChange="onSelectionChange"
+						        typeMissmatch="onTypeMissmatch"
+						        uploadComplete="onUploadComplete"
+						        beforeUploadStarts="onBeforeUploadStarts"
+						        fileType="jpg,png,bmp,jpeg,pdf"
+						        uploadTerminated="onUploadTerminated"
+						        items="{/Attachments}" 
+						        uploadEnabled="true"
+						        uploadButtonInvisible="false"
+						        
+								
+								
+								
+								noDataText="{i18n>No_data}" showSeparators="All" change="onAttachmentChange"
+								uploadComplete="onUploadComplete" fileDeleted="onFileDeleted"
+								uploadUrl="/sap/opu/odata/sap/ZPR_SHOPCART_WF_SRV/AttachmentSet">
+								<UploadCollectionItem url="{url}"
+									documentId="{fileId}" fileName="{name}" mimeType="{Mimetype}"
+									thumbnailUrl="" visibleEdit="false" visibleDelete="true" />
+							</UploadCollection> -->
+
+
+						</IconTabFilter>
+
+					</items>
+				</IconTabBar>
+
+			</Panel>
+
+
+
+
+		</content>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer />
+				<Button text="Back" enabled="true" type="Reject" visible="true"
+					press="onBackNav" id="clearBtn"></Button>
+				<Button text="review" enabled="true" type="Accept" visible="true"
+					press="onCreate" id="saveBtn"></Button>
+				<Button text="Add to Cart" enabled="true" type="Emphasized" visible="true"
+					press="onCreate" id="CancelBtn"></Button>
+				
+			</Toolbar>
+		</footer>
+	</Page>
+</core:View>
