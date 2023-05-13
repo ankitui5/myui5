@@ -1,0 +1,281 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout"	controllerName="com.acute.vehicleReport.view.S1" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="Vehicle Details" class="sapUiStdPage" enableScrolling="false">
+			<!-- <customHeader>
+		<Bar>
+		<contentMiddle>
+		<Label id="lblFleet" design="Bold"></Label>
+		
+		</contentMiddle>
+		<contentRight> 
+		
+		</contentRight>
+</Bar>
+		</customHeader> -->
+		<content>
+					<VBox>
+					<Panel>
+					 <Toolbar height="2rem" class="jhClass">	
+<Title id="lblFleet" text="" level="H6" titleStyle="H6" textAlign="Center" style="font-weight:bold" width="100%"></Title>
+									
+			</Toolbar>
+			</Panel>
+			<Panel>
+		<f:SimpleForm  minWidth="1024"
+		maxContainerCols="2" editable="true" layout="ResponsiveGridLayout"
+		labelSpanL="4" labelSpanM="4" emptySpanL="1" emptySpanM="1" columnsL="2"
+		columnsM="1" class="editableForm">
+		<!-- <f:toolbar>
+				<Toolbar id="TB1">
+					<Title id="Title1" text="Selection Criteria" level="H4" titleStyle="H4"/>
+					<ToolbarSpacer />
+				</Toolbar>
+			</f:toolbar> -->
+		<f:content>
+		<core:Title text="Selection Criteria" />
+			<Label text="Registeration No" design="Bold"/>
+			<Input id="inpRegNo" valueHelpRequest="onVehicleRegNoHelp" valueHelpOnly="true"
+			 showValueHelp="true"/>
+				<Label text="Make" design="Bold"/>
+			<Input id="inpVehMake" valueHelpRequest="onVehicleMakeHelp" valueHelpOnly="true"
+			 showValueHelp="true"/>
+			<Label text="Model" design="Bold"/>
+			<Input id="inpVehModel" valueHelpRequest="onVehicleModelHelp" valueHelpOnly="true"
+			 showValueHelp="true"/>
+			 <core:Title text="" />
+			<Label text="Configuration" design="Bold"/>
+			<Input id="inpConfigCode" valueHelpRequest="onConfigCodeHelp" valueHelpOnly="true"
+				showValueHelp="true"/>
+				<Label text="Contract Type" design="Bold"/>
+			<Select id="selectContractType" forceSelection="false">
+			<core:Item text="Charge Per KM" key="CPKM"  ></core:Item>
+				<core:Item text="Service Contract" key="SC"  ></core:Item>
+			</Select>
+			<Label text="" />
+			<Button id="btnClear" text="Clear" press="onClear" />
+			<Button id="btnSearch" text="Search" type="Emphasized" press="onSearch" />
+		</f:content>
+	</f:SimpleForm>			
+			</Panel>
+		<Panel id="Panel1" visible="false">
+		 <Toolbar id="toolbarCT" visible="true">
+		        <ToolbarSpacer></ToolbarSpacer>
+		        <Text text="Contract Type : "></Text>
+		     <core:Icon
+      src="sap-icon://inventory"
+      color="#1C4C98" >
+      <core:layoutData>
+        <FlexItemData growFactor="1" />
+      </core:layoutData>
+    </core:Icon>
+    <Text text="Charge Per KM "></Text>
+		    
+    <core:Icon
+      src="sap-icon://settings"
+      color="#031E48" >
+      <core:layoutData>
+        <FlexItemData growFactor="1" />
+      </core:layoutData>
+    </core:Icon>
+     <Text text="Service Contract "></Text>
+    <ToolbarSpacer></ToolbarSpacer>
+    <Button text="Download" press="onDownload" icon="sap-icon://download" type="Emphasized"></Button>
+    </Toolbar>
+    
+		<Table id="tableVehicleF" visible="true" items="" showNoData="false">
+							<!-- <headerToolbar>
+								<Toolbar>
+									<Title id="tableText" level="H2" />
+									<ToolbarSpacer></ToolbarSpacer>
+									<Button text="Add" press="addNewItem" icon="sap-icon://add"></Button>
+								</Toolbar>
+							</headerToolbar> -->
+							<columns>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign='Center'>
+									<Label text="Make" />
+								</Column>
+								<Column minScreenWidth="Tablet"
+									demandPopin="true" hAlign='Center'>
+									<Label text="Model" />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign='Center'>
+									<Label text="Configuration" />
+								</Column>
+								<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+									<Label text="Regn No" />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign='Center'>
+									<Label text="Last Insp. Date"  />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign='Center'>
+									<Label text="Last Insp. Hub"  />
+								</Column>
+								<!-- <Column minScreenWidth="Tablet" visible="false" demandPopin="true" hAlign='Center'>
+								</Column> -->
+							</columns>
+
+						</Table>
+						
+		<!-- Start -->
+		
+				<ScrollContainer id="idScroll" height="300px" horizontal="true" vertical="true" focusable="true">
+		
+				<Table id="tableVehicleF1" visible="true" items="" >
+							
+							<columns>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign='Center'>
+									
+								</Column>
+								<Column minScreenWidth="Tablet"	demandPopin="true" hAlign='Center'>
+									
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign='Center'>
+									
+								</Column>
+								<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+									
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign='Center'>
+									
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign='Center'>
+									
+								</Column>
+								<!-- <Column minScreenWidth="Tablet" visible="false" demandPopin="true" hAlign='Center'>
+								</Column> -->
+							</columns>
+
+						</Table>
+				</ScrollContainer>
+</Panel>
+<Panel id="Panel2" visible="false">
+		 <Toolbar id="toolbarCT1" visible="true">
+		        <ToolbarSpacer></ToolbarSpacer>
+		        <Text text="Contract Type : "></Text>
+		     <core:Icon
+      src="sap-icon://inventory"
+      color="#1C4C98" >
+      <core:layoutData>
+        <FlexItemData growFactor="1" />
+      </core:layoutData>
+    </core:Icon>
+    <Text text="Charge Per KM "></Text>
+		    
+    <core:Icon
+      src="sap-icon://settings"
+      color="#031E48" >
+      <core:layoutData>
+        <FlexItemData growFactor="1" />
+      </core:layoutData>
+    </core:Icon>
+     <Text text="Service Contract "></Text>
+    <ToolbarSpacer></ToolbarSpacer>
+    <Button text="Download" press="onDownload" icon="sap-icon://download" type="Emphasized"></Button>
+    </Toolbar>
+		
+		<!-- End -->
+		<Table id="tableVehicle" items="" visible="true" showNoData="false">
+							<!-- <headerToolbar>
+								<Toolbar>
+									<Title id="tableText" level="H2" />
+									<ToolbarSpacer></ToolbarSpacer>
+									<Button text="Add" press="addNewItem" icon="sap-icon://add"></Button>
+								</Toolbar>
+							</headerToolbar> -->
+							<columns>
+							
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign='Center'>
+									<Label text="Regn No" />
+								</Column>
+							
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign='Center'>
+									<Label text="Make" />
+								</Column>
+								<Column minScreenWidth="Tablet"
+									demandPopin="true" hAlign='Center'>
+									<Label text="Model" />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign='Center'>
+									<Label text="Configuration" />
+								</Column>
+								
+								<!-- <Column minScreenWidth="Tablet" demandPopin="true">
+									<Label text="Contract Type" />
+								</Column> -->
+								
+ 								<Column minScreenWidth="Tablet" demandPopin="true" hAlign='Center'>
+									<Label text="Fitment Date"  />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign='Center'>
+									<Label text="Fitment Hub"  />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign='Center'>
+									<Label text="Last Insp. Date"  />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign='Center'>
+									<Label text="Last Insp. Hub"  />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign='Center'>
+									<Label text="Contract Type"></Label>
+								</Column>
+							</columns>
+
+						</Table>
+						
+						
+				<!-- Start -->
+		
+				<ScrollContainer id="idScroll1" height="300px" horizontal="true" vertical="true" focusable="true">
+		
+				<Table id="tableVehicle1" items="" visible="true" >
+							
+							<columns>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign='Center'>
+									
+								</Column>
+								<Column minScreenWidth="Tablet"	demandPopin="true" hAlign='Center'>
+									
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign='Center'>
+									
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign='Center'>
+									
+								</Column>
+								
+								
+ 								<Column minScreenWidth="Tablet" demandPopin="true" hAlign='Center'>
+									
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign='Center'>
+									
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign='Center'>
+									
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign='Center'>
+									
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign='Center'>
+								</Column>
+							</columns>
+
+						</Table>
+				</ScrollContainer>
+		
+		<!-- End -->
+
+	
+	</Panel>
+	</VBox>
+		</content>
+		<footer>
+		<Bar id="idFooter">
+			<contentRight>
+			<!-- 	<Button text="Save" press="onSave" type="Accept"
+					id="btnSave" visible="true" /> -->
+			</contentRight>
+		</Bar>
+	</footer>
+	</Page>
+</core:View>

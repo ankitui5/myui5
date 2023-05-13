@@ -1,0 +1,212 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout"
+  xmlns="sap.m" xmlns:f="sap.ui.layout.form" controllerName="ZVEHICLE.view.masterDetail"
+  xmlns:html="http://www.w3.org/1999/xhtml">
+  <SplitApp id="splitApp" initialDetail="vehicleDetailPage"
+    initialMaster="master" orientationChange="onOrientationChange">
+    <detailPages>
+      <Page title="Details of Vehicle" id="vehicleDetailPage" class="sapUiStdPage"
+        showNavButton="false" navButtonPress="onBackNav">
+        <headerContent>
+			<Button id="btnFullScreen" icon="sap-icon://full-screen"
+				press="toggleFullScreen" tooltip="Show in full screen mode" />
+		</headerContent>
+		
+        <content>
+          <f:SimpleForm id="SimpleFormToolbar" editable="true" layout="ResponsiveGridLayout" labelSpanXL="5" labelSpanL="5" labelSpanM="5"
+							labelSpanS="5" adjustLabelSpan="true" emptySpanXL="1" emptySpanL="1" emptySpanM="1" emptySpanS="1" columnsXL="2" columnsL="2" columnsM="2"
+							singleContainerFullSize="false" ariaLabelledBy="Title1">
+							<f:content>
+								<core:Title text=""/>
+								<Label id="LVehicleCompIDEdit" text="Vehicle Make" design="Bold" />
+			<Input id="VehicleMakeID" value="{Model>MakeShortName}" enabled="false" visible="true"/>
+			<Label id="LVehicleModelEdit" text="Vehicle Model" design="Bold" />
+			<Input id="VehicleModelID" value="{Model>Model}" enabled="false" visible="true"/>
+			<Label id="LConfigurationIDEdit" text="Configuration" design="Bold"/>
+			<Input id="ConfigurationIDID" value="{Model>ConfigCodeDesc}" enabled="false" visible="true"/>
+			<Label  text="Tyre Size" design="Bold" />
+			<Input id="TySz" value="{Model>TyreDesc}" enabled="false" visible="true"/>
+			<Label text="Fitment Date" id="idTkDatelbl" design="Bold"/>
+			<Input id="idTkDate" editable="false" enabled="false" 
+				value="{path:'Model>FitmentDate', formatter:'ZVEHICLE.util.Formatter.date1'}" />
+			<Label  text="Contract Type" design="Bold" id="lblcType"/>
+			<Input id="serviceTypeInp" value="{path:'Model>ContractType', formatter:'ZVEHICLE.util.Formatter.srvsType'}" enabled="false" visible="true"/>
+			
+			<Label  text="Fitment Hub Name" design="Bold" />
+			<Input  value="{Model>FitHubName}" enabled="false" visible="true"/>
+			<Label  text="New Contract Type" id="lblServiceEdit" visible="false" design="Bold" />
+			<Select id="IdServiceContract" forceSelection="false" visible="false"  >
+				<core:Item text="None" key="NONE"  ></core:Item>
+				</Select>
+			<Label  text="Error" design="Bold" visible="false" />
+			<Input  id="error" value="{Model>Error}" enabled="false" visible="false"/>	
+			<Input  id="msg" value="{Model>Message}" enabled="false" visible="false"/>	
+			<core:Title id="VD_2" text=""/>
+			
+			<Label text="Last Insection Date"  design="Bold"/>
+			<Input  enabled="false" 
+				value="{path:'Model>LastInspDate', formatter:'ZVEHICLE.util.Formatter.date1'}" />
+			<Label  text="Last Insp Hub Name" design="Bold" />
+			<Input  value="{Model>LastInspHub}" enabled="false" visible="true"/>
+			<Label id="LChasisNoEdit" text="Chasis No" design="Bold"/>
+			<Input id="ChasisNoID" value="{Model>ChassisNo}" enabled="false" visible="true"/>
+			<Label id="LEngineNoEdit" text="Engine No" design="Bold" />
+			<Input id="EngineNooID" value="{Model>EngineNo}" enabled="false" visible="true"/>
+			
+			
+			<Label id="LChasisNoEditPage" text="Chasis No" design="Bold" visible="false"/>
+			<Input id="ChasisNoIDPage" value="{Model>ChassisNo}" maxLength="20" enabled="true" visible="false"/>
+			<Label id="LEngineNoEditPage" text="Engine No" design="Bold" visible="false"/>
+			<Input id="EngineNooIDPage" value="{Model>EngineNo}" maxLength="20" enabled="true" visible="false"/>
+			
+			
+			
+			<Label  text="Mechanical Condition" design="Bold" />
+			<Input id="mechCondInp" value="{path:'Model>MechCond', formatter:'ZVEHICLE.util.Formatter.mechCond'}" enabled="false" visible="true"/>
+			
+	 			<Label id="lblReason" design="Bold" visible="{path:'Model>MechCond', formatter:'ZVEHICLE.util.Formatter.reasonText'}" text="Mechanical Cond. Reason" />
+	 		<Input id="inpMechResn" visible="{path:'Model>MechCond', formatter:'ZVEHICLE.util.Formatter.reasonText'}" enabled="false" valueHelpRequest="onReasonFragment"
+				valueHelpOnly="true" value="{Model>MechReasonDesc}" showValueHelp="false" />
+	 		
+	 		<Label  text="New Mechanical Condition" visible="false" id="lblMechCondEdit" design="Bold" />
+			<Select id="idmccon" visible="false" forceSelection="false" change="onEditMechCondChange">
+			<core:Item text="OK" key="Y"  ></core:Item>
+				</Select>
+							</f:content>
+						</f:SimpleForm>
+        </content>
+        <footer>
+          <Toolbar>
+		<ToolbarSpacer />
+       
+       <Button text="Back" press="onEditBackNav" type="Reject"
+					id="btnBackEdit" visible="false" />
+       <Button text="Save" press="onSaveEdit" type="Accept"
+					id="btnSaveEdit" visible="false" />
+       <Button text="Edit" type="Emphasized" press="onEdit" id="btnEdit"></Button>
+      
+          </Toolbar>
+        </footer>
+      </Page>
+			<Page id="createVehicle" title="Vehicle Registeration">
+		<content>
+					<VBox>
+					<Panel>
+					<Toolbar height="2rem" class="jhClass">
+				
+<Title id="lblFleet" text="" level="H6" titleStyle="H6" textAlign="Center" width="100%"></Title>
+									
+			</Toolbar>
+			</Panel>
+		<Panel id="createPanel1">
+		<Table id="tableVehicle" items="">
+							<headerToolbar>
+								<Toolbar>
+									<Title id="tableText" level="H2" />
+									<ToolbarSpacer></ToolbarSpacer>
+									<Button text="Add" press="addNewItem" icon="sap-icon://add"></Button>
+								</Toolbar>
+							</headerToolbar>
+							<columns>
+<!-- 								<Column minScreenWidth="Tablet" demandPopin="true">
+									<Label text="Customer" />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true">
+									<Label text="Hub" />
+								</Column> -->
+								<Column minScreenWidth="Tablet" demandPopin="true" width="20%">
+									<Label text="Regn No" />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" width="20%">
+									<Label text="Contract Type" />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" width="20%">
+								    <Label text="Make" />
+								</Column>
+								<Column minScreenWidth="Tablet"
+									demandPopin="true" width="20%">
+									<Label text=" Model" />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" width="20%">
+									<Label text="Configuration" />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" width="21%">
+								</Column>
+								
+ 								<Column minScreenWidth="Tablet" visible="false" demandPopin="true">
+									<Label text="Product Size" visible="false" />
+								</Column>
+								<Column minScreenWidth="Tablet" visible="false" demandPopin="true">
+									<Label text="Chasis No" visible="false" />
+								</Column>
+								<Column minScreenWidth="Tablet" visible="false"
+									demandPopin="true">
+									<Label text="Engine No" visible="false" />
+								</Column>
+								<Column minScreenWidth="Tablet" visible="false">
+								<Label text="Body Type" visible="false" />
+								</Column>
+								<Column minScreenWidth="Tablet" visible="false">
+								<Label text="App Type" visible="false" />
+								</Column> 
+								<Column minScreenWidth="Tablet" visible="false">
+								<Label text="Make Code" visible="false" />
+								</Column>
+								<Column minScreenWidth="Tablet" visible="false">
+								<Label text="Mech Cond" visible="false" />
+								</Column> 
+								<Column minScreenWidth="Tablet" visible="false">
+								<Label text="Mech Cond Desc" visible="false" />
+								</Column>
+							</columns>
+
+						</Table>
+	</Panel>
+	</VBox>
+		</content>
+		<footer>
+		<Bar>
+			<contentRight>
+			      <Button text="Back" press="onBackNav" type="Reject"
+					id="btnBackCreate" visible="true" />
+				<Button text="Save" press="onSave" type="Accept"
+					id="btnSaveCreate" visible="true" />
+			</contentRight>
+		</Bar>
+	</footer>
+	</Page>
+	
+    </detailPages>
+    <masterPages>
+      <Page id="master"  icon="sap-icon://action"
+        class="sapUiStdPage" showNavButton="false" navButtonText="Back"
+        navButtonPress="onBack">
+        <subHeader>
+			<Toolbar>
+				<SearchField
+					liveChange="onSearchVehicle"
+					width="100%" />
+			</Toolbar>
+		</subHeader>
+        <headerContent>
+        </headerContent>
+        <content>
+          <List id="vehicleList" class="left_panel_list" growing="true" updateFinished="onUpdateFinished"
+            growingScrollToLoad="true">
+          </List>
+        </content>
+        <footer>
+     <Toolbar>
+     <!-- <OverflowToolbarButton text="" icon="sap-icon://sort" press="onSort"/> -->
+ <!--     <Button id="btnSelect" text="Select All" type="Accept" press="onSelectAll" visible="false" ></Button>
+     <Button id="btnDeselect" text="Deselect All" type="Reject" press="onDeselect" visible="false"></Button> -->
+      <ToolbarSpacer />
+      <OverflowToolbar id="footer_otb">
+
+               <Button id="btnCreate" text="" icon="sap-icon://add" type="Accept" press="onCreateNew"></Button>
+      </OverflowToolbar>
+     </Toolbar>
+    </footer>
+      </Page>
+    </masterPages>
+  </SplitApp>
+</core:View>

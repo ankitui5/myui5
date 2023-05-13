@@ -1,0 +1,67 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Dialog showHeader="true" title="Register Vehicle" class="sapUiSizeCompact" contentWidth="20%" >
+	<content>
+	<f:SimpleForm  minWidth="1024"
+		maxContainerCols="2" editable="true" layout="ResponsiveGridLayout"
+		labelSpanL="6" labelSpanM="4" emptySpanL="3" emptySpanM="3" columnsL="3"
+		columnsM="1" class="editableForm">
+		<f:content>
+			<Label text="Vehicle Registeration No" required="true" />
+			<Input maxLength="20" id="idVehReg" liveChange="upperCase1" />
+		
+			<!-- <Label text="Contract Type" required="true"/>
+			<Select  forceSelection="false">
+			<core:Item text="None" key="NONE"  ></core:Item>
+			<core:Item text="Charge Per KM" key="CPKM"  ></core:Item>
+				<core:Item text="Service Contract" key="SC"  ></core:Item>
+			</Select>	 -->
+		
+			 <Label text="Mechanical Condition" required="true"/>
+			<Select  forceSelection="false"  MaxLength="1" change="onMechCondChange" id="idMechCod">
+			<core:Item text="Ok" key="Y"  ></core:Item>
+			<core:Item text="Not Ok" key="N"  ></core:Item>
+			</Select>	
+		
+			<Label text="Mech Cond Reason" visible="false" required="true" id="lbMechCoRe"/>
+			<Input visible="false" MaxLength="2" valueHelpRequest="onReasonFragment"
+					valueHelpOnly="true" showValueHelp="true" id="idMcr"/>
+		
+			<Label text="Vehicle Make" required="true" />
+			<Input  valueHelpRequest="onVehicleMakeHelp"
+					valueHelpOnly="true" showValueHelp="true" MaxLength="10" id="idVehMake"/>
+			
+			<Label text="Vehicle Model" required="true" />
+			<Input  valueHelpRequest="onVehicleModelHelp"
+					valueHelpOnly="true" showValueHelp="true" MaxLength="25" id="idVehModel"/>
+			
+			<Label text="Configuration" required="true"/>
+			<Input  id="idConfig" valueHelpRequest="onConfigCodeHelp"
+					valueHelpOnly="true" MaxLength="3" showValueHelp="true" />
+			
+			<Label text="Product Size" required="true"/>
+			<Input  valueHelpRequest="onProdSizeHelp"
+					valueHelpOnly="true" showValueHelp="true" MaxLength="2" id="idPdtSize"/>
+			
+			<Label text="Chassis No" />
+			<Input maxLength="20" id="idChassisno"/>
+			
+			<Label text="Engine No" />
+			<Input maxLength="20" id="idEngno"/>
+			
+			<Label text="Body Type" />
+			<Input  valueHelpRequest="onBodyTypeHelp"
+					valueHelpOnly="true" showValueHelp="true" id="idBodyType"/>
+			
+			<Label text="Application Type" />
+			<Input  valueHelpRequest="onAppTypeHelp"
+					valueHelpOnly="true" showValueHelp="true" MaxLength="3" id="idAppType"/>
+		</f:content>
+	</f:SimpleForm>
+	</content>
+		<buttons>
+		<Button text="Save"   visible="true" press="onTabelEntrieOks" />
+		<Button text="Cancel"   visible="true" press="onTabelEntriesClose" />		
+		</buttons>	
+</Dialog>
+</core:FragmentDefinition>

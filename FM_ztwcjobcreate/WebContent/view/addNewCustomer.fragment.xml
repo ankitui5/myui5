@@ -1,0 +1,49 @@
+	<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Dialog showHeader="true" title="Add New Customer" class="sapUiSizeCompact" contentWidth="30%" >
+	<content>
+	<f:SimpleForm  minWidth="1024"
+				   maxContainerCols="2" editable="true" layout="ResponsiveGridLayout"
+			       labelSpanL="6" labelSpanM="4" emptySpanL="3" emptySpanM="3" columnsL="3"
+		           columnsM="1" class="editableForm">
+		<f:content>
+					<Label text="First Name"  required="true"/>
+				    <Input id="idInpFname" liveChange="validateCharacter" MaxLength="35" enabled="true"/>
+					
+					<Label text="Last Name"  required="true"/>
+				    <Input id="idInpLname" liveChange="validateCharacter" maxLength="35" enabled="true"/>
+					
+		  			<Label text="Mobile"  required="true"/>
+				    <Input id="idInpMobile1" liveChange="NumberValid" maxLength="10" enabled="true"/>
+				    
+				    <Label text="Email" required="true "/>
+				    <Input id="idInpEmail" type="Email" change="emailValidate" MaxLength="241" enabled="true"/>
+		  			
+		  			<Label text="Address1"  required="true"/>
+			        <Input id="idInpAddress1" MaxLength="50" enabled="true"/>
+								
+					<Label text="Address2"  />
+				    <Input id="idInpAddress2"  maxLength="50" enabled="true"/>
+			        
+				    <!-- <Label text="Country"  required="true"/>
+				    <Input id="idCountry" value="India" enabled="true"  />
+					 -->
+					 <Label text="State"  required="true"/>
+			        <Input id="idState" valueHelpRequest="onStateHelp" valueHelpOnly="true" showValueHelp="true" enabled="true"/>
+			       
+			         <Label text="District"  required="true"/>
+			        <Input id="idDistrict" valueHelpRequest="onDistrictHelp"  MaxLength="40" valueHelpOnly="true" showValueHelp="true" enabled="true"/>
+			        
+			        <Label text="Location"  required="true"/>
+			        <Input id="idLocation"  maxLength="30" enabled="true"/>
+			
+					<Label text="Postal Code"  required="true"/>
+				    <Input id="idPostalCode" liveChange="NumberValid" maxLength="6" enabled="true" />
+		</f:content>
+	</f:SimpleForm>
+	</content>
+		<buttons>
+		<Button text="Save"   visible="true" press="onNewCustomerOk" />
+		<Button text="Cancel" visible="true" press="onTabelEntriesClose1" />		
+		</buttons>	
+	</Dialog>
+	</core:FragmentDefinition>

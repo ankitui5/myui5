@@ -1,0 +1,42 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+
+	<Dialog showHeader="true" icon="sap-icon://task" id="iDKing_V3" title="Service Sheet Details" 
+			class="sapUiSizeCompact boldTxt" afterClose="onNewServiceSheetClose">
+
+	<content>
+	<ScrollContainer height="300px" width="100%" horizontal="false" vertical="true" focusable="true">
+	
+		<HBox justifyContent="SpaceBetween">
+			<ObjectStatus id="IdObjS11" state="Success"/> 	 
+			<ObjectStatus id="IdObjS3"  state="Success"/>
+			<ObjectStatus id="IdObj5" state="Success"/>
+		</HBox>
+	
+		<Table id="idFitmentDetailsTable2" visible="true"
+				showNoData="true" items="" mode="MultiSelect" select="OnTableSelectService">
+			<columns>
+				<Column minScreenWidth="Tablet" hAlign='Left'
+					demandPopin="true" width="20rem">
+					<Label text="Service Name" design="Bold" />
+				</Column>
+				
+				<Column minScreenWidth="Tablet" hAlign='Left'
+					demandPopin="true" width="10rem">
+					<Label text="MRP" design="Bold" />
+				</Column>
+				<Column minScreenWidth="Tablet" hAlign='Center'
+					demandPopin="true" width="10rem">
+					<Label text="Proposed Cost" design="Bold" />
+				</Column>
+			</columns>
+	
+		</Table>
+	</ScrollContainer>
+	</content>
+	
+		<buttons>
+			<Button text="Ok"   visible="true" press="onSaveServiceSheet" />		
+		</buttons>
+			
+</Dialog>
+</core:FragmentDefinition>
