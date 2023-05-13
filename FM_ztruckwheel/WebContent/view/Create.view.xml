@@ -1,0 +1,269 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout"
+    xmlns:u="sap.ui.unified"
+		controllerName="ZTRUCKWHEEL.view.Create" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="Create Race" id="displayRace">
+			<headerContent>
+			<Button icon="sap-icon://menu" tooltip="Menu" press="menu" />
+		</headerContent>
+				<content>
+				    <Panel>
+
+					<IconTabBar id="idheaderinfo" expanded="true" select="selectedTab"
+						class="sapUiResponsiveContentPadding iconTabBar">
+						<items>
+
+							<IconTabFilter iconColor="Positive" design="Bold" text="Header details" key="HeaderInfo">
+							    
+							    <f:SimpleForm id="TRHeaderFormEdit" minWidth="1024" maxContainerCols="1" editable="true" layout="ResponsiveGridLayout" title=""
+		labelSpanL="5" labelSpanM="5" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2" visible="true">
+		<f:content>
+			<core:Title id="Hd_1" text="HEADER DETAILS"/>
+			
+			
+			<Label id="fiscal_Year" text="Fiscal Year" design="Bold"/>
+			<Input  id="fiscal_YearInp" enabled="false" maxLength="4"   value=""/>
+			
+			<Label id="race_type" text="Race Type" required="true" design="Bold"/>
+			<Select id="selectRace" forceSelection="false" required="true" selectedKey="" items="{/d/results/0/NavToRaceTypes/results}"
+				change="onRaceChange">
+			<items>
+				<core:Item text="{Description}" key="{Type}"/>
+			</items>
+		</Select>
+			
+			<Label id="plant" text="Plant" design="Bold"/>
+			<Input  id="plantInp" enabled="false" maxLength="4"   value=""/>
+			
+			<Label id="race_depart" text="Race Department" design="Bold"/>
+			<Input  id="race_departInp" enabled="false" maxLength="8"   value=""/>
+			
+			<Label id="doc_Date" text="Document Date" design="Bold"/>
+			<DatePicker displayFormat="short"  id="doc_DateInp" enabled="false"    value=""/>
+			
+			<Label id="Race_apprv" text="RACE Approval Date" required="true" design="Bold"/>
+			<DatePicker displayFormat="short"   id="Race_apprvInp" enabled="false"    value=""/>
+			
+			<Label id="Race_amt" text="Race Amount(in Lakhs)" required="true" design="Bold"/>
+			<Input  id="Race_amtInp" enabled="true" type="Number" maxLength="14" change="onRaceChange"  value=""/>
+			
+			<Label id="Race_amtSplit" text="Split Race Amount" design="Bold"/>
+			<Link  id="Race_amtInpSplit" enabled="true" press="addNewItem" text="Add Race Amount"/>
+			
+			<core:Title id="HD_2" text=""/>
+			
+			<Label id="title" text="Title" required="true" design="Bold"/>
+			<TextArea rows="2" maxLength="100" enabled="true" id="titleInp" value="" />
+			
+			<Label id="brief_Desc" text="Brief Description" design="Bold"/>
+			<TextArea rows="2" maxLength="100" enabled="true" id="brief_DescInp" value="" />
+			
+			<Label id="Scedule_Date" text="Scheduled Completion Date" required="true" design="Bold"/>
+			<DatePicker displayFormat="short"  id="Scedule_DateInp" enabled="true"  value=""/>
+			
+			<Label id="gain_expected" text="100% Gain Expected Date" required="true" design="Bold"/>
+			<DatePicker displayFormat="short"  id="gain_expectedInp" enabled="true"  value=""/>
+			
+			<Label id="longTxtLbl" text="Long Text" design="Bold"/>
+			<Link text="Add Justification" press="onJustfifation"></Link>
+			    
+			
+		</f:content>
+	</f:SimpleForm>
+	<Panel id="longTestPanel" visible="false">
+		     <TextArea rows="2" width="100%" maxLength="132"  id="longTxt" value="" />
+	</Panel>
+
+							</IconTabFilter>
+
+
+							<IconTabFilter iconColor="Positive" text="Total cost" key="CostInfo">
+								
+							    <f:SimpleForm id="TRTOTALCOSTFormEdit" minWidth="1024" maxContainerCols="1" editable="true" layout="ResponsiveGridLayout" title=""
+		labelSpanL="5" labelSpanM="5" emptySpanL="4" emptySpanM="4" columnsL="1" columnsM="1" visible="true">
+		<f:content>
+			<core:Title id="TC_1" text="TOTAL COST INVOLVED (IN LAKHS)"/>
+			
+			
+			<Label id="landed_cost" text="Landed Cost at JK" design="Bold"/>
+			<Input  id="landed_costInp" type="Number" enabled="true" value="" liveChange="liveTotalcost"/>
+			
+			<Label id="other_Expenses" text="Any Other Expenses" design="Bold"/>
+			<Input  id="other_ExpensesInp" type="Number" enabled="true" value="" liveChange="liveTotalcost"/>
+			
+			<Label id="operative_Expenses" text="Pre-Operative Expenses" design="Bold"/>
+			<Input  id="operative_ExpensesInp" type="Number" enabled="true" value="" liveChange="liveTotalcost"/>
+			
+			<Label id="Erection_Commissioning" text="Erection and Commissioning" design="Bold"/>
+			<Input  id="Erection_CommissioningInp" type="Number" enabled="true" value="" liveChange="liveTotalcost"/>
+			
+			<Label id="Contigency_Expense" text="Contigency Expense" design="Bold"/>
+			<Input  id="Contigency_ExpenseInp" type="Number" enabled="true" value="" liveChange="liveTotalcost"/>
+			
+			<Label id="Total_Cost" text="Total Cost Involved" design="Bold"/>
+			<Input  id="Total_CostInp" enabled="false" value=""/>
+			
+			
+			
+			
+		</f:content>
+	</f:SimpleForm>
+							
+							</IconTabFilter>
+							
+							<IconTabFilter iconColor="Positive" text="Gain/Saving" key="GainInfo">
+							    
+							    <Table id="idGainTable" 
+    items="{/d/results/0/NavToGain/results}">
+    <headerToolbar>
+      <Toolbar>
+        <Title text="Gain and Savings" level="H2"/>
+      </Toolbar>
+    </headerToolbar>
+    <columns>
+      <Column
+        minScreenWidth="Tablet"
+        demandPopin="true"
+        width="10em"
+        hAlign="Center">
+        <Text text="Item Number" />
+      </Column>
+      <Column
+        minScreenWidth="Tablet"
+        demandPopin="true"
+        hAlign="Center">
+        <Text text="Item Description" />
+      </Column>
+      <Column
+        minScreenWidth="Tablet"
+        demandPopin="true"
+        hAlign="Center">
+        <Text text="Item text" />
+      </Column>
+    </columns>
+    <items>
+      <ColumnListItem>
+        <cells>
+          
+          	<Input
+            value="{ItemNo}" enabled="false"/>
+            <Input
+            value="{ItemDescription}" enabled="false"/>
+              <Input
+            value="{ItemText}" maxLength="80" enabled="true"/>
+       
+        </cells>
+      </ColumnListItem>
+    </items>
+  </Table>
+							
+									
+			
+			
+								
+							</IconTabFilter>
+							
+							<IconTabFilter iconColor="Positive" text="Approval Status" key="ApprovalInfo">
+
+
+			<Table id="idApproverTable">
+    <headerToolbar>
+      <Toolbar>
+        <Title text="Approver Status" level="H2"/>
+      </Toolbar>
+    </headerToolbar>
+    <columns>
+      <Column
+        minScreenWidth="Tablet"
+        demandPopin="true"
+        hAlign="Center">
+        <Text text="Designation" />
+      </Column>
+      <Column
+        minScreenWidth="Tablet"
+        demandPopin="true"
+        hAlign="Center">
+        <Text text="Comments" />
+      </Column>
+      <Column
+        minScreenWidth="Tablet"
+        width="10em"
+        demandPopin="true"
+        hAlign="Center">
+        <Text text="Amount" />
+      </Column>
+    </columns>
+    <items>
+      <ColumnListItem>
+        <cells>
+          
+          	<Input
+            value="{Pernr}" enabled="false"/>
+            <Input
+            value="{ItemText}" enabled="false"/>
+              <Input
+            value="{RaceApprovalAmount} Rs(in Lakhs)" enabled="false"/> 
+       
+        </cells>
+      </ColumnListItem>
+    </items>
+  </Table>
+			
+			
+			
+							</IconTabFilter>
+
+							
+								<IconTabFilter iconColor="Positive" text="Attachments" key="attachment">
+
+						<UploadCollection id="fileupload" class="createAttachment"
+							items="{/Attachments}"
+							maximumFilenameLength="37"
+							filenameLengthExceed="onFilenameLengthExceed"
+							multiple="false"
+							noDataText="{i18n>No_data}"
+							showSeparators="All" 
+							change="onAttachmentChange"
+							uploadComplete="onUploadComplete"
+							fileDeleted="onFileDeleted"
+							uploadUrl="/sap/opu/odata/sap/ZPR_SHOPCART_WF_SRV/AttachmentSet">
+							<UploadCollectionItem
+									url="{url}" documentId="{fileId}"
+									fileName="{name}" mimeType="{Mimetype}"
+									thumbnailUrl=""
+									visibleEdit="false" visibleDelete="true" />
+						</UploadCollection>
+			
+			
+							</IconTabFilter>
+							
+							</items>
+							</IconTabBar>
+							
+					</Panel>
+					
+				     <Table id="tableAmount" visible="false" items="" class="Custom_Table">
+							<columns>
+								<Column minScreenWidth="Tablet" demandPopin="true">
+									<Label text="Amount Type" design="Bold"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" visible="true">
+									<Label text="Amount" design="Bold"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" visible="true">
+									<Label text="Action" design="Bold"/>
+								</Column>
+							</columns>
+						
+
+						</Table>
+				</content>
+				<footer>
+					<Toolbar>
+						<ToolbarSpacer />
+						<Button text="Approve" enabled="true" type="Accept" visible="false" press="onAccept" id="apprvBtn"></Button>
+						<Button text="Reject" enabled="true" type="Reject" visible="false" press="onReject" id="rejectBtn"></Button>
+						<Button text="save" enabled="true" type="Accept" visible="true" press="onSave" id="saveBtn"></Button>
+						</Toolbar>
+				</footer>
+	</Page>
+</core:View>

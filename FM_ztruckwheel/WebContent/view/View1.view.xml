@@ -1,0 +1,345 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout"
+	xmlns:u="sap.ui.unified" controllerName="ZTRUCKWHEEL.view.View1"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<html:style>
+
+		.sapMListTblHeader .sapMCb{
+		display:none !important
+
+		}
+		.editableForm .sapUiFormTitle{
+		color:black !important;
+
+		}
+		.titlecls .sapMTitle > span {
+		color: #ffffff !important;
+		}
+		.jhClass{
+		background-color:rgba(255, 255, 255, 0.8) !important;
+		}
+
+		.sapUiSizeCompact .sapMIBar-CTX.sapMPageHeader .sapMLabel,
+		.sapUiSizeCondensed.sapUiTable .sapMIBar-CTX.sapMPageHeader
+		.sapMLabel, .sapUiSizeCondensed .sapUiTable
+		.sapMIBar-CTX.sapMPageHeader .sapMLabel, .sapUiSizeCompact
+		.sapMDialog-CTX .sapMIBar-CTX .sapMLabel,
+		.sapUiSizeCondensed.sapUiTable .sapMDialog-CTX .sapMIBar-CTX
+		.sapMLabel, .sapUiSizeCondensed .sapUiTable .sapMDialog-CTX
+		.sapMIBar-CTX .sapMLabel .bold {
+		font-size: 1.200rem;
+		}
+
+		.sapUiSizeCompact .sapUiFormContainerTitle > .sapUiFormTitle{
+		height: 2rem;
+		line-height: 2rem;
+		color: black;
+		font-weight: bold;
+		}
+
+		.sapUiRespGridMedia-Std-Phone.sapUiFormResGridCont > .sapUiFormElementLbl:not(.sapUiRespGridSpanS12) > .sapMLabel,
+		.sapUiRespGridMedia-Std-Tablet.sapUiFormResGridCont >
+		.sapUiFormElementLbl:not(.sapUiRespGridSpanM12) > .sapMLabel,
+		.sapUiRespGridMedia-Std-Desktop.sapUiFormResGridCont >
+		.sapUiFormElementLbl:not(.sapUiRespGridSpanL12) > .sapMLabel,
+		.sapUiRespGridMedia-Std-LargeDesktop.sapUiFormResGridCont >
+		.sapUiFormElementLbl:not(.sapUiRespGridSpanXL12) > .sapMLabel
+		.labelLeft{
+		text-align: left !important;
+		float: none;
+		position: relative;
+		}
+
+		.sapMTitle > span{
+		font-weight: bold;
+		}
+		
+.sapMObjLIntro {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #7f7f87;
+    font-size: 0.875rem;
+    padding-bottom: .75rem;
+    font-weight: bold;
+}
+
+	</html:style>
+	<SplitApp id="SplitAppDemo" initialDetail="detail"
+		initialMaster="master" orientationChange="onOrientationChange">
+		<detailPages>
+
+			<Page title="Approval Request" class="sapUiSizeCompact">
+				<customHeader>
+					<Bar>
+						<contentMiddle>
+							<Label text="Approval Request" design="Bold" class="bold"></Label>
+						</contentMiddle>
+						<contentRight>
+
+						</contentRight>
+					</Bar>
+				</customHeader>
+				<content>
+
+					<VBox>
+						<Toolbar height="2rem" class="jhClass">
+
+							<Title id="HeaderIdTit" class="titlecls" text=""
+								level="H6" titleStyle="H6" textAlign="Center" width="100%"></Title>
+
+						</Toolbar>
+						<f:SimpleForm id="TRHeaderFormEdit" minWidth="1024"
+							maxContainerCols="1" editable="true" layout="ResponsiveGridLayout"
+							title="" labelSpanL="5" labelSpanM="5" emptySpanL="0" emptySpanM="0"
+							columnsL="2" columnsM="2" visible="true" class="labelLeft">
+							<f:content>
+								<core:Title id="VD_1" text="Vehicle Details" />
+
+								<!-- <Label required="true" id="LVehicleNoEdit" text="Vehicle Reg. 
+									Number" design="Bold"/> <Input id="FVehicleNoEdit" valueHelpRequest="onVecRegNo" 
+									valueHelpOnly="false" showValueHelp="true" > </Input> -->
+								<Label id="LVehicleCompName" text="Company Name" design="Bold" />
+								<Text id="CompNameID" text="{Fitments>/TruckName}"
+									visible="true" />
+								<Label id="LVehicleCompIDEdit" text="Vehicle Make" design="Bold" />
+								<Text id="VehicleMakeID" text="{Fitments>/MakeName}"
+									visible="true" />
+								<Label id="LVehicleModelEdit" text="Vehicle Model" design="Bold" />
+								<Text id="VehicleModelID" text="{Fitments>/Model}" visible="true" />
+								<Label id="LConfigurationIDEdit" text="Configuration"
+									design="Bold" />
+								<Text id="ConfigurationIDID" text="{Fitments>/ConfigCodeDesc}"
+									visible="true" />
+								<!-- <Label text="Tyre Size" design="Bold" />
+								<Text id="TySz" text="{Fitments>/TyreDesc}" visible="true" /> -->
+								<Label id="LFitmentDateeEdit" required=""
+									text="Service Request Date" design="Bold" />
+								<Text id="idSrvReqDate" enabled="false" />
+								<!-- <DatePicker id="FFitmentDateEdit" displayFormat="{LocalViewSettingDtl>/DateFormat}" 
+									change="changeFitmetDate" enabled="true"/> -->
+								<Label text="Last Inspection Date" design="Bold" />
+								<Text enabled="false"
+									text="{path:'Fitments>/LastInspDate', formatter:'com.acute.srv.sheet.create.util.Formatter.date1'}" />
+								<Label text="Last Alignment Date" design="Bold" />
+								<Text enabled="false"
+									text="{path:'Fitments>/LastAlignDate', formatter:'com.acute.srv.sheet.create.util.Formatter.date1'}" />
+								<Label text="Last Alignment KM" design="Bold" />
+								<Text enabled="false" text="{Fitments>/LastAlignKm}" />
+
+
+
+
+
+								<core:Title id="VD_3" text="" />
+								<!-- <Label text="Last Alignment Date" design="Bold" />
+								<Text enabled="false"
+									text="{path:'Fitments>/LastAlignDate', formatter:'com.acute.srv.sheet.create.util.Formatter.date1'}" />
+								<Label text="Last Alignment KM" design="Bold" />
+								<Text enabled="false" text="{Fitments>/LastAlignKm}" /> -->
+								<!-- <Label text="Last Rotation Date" design="Bold"/> <Text enabled="false" 
+									text="{path:'Fitments>/LastRotDate', formatter:'com.acute.srv.sheet.create.util.Formatter.date1'}" 
+									/> <Label text="Last Rotation KM" design="Bold"/> <Text enabled="false" text="{Fitments>/LastRotKm}" 
+									/> -->
+								<Label text="Tyre Size" design="Bold" />
+								<Text id="TySz" text="{Fitments>/TyreDesc}" visible="true" />
+								<Label id="LChasisNoEdit" text="Chasis No" design="Bold" />
+								<Text id="ChasisNoID" text="{Fitments>/ChassisNo}" visible="true" />
+								<Label id="LEngineNoEdit" text="Engine No" design="Bold" />
+								<Text id="EngineNooID" text="{Fitments>/EngineNo}" visible="true" />
+								<Label text="Last Rotation Date" design="Bold" />
+								<Text enabled="false"
+									text="{path:'Fitments>/LastRotDate', formatter:'com.acute.srv.sheet.create.util.Formatter.date1'}" />
+								<Label text="Last Rotation KM" design="Bold" />
+								<Text enabled="false" text="{Fitments>/LastRotKm}" />
+								<Label text="Total Estimated Cost"  design="Bold"/>
+								<Text  id="idTotalEstCost" enabled="false" text="" />
+								<Label text="Total Proposed Cost"  design="Bold"/>
+								<Text  id="idTotalPrpCost" enabled="false" text="" />
+								
+								<!-- <Label text="Mechanical Condition" design="Bold" /> <Select 
+									enabled="true" id="idmccon" forceSelection="false" selectedKey="{Fitments>/MechCond}" 
+									change="onMecCon"> <core:Item text="OK" key="Y" ></core:Item> <core:Item 
+									text="Not OK" key="N" ></core:Item> </Select> <Label text="Reason" id="idReasonlbl" 
+									design="Bold" visible="false"/> <Select id="idReason" forceSelection="false" 
+									selectedKey="{Fitments>/MechCondReason}" visible="false" /> <Label text="Rotate 
+									Positions" design="Bold"></Label> <Select enabled="true" id="idrotatiob" 
+									forceSelection="false" selectedKey="{Fitments>/TyreRotation}" change="onRotationChange"> 
+									<core:Item text="Automatic" key="A" ></core:Item> <core:Item text="Manual" 
+									key="M" ></core:Item> <core:Item text="NO" key="N" ></core:Item> </Select> -->
+								<Label></Label>
+								<Button type="Emphasized" text="Vehicle Level Services" press="onSerSheetVech"> 
+									<layoutData> <l:GridData span="XL7 L7 M7 S7"/> </layoutData></Button>
+							</f:content>
+						</f:SimpleForm>
+
+					</VBox>
+					<Panel width="auto" id="Panel1" visible="false" class="sapUiNoMargin">
+						<headerToolbar>
+							<Toolbar height="3rem">
+								<Title text="" />
+							</Toolbar>
+						</headerToolbar>
+						<content>
+							<Table id="tblDetail" mode="None" select="OnTableSelect"
+								updateFinished="onCPMKUpdate">
+								<headerToolbar>
+									<Toolbar height="3rem">
+										<Title text="Tyre Level Services" />
+
+										<ToolbarSpacer />
+										<!-- <Button text="" press="addNewItem" icon="sap-icon://add" type="Emphasized"></Button> -->
+									</Toolbar>
+								</headerToolbar>
+								<columns>
+									<!-- <Column minScreenWidth="Tablet" demandPopin="true"> -->
+									<!-- <Label design="Bold" text="Sl" /> -->
+									<!-- </Column> -->
+									<Column minScreenWidth="Tablet" demandPopin="true"
+										width="15%">
+										<Label design="Bold" text="Position" />
+									</Column>
+									<!-- <Column minScreenWidth="Tablet" demandPopin="true" id="idnewPos" 
+										width="10%" visible="false" > <Label design="Bold" text="New Position" /> 
+										</Column> -->
+									<Column minScreenWidth="Tablet" demandPopin="true"
+										width="15%">
+										<Label design="Bold" text="Owner" />
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true"
+										width="20%">
+										<Label design="Bold" text="Item Code Description" />
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true"
+										width="12%">
+										<Label design="Bold" text="Stencil No" />
+									</Column>
+									<Column minScreenWidth="Tablet" visible="false" demandPopin="true"
+										width="9%">
+										<Label design="Bold" text="Service Required" />
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true"
+										hAlign='Center' width="9%">
+										<Label design="Bold" text="Service Sheet" />
+									</Column>
+
+
+
+
+								</columns>
+							</Table>
+						</content>
+					</Panel>
+					<Panel width="auto" id="Panel2" visible="false" class="sapUiNoMargin">
+						<headerToolbar>
+							<Toolbar height="3rem">
+								<Title text="" />
+							</Toolbar>
+						</headerToolbar>
+						<content>
+							<Table id="tblDetail1" mode="None" updateFinished="onAmsUpdate"
+								select="OnTableSelect">
+								<headerToolbar>
+									<Toolbar height="3rem">
+										<Title text="Tyre Level Services" />
+
+										<ToolbarSpacer />
+										<!-- <Button text="" press="addNewItem" icon="sap-icon://add" type="Emphasized"></Button> -->
+
+									</Toolbar>
+								</headerToolbar>
+								<columns>
+									<Column minScreenWidth="Tablet" demandPopin="true"
+										width="15%">
+										<Label design="Bold" text="Position" />
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true"
+										width="10%" id="idnewPos1" visible="false">
+										<Label design="Bold" text="New Position" />
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true"
+										width="15%">
+										<Label design="Bold" text="Company" />
+									</Column>
+									<!-- <Column minScreenWidth="Tablet" demandPopin="true" width="15%"> -->
+									<!-- <Label design="Bold" text="Item" /> -->
+									<!-- </Column> -->
+									<Column minScreenWidth="Tablet" demandPopin="true"
+										width="20%">
+										<Label design="Bold" text="Item Code Description" />
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true"
+										width="12%">
+										<Label design="Bold" text="Stencil No" />
+									</Column>
+									<Column minScreenWidth="Tablet" visible="false" demandPopin="true"
+										width="9%">
+										<Label design="Bold" text="Service Required" />
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true"
+										hAlign='Center' width="9%">
+										<Label design="Bold" text="Service Sheet" />
+									</Column>
+
+
+
+								</columns>
+							</Table>
+						</content>
+					</Panel>
+
+
+				</content>
+				<footer>
+					<Bar>
+						<contentLeft>
+							<Button id="btnDownload" visible="false" text="Download Format"
+								press="downloadExcel" type="Emphasized" />
+						</contentLeft>
+						<contentRight>
+						     <Button text="Send Back For Correction" press="onEdit"
+								type="Emphasized" id="Id_bt3" visible="true" />
+						    <Button text="Reject" press="onReject"
+								type="Reject" id="Id_bt2" visible="true" />
+							<Button text="Approve" press="onApprove"
+								type="Accept" id="Id_bt1" visible="true" />
+						</contentRight>
+					</Bar>
+				</footer>
+			</Page>
+
+
+		</detailPages>
+
+
+
+		<masterPages>
+			<Page id="master" title="Approval List" icon="sap-icon://action"
+				class="sapUiStdPage left_pnl" showNavButton="false" navButtonText="Back"
+				navButtonPress="onToTile">
+				<headerContent>
+				</headerContent>
+				<content>
+					<Toolbar>
+						<SearchField liveChange="onSearch" visible="true" />
+					</Toolbar>
+					<List id="listId" updateFinished="onUpdateFinished" growing="true"
+						growingScrollToLoad="true" mode="SingleSelectMaster"
+						selectionChange="SelectItem" items="">
+						<items>
+
+						</items>
+					</List>
+
+				</content>
+				<footer>
+					<Toolbar>
+
+						<ToolbarSpacer />
+
+
+					</Toolbar>
+				</footer>
+			</Page>
+
+		</masterPages>
+	</SplitApp>
+</core:View>

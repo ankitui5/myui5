@@ -1,0 +1,27 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+	<Dialog xmlns="sap.m" title="Remarks"
+		class="sapUiSizeCompact" contentWidth="420px" contentHieght="320px">
+		<content>
+			<l:Grid defaultSpan="L12 M12 S12" width="auto" position="Center">
+				<l:content>
+					<f:SimpleForm minWidth="1024" maxContainerCols="2"
+						editable="true" layout="ResponsiveGridLayout" labelSpanL="3"
+						labelSpanM="3"  emptySpanL="0" emptySpanM="0" columnsL="2"
+						columnsM="2">
+						<f:content>
+							 <Label>
+							</Label>
+							<Input id="idRemarks"  MaxLength="100" />
+			
+						</f:content>
+					</f:SimpleForm>
+				</l:content>
+			</l:Grid>
+			
+		</content>
+		<beginButton>
+			<Button text="OK" press="onRemarks" />
+		</beginButton>
+	</Dialog>
+</core:FragmentDefinition>

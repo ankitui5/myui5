@@ -1,0 +1,79 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" xmlns:l="sap.ui.layout" controllerName="ZSTOCKREPO.view.View"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+
+	
+		<Page title="Analysis" class="rootPage ">
+			<content>
+				<Toolbar class="toolbar">
+				    <ToolbarSpacer></ToolbarSpacer>
+				   <Text id="fltName"></Text>
+				    <ToolbarSpacer></ToolbarSpacer>
+				</Toolbar>
+				<html:canvas id="radarChart1" class="my_chart001"></html:canvas>
+				
+				
+								
+	<!-- 				 <sap.ui.layout.form:SimpleForm
+    xmlns:sap.ui.layout.form="sap.ui.layout.form" xmlns:sap.ui.core="sap.ui.core"
+    editable="true" layout="ResponsiveGridLayout" id="createForm"
+    labelSpanL="6" labelSpanM="6" emptySpanL="2" emptySpanM="2"
+    columnsM="1" maxContainerCols="1">
+    <sap.ui.layout.form:content>
+        
+     <Label text="Fleet Name"  />
+     
+  
+       
+ 
+
+    </sap.ui.layout.form:content>
+   </sap.ui.layout.form:SimpleForm> -->
+     <Toolbar class="toolbar2">
+	              <ToolbarSpacer></ToolbarSpacer>
+	            <Text text="Items Details"></Text>
+	              <ToolbarSpacer></ToolbarSpacer>
+	        </Toolbar>
+				<HBox>
+				<Table visible="true" id="table" itemPress="itemPress" class="TFtable">
+		<columns>
+			<Column
+				minScreenWidth="Tablet"
+				hAlign="Center" visible="false">
+				<Label design="Bold" text="Hub Code" />
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				hAlign="Center">
+				<Label  design="Bold" text="Hub Name" />
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				hAlign="Center">
+				<Label design="Bold" text="Total Stock" />
+			</Column>
+		</columns>
+		<items>
+			
+		</items>
+	</Table>
+				</HBox>
+			
+			</content>
+
+			<footer>
+				<OverflowToolbar id="otbFooter">
+					<ToolbarSpacer></ToolbarSpacer>
+					<Button press="showChart" text="Show Graphical Data" visible="false"></Button>
+				<!-- 	<Button press="showChart" text="Radar Chart"></Button>
+					<Button press="showChart" text="Bar Chart"></Button>
+					<Button press="showChart" text="Line Chart"></Button>
+					<Button press="showChart" text="Pie Chart"></Button>
+					<Button press="bubble" text="Bubble Chart" visible="false"></Button>
+					<Button press="dataLabeling" text="data Label Chart"></Button> -->
+					<ToolbarSpacer></ToolbarSpacer>
+				</OverflowToolbar>
+			</footer>
+		</Page>
+	
+</core:View>

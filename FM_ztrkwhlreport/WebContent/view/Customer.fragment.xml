@@ -1,0 +1,109 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout"
+	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	xmlns:smartTable="sap.ui.comp.smarttable"
+	xmlns:fb="sap.ui.comp.filterbar"
+	height="100%"
+	class="frg">
+	
+	<Dialog xmlns="sap.m" title="Select : Customer"
+		class="sapUiSizeCompact col" contentWidth="1024px" contentHeight="824px">
+	
+		<content>
+		
+		<l:VerticalLayout width="100%">
+	<!-- 	<Label text="FilterBar"/> -->
+		<fb:FilterBar reset="onReset" search="onSearch" showRestoreButton="true" showClearButton="true">
+			<fb:filterItems>
+				<fb:FilterItem  label="Dealer" name="a">
+					<fb:control>
+						<Text id="idDealer" value=""/>
+					</fb:control>				
+				</fb:FilterItem>
+				
+				<fb:FilterItem label="Customer" name="b">
+					<fb:control>
+						<Input  id="idcustomer" maxLength="40" />
+					</fb:control>				
+				</fb:FilterItem>
+				
+			
+				
+				<fb:FilterItem label="Customer No" name="c">
+					<fb:control>
+						<Input  id="idcustomerno" liveChange="NumberValid" maxLength="10"/>
+					</fb:control>				
+				</fb:FilterItem>
+				
+				<fb:FilterItem label="Mobile no" name="d">
+					<fb:control>
+						<Input  id="idmobileno" liveChange="NumberValid" maxLength="35"/>
+					</fb:control>				
+				</fb:FilterItem>
+			</fb:filterItems>
+		 </fb:FilterBar>		
+	</l:VerticalLayout>
+		
+		</content>
+								
+	<Table id="idCustomerTable" 
+    items="{CartListSetJModel>/}" mode="" class="col">
+    <headerToolbar>
+      <Toolbar>
+        <Label text="Items" level="H2"/>
+      </Toolbar>
+    </headerToolbar>
+    <columns class="sapMTitle">
+        <Column
+        minScreenWidth="Tablet"
+        width="10em"
+        demandPopin="true"
+        hAlign="Center">
+        <Text text="Customer" /> 
+      </Column>
+      
+      <Column
+        minScreenWidth="Tablet"
+        width="15em"
+        demandPopin="true"
+        hAlign="Center">
+        <Text text="Customer No" /> 
+        
+      </Column>
+      
+     <Column
+        minScreenWidth="Tablet"
+        width="10em"
+        demandPopin="true"
+        hAlign="Center">
+        <Text text="Mobile" /> 
+      </Column>
+       <Column visible="false"></Column>
+    </columns>
+    <items>
+      <ColumnListItem type ="Active" >
+        <cells>
+      		 <Link
+            text="{CartListSetJModel>Name}"  press="displayRequestbyName"/>
+            
+            <Link
+            text="{CartListSetJModel>CpNo}" press="displayRequestbyCNo"/>
+            
+             <Text
+            text="{CartListSetJModel>Mobile}"/>
+            
+        </cells>
+      </ColumnListItem>
+    </items>
+  </Table>
+		<beginButton>
+			<!-- <Button text="OK" press="onCustomerfrg" /> -->
+			<!-- <Button text="	Create New Customer	" icon="sap-icon://write-new" press="onCreateNewCustomer" 
+					type="Accept" id="btnCreate" visible="true" /> -->
+			
+		</beginButton>
+		<endButton>
+			<Button text="Cancel" press="onCustomerfrgClose" />
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

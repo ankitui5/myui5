@@ -1,0 +1,377 @@
+<core:View  xmlns:core="sap.ui.core" 
+			xmlns:mvc="sap.ui.core.mvc"
+			xmlns="sap.m" 
+			xmlns:table="sap.ui.table"
+			xmlns:viz="sap.viz.ui5.controls"
+			xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+			xmlns:viz.data="sap.viz.ui5.data"
+			xmlns:l="sap.ui.layout" 
+			xmlns:f="sap.ui.layout.form"
+			controllerName="zstockreport.view.View"
+			xmlns:html="http://www.w3.org/1999/xhtml">
+			
+<html:style>  
+.clStyle1 {
+    left: 0px;
+    top: 0px;
+    height: 100%;
+    width: 100%;
+    display: block;
+    cursor: default;
+    background-color: rgb(216, 207,207);
+    <!-- margin-left: 320px; -->
+   
+}
+
+.sapUiFormResGrid>div {
+    padding: 0rem 0rem;
+    box-sizing: border-box;
+}
+
+.bgcolor .sapUiFormResGrid {
+    background-color: cornsilk;
+}
+</html:style>				
+<!-- <App id="rootControl"> -->	 
+<Page title="" id="fltName" enableScrolling="false">
+<content>
+	<!-- <Toolbar class="toolbar">
+		<ToolbarSpacer/>
+			<Text id="fltName"/>
+		<ToolbarSpacer/>
+	</Toolbar> -->
+	
+		
+		  <f:SimpleForm id="SimpleFormToolbar1" 
+        			  minWidth="1024"
+         			  maxContainerCols="6" 
+         			  editable="true" 
+         			  layout="ResponsiveGridLayout"
+         			  labelSpanL="2"
+         			  labelSpanM="2"
+        			  emptySpanL="0"
+        			  emptySpanM="0"
+        			  columnsL="3"
+        			  columnsM="3" 
+        			  class="sapUiSizeCompact onwheel bgcolor"> 
+         
+         <f:content>
+		<Label text= "On Wheel Tyres" design="Bold"/>
+		<Text id="idOWH"/>
+		</f:content>
+		</f:SimpleForm>
+		
+					
+<viz:VizFrame class="clStyle1" id="oVizFrame0" width="100%"  height= "300px" busy="false" visible="true" vizType="column" legendVisible="true" 
+			  uiConfig="{'applicationSet': 'fiori'}" selectData="onSelect" >
+ <viz:dataset>
+    <viz.data:FlattenedDataset data="{jsonModel>/}">
+        <viz.data:dimensions>
+            <viz.data:DimensionDefinition name="HubName" value="{jsonModel>HubName}" />
+        </viz.data:dimensions>
+         
+        <viz.data:measures>
+            <viz.data:MeasureDefinition name="Count" value="{jsonModel>Count}" />
+        </viz.data:measures>
+    </viz.data:FlattenedDataset>
+</viz:dataset> 
+ 
+<viz:feeds>
+    <viz.feeds:FeedItem uid="primaryValues" type="Measure" values="Count" />
+    <viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="HubName" />
+</viz:feeds>
+</viz:VizFrame> 
+
+<VBox>
+<table:Table id="Idtable" enableSelectAll="false" rows="{tableModel>/}" growing="false" showNoData="false" visibleRowCount="6" >	
+		<table:columns>
+			<table:Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="9rem">
+				<Label text="Stencil" design="Bold" />
+				<table:template>
+					<Text text="{tableModel>StnclNumber}"/> 
+				</table:template>
+			</table:Column>
+			
+			<table:Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="9rem">
+				<Label text="Tyre Company" design="Bold" />
+				<table:template>
+					<Text text="{tableModel>TypeCompDesc}"/> 
+				</table:template>
+			</table:Column>
+			
+			<table:Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="8rem">
+				<Label text="Reg.No." design="Bold" />
+				<table:template>
+					<Text text="{tableModel>RegNo}"/> 
+				</table:template>
+			</table:Column>
+			
+			<table:Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="21rem">
+				<Label text="Material" design="Bold" />
+				<table:template>
+					<Text text="{tableModel>Maktx}"/> 
+				</table:template>
+			</table:Column>
+			
+				<table:Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="11rem">
+				<Label text="Tyre Size" design="Bold" />
+				<table:template>
+					<Text text="{tableModel>SizeDesc}"/> 
+				</table:template>
+			</table:Column>
+			
+			<table:Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="21rem">
+				<Label text="Customer Name" design="Bold" />
+				<table:template>
+					<Text text="{StockHubDataModel>KunnrName}"/> 
+				</table:template>
+			</table:Column>
+			
+			<table:Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="12rem">
+				<Label text="Hub Name" design="Bold" />
+				<table:template>
+					<Text text="{tableModel>HubName}"/> 
+				</table:template>
+			</table:Column>
+			
+			<table:Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="8rem">
+				<Label text="KM Covered" design="Bold" />
+				<table:template>
+					<Text text="{tableModel>KmCovered}"/> 
+				</table:template>
+			</table:Column>
+			
+			<table:Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="6rem">
+				<Label text="Tyre Type" design="Bold" />
+				<table:template>
+					<Text text="{tableModel>TyreType}"/> 
+				</table:template>
+			</table:Column>
+			
+			<table:Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="8rem">
+				<Label text="Tyre Location" design="Bold" />
+				<table:template>
+					<Text text="{tableModel>TyreLoc}"/> 
+				</table:template>
+			</table:Column>
+			
+			<table:Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="8rem">
+				<Label text="IP Condition" design="Bold" />
+				<table:template>
+					<Text text="{tableModel>IpCondition}"/> 
+				</table:template>
+			</table:Column>
+			
+			<table:Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="5rem">
+				<Label text="IP psi" design="Bold" />
+				<table:template>
+					<Text text="{tableModel>IpPsi}"/> 
+				</table:template>
+			</table:Column>
+			
+			<table:Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="8rem">
+				<Label text="Original NSD" design="Bold" />
+				<table:template>
+					<Text text="{tableModel>OrigNsd}"/> 
+				</table:template>
+			</table:Column>
+			
+			
+			<table:Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="5rem">
+				<Label text="G1NSD" design="Bold" />
+				<table:template>
+					<Text text="{tableModel>G1Nsd}"/> 
+				</table:template>
+			</table:Column>
+			
+			<table:Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="5rem">
+				<Label text="G2NSD" design="Bold" />
+				<table:template>
+					<Text text="{tableModel>G2Nsd}"/> 
+				</table:template>
+			</table:Column>
+			
+			<table:Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="5rem">
+				<Label text="G3NSD" design="Bold" />
+				<table:template>
+					<Text text="{tableModel>G3Nsd}"/> 
+				</table:template>
+			</table:Column>
+			
+			<table:Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="5rem">
+				<Label text="G4NSD" design="Bold" />
+				<table:template>
+					<Text text="{tableModel>G4Nsd}"/> 
+				</table:template>
+			</table:Column>
+					
+			<table:Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="8rem">
+				<Label text="Fitment Date" design="Bold" />
+				<table:template>
+					<Text text="{path:'tableModel>FitDate' , formatter:'zstockreport.util.Formatter.date1'}"/> 
+				</table:template>
+			</table:Column>
+			
+			<table:Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="10rem">
+				<Label text="Last Insp. Date" design="Bold" />
+				<table:template>
+					<Text text="{path:'tableModel>LastInspDate',formatter:'zstockreport.util.Formatter.date1'}"/> 
+				</table:template>
+			</table:Column>
+			
+		</table:columns>
+	</table:Table>
+
+
+	<!-- <Table visible="true" class="tblgrid" id="Idtable" showNoData="false">
+			<columns>
+				<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" >
+				<Label text="Hub Name" design="Bold" />
+				</Column>
+				
+				<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" >
+				<Label text="Customer" design="Bold" />
+				</Column>
+				
+				<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" >
+				<Label text="G1NsD" design="Bold" />
+				</Column>
+				
+				<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" >
+				<Label text="G2NsD" design="Bold" />
+				</Column>
+				
+				<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" >
+				<Label text="G3NsD" design="Bold" />
+				</Column>
+				
+				<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" >
+				<Label text="G4NsD" design="Bold" />
+				</Column>
+				
+				<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" >
+				<Label text="IP Condition" design="Bold" />
+				</Column>
+				
+				<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" >
+				<Label text="IP Psi" design="Bold" />
+				</Column>
+				
+				<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" >
+				<Label text="KM Covered" design="Bold" />
+				</Column>
+				
+				<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" >
+				<Label text="Fitment Date" design="Bold" />
+				</Column>
+				
+				<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" >
+				<Label text="Last Insp. Date" design="Bold" />
+				</Column>
+				
+				<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" >
+				<Label text="Material" design="Bold" />
+				</Column>
+				
+				<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" >
+				<Label text="Original Nsd" design="Bold" />
+				</Column>
+				
+				<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" >
+				<Label text="Owner Description" design="Bold" />
+				</Column>
+				
+				<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" >
+				<Label text="Reg.No." design="Bold" />
+				</Column>
+				
+				<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" >
+				<Label text="Stencil" design="Bold" />
+				</Column>
+				
+				<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" >
+				<Label text="Size Desc." design="Bold" />
+				</Column>
+				
+				<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" >
+				<Label text="Type Comp.Desc." design="Bold" />
+				</Column>
+				
+				<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" >
+				<Label text="Tyre Position" design="Bold" />
+				</Column>
+				
+				<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" >
+				<Label text="Tyre Type" design="Bold" />
+				</Column>
+				
+				
+			</columns>
+	</Table>
+	<ScrollContainer vertical="true" horizontal="false"  height="215px" class="tblgrid2">
+	<Table visible="true" id="Idtable1" items="{tableModel>/}" itemPress="itemPress" class="tblgrid2">
+			<columns>
+				<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" ></Column>
+				<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" ></Column>
+				<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" ></Column>
+				<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" ></Column>
+				<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" ></Column>
+				<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" ></Column>
+				<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" ></Column>
+				<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" ></Column>
+				<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" ></Column>
+				<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" ></Column>
+				<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" ></Column>
+				<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" ></Column>
+				<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" ></Column>
+				<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" ></Column>
+				<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" ></Column>
+				<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" ></Column>
+				<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" ></Column>
+				<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" ></Column>
+				<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" ></Column>
+				<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" ></Column>
+			</columns>					
+
+			<items>
+				<ColumnListItem>
+					<cells>
+	             		<Text text="{tableModel>HubName}"/>
+						<Text text="{tableModel>KunnrName}"/>
+						<Text text="{tableModel>G1Nsd}"/>
+						<Text text="{tableModel>G2Nsd}"/>
+						<Text text="{tableModel>G3Nsd}"/>
+						<Text text="{tableModel>G4Nsd}"/>
+						<Text text="{tableModel>IpCondition}"/>
+						<Text text="{tableModel>IpPsi}"/>
+						<Text text="{tableModel>KmCovered}"/>
+						<Text text="{tableModel>FitDate}"/>
+						<Text text="{tableModel>LastInspDate}"/>
+						<Text text="{tableModel>Maktx}"/>
+						<Text text="{tableModel>OrigNsd}"/>
+						<Text text="{tableModel>OwnerDesc}"/>
+						<Text text="{tableModel>RegNo}"/>
+						<Text text="{tableModel>StnclNumber}"/>
+						<Text text="{tableModel>SizeDesc}"/>
+						<Text text="{tableModel>TypeCompDesc}"/>
+						<Text text="{tableModel>TyreLoc}"/>
+						<Text text="{tableModel>TyreType}"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+	</Table>
+	</ScrollContainer> -->
+</VBox>
+			
+</content>
+<footer>
+	<Bar>
+	<contentRight>
+	<Button text="Download" press="onDownload1" type="Accept" visible="true" icon="sap-icon://download"/>  																				
+	</contentRight>
+	</Bar>
+	</footer>
+			
+</Page>
+<!-- </App> -->
+</core:View>

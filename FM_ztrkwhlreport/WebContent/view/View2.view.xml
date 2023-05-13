@@ -1,0 +1,611 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:u="sap.ui.unified" xmlns="sap.m" xmlns:f="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout" xmlns:table="sap.ui.table" xmlns:uxap="sap.uxap" 
+	controllerName="ztrkwhlreport.view.View2"
+	xmlns:html="http://www.w3.org/1999/xhtml" id="idmainView">
+	<html:style>
+	
+	</html:style>
+	<Page>
+	<content>	
+	<Toolbar height="2rem" class="sapUiSizeCompact">				
+	<Title id="HeaderIdTit" class="titlee" text="" level="H3" titleStyle="H3" textAlign="Center" width="100%"></Title>
+	</Toolbar>
+	<l:Grid defaultSpan="L12 M12 S12" width="auto" vSpacing="0">
+	  <l:content>
+	     <Panel backgroundDesign="Solid" visible="true">
+	       <f:Form editable="true" minWidth="1024">
+	         <f:layout>
+	           <f:ResponsiveGridLayout columnsL="3"
+							columnsM="3" emptySpanL="0" emptySpanM="0" labelSpanL="5" labelSpanM="5" class="sapUiSizeCompact lab"></f:ResponsiveGridLayout>
+				</f:layout>
+				 <f:formContainers class="sapUiMediumMarginBegin">
+				     <f:FormContainer>
+				       	<f:title>
+								<core:Title xmlns="sap.ui.core" text="Header Info" emphasized="true" Align="Center"/>
+						</f:title>
+						
+						 <f:formElements>
+							<f:FormElement>
+									<html:hr />
+						   </f:FormElement>	
+						   
+						    <f:FormElement visible="true">
+						   			<f:label>	
+										<Label  text="Vehicle Reg Number" id="LVehicleNoEdit"></Label>
+									</f:label>
+									<f:fields>
+									<!-- <Input id="FVehicleNoEdit"   valueHelpRequest="onVecRegNo" valueHelpOnly="true" showValueHelp="false" liveChange="upperCase" maxLength="20"> -->
+									<Input id="FVehicleNoEdit"  enabled="false" value="{Fitments>/RegNo}" >
+										<layoutData>
+										<l:GridData span="XL7 L5 M3 S2"/>
+										</layoutData>
+									</Input>
+									<!-- <Button  press="onVehicalDetails" icon="sap-icon://show" type="Emphasized" id="IdGo" visible="true" enabled="false" >
+									 <layoutData>
+									<l:GridData span="XL2 L2 M2 S2"/>
+									</layoutData>
+									</Button> -->
+									</f:fields>
+						   </f:FormElement>		
+						   
+						   	
+	<!-- 						  <f:FormElement visible="true">
+									<f:label>
+										<Label  text="Customer" ></Label>
+									</f:label>
+									<f:fields>
+										<Input id="idCustomerName" valueHelpRequest="onCustomerName" valueHelpOnly="true" enabled="false" showValueHelp="true"/>
+										<Input  id="idCustomerName"  enabled="false"  value="{Fitments>/CpName}"/>
+									</f:fields>
+						   </f:FormElement>	 -->
+						   
+						   	<f:FormElement visible="true">
+									<f:label>
+										<Label  text="Request By" ></Label>
+									</f:label>
+									<f:fields>
+										<!-- <Input id="idCustomerName" valueHelpRequest="onCustomerName" valueHelpOnly="true" enabled="false" showValueHelp="true"/> -->
+										<Input  id="idTwKunnrName"  enabled="false"  value="{Fitments>/TruckName}"/>
+									</f:fields>
+						   </f:FormElement>	
+						   
+						   
+						   	<f:FormElement visible="false">
+									<f:label>
+										<Label  text="CustomerID" required="true"></Label>
+									</f:label>
+									<f:fields>
+										<Input id="idCustomerNo" />
+									</f:fields>
+						   </f:FormElement>	
+						   
+						  
+						   
+						   <f:FormElement visible="false">
+									<f:label>
+										<Label  text="Customer Name"></Label>
+									</f:label>
+									<f:fields>
+									<Text text="{Fitments>/Name1}" />	
+									</f:fields>
+						   </f:FormElement>	
+						   
+						  <f:FormElement visible="true">
+									<f:label>
+										<Label  text="Request Date"></Label>
+									</f:label>
+									<f:fields>
+									<!-- <Text id="idReqDate"/> -->
+									
+								<Text text="{path:'Fitments>/SerDate'}" />
+								<!-- <Input value="{path:'Fitments>/SerDate', formatter:'ztwcjobcreate.util.Formatter.date1'}"/> -->
+									</f:fields>
+						   </f:FormElement>	 
+						   <f:FormElement visible="true">
+									<f:label>
+										<Label  text="Total Estimated Cost" class="ABC"></Label>
+									</f:label>
+									<f:fields>
+									<Text  id="idTotalEstCost" text="{path:'Fitments>/EstimatedCost', formatter:'ztrkwhlreport.util.Formatter.costFormat'}" 
+										   text-align="right" design="Bold" class="b1"/>
+									<Text  text="INR" text-align="left" visible="false"/>
+									</f:fields>
+						   </f:FormElement>	
+						   
+						   <f:FormElement visible="true">
+									<f:label>
+										<Label text="Total Proposed Cost" class="ABC"></Label>
+									</f:label>
+									<f:fields>
+									<Text  id="idTotalPrpCost" text="{path:'Fitments>/ProposedCost', formatter:'ztrkwhlreport.util.Formatter.costFormat'}"
+										   text-align="right" class="b1"/>
+		   							 <Text  text="INR" text-align="left" visible="false"/>
+									<!-- <Text  text="INR" visible="{path:'Fitments>/EstimatedCost', formatter:'ztwcjobcreate.util.Formatter.INRValue'}" text-align="left" /> -->
+									</f:fields>
+						   </f:FormElement>	
+						 </f:formElements>
+				     </f:FormContainer>
+				     
+				      <f:FormContainer>
+				       <f:title>
+								<core:Title xmlns="sap.ui.core" text="Last Inspection Info" emphasized="true"></core:Title>
+						</f:title>
+						 <f:formElements>
+						  <f:FormElement>
+									<html:hr />
+						   </f:FormElement>	
+						   <f:FormElement visible="true">
+									<f:label>
+										<Label text="Inspection Date"></Label>
+									</f:label>
+									<f:fields>
+									<Text  text="{path:'Fitments>/LastInspDate', formatter:'ztrkwhlreport.util.Formatter.date1'}" />
+									</f:fields>
+						   </f:FormElement>
+						   
+						    <f:FormElement visible="true">
+									<f:label>
+										<Label  text=" Alignment Date"></Label>
+									</f:label>
+									<f:fields>
+										<Text  text="{path:'Fitments>/LastAlignDate', formatter:'ztrkwhlreport.util.Formatter.date1'}" />
+									</f:fields>
+						   </f:FormElement>	 
+						  
+						   <f:FormElement visible="true">
+									<f:label>
+										<Label  text=" Alignment KM"></Label>
+									</f:label>
+									<f:fields>
+										<Text text="{Fitments>/LastAlignKm}"  />
+									</f:fields>
+						   </f:FormElement>	 		
+						   
+						  <f:FormElement visible="true">
+									<f:label>
+										<Label  text=" Rotation Date "></Label>
+									</f:label>
+									<f:fields>
+										<Text text="{path:'Fitments>/LastRotDate', formatter:'ztrkwhlreport.util.Formatter.date1'}" />
+									</f:fields>
+						   </f:FormElement>	
+						   
+						   <f:FormElement visible="true">
+									<f:label>
+										<Label  text=" Rotation KM"></Label>
+									</f:label>
+									<f:fields>
+										<Text text="{Fitments>/LastRotKm}" />
+									</f:fields>
+						   </f:FormElement>	
+						  </f:formElements>
+				     </f:FormContainer>
+				    
+				     <f:FormContainer>
+				       <f:title>
+								<core:Title xmlns="sap.ui.core" text="Vehicle Details" emphasized="true" ></core:Title>
+						</f:title>
+						 <f:formElements>
+						  <f:FormElement>
+									<html:hr />
+						   </f:FormElement>	
+						 
+						 <f:FormElement visible="true">
+									<f:label>
+										<Label  text="Mechanical Condition"></Label>
+									</f:label>
+									<f:fields>
+									<Select enabled="false" id="idmccon"  forceSelection="false" selectedKey="{Fitments>/MechCond}" change="onMecCon" >				
+									<core:Item text="OK" key="Y"  ></core:Item>
+									<core:Item text="Not OK" key="N"  ></core:Item>
+									</Select>
+									</f:fields>
+						   </f:FormElement>	
+						   
+						     <f:FormElement visible="false" id="idreason1">
+									<f:label>
+										<Label  text="Reason" id="idReasonlbl"></Label>
+									</f:label>
+									<f:fields>
+									<Select id="idReason" forceSelection="false" selectedKey="{Fitments>/MechCondReason}"  />
+									</f:fields>
+						   </f:FormElement>	
+						   
+						    <f:FormElement visible="true">
+									<f:label>
+										<Label  text="Last Milometer Status" ></Label>
+									</f:label>
+									<f:fields>
+									<Select enabled="fasle" id="idMiloStatus"  forceSelection="false" selectedKey="{Fitments>/LastMeterStatus}">				
+									<core:Item text="Working" key="Y"  ></core:Item>
+									<core:Item text="Not Working" key="N"  ></core:Item>
+									</Select>	
+									</f:fields>
+						   </f:FormElement>	
+						   
+						  <f:FormElement visible="true" >
+									<f:label>
+										<Label  text="Milometer Working"  textAlign="Center"> </Label>
+									</f:label>
+									<f:fields>
+										<Select id="idMilo" enabled="false" forceSelection="false" selectedKey="{Fitments>/MeterStatus}" change="onMiloMeter">				
+										<core:Item text="Yes" key="Y"  ></core:Item>
+										<core:Item text="No" key="N"  ></core:Item>
+										</Select>
+									</f:fields>
+						   </f:FormElement>	
+						   
+						    <f:FormElement visible="false" id="idMiloMeterreading">
+									<f:label>
+										<Label  text="Milometer Reading"  enabled="true" textAlign="Center" id="idmilolbl"> </Label>
+									</f:label>
+									<f:fields>
+										<Input  id="idMilReading" visible="true" maxLength="6" 
+										        enabled = "false"
+											value="{Fitments>/MeterReading}" liveChange="NumberValid" />
+									</f:fields>
+						   </f:FormElement>	
+						   
+						   
+						   <f:FormElement visible="true" id="idKm1">
+									<f:label>
+										<Label  text="KM Covered"  visible="true" id="idkmlbl"></Label>
+									</f:label>
+									<f:fields>
+									<Input  id="idMulReading" visible="true" enabled="false" 
+									        maxLength="6" value="{Fitments>/KmCovered}" liveChange="NumberValid" />
+									</f:fields>
+						   </f:FormElement>	
+						  
+						   <f:FormElement visible="true">
+									<f:label>
+										<Label text=""></Label>
+									</f:label>
+									<f:fields>
+									<Button id="serVShVeh" type="Emphasized" text="Vehicle Level Services" press="onSerSheetVech">
+										
+										</Button> 
+										<!-- <Button id="serVShVehNew" type="Emphasized" text="Vehicle Level Services" press="onNewSerSheetVech" visible="false">
+										<layoutData>
+										<l:GridData span="XL7 L7 M7 S7"/>
+										</layoutData>
+										</Button> -->
+									</f:fields>
+						   </f:FormElement>	
+						 </f:formElements>
+				     </f:FormContainer>
+				  </f:formContainers>	
+				  </f:Form>
+	    		 </Panel>
+	 			</l:content>
+				</l:Grid>
+
+	      <IconTabBar id="idIconTabBarMulti" expanded="{device>/isNoPhone}" select="handleIconTabBarSelect"
+					class="sapUiResponsiveContentPadding  bkg" showSelection="true" >
+		<items>
+		
+		
+		<!-- *****************vehicle Info start *************************** -->
+		<IconTabFilter text="Vehicle Details" icon="sap-icon://bus-public-transport" id="idIconTolbars" showSelection="true" key="A">
+		<VBox class="space font1">
+		<f:SimpleForm id="TRHeaderFormEdit" minWidth="1024" maxContainerCols="1" editable="true" layout="ResponsiveGridLayout" title=""
+		labelSpanL="5" labelSpanM="5" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2" visible="true">
+		<f:content>
+			<core:Title id="VD_1"/>
+			<Label id="LVehicleCompIDEdit" text="Vehicle Make"  />
+			<!-- <Input id="VehicleMakeID" value="{Fitments>/MakeName}" visible="true"/> -->
+			<Input id="VehicleMakeID" valueHelpRequest="onVehicleMakeHelp" valueHelpOnly="true"
+			 showValueHelp="true" value="{Fitments>/MakeName}" visible="true" enabled="false"/>
+			
+			<Label id="LVehicleModelEdit" text="Vehicle Model"  />
+			<!-- <Input id="VehicleModelID" value="{Fitments>/Model}" visible="true"/> -->
+			<Input id="VehicleModelID" valueHelpRequest="onVehicleModelHelp" valueHelpOnly="true"
+			 showValueHelp="true"  value="{Fitments>/Model}" visible="true" enabled="false"/>
+			
+			<Label id="LConfigurationIDEdit" text="Configuration" />
+			<!-- <Input id="ConfigurationIDID" value="{Fitments>/ConfigCodeDesc}" visible="true"/> -->
+			<Input id="ConfigurationIDID" value="{Fitments>/ConfigCodeDesc}" visible="true" valueHelpOnly="true"
+				showValueHelp="true" valueHelpRequest="onConfigCodeHelp" enabled="false"/>
+			
+			<Label  text="Product Size" />
+			<Input id="TySz" value="{Fitments>/TyreDesc}" visible="true" valueHelpOnly="true"
+				showValueHelp="true" valueHelpRequest="onProductSizeHelp" enabled="false"/>
+			
+			<Label id="LChasisNoEdit" text="Chasis No"/>
+			<Input id="ChasisNoID" value="{Fitments>/ChassisNo}" visible="true" maxLength="20" enabled="false"/>
+			
+			<Label id="LEngineNoEdit" text="Engine No"/>
+			<Input id="EngineNooID" value="{Fitments>/EngineNo}" visible="true" maxLength="20" enabled="false"/>
+			
+			
+			<!-- <Label  text="Contract Type" visible="false"/>
+			<Text id="IdSer" text="{Fitments>/ContractDesc}" visible="false"/> -->
+			
+			<!-- <Label  text="Mechanical Condition" design="Bold" />
+			<Select id="idmccon"  forceSelection="false" selectedKey="{Fitments>/MechCond}" change="onMecCon">
+				<core:Item text="OK" key="Y"  ></core:Item>
+				<core:Item text="Not OK" key="N"  ></core:Item>
+			</Select>
+			<Label  text="Reason" id="idReasonlbl" design="Bold" visible="false" />
+			<Select id="idReason" forceSelection="false" selectedKey="{Fitments>/MechCondReason}" visible="false" />
+			 -->
+			<core:Title id="VD_2" text="" />
+			
+			<!-- <Label id="LFitmentDateeEdit" required="true" text="Fitment Date" visible="false"/>
+			<DatePicker id="FFitmentDateEdit" displayFormat="{LocalViewSettingDtl>/DateFormat}"  visible="false" change="changeFitmetDate" enabled="true"/>
+			 -->
+			<Label  id="LRegistrationYearEdit" text="Registration Year"/>
+			<Input id="FRegistrationYearEdit"  maxLength="4" value="{Fitments>/RegYear}" enabled="false" liveChange="NumberValid" change="onYearChange" />
+			
+			<Label id="LVehicleCCEdit" text="Vehicle CC" />
+			<Input id="FVehicleCCEdit" value="{Fitments>/VechCc}" change=""  enabled="false" liveChange="NumberValid" maxLength="8"/>
+			
+			<Label id="LAvgRunningSpeedEdit" text="Avg Running Speed" />
+			<Input change="com.arteriatech.ppc.utils.js.Common.formatNumber" enabled="false" id="FAvgRunningSpeedEdit" value="{Fitments>/AvgSpeed}" liveChange="NumberValid" maxLength="3"/>
+			
+			<Label id="LLoopDistanceEdit" text="Loop Distance"/>
+			<Input id="FLoopDistanceEdit" maxLength="5" value="{Fitments>/LoopDist}"  enabled="false" liveChange="NumberValid" />
+			
+			<Label text="GVW (Tons)" />
+			<Input enabled="false" id="idEarApp1"  valueHelpRequest="InsGpCodeHelp"
+				valueHelpOnly="true" showValueHelp="false" maxLength="6" value="{Fitments>/Gvw}"  liveChange="NumberValid" />
+			
+			<!-- <Label text="Milometer Working" required="false"  />
+			<Select enabled="false" id="idEarPSI"  forceSelection="false" selectedKey="{Fitments>/MeterStatus}" change="onMiloMeter">
+				<core:Item text="Yes" key="Y"  ></core:Item>
+				<core:Item text="No" key="N"  ></core:Item>
+				</Select> -->
+		
+			<Label id="LGoodsCarriedEdit" text="Goods Carried" tooltip="Goods Carried"/>
+			<TextArea rows="2" maxLength="100" id="FGoodsCarriedEdit" value="{Fitments>/GoodsCarried}"  enabled="false"/>
+			<!-- <core:Title id="VD_3" text=""/>
+			
+			<Label id="LWeatherIDEdit" text="Climate" design="Bold"/>
+			<Text text="" textAlign="End"/>			
+			<Label>
+			<layoutData>
+			<l:GridData span="XL1 L1 M1 S1"/>
+			</layoutData>
+			</Label>
+			
+			<Text text="Max Temp: " textAlign="End">
+			<layoutData>
+			<l:GridData span="XL4 L4 M4 S4"/>
+			</layoutData>
+			</Text>
+			<Input id="FLWeatherIDMinEdit" value="{Fitments>/MaxTemp}" maxLength="3" liveChange="TempRex" />
+			
+			<Text text="Min Temp: " textAlign="End">
+			<layoutData>
+			<l:GridData span="XL3 L3 M3 S3"/>
+			</layoutData>
+			</Text>
+			<Input id="FLWeatherIDMaxEdit" value="{Fitments>/MinTemp}" maxLength="3" liveChange="TempRex" />
+			
+			<Label id="LRoadConditionEdit" text="Road Condition (%)" design="Bold" >
+			</Label>
+			<Text text="" textAlign="End"/>	
+			<Label>
+			<layoutData>
+			<l:GridData span="XL1 L1 M1 S1"/>
+			</layoutData>
+			</Label>
+			
+			<Text text="On-Road:" textAlign="End">
+			<layoutData>
+			<l:GridData span="XL4 L4 M4 S4"/>
+			</layoutData>
+			</Text>
+			<Input min="0" max="100" id="FRoadConditionEdit" maxLength="2" value="{Fitments>/OnRoad}" liveChange="NumberValid" tooltip="ON-Road %"/>
+			<Text text="Off-Road:" textAlign="End">
+			<layoutData>
+			<l:GridData span="XL3 L3 M3 S3"/>
+			</layoutData>
+			</Text>
+			<Input min="0" max="100" id="FOFFRoadConditionEdit" maxLength="2" liveChange="NumberValid" value="{= ${Fitments>/OffRoad} ? 100 - parseFloat(${Fitments>/OnRoad}) : '0' }"
+				tooltip="OFF-Road %"/>
+			<Label id="LPrecipitationPercentageEdit" text="Precipitation (%)"/>
+			<Input min="0" id="FPrecipitationPercentageEdit"  maxLength="3" value="{Fitments>/Pricit}" liveChange="NumberValid" />
+			<Label id="LRouteConditionEdit" text="Terrain"/>
+			<Select id="FRouteConditionEdit" forceSelection="false" selectedKey="{Fitments>/Terrain}" >
+			<core:Item text="Long Haul Highway" key="01"  ></core:Item>
+				<core:Item text="Hilly" key="02"  ></core:Item>
+				<core:Item text="Short Haul" key="03"  ></core:Item>
+			</Select>
+			<Label id="LPreTyreDetailsEdit" text="Previous Tyre Details"/>
+			<TextArea rows="2" maxLength="100" id="FPreTyreDetailsEdit" value="{Fitments>/TyreDetails}" tooltip="Previous Tyre Details"/>
+		 -->
+		</f:content>
+	</f:SimpleForm>
+	</VBox>
+		
+		</IconTabFilter>
+			<!-- *****************Vehicle info end******************* -->
+			<!-- ******************Item Info************************* -->
+		<IconTabFilter text="Tyre Details" icon="sap-icon://activity-items" id="idIconTolbar1" showSelection="true" key="B" class="border"
+		enabled="true">
+		
+			<Panel width="auto" id="Panel1" visible="true" class="sapUiNoMargin .tab1">
+		<content>
+		
+	<Table id="tblDetail" mode="None" select="OnTableSelect" updateFinished="onCPMKUpdate" >
+			<headerToolbar>
+				<Toolbar height="1rem">
+				<Title text="Tyre Level Services"/>
+				<ToolbarSpacer />
+				</Toolbar>
+			</headerToolbar>
+				<columns>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="15%">
+						<Label design="Bold" text="Position" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" id="idnewPos" width="10%" visible="false" >
+						<Label design="Bold" text="New Position" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="15%">
+						<Label design="Bold" text="Owner" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="20%">
+						<Label design="Bold" text="Item Code Description" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="12%">
+						<Label design="Bold" text="Stencil No" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="9%" visible="false">
+						<Label design="Bold" text="Service Required" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign='Center' width="9%" >
+						<Label design="Bold" text="Service Sheet" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="10%" visible="false" >
+						<Label design="Bold" text="Proposed Cost" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="10%" visible="false" >
+						<Label design="Bold" text="Header Proposed Cost" />
+					</Column>
+
+				</columns>
+			</Table>
+</content>
+</Panel>
+
+<Panel width="auto" id="Panel2" visible="false" class="sapUiNoMargin">
+		<!-- <headerToolbar>
+			<Toolbar height="3rem">
+			</Toolbar>
+		</headerToolbar> -->
+	<content>
+<Table id="tblDetail1" mode="None" updateFinished="onAmsUpdate" select="OnTableSelect">
+		<headerToolbar>
+			<Toolbar height="1.5rem">
+				<Title text="Tyre Level Services"/>
+				<ToolbarSpacer />
+			</Toolbar>
+		</headerToolbar>
+		
+				<columns>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="15%">
+						<Label design="Bold" text="Position" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="10%"  id="idnewPos1" visible="false" >
+						<Label design="Bold" text="New Position" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="15%">
+						<Label design="Bold" text="Company" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="20%">
+						<Label design="Bold" text="Item Code Description" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="12%">
+						<Label design="Bold" text="Stencil No" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="9%" visible="false">
+						<Label design="Bold" text="Service Required" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign='Center' width="9%">
+						<Label design="Bold" text="Service Sheet" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="10%"  id="idProposedCost" visible="false" >
+						<Label design="Bold" text="Proposed Cost" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="10%" visible="false" >
+						<Label design="Bold" text="Header Proposed Cost" />
+					</Column>
+					
+				</columns>
+			</Table>
+</content>
+</Panel>
+
+<Panel width="auto" id="Panel3" visible="false" class="sapUiNoMargin">
+	<content>
+<Table id="tblDetail2" mode="None"  select="OnTableSelect1" items="{FitModel>/RegnoToItemNvg/results}">
+		<headerToolbar>
+			<Toolbar height="1.5rem">
+				<Title text="Tyre Level Services"/>
+				<ToolbarSpacer />
+				<Button icon="sap-icon://add" press="onAddServiceData"></Button>
+			</Toolbar>
+		</headerToolbar>
+		
+				<columns>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="15%">
+						<Label design="Bold" text="Position" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="15%">
+						<Label design="Bold" text="Company" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="20%">
+						<Label design="Bold" text="Item Code Description" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="12%">
+						<Label design="Bold" text="Stencil No" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign='Center' width="9%">
+						<Label design="Bold" text="Service Sheet" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign='Center' width="9%">
+						<Label design="Bold" text="Reading" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign='Center' width="9%">
+						<Label design="Bold" text="" />
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Input id="idPositionNew" value="{serviceSheetJModel>PositionDesc}"   valueHelpRequest="onPosChange" valueHelpOnly="true" showValueHelp="true"/>
+							<!-- <Input id="idCompanyNew" value="{serviceSheetJModel>NonJkCompany}"  valueHelpRequest="onCompanyChangeInput" valueHelpOnly="true" showValueHelp="true"/> -->
+							<Input id="idCompanyNew" valueHelpRequest="onCompanyChangeInput" valueHelpOnly="true" showValueHelp="true" enabled="false"/>
+							<Input id="iditemCodeDescNew" value="{serviceSheetJModel>ItemDesc}"  valueHelpRequest="onItemCodeChange" valueHelpOnly="true" showValueHelp="true" enabled="false"/>
+							<Input id="idStencilNew"  maxLength="11" value="{serviceSheetJModel>StnclNumber}" enabled="false"/>
+							<Button text="" icon="sap-icon://activity-2" type="Emphasized" press="onServiceSheetPress" />
+							<Button text="" icon="sap-icon://record" type="Emphasized" press="onReadingPress" />
+							<Button text="" icon="sap-icon://delete" press="onDeleteServiceRow" />
+
+						</cells>
+					</ColumnListItem>
+				</items>
+				
+			</Table>
+</content>
+</Panel>	
+
+	
+</IconTabFilter>
+		<!-- *************item Info End***************** -->	
+			</items>
+			</IconTabBar>
+
+	</content>
+	<footer>
+		<Bar>
+			<contentLeft>
+				<Button id="btnDownload" visible="false" text="Download Format"
+					press="downloadExcel" type="Emphasized" />
+			</contentLeft>
+			<contentRight>
+			<!-- <Button text="Vehicle Registration" icon="sap-icon://car-rental" press="onVehReg" 
+					type="Accept" id="btnVehReg" visible="true" /> -->	
+			</contentRight>
+			<contentRight>		
+					
+			<Button text="Approve" icon="sap-icon://accept" press="onApprove" type="Accept"
+					id="Id_bt1" visible="true" />
+			
+			<Button text="Reject"  icon="sap-icon://decline" press="onReject" type="Reject"
+					id="Id_bt2" visible="true" />
+			
+			<Button text="Revise"  press="onRevise" type="Emphasized"
+					id="Id_bt3" visible="true" />
+			
+			<Button text="Back"  icon="sap-icon://undo" press="ontrkBack" type="Reject"
+					id="Id_bt4" visible="true" />	
+				
+			</contentRight>
+					
+		</Bar>
+	</footer>
+	</Page>
+</core:View>

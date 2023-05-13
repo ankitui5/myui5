@@ -1,0 +1,35 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+	<Dialog xmlns="sap.m" title="Truck Wheel Services"
+		class="sapUiSizeCompact" contentWidth="720px" contentHieght="320px">
+		<content>
+			<l:Grid defaultSpan="L12 M12 S12" width="auto" position="Center">
+				<l:content>
+					<f:SimpleForm minWidth="1024" maxContainerCols="2"
+						editable="true" layout="ResponsiveGridLayout" labelSpanL="3"
+						labelSpanM="3"  emptySpanL="0" emptySpanM="0" columnsL="2"
+						columnsM="2">
+						<f:content>
+						
+							<Label  text="Select Hub" />
+							<Input id="idFleet" valueHelpRequest="onFleetFragment"
+									valueHelpOnly="true" showValueHelp="true"/>
+									<!-- <Label  text="Select Hub" ></Label>
+												<Input id="idHub" valueHelpRequest="onHubFragment"
+									valueHelpOnly="true" showValueHelp="true" enabled="false"/> -->
+						</f:content>
+					</f:SimpleForm>
+				</l:content>
+			</l:Grid>
+			
+		</content>
+		<beginButton>
+			<Button text="OK" press="onFleetOkButton" />
+			
+		</beginButton>
+		<endButton>
+			
+			<Button text="Cancel" press="onFleetCloseCancel" />
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>
