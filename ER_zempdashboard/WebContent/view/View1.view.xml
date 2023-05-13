@@ -1,0 +1,331 @@
+<core:View width="100%"
+			xmlns:core="sap.ui.core" 
+			xmlns:viz="sap.viz.ui5.controls" 
+			xmlns:mvc="sap.ui.core.mvc"
+			xmlns="sap.m"
+			xmlns:l="sap.ui.layout"
+			xmlns:f="sap.ui.layout.form"
+			xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+			xmlns:viz.data="sap.viz.ui5.data"
+			xmlns:cl="sap.ui.commons.layout"
+			controllerName="zempdashboard.view.View1" 
+			xmlns:html="http://www.w3.org/1999/xhtml"
+>
+
+<html:style>
+.clStyle{
+	left: 0px;
+	top: 0px;
+	<!-- height: 100%;
+	width: 100%; -->
+	display: block;
+	cursor: default;
+	<!-- background-color: rgb(216, 207,207); -->
+	background-color: #fff8dc;
+}
+
+.sapMFlexBoxBGTranslucent {
+    background-color: cornsilk;
+}
+</html:style>
+
+<Page title="Employee Dashboard" showHeader="false">
+<content>
+
+<VBox alignItems="Center" alignContent="Center" backgroundDesign="Translucent">
+<HBox alignItems="Center" alignContent="Center" backgroundDesign="Translucent" backgroundColor="" >
+						<Label text="Date:" design="Bold"/>
+							<VBox width="10px">
+							</VBox>
+						<DatePicker id="idFromDate" width="8rem">
+						</DatePicker>
+							<VBox width="10px">
+							</VBox>
+						<Text text="to"/>
+							<VBox width="10px">
+							</VBox>
+						<DatePicker id="idToDate" width="8rem"/>
+
+						<VBox width="10px">
+							<Label text=" "></Label>
+							</VBox>
+						<Label id="lblPlant" text="Plant:" design="Bold"/>
+							<VBox width="10px">
+							<Label text=" "></Label>
+							</VBox>
+						<MultiComboBox autoAdjustWidth="true" id="idPlant" showSecondaryValues="true" width="15rem">
+						</MultiComboBox>
+							<VBox width="10px">
+							<Label text=" "></Label>
+							</VBox>
+						
+						<!-- <Label id="lblDepartment" text="Department:" design="Bold"/>
+							<VBox width="10px">
+							</VBox>
+						<MultiComboBox autoAdjustWidth="true" id="idDepartment" showSecondaryValues="true" width="15rem" >
+						</MultiComboBox>
+							<VBox width="10px">
+							<Label text=" "></Label>
+							</VBox> -->
+					</HBox>
+		<HBox alignItems="Center" alignContent="Center" backgroundDesign="Translucent" backgroundColor="" >
+						<Label id="lblReason" text="Reason:" design="Bold"/>
+							<VBox width="10px">
+							<Label text=" "></Label>
+							</VBox>
+						<MultiComboBox autoAdjustWidth="true" id="idReason" showSecondaryValues="true" width="15rem" >
+						</MultiComboBox>
+							<VBox width="10px">
+							<Label text=" "></Label>
+							</VBox>
+							
+						<Label id="lblStatus" text="Status:" design="Bold"/>
+							<VBox width="10px">
+							<Label text=" "></Label>
+							</VBox>
+						<MultiComboBox autoAdjustWidth="true" id="idStatus" showSecondaryValues="true" width="15rem" >
+							<core:Item key="02" text="In-Process" />
+							<core:Item key="03" text="Completed" />
+						</MultiComboBox>
+							<VBox width="10px">
+							<Label text=" "></Label>
+							</VBox>
+						
+						<Button id="btnSearch" text="Search" type="Emphasized" press="onSearch" icon="sap-icon://search" />
+							<VBox width="10px">
+							<Label text=" "></Label>
+							</VBox>
+						<Button id="btnclr" text="Clear" type="Emphasized" press="onClear" icon="sap-icon://clear-filter" />
+</HBox>
+</VBox>
+
+<VBox id="idVBoxChart" alignItems="Center" alignContent="Center">
+
+<VBox alignItems="Center" alignContent="Center">
+<HBox alignItems="Center" alignContent="Center">
+
+<viz:Popover id="idPopOver"></viz:Popover>
+		<viz:VizFrame id="idVizFrame" uiConfig="{applicationSet:'fiori'}"
+						height='400px' width="1250px" vizType='stacked_column' vizProperties="{ title: {text : 'Plant-Wise data based on Request Status', 
+																										visible : 'true'},
+																								valueAxis : { label : { visible : true }, 
+																											title: { visible : true } },
+																								categoryAxis : { label : { visible : true }, 
+																												title: { visible : false } },
+																								plotArea : { dataLabel:{visible:true} } 
+																								}"
+						>
+				<viz:dataset>
+					<viz.data:FlattenedDataset data="{PlantJModel>/}">
+						<viz.data:dimensions>
+							<viz.data:DimensionDefinition name="Plant" value="{PlantDesc}" />
+						</viz.data:dimensions>
+						<viz.data:measures>
+							<viz.data:MeasureDefinition name="InProcess" value="{InProcess}" />
+							<viz.data:MeasureDefinition name="Completed" value="{Completed}" />
+						</viz.data:measures>
+					</viz.data:FlattenedDataset>
+				</viz:dataset>
+				<viz:feeds>
+					<viz.feeds:FeedItem uid="primaryValues" type="Measure" values="InProcess" />
+					<viz.feeds:FeedItem uid="primaryValues" type="Measure" values="Completed" />
+					<viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Plant" />
+				</viz:feeds>
+		</viz:VizFrame>
+</HBox>
+</VBox>
+
+<!-- <HBox alignItems="Center" alignContent="Center" height="70%"> -->
+
+<!-- <VBox alignItems="Center" alignContent="Center">
+<viz:Popover id="idPopOver1"></viz:Popover>
+<viz:VizFrame class="clStyle1" id="idDepartmentGraph" uiConfig="{applicationSet:'fiori'}" 
+				 vizType='bar' selectData="onSelectLocation" vizProperties="{ title: {text : 'Department-Wise Data', visible : true},
+																			valueAxis : { label : { visible : true }, 
+																						title: {text : '', visible : false } },
+																			categoryAxis : { label : { visible : true }, 
+																						title: { text : '', visible : false } },
+																			plotArea : { dataLabel:{visible:true},
+																						dataPointSize: {min : 30, max : 30},
+																						colorPalette:'#9f00f0' } 
+																			}" >
+
+				<viz:dataset>
+					<viz.data:FlattenedDataset data="{DepartmentJModel>/}">
+						<viz.data:dimensions>
+							<viz.data:DimensionDefinition name="Department" value="{DeptDesc}" />
+						</viz.data:dimensions>
+						<viz.data:measures>
+							<viz.data:MeasureDefinition name="Count" value="{DCount}" />
+						</viz.data:measures>
+					</viz.data:FlattenedDataset>
+				</viz:dataset>
+
+				<viz:feeds>
+					<viz.feeds:FeedItem uid="primaryValues" type="Measure" values="Count" />
+					<viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Department" />
+				</viz:feeds>
+</viz:VizFrame>
+	<layoutData>
+			<l:GridData span="L5 M5 S12"/>
+	</layoutData>
+</VBox> -->
+
+<!-- <VBox alignItems="Center" alignContent="Center"> -->
+<viz:Popover id="idPopOver2"></viz:Popover>
+<viz:VizFrame class="clStyle1" id="idReasonGraph" 
+			uiConfig="{'applicationSet': 'fiori'}" selectData="onSelectLocation" 
+			vizType="column" legendVisible="false" vizProperties="{ title: {text : 'Reason-Wise Data', visible : true},
+																	valueAxis : { label : { visible : true }, 
+																				title: { visible : true } },
+																	categoryAxis : { label : { visible : true }, 
+																				title: { visible : false } },
+																	plotArea : { dataLabel:{visible:true},
+																				colorPalette:'#9f74a7' } 
+																	}" >
+			
+	<viz:dataset>
+			<viz.data:FlattenedDataset data="{ReasonJModel>/}">
+				<viz.data:dimensions> 
+					<viz.data:DimensionDefinition name="Reason" value="{ReasonDesc}" />
+				</viz.data:dimensions>
+
+				<viz.data:measures>
+					<viz.data:MeasureDefinition name="Count" value="{RCount}" />
+				</viz.data:measures>
+		</viz.data:FlattenedDataset>
+	</viz:dataset> 
+	
+	<viz:feeds>
+		<viz.feeds:FeedItem uid="primaryValues" type="Measure" values="Count" />
+		<viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Reason" />
+	</viz:feeds>
+</viz:VizFrame>
+<!-- 	<layoutData>
+			<l:GridData span="L7 M7 S12"/>
+	</layoutData>
+</VBox>
+</HBox> -->
+
+</VBox>
+
+<Panel id="idReportPanel" class="Custom_Panel" visible="false">
+		<Toolbar id="toolbarCT" >
+			<ToolbarSpacer />
+				<Text text="Legend :" TextColor="#e78c07" />
+				
+				<core:Icon src="sap-icon://pending" color="#ff0000">
+					<core:layoutData>
+						<FlexItemData growFactor="1" />
+					</core:layoutData>
+				</core:Icon>
+ 				<Text text="In-Process" />
+ 				
+				<core:Icon src="sap-icon://complete" color="#008000" font-weight="bold">
+					<core:layoutData>
+						<FlexItemData growFactor="1" />
+					</core:layoutData>
+				</core:Icon>
+				<Text text="Completed" />
+			
+			<ToolbarSpacer />
+			<Button text="Download Full Report" press="onDownload" icon="sap-icon://download" type="Emphasized"></Button>
+		</Toolbar>
+
+<Table id="tblDetail" items="" showNoData="false" class="tblgrid1 toolbarfrag tbllabel" >
+		<columns>
+			<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="8rem">
+				<Label text="Employee ID" />
+			</Column>
+			<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="8rem">
+				<Label text="Employee Name" />
+			</Column>
+			<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="9rem">
+				<Label text="Personnel Area" />
+			</Column>
+			<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="5rem">
+				<Label text="Designation" />
+			</Column>
+			<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="8rem">
+				<Label text="D.O.J." />
+			</Column>
+			<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="8rem">
+				<Label text="Resignation Date" />
+			</Column>
+			<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="8rem">
+				<Label text="Relieving Date" />
+			</Column>
+			<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="3rem">
+				<Label text="Status" />
+			</Column>
+			<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="8rem">
+				<Label text="Clearance Status" />
+			</Column>
+			<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="5rem">
+				<Label text="Form" /> 
+			</Column>
+		</columns>
+</Table>
+
+<ScrollContainer vertical="true" horizontal="false" > 
+<Table id="tblDetail1" items="{TableJModel>/}" class="tblgrid" alternateRowColors="true">
+		<columns>
+			<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="8rem">
+			</Column>
+			<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="8rem">
+			</Column>
+			<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="9rem">
+			</Column>
+			<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="5rem">
+			</Column>
+			<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="8rem">
+			</Column>
+			<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="8rem">
+			</Column>
+			<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="8rem">
+			</Column>
+			<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="3rem">
+			</Column>
+			<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="8rem">
+			</Column>
+			<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="5rem">
+			</Column>
+		</columns>
+
+	<items>
+		<ColumnListItem>
+			<cells>
+				<Text text="{TableJModel>PERNR}" />
+				<Text text="{TableJModel>EMPNAME}" />
+				<Text text="{TableJModel>WERKS_T}" />
+				<Text text="{TableJModel>STLTX}" />
+				<Text text="{path:'TableJModel>DOJ', formatter:'zempdashboard.util.Formatter.date1'}"/>
+				<Text text="{path:'TableJModel>RES_DATE', formatter:'zempdashboard.util.Formatter.date1'}" />
+				<Text text="{path:'TableJModel>FINAL_EXIT_DATE', formatter:'zempdashboard.util.Formatter.date1'}" />
+				<core:Icon src="{path:'TableJModel>STATUS', formatter:'zempdashboard.util.Formatter.setIcon'}"
+							color="{path:'TableJModel>STATUS', formatter:'zempdashboard.util.Formatter.setColor'}" 
+							tooltip="{TableJModel>STATUS_RES}" />
+				<Button icon="sap-icon://form" press="onClearanceForm" 
+						type="{path:'TableJModel>CLEARANCE_FLAG', formatter:'zempdashboard.util.Formatter.setButtonColor'}" />
+				<Button icon="sap-icon://download" press="onFormDownload" />
+			</cells>
+		</ColumnListItem>
+	</items>
+</Table>
+</ScrollContainer>
+
+</Panel>
+
+</content>
+<footer>
+	<Bar>
+		<contentRight>
+			<Button id="idViewChartButton" icon="sap-icon://business-objects-experience" press="onViewChart" 
+					text="View Graphical Report" type="Accept" visible="false" />
+			<Button id="idViewReportButton" icon="sap-icon://excel-attachment" press="onViewReport" 
+					text="View Detailed Report" type="Accept" visible="true" />
+		</contentRight>
+	</Bar>
+</footer>
+</Page>
+</core:View>

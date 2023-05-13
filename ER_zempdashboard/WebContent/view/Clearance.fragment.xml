@@ -1,0 +1,38 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form" 
+	xmlns:core="sap.ui.core" 
+	xmlns:l="sap.ui.layout" >
+	<Dialog xmlns="sap.m" title="Clearance Form Details" class="sapUiSizeCompact clrstatusHeader titel clsHeader" contentWidth="48%" contentHeight="45%">
+		<content>
+			<Table id="idTableclr" items="{ClearanceForm>/}" visible="true" showNoData="false" alternateRowColors="true" class="clsfrag clsfragc"> 
+				<columns>
+					<Column width="10rem" minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+						<Label text="Department" design="Bold"/>
+					</Column>
+					
+					<Column width="8rem" minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+						<Label text="Status" design="Bold"/>
+					</Column>
+					
+					<Column width="5rem"  minScreenWidth="Tablet" visible="true" hAlign='Center' demandPopin="true">
+						<Label text="Date" design="Bold"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+						<Text text="{ClearanceForm>DeptDesc}"/>
+						<Text text="{ClearanceForm>Status}" />
+						<Text valueFormat="yyyy-MM-dd"  text="{path:'ClearanceForm>Erdat', formatter:'zempdashboard.util.Formatter.date1'}"/>
+						</cells>
+				</ColumnListItem> 
+			</items>
+	</Table>
+			
+		</content>
+		<beginButton>
+			<Button text="OK" press="onClearOk" />
+		</beginButton> 
+		
+	</Dialog>
+</core:FragmentDefinition>
