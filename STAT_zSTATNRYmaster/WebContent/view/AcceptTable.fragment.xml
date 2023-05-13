@@ -1,0 +1,81 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Dialog showHeader="false" class="sapUiSizeCompact" contentWidth="80%" draggable="true" >
+	<subHeader>
+			<Bar>
+				<contentMiddle>
+					<Label id="idFragLabel" design="Bold" />
+				</contentMiddle>
+			</Bar>
+		</subHeader> 
+	<content>
+			<Toolbar >
+				<ToolbarSpacer/>
+				<Text id="idFragmentHeader"/>
+				<ToolbarSpacer/>
+			</Toolbar>
+	<ScrollContainer height="300px" width="100%" horizontal="false" vertical="true" focusable="true">
+		
+	<Table id="idRequestedTable" items="{requestedJModel>/}" showNoData="true" class="tblgrid1" alternateRowColors="true">
+						
+
+									<columns>
+										<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="3rem">
+											<Label text="Select"></Label>
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="6rem">
+											<Label text="Request No."></Label>
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="6rem">
+											<Label text="Employee ID"></Label>
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="10rem">
+											<Label text="Employee Name"></Label>
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="7rem">
+											<Label text="Requested Qty."></Label>
+										</Column>
+										<!-- <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="10rem">
+											<Label text="Requested Date &amp; Time"></Label>
+										</Column> -->
+										<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="15rem">
+											<Label text="Remarks"></Label>
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="8rem">
+											<Label text="Approved Qty." required="true"></Label>
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="18rem">
+											<Label text="Approver Remarks"></Label>
+										</Column>
+									</columns>
+										<items>
+											<ColumnListItem>
+												<cells>
+													<CheckBox></CheckBox>
+													<Text textAlign="Center" text="{requestedJModel>ReqNo}"/>
+													<Text textAlign="Center" text="{requestedJModel>Pernr}"/>
+													<Text textAlign="Center" text="{requestedJModel>Ename}"/>
+													<Text textAlign="Center" text="{requestedJModel>ReqMenge}"/>
+													<!-- <VBox alignContent="Center" alignItems="Center">
+														<HBox alignContent="Center" alignItems="Center" >
+															<Text textAlign="Center" text="{path:'requestedJModel>Erdat',formatter:'zstatnrymaster.util.Formatter.date2'}" />
+															<VBox width="1rem" />
+															<Text textAlign="Center" text=" {path:'requestedJModel>Erzet',formatter:'ZAddStationary.util.Formatter.Time'}" />
+														</HBox>
+													</VBox> -->
+													<Text textAlign="Center" text="{requestedJModel>Remark}"/>
+													<Input textAlign="Center" value="{requestedJModel>AppMenge}" 
+															liveChange="onQtyValid" maxLength="3" change="onQuantitychange" />
+													<Input textAlign="Center" value="{requestedJModel>AppRemarks}" maxLength="30"/>
+												</cells>
+											</ColumnListItem>
+										</items>
+								</Table>
+			</ScrollContainer>
+	</content>
+		<buttons>
+			<Button text="Approve" press="onApproveRemarks" type="Accept"/>
+			<Button text="Cancel" press="onTableCancel" type="Reject"/>
+		</buttons>	
+</Dialog>
+</core:FragmentDefinition>
+

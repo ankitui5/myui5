@@ -1,0 +1,93 @@
+<core:FragmentDefinition 
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core">
+	<Dialog xmlns="sap.m"  title="Stationary Master History" class="sapUiSizeCompact" contentWidth="90%" contentHeight="80%">
+		<content>
+			<l:Grid defaultSpan="L12 M12 S12" width="auto" position="Center">
+				<l:content>
+					<Table class="tblgrid" showNoData="false">
+						<columns>
+							<!-- <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="1em">
+								  <CheckBox select="onSelect" selected="false" />
+							</Column> -->
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="6em">
+								<Label text="Item No."/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="6em">
+								<Label text="Item"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="6em">
+								<Label text="Item Description"/>
+							</Column>
+							
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="6em">
+								<Label text="Requested Quantity"/>
+							</Column>
+							<Column minSceenWidth="Tablet" demandPopin="true" hAlign="Center" width="6em">
+								<Label text="Issued Quantity"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="6em">
+								<Label text="Issuer Status"/>
+							</Column>
+							<!-- <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="4em">
+								<Label text="Action"/>
+							</Column> -->
+						</columns>
+					</Table>
+					<ScrollContainer vertical="true" horizontal="false">
+						<Table  items="{RequesthistoryJModel>/}" showNoData="true" class="tblgrid1"
+							id="IdMasterTable"	alternateRowColors="true">
+							<columns>
+								<!-- <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="1em"/> -->
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="6em"/>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="6em"/>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="6em"/>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="6em"/>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="6em"/>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="6em"/>
+								<!--<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="4em"/> -->
+							</columns>
+								<items>
+									<ColumnListItem>
+										<cells>
+											<!-- <CheckBox onSelect="" selected="false"/> -->
+											<Text text="{RequesthistoryJModel>RequestNo}" enabled="false" />
+											<Text text = "{RequesthistoryJModel>Item}" enabled="false"/>
+											<Text text="{RequesthistoryJModel>ReqMenge}" enabled="false"></Text>
+											<Text text="{RequesthistoryJModel>ReqMenge}" enabled="false"></Text>
+											<Text text="{RequesthistoryJModel>ReqMenge}" enabled="false"></Text>
+											<!-- <DatePicker value="{historyJModel>Erdat}" enabled="false" 
+														displayFormat='dd.MM.yyyy' width="50%"></DatePicker>
+											 -->
+										<!-- 	<Select items="{statusJModel>/}" 
+													selectedKey="{historyJModel>Status}" enabled="true">
+													<core:Item text="{statusJModel>Description}" 
+																key="{statusJModel>Status}" />
+											</Select> -->
+											<Select selectedKey="{historyJModel>Issue_Status}" enabled="true" forceSelection="false">
+												<items>
+													<core:Item text="Pending" key="01" />
+													<core:Item text="Issued" key="02" />
+												</items>
+											</Select>
+											
+											<Text text="{RequesthistoryJModel>Remark}" enabled="false"></Text>
+										</cells>
+									</ColumnListItem>
+								</items>
+						</Table>
+					</ScrollContainer>
+				</l:content>
+			</l:Grid>
+		</content>
+		
+		<beginButton>
+			<Button text="Submit" press="onRequestOk" type="Accept"/>
+		</beginButton>
+		<endButton>
+			<Button text="Cancel" press="onRequestCancel" type="Reject"/>
+		</endButton>
+		
+	</Dialog>
+</core:FragmentDefinition>
