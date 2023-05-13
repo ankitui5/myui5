@@ -1,0 +1,348 @@
+<mvc:View controllerName="com.acute.ticketZTicket.controller.View1" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout"
+  xmlns:f="sap.ui.layout.form" xmlns:u="sap.ui.unified" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns="sap.m" 
+  displayBlock="true" class="sapUiSizeCompact" xmlns:c="sap.ui.unified.calendar" xmlns:img="sap.ui.unified">
+  <html:style>
+
+	<!-- .jhClass .sapUiForm .sapUiFormTitle  > span {
+    font-weight: 700;
+    color: black;
+    font-size: larger !important;
+	}
+	 -->
+	.hClass .sapMTitle > span {
+    font-weight: bold !important;
+    color: black;
+    font-size: larger;
+	}
+
+	.borderColor{
+  	border-color: red !important;
+	}
+	.background{
+	background-color:white;
+	}
+	
+<!-- 	.sapUiForm .sapUiFormTitle {
+    font-weight: 700;
+    font-size: larger;
+    color: black;
+    height: 3rem;
+    line-height: 3rem;
+} -->
+
+
+  </html:style>
+  <App id="view1">
+    <pages>
+      <Page title="Create Ticket" class="hClass" id="ViewId">
+        <content>
+
+ 
+        <VBox class="sapUiSmallMargin">
+            <f:SimpleForm id="SimpleFormToolbar1" minWidth="1024"
+            maxContainerCols="6" editable="true" layout="ResponsiveGridLayout"
+            labelSpanL="4"
+      labelSpanM="4"
+      emptySpanL="1"
+      emptySpanM="1"
+      columnsL="2"
+      columnsM="1" class="editableForm l1"> 
+              <f:content>
+           <core:Title text="Header" class="jhClass"/>
+                <Label text="Complaint Raised By" required="true" id="idCustomerLabel"/>
+                <Select selectedKey="" forceSelection="false" enabled="true" id="idCustomer">
+                </Select>
+
+                <Label text=" Fitment Type" tooltip="Tyre Fitment Type" id="" required="true" />
+                <Select selectedKey="" forceSelection="false" enabled="true" id="idFitment" change="onFitmentChange" >
+                </Select>
+
+                <Label text="CTI Number"  />
+                <Input enabled="true"  liveChange="NumberValid"  id="idCTINumber" maxLength="20" />
+                 
+            <core:Title text=""/>
+
+                <Label text="Ticket Date"/>
+                <!-- <DateRangeSelection  id="idDateRange" change="handleDateChange" /> -->
+                <DatePicker dateValue="{/date}" enabled="false" />
+                
+                <Label text="Ticket Source" required="true"/>
+                <Select selectedKey="" forceSelection="false" enabled="true" id="idTicketSource" >
+                </Select>
+                        </f:content>
+            </f:SimpleForm>
+          </VBox>
+
+<html:hr/>
+          <VBox class="sapUiSmallMargin">
+            <f:SimpleForm id="SimpleFormToolbar2" minWidth="1024"
+            maxContainerCols="6" editable="true" layout="ResponsiveGridLayout"
+            labelSpanL="4"
+      labelSpanM="4"
+      emptySpanL="1"
+      emptySpanM="1"
+      columnsL="2"
+      columnsM="1" class="editableForm">
+              <f:content>
+                <core:Title text="Customer Details" class="jhClass" />
+
+
+                <Label text="Phone No." required="true"/>
+                <Input value="+91" enabled="false" id="idPhone" submit="onEnter">
+                  <layoutData>
+                    <l:GridData span="XL2 L1 M2 S2"/>
+                  </layoutData>
+                </Input>
+                <Input enabled="true" type="Tel" liveChange="NumberValidOpenTicket" change="phone" id="idPhone1" submit="onEnter" maxLength="10" />
+
+
+                <Label text="Alternate No."/>
+                <Input value="+91" enabled="false" id="idalter" submit="onEnter">
+                  <layoutData>
+                    <l:GridData span="XL2 L1 M2 S2"/>
+                  </layoutData>
+                </Input>
+                <Input enabled="true" type="Tel" liveChange="NumberValid" id="idphone2" submit="onEnter" maxLength="10"/>
+
+
+                <Label text="First Name" required="true"/>
+                <Input enabled="true" id="idFname" submit="onEnter" maxLength="35" liveChange="validateCharacter"/>
+
+                <Label text="Last Name"/>
+                <Input  id="idLname" maxLength="35" liveChange="validateCharacter"/>
+
+                <Label text="Address1" required="true"/>
+                <Input  id="idAdd1"/>
+
+                <Label text="Address2"/>
+                <Input  id="idAdd2"/>
+
+                <core:Title text=""/>
+
+                <Label text="Country" required="true"/>
+                <Select selectedKey="IN" enabled="false" id="idCountry" forceSelection="true">
+                  <items>
+                    <core:Item text="India" key="IN"/>
+                  </items>
+                </Select>
+
+                <Label text="State" required="true"/>
+                <Input enabled="true" id="idState" valueHelpRequest="onStateHelp" valueHelpOnly="true" showValueHelp="true"/>
+
+
+                <Label text="District" required="true"/>
+                <!-- <Input  id="idDistrict" valueHelpRequest="onDistrictHelp" enabled="false" valueHelpOnly="true" showValueHelp="true"/> -->
+                <Input id="idDistrict" valueHelpRequest="onDistrictHelp" enabled="false" valueHelpOnly="true" showValueHelp="true"/>
+
+
+
+                <Label text="Location"  required="true"/>
+                <Input  id="idLocation" maxLength = "20" enabled="false" 
+                        liveChange="validateChar"/>
+
+
+              <!--  <Label text="Postal Code"/>
+                <Input  id="idCode" maxLength="6" liveChange="NumberValid"/> -->
+
+                <Label text="E-Mail ID"/>
+                <Input  id="idEmail" type="Email" change="emailValidate" maxLength="35"/>
+
+
+              </f:content>
+            </f:SimpleForm>
+          </VBox>
+
+<html:hr/>
+
+          <VBox class="sapUiSmallMargin">
+            <f:SimpleForm id="SimpleFormToolbar3" minWidth="1024"
+            maxContainerCols="6" editable="true" layout="ResponsiveGridLayout"
+            labelSpanL="4"
+      labelSpanM="4"
+      emptySpanL="1"
+      emptySpanM="1"
+      columnsL="2"
+      columnsM="1" class="editableForm">
+              <f:content>
+                <core:Title text="Vehicle Details" class="jhClass" />
+
+                <Label text="Vehicle Type" required="true"/>
+                <Input id="idVehicle"  valueHelpRequest="onVehicleType" valueHelpOnly="true" showValueHelp="true"/>
+
+                <Label id="lblVehicleMake" text="Vehicle Make" required="false"/>
+                    <Input id="idVehicleMake" valueHelpRequest="onVehicleMake" enabled="false" valueHelpOnly="true" showValueHelp="true"/>
+
+                <Label text="Vehicle Reg No" required="false"  id="idvehicleLabel"/>
+                <Input enabled="true" maxLength="20" id="idregno"/>
+
+                <Label text="Chassis Number" required="false"  id="idchassisLabel"/>
+                <Input enabled="true" maxLength="20" id="idchassisInput"/>
+
+                <core:Title text=""/>
+
+                <Label id="lblVehModel" text="Vehicle Model" required="false"/>
+                <Input id="idModel" valueHelpRequest="onVehicleModel" change="vehicleModelChange" valueHelpOnly="false" enabled="false" showValueHelp="true"/>
+
+                <Label id="lblVehVariant" text="Vehicle Variant" required="false"/>
+                <Input id="idVariant" valueHelpRequest="onVehicleVariant" valueHelpOnly="false" enabled="false" showValueHelp="true"/>
+
+                <Label id="lblVehKmsDone" text="KMS done/Nos. of Hours" tooltip="KMS done/Nos. of Hours (FARM/OTR)"/>
+                <Input id="idHours" liveChange="NumberValid" maxLength="8" enabled="true"/>
+
+                <Label text="Purchase Date Month/Year"  id="idpurchaseLabell"/>
+                <Select id="idMonth" change="onMonthChange">
+                  <items>
+                    <core:Item text=""    key="0"/>
+                    <core:Item text="JAN" key="1" />
+                    <core:Item text="FEB" key="2" />
+                    <core:Item text="MAR" key="3" />
+                    <core:Item text="APR" key="4" />
+                    <core:Item text="MAY" key="5" />
+                    <core:Item text="JUN" key="6" />
+                    <core:Item text="JUL" key="7" />
+                    <core:Item text="AUG" key="8" />
+                    <core:Item text="SEP" key="9" />
+                    <core:Item text="OCT" key="10" />
+                    <core:Item text="NOV" key="11" />
+                    <core:Item text="DEC" key="12" />
+                  </items>
+                  <layoutData>
+                    <l:GridData span="XL4 L2 M4 S4"/>
+                  </layoutData>
+                </Select>
+                <Input id="idYear" minLength="4" maxLength="4" liveChange="YearValid">
+                  <layoutData>
+                    <l:GridData span="XL4 L2 M4 S4"/>
+                  </layoutData>
+                </Input>
+              </f:content>
+            </f:SimpleForm>
+            </VBox>
+<html:hr/>
+    <VBox id ="idVboxOem" visible="false" class="sapUiSmallMargin" >
+    <!-- <Panel id="IdPanel1" visible="true"> -->
+                <f:SimpleForm id="SimpleFormToolbar4" minWidth="1024"
+                maxContainerCols="6" editable="true"  layout="ResponsiveGridLayout"
+                labelSpanL="4"
+                labelSpanM="4"
+                emptySpanL="1"
+                emptySpanM="1"
+                columnsL="2"
+                columnsM="1"
+          adjustLabelSpan="true"
+           class="editableForm">
+                  <f:content>
+
+                <core:Title text="Franchise Details" class="jhClass" />
+              <!-- OEM Start -->
+                <Label text="Name" tooltip="Franchise Name" visible="true" id="idFNameLabel" required="true"/>
+                <Input enabled="true" liveChange="validateChar" visible="true" id="idFNameInput" />
+
+                 <Label text="Person Name" tooltip="Franchise Person Name" visible="true" id="idFPNameLabel"/>
+                <Input enabled="true" liveChange="validateChar" visible="true" id="idFPNameInput" />
+
+                <Label text="Email" tooltip="Franchise Email" visible="true" id="idFEmailLabel"/>
+                <Input enabled="true" change="validateFranchiseEmail" type="email" visible="true" id="idFEmailInput"/>
+
+                <core:Title text=""/>
+
+                <Label text="Phone Number" tooltip="Franchise Phone Number" visible="true" id="idFPNoLabel"/>
+                <Input enabled="true" liveChange="NumberValid" maxLength="10" visible="true" id="idFPNoInput"/>
+
+
+                <Label text="Location" tooltip="Franchise Location" visible="true" id="idFLocationLabel" required="true"/>
+                <Input enabled="true"  liveChange="validateChar" visible="true" id="idFLocationInput"/>
+
+
+
+              </f:content>
+            </f:SimpleForm>
+          </VBox>
+        <!--Replacement -->
+
+    <VBox id ="idVboxRep" visible="false" class="sapUiSmallMargin" >
+          <f:SimpleForm id="SimpleFormToolbar5" minWidth="1024"
+                maxContainerCols="6" editable="true"  layout="ResponsiveGridLayout"
+                labelSpanL="4"
+          		labelSpanM="4" adjustLabelSpan="true"
+          		emptySpanL="1"
+          		emptySpanM="1"
+          		columnsL="2"
+          		columnsM="1" class="editableForm" >
+            <f:content>
+            
+            <core:Title text="Replacement Details" class="jhClass" />
+              
+                <Label text="Dealer Code"  visible="true" id="idDealCodeLabel"/>
+                <Input enabled="true" visible="true" id="idDealCodeInput" valueHelpRequest="onDelarCodeType" 
+                	   valueHelpOnly="true" showValueHelp="true" />
+                
+                <Label text="Dealer Description"  visible="true" id="idDealDescLabel"/>
+                <Input enabled="false" visible="true" id="idDealDescInput" />
+
+                <Label text="Date of Tyre Purchase" tooltip="Date of Tyre Purchase" visible="true" id="idDtTyreLabel"/>
+                <DatePicker enabled="true" visible="true" id="idDtTyreInput" change = "onchangepurdt" valueFormat="yyyy-MM-dd" />
+
+                <core:Title text=""/>
+              </f:content>
+            </f:SimpleForm>
+
+          </VBox>
+
+     <VBox class="sapUiSmallMargin">
+        <f:SimpleForm id="SimpleFormToolbar6" minWidth="1024"
+            maxContainerCols="6" editable="true" layout="ResponsiveGridLayout"
+            labelSpanL="4"
+      		labelSpanM="4"
+      		emptySpanL="1"
+      		emptySpanM="1"
+      		columnsL="1"
+      		columnsM="1" class="editableForm">
+              <f:content>
+              <Label text="Nos. of Tyres Purchased(Qty)"/>
+                <Input  id="idTyreInput" type="text" maxLength="3" liveChange="NumberValid">
+                <layoutData>
+                    <l:GridData span="XL2 L1 M2 S2"/>
+                  </layoutData>
+                  </Input>
+
+                <Label text="Nos. of Products involved under complaint(Qty)" required="true" liveChange="NumberValid"/>
+                <Input id="idTyreInvolve" type="text" maxLength="3" liveChange="NumberValid">
+                <layoutData>
+                    <l:GridData span="XL2 L1 M2 S2"/>
+                  </layoutData>
+                  </Input>
+
+
+               <Label text="Probable Condition" />
+                <Select selectedKey="" forceSelection="false" enabled="true" id="idCondition">
+                  <layoutData>
+                    <l:GridData span="XL6 L4 M2 S2"/>
+                  </layoutData>
+                </Select>
+
+
+                <Label text="Tyre Description/Application"/>
+                <TextArea id="idText" enabled="true"/>
+                <Label text="Description of Complaint by Customer"/>
+                <TextArea id="idDescComp" enabled="true"/>
+                <Label text="Remarks"/>
+                <TextArea id="idRemarks" enabled="true"/>
+  
+              </f:content>
+            </f:SimpleForm>
+
+          </VBox>
+        </content>
+        <footer>
+          <Toolbar>
+            <ToolbarSpacer/>
+  <!--          <img:FileUploader iconOnly="true" multiple="false" buttonOnly="true" icon="sap-icon://add-photo" uploadOnChange="false" sendXHR="true" useMultipart="false" fileType="JPG,JPEG,jpeg,jpg,PNG,png,pdf,DOC,DOCX"
+                      sameFilenameAllowed="true" typeMissmatch="onTypeMissmatch" change="onChangeCamera" /> -->
+            <Button icon="sap-icon://save" class="icon-save" text="Save" type="Accept" press="onSave"/>
+          </Toolbar>
+        </footer>
+      </Page>
+    </pages>
+  </App>
+</mvc:View>

@@ -1,0 +1,302 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:u="sap.ui.unified" xmlns="sap.m" xmlns:f="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout" controllerName="com.acute.spinsp.view.S1"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="Spot Inspection" class="sapUiSizeCompact">
+		<content>	
+		
+<VBox class="sapUiSmallMargin">
+	<f:SimpleForm id="SimpleFormToolbar0" minWidth="1024"
+		maxContainerCols="2" editable="true" layout="ResponsiveGridLayout"
+		labelSpanL="5" labelSpanM="4" emptySpanL="1" emptySpanM="1" columnsL="2"
+		columnsM="1" class="editableForm">
+		<f:content>
+<!--  -->
+			<core:Title text="" />
+			<Label text="Ticket Number" id="idTnolbl" required="true" />
+			<Input enabled="true" id="idTno" valueHelpRequest="onTicket" valueHelpOnly="true" showValueHelp="true" />
+								
+			<Label text="Type of Claim"  required="true"/>
+			<Input enabled="true" id="idClaim"  valueHelpRequest="onTypeofClaim"
+				valueHelpOnly="true" showValueHelp="true"/>
+				
+			
+			<Label text="Complaint Raised By" required="true" />
+			<Select change="onComplntRsdBy" forceSelection="false" id="idCustomer" 
+			        selectedKey="{jModel>/d/CustType}">
+			<layoutData></layoutData>
+			</Select>
+					
+			<Label text="Ticket Source" required="false"/>
+			<Select selectedKey="{jModel>/d/TicketSource}" forceSelection="false" enabled="false" 
+			        id="idTicketSource" >
+			</Select>
+			
+			<Label text="No. of Product under Claim"  required="true"/>
+			<Input enabled="false" id="idPNo" value="{jModel>/d/DefectiveTyres}"/>
+			
+			<Label text="Ticket Date" id="idTkDatelbl"/>
+			<DatePicker id="idTkDate" enabled="false" placeholder="Ticket Date" 
+						dateValue="{path:'jModel>/d/TicketDate', formatter:'com.acute.spinsp.util.Formatter.date'}"/>
+				        <!-- dateValue="{path:'jModel>/d/TicketDate', formatter:'com.acute.spinsp.util.Formatter.date'}" /> -->
+			
+ 			<Label text="Claim Receiving Depot" required="true" />
+			<Input id="iddepo" enabled="false" change="onChangeClaimRecDepot" valueHelpRequest="onTypeofDepo" valueHelpOnly="true" showValueHelp="true" />         			
+				
+<!--  -->							
+			<core:Title text="" />
+			
+				<Label text=" Fitment Type" tooltip="Tyre Fitment Type" id="" required="true" />								
+				<Select selectedKey="" forceSelection="false" enabled="true" id="idFitment" change="onFitmentChange" >
+				</Select>
+            
+            <Label text="Created By" required="true" />
+			<Select  forceSelection="false" enabled="false" id="idCreatedBy" change="onCreatedBy" >
+				<items>
+					<core:Item text="JKTIL" key="01" />
+					<core:Item text="Dealer" key="02" />
+				</items>
+			</Select>
+<!--  -->
+   		<!-- 	<core:Title text="" /> -->
+			<Label text="Appointment Date" id="idAppointment"/>
+			<DatePicker id="idAppDate" enabled="false" placeholder="Appointment Date" 
+						dateValue="{path:'jModel>/d/AppointDate', formatter:'com.acute.spinsp.util.Formatter.date'}"/>
+			
+			
+			<Label text="Inspector Name"  />
+			<Input id="idInspectorName" value="{jModel>/d/SeName}" enabled="false"/>
+			 
+			<Label text="Letter Ref. No." required="true" />
+			<Input id="inpLetterRefNo" value="{jModel>/d/LetterRefNo}" enabled="false" maxLength="35" />
+			
+			<Label text="Letter Ref. Date" id="lblLetterRefDate" required="true" />
+            <DatePicker enabled="false" valueFormat="yyyy-MM-dd" id="inpLetterRefDt" placeholder="Letter Reference Date" 
+            			dateValue="{path:'jModel>/d/LetterRefDt', formatter:'com.acute.spinsp.util.Formatter.date'}"
+            			change = "onchangeletterdt"/>			    
+		</f:content>
+	</f:SimpleForm>
+</VBox>
+
+<html:hr/>
+<!-- ******************************************************************************************************** -->
+<VBox class="sapUiSmallMargin">
+	<f:SimpleForm id="SimpleFormToolbar" minWidth="1024"
+		maxContainerCols="2" editable="true" layout="ResponsiveGridLayout"
+		labelSpanL="4" labelSpanM="4" emptySpanL="1" emptySpanM="1" columnsL="2"
+		columnsM="1" class="editableForm">
+		<f:content>
+<!--  -->		
+			<core:Title text="Customer Details" />	
+			<Label text="Phone No." />
+			<Input value="+91" enabled="false" id="idPhone" submit="onEnter">
+				<layoutData>
+				<l:GridData span="XL2 L1 M3 S4"/>
+				</layoutData>
+			</Input>
+			
+			<Input enabled="false" type="Tel" liveChange="NumberValidOpenTicket" id="idPhone1" 
+				   maxLength="10" value="{path:'jModel>/d/CustomerTelf1', formatter:'.formatter.Mobile'}"/>
+								
+			<Label text="Alternate No."/>
+			<Input value="+91" enabled="false" id="idalter" submit="onEnter">
+				<layoutData>
+				<l:GridData span="XL2 L1 M2 S2"/>
+				</layoutData>
+			</Input>
+			<Input enabled="true" type="Tel" liveChange="NumberValid" id="idAltNo" change="phonevalid"
+				 maxLength="10" value="{path:'jModel>/d/CustomerTelf2', formatter:'.formatter.Mobile'}"/>
+								
+			<Label text="First Name" required="true" />
+			<Input enabled="false" id="idFname" liveChange="validateCharacter" submit="onEnter" value="{jModel>/d/CustomerFname}"/>
+			
+			<Label text="Last Name"/>
+			<Input id="idLname"  enabled="false" liveChange="validateCharacter" value="{jModel>/d/CustomerLname}"/>
+								
+			<Label text="Address1" required="true"/>
+			<Input id="idAdd1"  enabled="false" value="{jModel>/d/CustomerAddr1}"/>
+			
+			<Label text="Address2"/>
+			<Input id="idAdd2"  enabled="false" value="{jModel>/d/CustomerAddr2}"/>
+			
+			<core:Title text=""/>
+			<Label text="Country" required="false"/>
+			<Select selectedKey="IN" enabled="false" id="idCountry" forceSelection="true">
+				<items>
+				<core:Item text="India" key="IN"/>
+				</items>
+			</Select>
+			
+			<Label text="State" required="false"/>
+			<Input enabled="false" id="idState" valueHelpRequest="onStateHelp" valueHelpOnly="true" showValueHelp="true" value="{jModel>/d/RegionDesc}"/>
+			
+			<Label text="District" required="false"/>
+			<Input id="idDistrict" value="{jModel>/d/CustomerCity2}" enabled="false" valueHelpRequest="onDistrictHelp" valueHelpOnly="true" showValueHelp="true"/>
+			
+			<Label text="Location" required="true"/> 
+			<Input id="idLocation"  enabled="false" value="{jModel>/d/CustomerCity1}"/>
+			
+			<Label text="Email Id"/>
+			<Input id="idEmail"  enabled="false" value="{jModel>/d/CustomerEmail}"/>
+			
+		</f:content>
+	</f:SimpleForm>
+	<html:hr/>
+<!-- ****************************************************************************************************** -->	
+
+<!-- **************************************************change sumit****************************************************** -->
+<VBox class="sapUiSmallMargin">
+            <f:SimpleForm id="SimpleFormToolbar3" minWidth="1024"
+            maxContainerCols="6" editable="true" layout="ResponsiveGridLayout"
+            labelSpanL="4"
+      labelSpanM="4"
+      emptySpanL="1"
+      emptySpanM="1"
+      columnsL="2"
+      columnsM="1" class="editableForm">
+              <f:content>
+                <core:Title text="Vehicle Details" class="jhClass" />
+                
+                <Label text="Inspection Type" required="true"/>
+                <Select id="idInspType" change="onInspType">
+                <items>
+                   <!--  <core:Item text="" key="0" />  -->
+                    <core:Item text="On Wheel" key="01"/>
+                    <core:Item text="On Removed Condition" key="02" />
+                  
+                </items>
+                </Select>
+                
+
+                <Label text="Vehicle Type" required="true"/>
+                <Input id="idVehicle"  valueHelpRequest="onVehicleType" valueHelpOnly="true" showValueHelp="true" value="{jModel>/d/VehicleType}"/>
+
+                <Label id="lblVehicleMake" text="Vehicle Make" required="false"/>
+                    <Input id="idVehicleMake" valueHelpRequest="onVehicleMake" enabled="{path:'jModel>/d/VehicleType', formatter:'com.acute.spinsp.util.Formatter.vehicleDetail'}" valueHelpOnly="true" showValueHelp="true" value="{jModel>/d/VehicleMake}"/>
+
+                <Label text="Vehicle Reg No" required="false"  id="idvehicleLabel"/>
+                <Input enabled="true" maxLength="20" id="idregno" value="{jModel>/d/RegNo}"/>
+
+                <Label text="Chassis Number" required="false"  id="idchassisLabel"/>
+                <Input enabled="true" maxLength="20" id="idchassisInput" value="{jModel>/d/ChassisNo}"/>
+
+                <core:Title text=""/>
+
+                <Label id="lblVehModel" text="Vehicle Model" required="false"/>
+                <Input id="idModel" valueHelpRequest="onVehicleModel" change="vehicleModelChange" valueHelpOnly="false" enabled="{path:'jModel>/d/VehicleMake', formatter:'com.acute.spinsp.util.Formatter.vehicleDetail'}" showValueHelp="true" value="{jModel>/d/VehicleModel}"/>
+
+                <Label id="lblVehVariant" text="Vehicle Variant" required="false"/>
+                <Input id="idVariant" valueHelpRequest="onVehicleVariant" valueHelpOnly="false" enabled="{path:'jModel>/d/VehicleModel', formatter:'com.acute.spinsp.util.Formatter.vehicleDetail'}" showValueHelp="true" value="{jModel>/d/VehicleVariant}" />
+
+                <Label id="lblVehKmsDone" text="KMS done/Nos. of Hours" tooltip="KMS done/Nos. of Hours (FARM/OTR)"/>
+                <Input id="idHours" liveChange="NumberValid" maxLength="8" enabled="true"  value="{jModel>/d/KmsDone}"/>
+
+                <Label text="Purchase Date Month/Year"  id="idpurchaseLabell"/>
+                <Select id="idMonth" change="onMonthChange" selectedKey="{jModel>/d/VechPurcMonth}">
+                  <items>
+                    <core:Item text=""    key="0"/>
+                    <core:Item text="JAN" key="1" />
+                    <core:Item text="FEB" key="2" />
+                    <core:Item text="MAR" key="3" />
+                    <core:Item text="APR" key="4" />
+                    <core:Item text="MAY" key="5" />
+                    <core:Item text="JUN" key="6" />
+                    <core:Item text="JUL" key="7" />
+                    <core:Item text="AUG" key="8" />
+                    <core:Item text="SEP" key="9" />
+                    <core:Item text="OCT" key="10" />
+                    <core:Item text="NOV" key="11" />
+                    <core:Item text="DEC" key="12" />
+                  </items>
+                  <layoutData>
+                    <l:GridData span="XL4 L2 M4 S4"/>
+                  </layoutData>
+                </Select>
+                <Input id="idYear" minLength="4" maxLength="4" change="YearValid" value="{jModel>/d/VechPurcYear}">
+                  <layoutData>
+                    <l:GridData span="XL4 L2 M4 S4"/>
+                  </layoutData>
+                </Input>
+              </f:content>
+            </f:SimpleForm>
+            </VBox>
+
+<!-- ********************************************************************************************************* -->
+
+<html:hr/>
+	
+	<VBox class="sapUiSmallMargin">
+		<f:SimpleForm id="SimpleFormToolbar1" minWidth="1024"
+			maxContainerCols="2" editable="true" layout="ResponsiveGridLayout"
+			labelSpanL="4" labelSpanM="4" emptySpanL="1" emptySpanM="1" columnsL="2"
+			columnsM="1" class="editableForm">
+			<f:content>
+				
+				<core:Title text="Dealer Details" />
+				<Label text="JK Dealer Code" required="true" />
+				<Input value="" enabled="false" id="idDelar" valueHelpRequest="onTypeJkDelar"
+				valueHelpOnly="true" showValueHelp="true">
+					<layoutData>
+					<l:GridData span="XL2 L3 M3 S4" />
+				</layoutData>
+				</Input>
+				<Input value="" enabled="false" id="idDelarName" />
+				
+				<Label text="Street" />
+				<Input enabled="false" type="Tel"  id="idStreet" value="" />
+				
+				<Label text="City" />
+				<Input enabled="false" id="iddelCity" value="" />
+				
+				<Label text="District" />
+				<Input id="iddelDist" enabled="false" value="" />
+           		
+           		<Label text="Postal Code" />
+				<Input id="idDealPos" enabled="false" value="" /> 
+				
+				<Label text="Phone Number" />
+				<Input id="idDealMobil" enabled="false" value="" />
+
+
+<!--  -->		
+				<core:Title text="OEM Details" />
+					<Label text="Name" tooltip="Franchise Name" visible="true" id="idFNameLabel" required="false"/>
+					<Input enabled="false" liveChange="validateChar" visible="true" id="idFNameInput" 
+					       value="{jModel>/d/FranhiseName}"/>
+								
+					<Label text="Person Name" tooltip="Franchise Person Name" visible="true" id="idFPNameLabel"/>
+					<Input enabled="false" liveChange="validateChar" visible="true" id="idFPNameInput" 
+					value="{jModel>/d/FranhisePersonName}"/>
+								
+					<Label text="Email" tooltip="Franchise Email" visible="true" id="idFEmailLabel"/>
+					<Input enabled="false" change="validateFranchiseEmail" type="email" visible="true" 
+					       value="{jModel>/d/FranhiseEmail}" id="idFEmailInput"/>
+								
+								
+					<Label text="Phone Number" tooltip="Franchise Phone Number" visible="true" id="idFPNoLabel"/>
+					<Input enabled="false" liveChange="NumberValid" maxLength="10" visible="true" 
+					       value="{jModel>/d/FranhiseContact}" id="idFPNoInput"/>
+							
+					<Label text="Location" tooltip="Franchise Location" visible="true" id="idFLocationLabel" required="false"/>
+					<Input enabled="false"  liveChange="validateChar" visible="true" maxLength="30"
+					       value="{jModel>/d/FranhiseLocation}" id="idFLocationInput"/>	
+
+
+			</f:content>
+		</f:SimpleForm>
+	</VBox>
+</VBox>
+										
+		</content>
+	<footer>
+		<Bar>
+			<contentLeft>
+			</contentLeft>
+			<contentRight>
+				<Button text="Inspection Item" press="onInspCreate1" type="Accept"
+					    id="Id_bt1" visible="false" />
+			</contentRight>
+		</Bar>
+	</footer>
+	</Page>
+</core:View>

@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+	<SelectDialog title="Vehicle Make" cancel="_VehicleMakeClose" confirm="_VehicleMakeClose" search="_VehicleMakeSearch"
+		items="{path:'VehicleMake>/d/results'}" class="sapUiPopupWithPadding">
+		<StandardListItem title="{VehicleMake>Make}" description="" iconInset="false"
+			iconDensityAware="false"/>
+	</SelectDialog>
+</core:FragmentDefinition>

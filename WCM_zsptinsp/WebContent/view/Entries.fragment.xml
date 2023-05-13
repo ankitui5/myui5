@@ -1,0 +1,66 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Dialog showHeader="false" class="sapUiSizeCompact" contentWidth="70%" >
+	<subHeader>
+			<Bar>
+				<contentMiddle>
+					<Text text="Early Failure Details" />
+				</contentMiddle>
+				
+			</Bar>
+		</subHeader> 
+	<content>
+	<f:SimpleForm  minWidth="1024"
+		maxContainerCols="2" editable="true" layout="ResponsiveGridLayout"
+		labelSpanL="4" labelSpanM="4" emptySpanL="1" emptySpanM="1" columnsL="3"
+		columnsM="2" class="editableForm">
+		<f:content>
+			<core:Title text="" />
+			<Label text="Application"  />
+			<Input enabled="true" id="idEarApp"  valueHelpRequest="EarAppHelp"
+				valueHelpOnly="true" showValueHelp="true"/>
+				
+		    <Label text="Vehicle/Config"  />
+			<Input enabled="true" id="idEarCon"  maxLength="20" />	
+				
+			<Label text="Lead (Kms)"  />
+			<Input enabled="true" id="idEarLed"  liveChange="NumberValid"  maxLength="10" />
+				
+			<Label text="Speed (Kmph)"  />
+			<Input enabled="true" id="idEarSped"  liveChange="NumberValid" maxLength="8" />
+				
+			<Label text="Route"  />
+			<Input enabled="true" id="idEarRou"  valueHelpRequest="RouteHelp"
+				valueHelpOnly="true" showValueHelp="true"  />	
+				
+			<core:Title text="" />
+			
+			<Label text="GVW (MT)"  />
+			<Input enabled="true" id="idEarGvw" liveChange="NumberValid" maxLength="20" />
+			
+			
+			<Label text="Fitment Position" />
+			<Select enabled="true" id="idEarFpos" forceSelection="false" items="{/F4FitmentPosSet}" 
+				valueHelpOnly="true" showValueHelp="true" >
+			<core:ListItem key="{FitmentPos}" text="{FitmentPos}"></core:ListItem> 
+			</Select>
+								
+			<Label text="Rim Profile"  />
+			<Input enabled="true" id="idEarRim"  valueHelpRequest="RimHelp"
+				valueHelpOnly="true" showValueHelp="true" maxLength="20"/>
+				
+			<Label text="IP in PSI"  />				
+			<Input enabled="true" id="idEarPSI" maxLength="3"/>
+				
+			<Label text="Cargo Carried"  />
+			<Input enabled="true" id="idEarPay" maxLength="20" />
+				
+		</f:content>
+	</f:SimpleForm>
+	</content>
+		<buttons>
+<!-- 		<Button text="Close"  visible="true" press="onTabelFilterClose" />	 -->
+		<Button text="OK"   visible="true" press="onTabelFilterOk" />		
+		</buttons>	
+</Dialog>
+</core:FragmentDefinition>

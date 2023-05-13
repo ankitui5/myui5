@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+	<SelectDialog title="District" cancel="_DistrictClose" confirm="_DistrictClose" search="_DistrictSearch"
+		items="{path:'District>/d/results'}" class="sapUiPopupWithPadding">
+		<StandardListItem title="{District>District}" description="" iconInset="false"
+			iconDensityAware="false"/>
+	</SelectDialog>
+</core:FragmentDefinition>
