@@ -1,0 +1,554 @@
+<core:View xmlns:core="sap.ui.core" 
+		   xmlns:mvc="sap.ui.core.mvc"
+		   xmlns:u="sap.ui.unified" 
+		   xmlns="sap.m" 
+		   xmlns:f="sap.ui.layout.form" 
+		   xmlns:t="sap.ui.table"
+		   xmlns:l="sap.ui.layout" 
+		   xmlns:table="sap.ui.table" 
+		   xmlns:uxap="sap.uxap" 
+		   controllerName="zftplanreport.view.InspView"
+		   xmlns:html="http://www.w3.org/1999/xhtml">
+
+<html:style>
+.sapMITBFilter .sapMITBText {
+    width: 8.5rem !important;
+    color: #2f3c48 !important;
+}                    
+</html:style>
+
+<Page title="Inspection" class="sapUiSizeCompact objectSection" design="Bold">
+	
+	<content>	
+	<IconTabBar id="id_IconTabBar_ctp_WL" select="handleIconTabBarSelect"  expandable="false" class="abc">	
+	<items>
+	
+	<!--  <IconTabFilter icon="sap-icon://BusinessSuiteInAppSymbols/icon-stock-requirements" text="FITMENT DATA" 
+	 				design="Vertical" key="A" tooltip="TEST PLAN DATA" id="idTestReqTabFilter">
+		
+		<f:SimpleForm id="idPlanDetailsForm" minWidth="1024" class="headerDetails readingForm" maxContainerCols="1" editable="true"
+					  layout="ResponsiveGridLayout" title="" labelSpanL="5" labelSpanM="5" emptySpanL="0" emptySpanM="0" 
+					  columnsL="2" columnsM="2" visible="true">
+			<f:content>
+				<core:Title text="Header Information" />
+
+					<Label   text="Test Plan No." design="Bold" required="true" />
+					 <Select id="idTestPlanNoSelect" change="onChangeRequestNo" items="{GetTestRequestSetJModel>/}" 
+							forceSelection="false" tooltip="Test Plan Number">
+						<items>
+							<core:Item text="{GetTestRequestSetJModel>TestPlanNumber}" key="{GetTestRequestSetJModel>PlanGuid}" />
+						</items>
+					</Select> 
+						
+					<Input id="idTestPlanNoSelect" change="onChangeRequestNo" items="{GetTestRequestSetModel}" 
+					text="{GetTestRequestSetJModel>TestPlanNumber}" key="{GetTestRequestSetJModel>PlanGuid}"/>
+					
+					<Label  text="Product Category" design="Bold"  />
+					<Text id="idProductCatText" text="{getAllDataJModel>/ProductCategoryDesc}" />
+
+					<Label  text="Test Category" design="Bold" />
+					<Text id="idTestCatText" text="{getAllDataJModel>/CategoryDescription}" />
+
+				<core:Title  />
+					
+					<Label  text="Test Plan Date" design="Bold" />
+					<Text id="idReqDtText" text="{path:'getAllDataJModel>/PlanDate'}" />
+										
+					<Label  text="Material" design="Bold" />
+					<Text id="idMaterialText" text="{getAllDataJModel>/Maktx}" />
+
+					<Label  text="Rim Size" design="Bold" />
+					<Text id="idRimSizeText" text="{getAllDataJModel>/FitmentRimRecommended }" />
+				    				
+				<core:Title  />	
+
+					<Label  text="Modifications" design="Bold" />
+					<Text id="idModificationText" text="{getAllDataJModel>/Modifications}" />
+					
+					<Label  text="Test Objective" design="Bold" />
+					<Text id="idTestObjText" text="{getAllDataJModel>/TestObjectiveDesc}" />
+					
+					<Label text="Specific Requirements" design="Bold" />
+					<Text id="idSpecReq" rows="2" width="100%" maxLength="255" enabled="false"  
+							text="{getAllDataJModel>/SSpecialReq}" />
+
+			</f:content>
+		</f:SimpleForm>
+				
+		<Panel>
+		<ScrollContainer horizontal="true" >
+		<Table visible="true" showNoData="true" class="custom-table tblgrid" itemPress="onPressItemFitment" 
+				id="idFitmentPlanTable" items="{getAllDataJModel>/PlanToInspectionHeadNvg/results}" 
+				alternateRowColors="true" >
+				mode="SingleSelectLeft"
+				<headerToolbar >
+					<Toolbar design="Solid" class="customHeader">
+						<Image src="https://cdn.iconscout.com/public/images/icon/premium/png-512/deliver-location-truck-transport-travel-logistic-34d9317fb35234b0-512x512.png"
+								width="2rem" height="2rem" />
+						<Label text="Fitment Details" level="H1" class="customHeaderText" />
+						</Toolbar>
+				</headerToolbar>
+					
+				<columns>
+				    
+				    <Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="8%" >
+						<Label text="Fitment #"  design="Bold" />
+					</Column>
+					
+					<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="12%" >
+						<Label text="Vehicle #"  design="Bold" />
+					</Column>
+					
+				    <Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="10%" >
+						<Label text="Fitment Date" design="Bold" />
+					</Column>
+					
+				    <Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="10%" >
+						<Label text="Last Insp. #" design="Bold" />
+					</Column>
+					
+				    <Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="10%" >
+						<Label text="Last Insp. Date" design="Bold" />
+					</Column>
+					
+					<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="15%" >
+						<Label text="Last Milometer Status" design="Bold" />
+					</Column>
+					
+					<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="10%" >
+						<Label text="KM Covered" design="Bold" />
+					</Column>
+					
+					<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="20%" >
+						<Label text="Customer Name" design="Bold" />
+					</Column>
+//Added on May 20 					
+					<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="5%">
+						<Label text="" design="Bold" />
+					</Column>
+					
+			   </columns>
+			   <items>
+				<ColumnListItem type="Active">
+					<cells>
+		 				<Text text="{getAllDataJModel>FitmentNo}" class="cellPadding" />
+		 				<Text text="{getAllDataJModel>RegNo}" class="cellPadding" />
+						<Text text="{getAllDataJModel>FitmentDt}" class="cellPadding" />
+			 			<Text text="{getAllDataJModel>InspectionNo}" class="cellPadding" />
+						<Text text="{getAllDataJModel>InspectionDt}" class="cellPadding" />
+						<Text text="{path:'getAllDataJModel>MeterStatus', formatter:'zftplanreport.util.Formatter.yesNo'}" class="cellPadding" />
+						<Text text="{getAllDataJModel>TotKMCovered}" class="cellPadding" />
+						<Text text="{getAllDataJModel>CustomerName}" class="cellPadding" />
+						<Button icon="sap-icon://activity-2" class="cellPadding btn-green" />						
+
+						<core:Icon src="{path:'getAllDataJModel>Cart', formatter:'zftplanreport.util.Formatter.cart'}" />
+					class="cellPadding"	
+					</cells>
+				</ColumnListItem>
+			</items>
+			</Table>
+			</ScrollContainer>		
+		
+		</Panel>
+				
+</IconTabFilter> -->
+
+<!-- ********************************************************************************************** -->
+	
+	<IconTabFilter icon="sap-icon://legend" text="INSPECTION" design="Vertical" key="B" 
+					tooltip="Inspection" id="idFitmentTabFilter" >
+			
+	<f:SimpleForm id="TRHeaderFormEdit" minWidth="1024" maxContainerCols="3" editable="true" 
+					layout="ResponsiveGridLayout" title="" labelSpanL="5" labelSpanM="5" emptySpanL="0" 
+					emptySpanM="0" columnsL="3" columnsM="3" visible="true" class="labelLeft readingForm" >
+		<f:content>
+		<core:Title text="" id="VD_1"/>
+			
+
+			<Label text="Inspection No" design="Bold" />
+			<Text id="LInspNo" text="{path:'InspNo'}" />
+			
+			<Label text="Inspection Date" design="Bold" />
+			<Text id="LInspDate" text="{path:'LInspDt', formatter:'zftplanreport.util.formatter.date1'}" />
+			  
+			<Label text="Milometer Status" design="Bold" />
+			<Switch id="LMiloStatus" customTextOn="Yes" customTextOff="No" enabled="false" >
+					<layoutData>
+						<FlexItemData growFactor="1" />
+					</layoutData>
+			</Switch>
+			
+		<core:Title text="" id="VD_2" />
+		
+		<Label id="LblLMilo" text="Milometer Reading" design="Bold" />
+			<Text id="LMiloRead" text="{path:'LMiloReading'}" />
+			
+			<Label text="KM Covered" design="Bold" />
+			<Text id="LKMCovered" text="{path:'LKMCovered'}" />
+			
+			<Label text="Total KM Covered" design="Bold" />
+			<Text id="TKMCovered" text="{path:'TKMCovered'}" />
+			<!-- 
+			<Label text="Inspection Date" design="Bold" required="true"/>
+			<DatePicker displayFormat="dd-MM-yyyy" id="InspDate" enabled="true" 
+			            value="{path:'InspDt', formatter:'zftplanreport.util.Formatter.date1'}" 
+			            valueFormat="yyyy-MM-dd" change="ChangeInspDate" />			            
+		
+		    <Label text="Inspection No" design="Bold" />
+			<Text id="InspNo" text="{path:'InspNo'}" />
+					
+			<Label text="Milometer Status" design="Bold" />
+			<Switch id="MiloStatus" customTextOn="Yes" customTextOff="No" state="true" change="onMiloMeter">
+					<layoutData>
+						<FlexItemData growFactor="1" />
+					</layoutData>
+			</Switch>
+			-->
+			<Label text="Milometer Reading" id="MiloReading" design="Bold" />
+			<Input  id="idMiloReading" maxLength="6"  liveChange="miloNumberValid" enabled="false" />
+				
+			<Label text="KM Covered" id="KmCovered" design="Bold" />
+			<Input  id="idKmCovered" maxLength="6"  liveChange="NumberValid" enabled="false" />
+		
+		<core:Title text="" id="VD_3" />
+			<Label text="Rotation Date" design="Bold" />
+			<Text id="LRotDate" text="{path:'LRotDt'}" />
+			
+			<Label text="Rotation KM" design="Bold" />
+			<Text id="LRotKm" text="{path:'LRotKM'}" />
+			
+			<!-- <Label text="Rotation" design="Bold" />
+			<Switch id="idRotation" customTextOn="Yes" customTextOff="No" change="onRotChange">
+					<layoutData>
+						<FlexItemData growFactor="1" />
+					</layoutData>
+			</Switch> -->
+			
+		</f:content>
+	</f:SimpleForm>
+	
+	<Table  visible="true" showNoData="true" class="custom-table" itemPress="onPressItemFitment"
+			id="idInspectionTable" items="{getInspDataJModel>/NavtoFitmentDetail/results}" >
+				<headerToolbar >
+					<Toolbar design="Solid" class="customHeader">
+						<Image src="https://cdn.iconscout.com/public/images/icon/premium/png-512/deliver-location-truck-transport-travel-logistic-34d9317fb35234b0-512x512.png"
+								width="2rem" height="2rem" />
+						<Label text="Inspections Details" level="H1" class="customHeaderText" />
+					</Toolbar>
+				</headerToolbar>
+					
+				<columns>
+					<Column width="5rem" hAlign='Center' demandPopin="true" >
+						<Label text="Tyre Position" design="Bold" />
+					</Column>
+					
+					<Column hAlign='Center' demandPopin="true" visible="false" id="idNewPos">
+						<Label text="New Tyre Position" design="Bold" />
+					</Column>
+					
+					<Column width="15rem" hAlign='Center' demandPopin="true" >
+						<Label text="Material" design="Bold" />
+					</Column>
+					
+					<Column width="5rem" hAlign='Center' demandPopin="true" >
+						<Label text="Stencil Number" design="Bold" />
+					</Column>
+					
+					<Column width="5rem" hAlign='Center' demandPopin="true" >
+						<Label text="Reading" design="Bold" />
+					</Column>
+					
+					<Column width="5rem" hAlign='Center' demandPopin="true" >
+						<Label text="Action"  design="Bold" />
+					</Column>
+					
+					<Column width="5rem" hAlign='Center' demandPopin="true" >
+						<Label text="Images"  design="Bold" />
+					</Column>		
+					
+			   </columns>
+			   <items>
+				<ColumnListItem >
+					<cells>
+		 				<Text text="{getInspDataJModel>TyrePosition}" class="cellPadding" />
+		 				
+		 				<Select items="{path:'TyrePositionJModel>/', templateShareable:false}"
+								change="onPostionChange" forceSelection="false"
+								selectedKey="{getInspDataJModel>RotPos}">
+												<items>
+													<core:Item
+														text="{TyrePositionJModel>Position}"
+														key="{TyrePositionJModel>Position}" />
+												</items>
+						</Select>
+						
+						<Text text="{getInspDataJModel>Maktx}" class="cellPadding" />
+			 			<Text text="{getInspDataJModel>StnclNumber}" class="cellPadding" />
+			 			<Button icon="sap-icon://activity-2" type="Reject" class="cellPadding " press="showReading" />
+			 			
+			 			<Select id="selectPlant"  required="true" enabled="false" selectedKey="{getInspDataJModel>RemoveOk}"
+								change="onActionRemove" >
+							<items>
+								<core:Item text="OK" key="O"/>
+								<core:Item text="Remove" key="R"/>
+							</items>
+							
+						</Select>
+						<!-- 
+						<Select id="selectPlant1" required="true" selectedKey="{getInspDataJModel>}"
+								change="onActionRemove1">
+							<items>
+								<core:Item text="OK" key="O"/>
+								<core:Item text="Remove" key="R"/>
+							</items>
+						</Select> -->
+						
+						<Button icon="sap-icon://attachment" type="Default" class="cellPadding " press="showImage" />
+						
+					</cells>
+				</ColumnListItem>
+			</items>
+			</Table>
+	
+		</IconTabFilter> 
+	
+<!-- ********************************************************************************************** -->
+
+			<IconTabFilter icon="sap-icon://attachment"
+						text="DOCUMENTS" design="Vertical" key="C" tooltip="DOCUMENTS"
+						id="idDocumentTabFilter">
+						<UploadCollection
+        				   id="UploadCollection"            			   
+         				   width = "700px"
+         				   sameFilenameAllowed="false" 
+                           iconOnly="true" 
+                           multiple="false" 
+                           buttonOnly="true" 
+                           icon="sap-icon://add-photo" 
+                           uploadComplete="onUploadComplete"
+                           fileDeleted="onFileDeleted"
+                           beforeUploadStarts="onBeforeUploadStarts"
+                           uploadUrl="/sap/opu/odata/sap/ZAPS_UTILITY_SRV/ImageUploadSet"
+                           change="onAttachUpload"                           
+        				   uploadTerminated="onUploadTerminated"
+        				   typeMissmatch="onTypeMissmatch"
+        				   maximumFilenameLength="100"
+        				   maximumFileSize="20"
+        				   fileSizeExceed="onFileSizeExceed"
+                           items="{
+						          path: 'oUploadModel>/items',
+						          templateShareable: false
+						        }"
+						        uploadEnabled="false"
+						        uploadButtonInvisible="false"			    >
+				        <items>
+				          <UploadCollectionItem
+				            documentId="{oUploadModel>DocNo}"
+				            fileName="{oUploadModel>FileName}"
+				            mimeType="{oUploadModel>MimeType}"
+				            url="{oUploadModel>Url}"
+				         
+				            enableEdit="false"
+				            enableDelete="false"
+				            visibleDelete="true"
+				            visibleEdit="false"
+				            press="onUploadPress"
+				          >
+				          </UploadCollectionItem>
+				        </items>
+                           
+                           </UploadCollection>
+
+	</IconTabFilter>
+	
+
+<!-- ************************************************************************************************************ -->
+
+	<IconTabFilter id="hiddenReadings" visible="false" class="hideFilter" design="Vertical" key="D" >
+	
+				<Toolbar>
+				<Title id="RD_01" level="H2" design="Bold" />
+				<ToolbarSpacer></ToolbarSpacer>	
+				<Title id="RD_02" level="H2" design="Bold"/>
+				<ToolbarSpacer></ToolbarSpacer>	
+				<Title id="RD_03" level="H2" design="Bold"/>	
+				<ToolbarSpacer></ToolbarSpacer>
+				</Toolbar>	
+				
+	<f:SimpleForm  minWidth="1024" id="formReading"
+					maxContainerCols="2" editable="true" layout="ResponsiveGridLayout"
+					labelSpanL="4" labelSpanM="4" emptySpanL="1" emptySpanM="1" columnsL="2"
+					columnsM="2" class="editableForm readingForm">
+			<f:content>
+	
+		<core:Title text="Previous Reading" />
+			<Label text="Inflation Pressure (PSI)" />
+			<Select id="idEarSped" enabled="true" forceSelection="false" selectedKey="{IpConditionO}">
+				<core:Item text="Hot" key="H" />
+				<core:Item text="Cold" key="C" />
+			</Select>
+			
+			<Label text="IP" required="false" />
+			<Input id="ipO" value="{IpPsiO}" enabled="true"/>			
+			
+			<Label text="Hardness (Shore A)" />
+			<Input enabled="true" value="{HardnessO}" />
+			<Label text="Orginal Nsd (mm)" />
+			<Input id="idOriNsd" enabled="false" value="{OrgNsdO}" />
+			
+			<Label text="G1 (mm)" id="oG1lbl" visible="false"/>
+			<Input enabled="true" id="oG1" value="{G1NsdO}" showValueHelp="true" visible="false" valueHelpOnly="true" valueHelpRequest="ongrooveOG1" maxLength="4"/>
+			
+			<Label text="G2 (mm)" id="oG2lbl" visible="false"/>
+			<Input enabled="true" id="oG2" value="{G2NsdO}" showValueHelp="true" visible="false" valueHelpOnly="true" valueHelpRequest="ongrooveOG2" maxLength="4"/>
+			<Label text="G3 (mm)" id="oG3lbl" visible="false"/>
+			<Input enabled="true" id="oG3" value="{G3NsdO}" showValueHelp="true" visible="false" valueHelpOnly="true" valueHelpRequest="ongrooveOG3" maxLength="4"/>
+			<Label text="G4 (mm)" id="oG4lbl" visible="false"/>
+			<Input enabled="true" id="oG4" value="{G4NsdO}" showValueHelp="true" visible="false" valueHelpOnly="true" valueHelpRequest="ongrooveOG4" maxLength="4"/>
+			<Label text="G5 (mm)" id="oG5lbl" visible="false"/>
+			<Input enabled="true" id="oG5" value="{G5NsdO}" showValueHelp="true" visible="false" valueHelpOnly="true" valueHelpRequest="ongrooveOG5" maxLength="4"/>
+			<Label text="G6 (mm)" id="oG6lbl" visible="false"/>
+			<Input enabled="true" id="oG6" value="{G6NsdO}" showValueHelp="true" visible="false" valueHelpOnly="true" valueHelpRequest="ongrooveOG6" maxLength="4"/>
+			<Label text="MinNsd (mm)" />
+			<Input id="minNsdO" enabled="false" value="{MinNsdO}" />
+			<Label text="KM Suspended" />
+			<Input id="idKmSusO" enabled="true" value="{KmSuspendedO}" maxLength="4" liveChange="onKMSuspendO" />
+			<Label text="KM Covered" />
+			<Input id="idKmCovO" enabled="false" value="{KmCoveredO}" liveChange="miloNumberValid" />
+			
+			<Label text="Tot KM Covered" visible="false"/>
+			<Input id="idTotKmCovO" enabled="false" value="{TotKmCoveredO}" visible="false"/>
+			
+			<Label text="Tot KM Covered" visible="true" enabled="false"/>
+			<Input id="OidTotKmCov1" enabled="false" visible="true"/>
+			
+			<Label text="KM/mm Wear" maxLength="4" />
+			<Input id="idKmWearO" value="{KmPerMmO}" enabled="false"/>
+			<Label text="Projected Mileage" />
+			<Input id="idPrjMilO" enabled="false" value="{MilageProjO}" />
+			<Label text="Tread Wear(%)" />
+			<Input id="idTWearO" enabled="false" value="{WearO}" />
+			
+			<Label text="Type of Wear" />
+			<Select id="idWearTyO" enabled="true" selectedKey="{WearTypeO}" items="{path:'WearTypeJModel>/', templateShareable:false}">
+					<core:Item text="{WearTypeJModel>TypeDesc}"
+								key="{WearTypeJModel>WearType}" />
+			</Select>
+			
+			<Label text="Gravity" />
+			<Select id="idGravO" enabled="true" selectedKey="{GravityO}" items="{path:'GravityJModel>/', templateShareable:false}">
+					<core:Item text="{GravityJModel>GravityDesc}"
+								key="{GravityJModel>Gravity}" />
+			</Select>	
+
+			<Label text="PWA" />
+			<Select id="idPwaO" enabled="true" selectedKey="{PwaO}" items="{path:'PwaJModel>/', templateShareable:false}">
+					<core:Item text="{PwaJModel>PwaDesc}"
+								key="{PwaJModel>Pwa}" />
+			</Select>
+
+			<Label text="Remarks" />
+			<Input enabled="true" value="{RemarksO}" />
+			
+		<core:Title text="Current Reading" />
+		
+			<Label text="Inflation Pressure (PSI)" required="true" />			
+			<Select id="idEarSpedC"  forceSelection="false" selectedKey="{IpCondition}">
+				<core:Item text="Hot" key="H" />
+				<core:Item text="Cold" key="C" />
+			</Select>
+			
+			<Label text="IP" required="true" />
+			<Input id="ip" value="{IpPsi}" maxLength="3" liveChange="NumberValidPSI" />
+			
+			<Label text="Hardness (Shore A)" required="true" />
+			<Input id="hardness" value="{Hardness}" liveChange="onHardnessChange" maxLength="4"/>
+
+			<Label text=" " />
+			<Text text=" " />
+			<Label text="G1 (mm)" id="idG1Lbl" visible="false" required="true" />
+			<Input id="idG1" value="{G1Nsd}" showValueHelp="true" visible="false" valueHelpOnly="true" valueHelpRequest="ongrooveG1" maxLength="4" />
+			<Label text="G2 (mm)" id="idG2Lbl" visible="false" required="true" />
+			<Input id="idG2" value="{G2Nsd}" showValueHelp="true" visible="false" valueHelpOnly="true" valueHelpRequest="ongrooveG2" maxLength="4" />
+			<Label text="G3 (mm)" id="idG3Lbl" visible="false" required="true" />
+			<Input id="idG3" value="{G3Nsd}" showValueHelp="true" visible="false" valueHelpOnly="true" valueHelpRequest="ongrooveG3" maxLength="4" />
+			<Label text="G4 (mm)" id="idG4Lbl" visible="false" required="true" />
+			<Input id="idG4" value="{G4Nsd}" showValueHelp="true" visible="false" valueHelpOnly="true" valueHelpRequest="ongrooveG4" maxLength="4" />
+			<Label text="G5 (mm)" id="idG5Lbl" visible="false" required="true" />
+			<Input id="idG5" value="{G5Nsd}" showValueHelp="true" visible="false" valueHelpOnly="true" valueHelpRequest="ongrooveG5" maxLength="4" />
+			<Label text="G6 (mm)" id="idG6Lbl" visible="false" required="true"/>
+			<Input id="idG6" value="{G6Nsd}" showValueHelp="true" visible="false" valueHelpOnly="true" valueHelpRequest="ongrooveG6" maxLength="4" />
+			<Label text="MinNsd (mm)" />
+			<Input id="minNsd" value="{MinNsd}" enabled="false" />
+			<Label text="KM Suspended" />
+			<Input id="idKmSus" value="{KmSuspended}" maxLength="4" liveChange="onKMSuspend" />
+			<Label text="KM Covered" />
+			<Input id="idKmCov" value="{KmCovered}" enabled="false" />
+			
+			<Label text="Tot KM Covered" visible="false" enabled="false"/>
+			<Input id="idTotKmCov" value="{TotKmCovered}" enabled="false" visible="false"/>
+			
+			<Label text="Tot KM Covered" visible="true" enabled="false"/>
+			<Input id="idTotKmCov1" enabled="false" visible="true"/>
+			
+			<Label text="KM/mm Wear" maxLength="4" />
+			<Input id="idKmWear" value="{KmPerMm}" enabled="false"/>
+			<Label text="Projected Mileage" />
+			<Input id="idPrjMil" value="{MilageProj}" enabled="false" />
+			<Label text="Tread Wear(%)"  />
+			<Input id="idTWear" value="{Wear}" enabled="false"/>
+			
+			<Label text="Type of Wear" required="true" />
+			<Select id="idWearTy" forceSelection="false"
+					selectedKey="{WearType}" items="{path:'WearTypeJModel>/', templateShareable:false}">
+					<core:Item text="{WearTypeJModel>TypeDesc}"
+								key="{WearTypeJModel>WearType}" />
+			</Select>
+			
+			<Label text="Gravity" required="true" />
+			<Select id="idGrav" forceSelection="false"
+					selectedKey="{Gravity}" items="{path:'GravityJModel>/', templateShareable:false}">
+					<core:Item text="{GravityJModel>GravityDesc}"
+								key="{GravityJModel>Gravity}" />
+			</Select>			
+			
+			<Label text="PWA" required="true" />
+			<Select id="idPwa" selectedKey="{Pwa}" forceSelection="false"
+					items="{path:'PwaJModel>/', templateShareable:false}">
+					<core:Item text="{PwaJModel>PwaDesc}"
+								key="{PwaJModel>Pwa}" />
+			</Select>			
+
+			<Label text="Remarks" />
+			<Input id="idRemarks" value="{Remarks}" />
+			
+			<Label text="" />
+			<Button text="Cancel" class="btn-green" press="onTabelEntriesClose"/>
+			<Button text="Save" class="btn-green" press="onTabelEntrieOk" />
+				
+		</f:content>
+	</f:SimpleForm>
+
+	</IconTabFilter>
+	
+<!-- ************************************************************************************************************ -->
+
+	</items>
+	</IconTabBar>
+		  	
+	</content>
+	<footer>
+		<Bar>
+			<contentRight>
+			<Button text="Back" enabled="true" visible="true" type="Accept"
+					press="onBack" id="backBtn" icon="sap-icon://nav-back"></Button>
+			<!-- <Button text="Cart" press="onCart" type="Emphasized" visible="true" icon="sap-icon://cart" id="Id_bt1"/>
+			
+			<Button text="Save Inspection" press="onSave" type="Accept" id="Id_bt2" visible="true" icon="sap-icon://save" /> -->
+			<!-- onReviewAndSave  -->
+
+			</contentRight>
+		</Bar>
+	</footer>
+	</Page>
+</core:View>

@@ -1,0 +1,435 @@
+<core:View
+		xmlns:core="sap.ui.core"
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns="sap.m"
+		xmlns:d= "sap.m.LabelDesign.Bold"
+		xmlns:u="sap.ui.unified"
+		xmlns:f="sap.ui.layout.form"
+		xmlns:l="sap.ui.layout"
+		xmlns:sc="sap.suite.ui.commons"
+		xmlns:fb="sap.ui.comp.filterbar"
+		class="sapUiSizeCompact"
+		controllerName="zftdocmaster.view.S1"
+		xmlns:html="http://www.w3.org/1999/xhtml"
+		width="100%"
+		height="100%"
+		>
+
+	<Page id="idpage" title="Attachment Master" level="h4" class=" pageTitle sapUiStdPage" enableScrolling="false">
+	<content>
+		<VBox>
+			<f:SimpleForm id="myForm1" layout="ResponsiveGridLayout" editable="true" maxContainerCols="2" labelSpanL="4" labelSpanM="3"
+						emptySpanL="2" emptySpanM="2" columnsL="2" columnsM="2" minWidth="1024" class=" padding label sapUiFormResGrid" >
+			<f:content>
+			<core:Title/>	
+			<Label text="Test Request Number" design="Bold"/>
+			<Input id="idTstRequest"  showValueHelp="true" valueHelpOnly="true" visible="false" valueHelpRequest="onTestRequestNo"/>
+			
+			<Label text="Test Plan Number" design="Bold"/>
+			<Input id="idTestPlan" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="onTstPlanNo" visible="false"/>
+			
+			<Label text="Inspection Number" design="Bold"/>
+			<Input id="idInspNo" showValueHelp="true" valueHelpOnly="true" visible="false" valueHelpRequest="onClaimHelpRequest"/>
+			
+			<Label id="idlbPlanStatus" text="Plan Status" design="Bold" />
+			<Select id="idStatus" change="onchangeStatus" forceSelection="false" visible="false">
+				<items>
+				<core:Item text="All" key="ALL" />
+				<core:Item text="Pending by PTG for Acceptance" key="PACT" />
+				<core:Item text="Pending by PDC for Approval" key="PAPR" />
+				<core:Item text="Approved" key="APPR" />
+				<core:Item text="Closed" key="CLSD" />
+				<core:Item text="On Hold" key="HOLD" />
+				<core:Item text="Send Back For Modification" key="EDIT" />
+				<core:Item text="CART" key="CART" />
+				</items>
+			</Select>
+			<Label text="Fitment Status" design="Bold" />
+			<Select id="idFitmentStatus" items="" forceSelection="false" visible="false">
+				<items>
+					<core:Item text="All" key="A" />
+					<core:Item text="Running" key="" />
+					<core:Item text="Closed" key="X" />
+				</items>
+			</Select>
+			
+			<core:Title/>
+			
+			<Label text="Vehicle Number" design="Bold"/>
+			<Input id="idVechileNumber" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="onVechileNumber" visible="false"/>		
+			
+			<Label text="Date" design="Bold"/>
+			<DatePicker id="fromDate" visible="false">
+			<layoutData>
+				<l:GridData span="L3"/>
+			</layoutData>
+			</DatePicker>
+			
+			<DatePicker id="toDate" visible="false">
+			<layoutData>
+					<l:GridData span="L3"/>
+				</layoutData>
+			</DatePicker>	
+			
+			<Label></Label>
+			<Button id="idSearch" text="Search" visible="false" type="Emphasized" press="OnSearch" >
+				<layoutData>
+					<l:GridData span="L3"/>
+				</layoutData>
+			</Button>
+			<Button id="idClear" text="Clear" visible="false" type="Emphasized" press="onClear" >
+				<layoutData>
+					<l:GridData span="L3"/>
+				</layoutData>
+			</Button>
+			
+			<Label></Label>
+			<Button id="idDownloadAllReq" text="Download All Attachments" type="Emphasized" press="onDownloadAllReq" visible="false"
+					icon="sap-icon://BusinessSuiteInAppSymbols/icon-target">
+				<layoutData>
+					<!-- <l:GridData span="L3"/> -->
+				</layoutData>
+			</Button>
+			<Button id="idDownloadAllPlan" text="Download All Attachments" type="Emphasized" press="onDownloadAllPlan" visible="false"
+					icon="sap-icon://BusinessSuiteInAppSymbols/icon-target">
+				<layoutData>
+					<!-- <l:GridData span="L3"/> -->
+				</layoutData>
+			</Button>
+			<Button id="idDownloadAllFit" text="Download All Attachments" type="Emphasized" press="onDownloadAllFit" visible="false"
+					icon="sap-icon://BusinessSuiteInAppSymbols/icon-target">
+				<layoutData>
+					<!-- <l:GridData span="L3"/> -->
+				</layoutData>
+			</Button>
+			
+			</f:content>
+			</f:SimpleForm>
+			
+			<Panel id="Panel2" visible="false" class="copa_sec">
+			<Toolbar id="toolbarCT2">
+						<ToolbarSpacer></ToolbarSpacer>
+						<Text text="Fitment Status :" TextColor="#e78c07"></Text>
+						
+						<core:Icon src="sap-icon://process" color="#e78c07">
+							<core:layoutData>
+								<FlexItemData growFactor="1" />
+							</core:layoutData>
+						</core:Icon>
+						
+						<Text text="Running"></Text> 	
+ 						<core:Icon src="sap-icon://decline" color="#5dcc6a">
+							<core:layoutData>
+								<FlexItemData growFactor="1" />
+							</core:layoutData>
+						</core:Icon>
+						
+						<Text text="Closed"></Text>
+						<ToolbarSpacer />
+					</Toolbar>
+			</Panel>
+			
+			<Panel id="Panel1" visible="false" class="copa_sec">
+	
+				<Toolbar id="toolbarCT">
+						<ToolbarSpacer></ToolbarSpacer>
+						<Text text="Plan Status :" TextColor="#e78c07"></Text>
+						
+						
+						
+						<core:Icon src="sap-icon://employee-approvals" color="#e78c07">
+							<core:layoutData>
+								<FlexItemData growFactor="1" />
+							</core:layoutData>
+						</core:Icon>
+						<Text text="Pending by PTG for Acceptance"></Text>
+						
+						<core:Icon src="sap-icon://employee-approvals" color="#617d96">
+							<core:layoutData>
+								<FlexItemData growFactor="1" />
+							</core:layoutData>
+						</core:Icon>
+						<Text text="Pending by PDC for Approval"></Text>
+ 						
+ 						<core:Icon src="sap-icon://complete" color="#2b7d2b">
+							<core:layoutData>
+								<FlexItemData growFactor="1" />
+							</core:layoutData>
+						</core:Icon>
+ 						<Text text="Approved"></Text>
+
+						<core:Icon src="sap-icon://decline" color="#e78c07">
+							<core:layoutData>
+								<FlexItemData growFactor="1" />
+							</core:layoutData>
+						</core:Icon>
+						<Text text="Closed"></Text>
+
+						<core:Icon src="sap-icon://documents" color="#e78c07">
+							<core:layoutData>
+								<FlexItemData growFactor="1" />
+							</core:layoutData>
+						</core:Icon>
+						<Text text="On Hold"></Text>
+
+						<core:Icon src="sap-icon://synchronize" color="#e78c07">
+							<core:layoutData>
+								<FlexItemData growFactor="1" />
+							</core:layoutData>
+						</core:Icon>
+						<Text text="Modification Allowed"></Text>
+						
+						<core:Icon src="sap-icon://cart" color="#3676d7">
+							<core:layoutData>
+								<FlexItemData growFactor="1" />
+							</core:layoutData>
+						</core:Icon>
+						<Text text="Cart"></Text>
+
+						<ToolbarSpacer></ToolbarSpacer>
+					</Toolbar>
+			</Panel>
+		</VBox>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Test Request Table ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+		<Panel id="idtblpanel1" visible="false" class="copa_sec">
+			<Table id="idTestRequesttable" showNoData="false" visible="true" class="tblgrid">
+			<columns>
+				<Column width="15em" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+				<Label text="Test Request Number" design="Bold" />
+				</Column>
+				
+				<Column width="8em" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+				<Label text="Test Request Date" design="Bold" />
+				</Column>
+				
+				<Column width="8em" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+				<Label text="Revision No." design="Bold" />
+				</Column>
+				
+				<Column width="8em" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+				<Label text="Market" design="Bold"/>
+				</Column>
+				
+				<Column width="8em" hAlign="Center"  minScreenWidth="Tablet" demandPopin="true">
+				<Label text="Product Category" design="Bold"/>
+				</Column>
+				
+				<Column width="8em" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+				<Label text="Product Size"  design="Bold"/>
+				</Column>
+				
+				<Column width="8em" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+				<Label text="Test Category"  design="Bold" />
+				</Column>
+				
+				<Column width="5em" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+				<Label text="Status"  design="Bold" />
+				</Column>
+				
+				<Column width="5em" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+				<Label text="Image"  design="Bold" />
+				</Column>
+			
+			</columns>
+			</Table>
+			
+		<ScrollContainer vertical="true" horizontal="false" height="300px">
+			<Table id="IdTestRequest" items="{TestRequestTableJModel>/}" visible="true" showNoData="false" class="tblgrid1">
+			<columns>
+				<Column	width="15em" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+				</Column>
+				<Column width="8em" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+				</Column>
+				<Column width="8em" hAlign="Center"  minScreenWidth="Tablet" demandPopin="true">
+				</Column>
+				<Column width="8em" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+				</Column>
+				<Column width="8em" hAlign="Center"  minScreenWidth="Tablet" demandPopin="true">
+				</Column>
+				<Column width="8em" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+				</Column>
+				<Column width="8em" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+				</Column> 
+				<Column width="5em" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+				</Column>
+				<Column width="5em" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+				</Column>
+			</columns>
+			<items>
+			<ColumnListItem>
+			<cells>
+			<Text text="{TestRequestTableJModel>RequestNumber}" />
+			<Text text="{path:'TestRequestTableJModel>Erdat', formatter:'zftdocmaster.util.Formatter.date1'}" />
+			<Text text="{TestRequestTableJModel>RevNo}" />
+			<Text text="{TestRequestTableJModel>MarketDesc}" />
+			<Text text="{TestRequestTableJModel>ProdCatDesc}" />
+			<Text text="{TestRequestTableJModel>ProductSize}" />
+			<Text text="{TestRequestTableJModel>TestCatDesc}" />
+			<core:Icon src="{path:'TestRequestTableJModel>Status', formatter:'zftdocmaster.util.Formatter.setReqIcon'}" 
+					color="{path:'TestRequestTableJModel>Status', formatter:'zftdocmaster.util.Formatter.setReqColor'}" />
+				
+			<Button icon="sap-icon://attachment" press="onTestReqBtnPress" /> 
+			</cells>
+			</ColumnListItem>
+			</items>
+			</Table>
+		</ScrollContainer>
+		</Panel>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Test Plan Table ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+		<Panel id="idtblpanel2" visible="false" class="copa_sec">	
+			<Table id="attachmentHeader" showNoData="false" class="tblgrid" visible="true">
+			<columns>
+				<Column	width="15em" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+					<Label text="Test Plan No" design="Bold" />
+				</Column>
+				<Column	width="10em" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+					<Label text="Revision Plan No." design="Bold" />
+				</Column>
+				<Column width="8em" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+					<Label text="Test Plan Date" design="Bold"/>
+				</Column>
+				<Column width="15em" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+					<Label text="Request Number" design="Bold"/>
+				</Column>
+				<Column width="8em" hAlign="Center"  minScreenWidth="Tablet" demandPopin="true">
+					<Label text="Status" design="Bold" />
+				</Column>
+				<Column width="8em" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+					<Label text="Images" design="Bold" />
+				</Column>
+				<!-- <Column width="10em" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+				<Label text="Images file" design="Bold" />
+				</Column> -->
+			</columns>
+			</Table>
+			
+		<ScrollContainer vertical="true" horizontal="false" height="300px" >
+			<Table id="attachmentTable" items="{TestPlanTableJModel>/}" visible="true" showNoData="false" class="tblgrid1">
+			<columns>
+				<Column	width="15em" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+				</Column>
+				<Column width="10em" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+				</Column>
+				<Column width="8em" hAlign="Center"  minScreenWidth="Tablet" demandPopin="true">
+				</Column>
+				<Column width="15em" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+				</Column>
+				<Column width="8em" hAlign="Center"  minScreenWidth="Tablet" demandPopin="true">
+				</Column>
+				<Column width="8em" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+				</Column>
+			</columns>
+			<items>
+			<ColumnListItem>
+			<cells>
+				<Text text="{TestPlanTableJModel>PlanNumber}" />
+				<Text text="{TestPlanTableJModel>PlanRevNo}" />
+				<Text text="{path:'TestPlanTableJModel>PlanDate', formatter:'zftdocmaster.util.Formatter.date1'}" />
+				<Text text="{TestPlanTableJModel>TestRequestNumber}" />
+				<core:Icon src="{path:'TestPlanTableJModel>Status', formatter:'zftdocmaster.util.Formatter.setReqIcon'}" 
+						color="{path:'TestPlanTableJModel>Status', formatter:'zftdocmaster.util.Formatter.setReqColor'}" />
+				<Button icon="sap-icon://attachment" press="onTestPlanBtnPress" />
+				<!-- <Button icon="sap-icon://attachment" press="onButton" /> -->
+			</cells>
+			</ColumnListItem>
+			</items>
+		    </Table>
+		</ScrollContainer>
+		</Panel>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Fitment and Inspection Table ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+		<Panel id="idtblpanel3" visible="false" class="copa_sec">	
+			<Table id="idFitmentInspeTable" showNoData="false" class="tblgrid" visible="true">
+			<columns>
+				<Column	width="15em" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+				<Label text="Fitment Test Plan" design="Bold" />
+				</Column>
+				
+				<Column width="10em" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+				<Label text="Fitment Test Plan Date" design="Bold"/>
+				</Column>
+				
+				<Column width="10em" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+				<Label text="Vehicle No." design="Bold"/>
+				</Column>
+	
+				<Column width="10em" hAlign="Center"  minScreenWidth="Tablet" demandPopin="true">
+				<Label text="Fitment" design="Bold"/>
+				</Column>
+				
+				<Column width="10em" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+				<Label text="Inspection"  design="Bold" />
+				</Column>
+				
+				<Column width="8em" hAlign="Center"  minScreenWidth="Tablet" demandPopin="true">
+				<Label text="Plan Status" design="Bold" />
+				</Column>
+				
+				<Column width="8em" hAlign="Center"  minScreenWidth="Tablet" demandPopin="true">
+				<Label text="Fitment Status" design="Bold" />
+				</Column>
+				
+				<Column width="10em" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+				<Label text="Images" design="Bold" />
+				</Column>
+			</columns>
+			</Table>
+			
+		<ScrollContainer vertical="true" horizontal="false" height="280px">	
+			<Table id="IdInspectionTable" items="{FitmentTableJModel>/}" visible="true"  showNoData="false" class="tblgrid1">
+			<columns>
+				<Column	width="15em" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+				</Column>
+				
+				<Column width="10em" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+				</Column>
+				
+				<Column width="10em" hAlign="Center"  minScreenWidth="Tablet" demandPopin="true">
+				</Column>
+				
+				<Column width="10em" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+				</Column>
+				
+				<Column width="10em" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+				</Column>
+				
+				<Column width="8em" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+				</Column>
+				
+				<Column width="8em" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+				</Column>
+				
+				<Column width="10em" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">
+				</Column>
+			
+			</columns>
+			<items>
+			<ColumnListItem>
+			<cells> 
+			<Text text="{FitmentTableJModel>PlanNumber}" />
+			<Text text="{path:'FitmentTableJModel>PlanDate', formatter:'zftdocmaster.util.Formatter.date1'}" />
+			<Text text="{FitmentTableJModel>RegNo}" />
+			<Text text="{FitmentTableJModel>FitmentNo}" />
+			<Text text="{FitmentTableJModel>InspectionNo}" />
+			<core:Icon src="{path:'FitmentTableJModel>Status', formatter:'zftdocmaster.util.Formatter.setReqIcon'}" 
+				   color="{path:'FitmentTableJModel>Status', formatter:'zftdocmaster.util.Formatter.setReqColor'}" />
+			
+			<core:Icon src="{path:'FitmentTableJModel>Complete', formatter:'zftdocmaster.util.Formatter.setIconFitStatus'}" 
+				   color="{path:'FitmentTableJModel>Complete', formatter:'zftdocmaster.util.Formatter.setColorFitStatus'}" />
+			
+				
+			<Button icon="sap-icon://attachment" press="onFtInspBtnPress" />
+			</cells>
+			</ColumnListItem>
+			</items>
+			</Table>
+		</ScrollContainer>
+			</Panel>
+
+			</content>
+			<footer>
+			<Toolbar>
+			<Label text="JK Tyre and Industries Ltd."/>
+			</Toolbar>
+			</footer>
+	</Page>
+</core:View>

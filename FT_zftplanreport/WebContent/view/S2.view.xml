@@ -1,0 +1,257 @@
+<core:View xmlns:core="sap.ui.core" 
+			xmlns:mvc="sap.ui.core.mvc" 
+			xmlns="sap.m" 
+			xmlns:f="sap.ui.layout.form"
+			xmlns:l="sap.ui.layout" 
+			controllerName="zftplanreport.view.S2" 
+			class="sapUiSizeCompact" 
+			xmlns:html="http://www.w3.org/1999/xhtml" 
+			xmlns:t="sap.ui.table"
+			>
+
+<html:style>
+.sapMITBFilter .sapMITBText {
+	width: 10rem !important;
+	color: #346288 !important;
+	font-weight: bold !important;
+}
+
+.txtColor{
+	color: black !important
+}
+
+.sapMITBCount {
+	color: #ffffff !important;
+}
+
+</html:style>
+
+	<Page title="Inspection Data" level="h4" class="mainPage1" enableScrolling="true">
+	<content>
+<!-- 	<Toolbar>
+		<Bar>
+		<contentLeft>
+			<Label design="Bold" id="idTestPlan"></Label>
+		</contentLeft>
+		<contentRight>
+			<Label design="Bold" id="idTestDate" ></Label>
+			
+		</contentRight>
+		</Bar>
+	</Toolbar> -->
+		
+<IconTabBar id="id_IconTabBar_ctp_WL" select="handleIconTabBarSelect"  expandable="false" class="abc">
+	<items>
+	
+	<IconTabFilter  text="INSPECTION" icon="sap-icon://legend"
+					design="Vertical" key="A" tooltip="Inspection Data" id="idTestReqTabFilter">
+					
+	<f:SimpleForm id="TRHeaderFormEdit" minWidth="1024" maxContainerCols="2" editable="true" 
+					layout="ResponsiveGridLayout" title="" labelSpanL="5" labelSpanM="5" emptySpanL="0" 
+					emptySpanM="0" columnsL="2" columnsM="2" visible="true" class="labelLeft readingForm" >
+		<f:content>
+		<core:Title id="IDTestg" style="height:0px"/>
+			<!-- <VBox alignItems="Center" alignContent="Center">
+			<HBox alignItems="Center" alignContent="Center">
+				<Text id="IDTest" class="heading" />
+			</HBox>
+			</VBox> -->
+			<Label text="Plan Number" design="Bold" />
+			<Text id="IDTest" class="heading"/>
+			
+			<Label text="Inspection Number" design="Bold" />
+			<Text id="LInspNo" text="{oDataModel>/LInspNo}" />
+			
+			<Label text="Inspection Date" design="Bold" />
+			<Text id="LInspDate" text="{path:'oDataModel>/LInspDt', formatter:'zftplanreport.util.formatter.date1'}" />
+			  
+			<Label text="Milometer Status" design="Bold" />
+			<Switch id="LMiloStatus" customTextOn="Yes" customTextOff="No" enabled="false" 
+					state="{path:'oDataModel>/LMeterStatus', formatter:'zftplanreport.util.formatter.MeterStatus'}">
+					<layoutData>
+						<FlexItemData growFactor="1" />
+					</layoutData>
+			</Switch>
+				
+			<Label id="LblLMilo" text="Milometer Reading" design="Bold" />
+			<Text id="LMiloRead" text="{path:'oDataModel>/LMiloReading'}" />
+		
+		<core:Title id="IDVehq" style="height:0px" />
+			<!-- <VBox alignItems="Center" alignContent="Center">
+			<HBox alignItems="Center" alignContent="Center">
+				<Text id="IDVeh" class="heading" />
+			</HBox>
+			</VBox> -->
+			<Label text="Vehicle Registration:" design="Bold" />
+			<Text id="IDVeh" class="heading" />
+			
+			<Label text="Rotation Date" design="Bold" />
+			<Text id="LRotDate" text="{path:'oDataModel>/LRotDt'}" />
+
+			<Label text="Rotation KM" design="Bold" />
+			<Text id="LRotKm" text="{path:'oDataModel>/LRotKM'}" /> 
+
+			<Label text="KM Covered" design="Bold" />
+			<Text id="LKMCovered" text="{path:'oDataModel>/LKMCovered'}" />
+			
+			<Label text="Total KM Covered" design="Bold" />
+			<Text id="TKMCovered" text="{path:'oDataModel>/TKMCovered'}" />
+
+		</f:content>
+	</f:SimpleForm>
+	
+	<Table visible="true" showNoData="true" class="custom-table" itemPress="onPressItemFitment"
+			id="idInspectionTable" items="{oDataModel>/NavtoFitmentDetail/results}" >
+				<headerToolbar >
+					<Toolbar design="Solid" class="customHeader">
+						<Label text="Inspections Details" level="H1" class="customHeaderText" design="Bold"/>
+					</Toolbar>
+				</headerToolbar>
+					
+				<columns>
+					<Column width="5rem" hAlign='Center' demandPopin="true" >
+						<Label text="Tyre Position" design="Bold" />
+					</Column>
+					
+					<Column hAlign='Center' width="5rem" demandPopin="true" visible="false" id="idNewPos">
+						<Label text="New Tyre Position" design="Bold" />
+					</Column>
+					
+					<Column width="15rem" hAlign='Center' demandPopin="true" >
+						<Label text="Material" design="Bold" />
+					</Column>
+					
+					<Column width="5rem" hAlign='Center' demandPopin="true" >
+						<Label text="Stencil Number" design="Bold" />
+					</Column>
+					
+					<Column width="5rem" hAlign='Center' demandPopin="true" >
+						<Label text="Reading" design="Bold" />
+					</Column>
+					
+					<Column width="5rem" hAlign='Center' demandPopin="true" >
+						<Label text="Action"  design="Bold" />
+					</Column>
+					
+					<Column width="5rem" hAlign='Center' demandPopin="true" >
+						<Label text="Reason"  design="Bold"/>
+					</Column>
+					
+					<Column width="5rem" hAlign='Center' demandPopin="true" >
+						<Label text="Images"  design="Bold" />
+					</Column>		
+					
+			   </columns>
+			   <items>
+				<ColumnListItem >
+					<cells>
+		 				<Text text="{oDataModel>TyrePosition}" class="cellPadding" />
+		 				
+		 				<Select items="{path:'TyrePositionJModel>/', templateShareable:false}"
+								change="onPostionChange" forceSelection="false"
+								selectedKey="{oDataModel>RotPos}">
+									<items>
+										<core:Item text="{TyrePositionJModel>Position}"
+													key="{TyrePositionJModel>Position}" />
+									</items>
+						</Select>
+						
+						<Text text="{oDataModel>Maktx}" class="cellPadding" />
+			 			<Text text="{oDataModel>StnclNumber}" class="cellPadding" />
+			 			<Button icon="sap-icon://activity-2" type="Accept" class="cellPadding " press="showReading" />
+			 			
+			 			<Select id="selectPlant"  required="true" selectedKey="{oDataModel>RemoveOk}"
+								change="onActionRemove" enabled="false">
+								<items>
+									<core:Item text="OK" key="O"/>
+									<core:Item text="Remove" key="R"/>
+								</items>
+						</Select>
+							
+						<Select id="idRem" selectedKey="{oDataModel>RemReason}" 
+								items="{path:'RemJModel>/', templateShareable:false}" enabled="false" >
+								<items>
+									<core:Item text="{RemJModel>ReasonDesc}"
+												key="{RemJModel>RemReason}" />
+								</items>
+						</Select>
+						
+						<Button icon="sap-icon://attachment" type="Default" class="cellPadding " press="showImage" />
+						
+					</cells>
+				</ColumnListItem>
+			</items>
+			</Table>
+		</IconTabFilter>
+		
+		
+		<IconTabFilter text="DOCUMENTS" design="Vertical" key="B" tooltip="DOCUMENTS"
+						id="idDocumentTabFilter" icon="sap-icon://attachment">
+						
+						<UploadCollection
+							id="UploadCollection" 
+							width = "700px" 
+							sameFilenameAllowed="false" 
+							iconOnly="true" 
+							multiple="false" 
+							buttonOnly="false" 
+							uploadComplete="onUploadComplete"							
+							beforeUploadStarts="onBeforeUploadStarts"
+							uploadUrl="/sap/opu/odata/sap/ZAPS_UTILITY_SRV/ImageUploadSet"							
+							uploadTerminated="onUploadTerminated"
+							typeMissmatch="onTypeMissmatch"
+							maximumFilenameLength="100"
+							maximumFileSize="20"
+							fileSizeExceed="onFileSizeExceed"
+							items="{path: 'oUploadModel>/items',
+									templateShareable: false}"
+							uploadEnabled="false"
+							uploadButtonInvisible="true"
+							 mode="MultiSelect">
+							
+							<toolbar>
+							<OverflowToolbar id="myId">
+				 			<!-- <Title text="Uploaded:" id="idTestPlanUploaded" /> -->
+				 			<Title id="attachmentTitle" />
+							<ToolbarSpacer />
+							<Button id="downloadButton" text="Download" press="onImageDownloadItem1" enabled="true"
+									type="Transparent" />
+							<UploadCollectionToolbarPlaceholder/>
+							</OverflowToolbar>
+							</toolbar>
+							
+							<items>
+								<UploadCollectionItem
+									documentId="{oUploadModel>DocNo}"
+									fileName="{oUploadModel>FileName}"
+									mimeType="{oUploadModel>MimeType}"
+									url="{oUploadModel>Url}"
+
+									enableEdit="false"
+									enableDelete="false"
+				
+									visibleDelete="false"
+									visibleEdit="false"
+									
+								><!-- press="onUploadPress" -->
+								</UploadCollectionItem>
+							</items>
+
+						</UploadCollection>
+
+	</IconTabFilter>
+	
+		</items>
+		</IconTabBar>
+</content>
+
+	<footer>
+			<Toolbar>
+				<ToolbarSpacer />
+				<Button text="Back" enabled="true" visible="true" type="Accept"
+						press="onBack" id="backBtn" icon="sap-icon://nav-back"></Button>
+			</Toolbar>
+		</footer>
+  
+</Page>
+</core:View>

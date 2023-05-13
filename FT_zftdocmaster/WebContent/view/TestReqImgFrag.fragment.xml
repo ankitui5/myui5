@@ -1,0 +1,43 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout">
+
+	<Dialog title="Attachments" contentWidth="45%" contentHeight="50%" verticalScrolling="true" class="abcsapUiSizeCompact">
+		<content>			
+		<UploadCollection id="idtestReqUpldColl" maximumFilenameLength="55" maximumFileSize="10" multiple="false"
+			change="onChange" fileSizeExceed="onFileSizeExceed" selectionChange="onSelectionChange" typeMissmatch="onTypeMissmatch"
+			uploadComplete="onUploadComplete" beforeUploadStarts="onBeforeUploadStarts"
+			items="{path: 'TestReqoUploadModel>/items',templateShareable: false}" uploadEnabled="false" mode="MultiSelect">
+			
+			<toolbar> 
+				<OverflowToolbar id="myId">
+				 <!-- <CheckBox selected="false" select="onTestReqSelect" /> -->
+				 <Title text="Uploaded:" id="idTestReqUploaded" />
+					<Title id="attachmentTitle" />
+						<ToolbarSpacer />
+							<Button id="downloadButton" text="Download" press="onTestReqDownloadItem" enabled="true"
+									type="Transparent" />
+					
+					<UploadCollectionToolbarPlaceholder/>
+				</OverflowToolbar>
+			</toolbar>
+			
+			<items>
+				<UploadCollectionItem fileName="{TestReqoUploadModel>FileName}" url="{TestReqoUploadModel>Url}"
+					thumbnailUrl="{TestReqoUploadModel>Thumb}" enableEdit="false" enableDelete="false"
+					visibleDelete="false" visibleEdit="false"  >
+				</UploadCollectionItem>
+			</items>
+		</UploadCollection>	
+
+		</content>
+
+		<beginButton>
+			<!-- <Button text="download" icon="sap-icon://download" press="DownloadMultipleFiles" /> -->
+		</beginButton>
+		<endButton>
+			<Button text="Cancel" press="OnReqcancel" />
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>		
+		

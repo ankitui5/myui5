@@ -1,0 +1,117 @@
+<core:FragmentDefinition 
+		xmlns="sap.m"
+		xmlns:f="sap.ui.layout.form" 
+		xmlns:core="sap.ui.core" 
+		xmlns:l="sap.ui.layout">
+
+<Dialog xmlns="sap.m" title="Reading" contentWidth="80%" contentHeight="55%" class="abcsapUiSizeCompact">
+<content>
+
+	<Toolbar>
+				<Title id="RD_01" level="H2" design="Bold" />
+				<ToolbarSpacer></ToolbarSpacer>	
+				<Title id="RD_02" level="H2" design="Bold"/>
+				<ToolbarSpacer></ToolbarSpacer>	
+				<Title id="RD_03" level="H2" design="Bold"/>	
+				<ToolbarSpacer></ToolbarSpacer>
+	</Toolbar>
+	
+<f:SimpleForm  minWidth="1024" id="formReading"
+					maxContainerCols="2" editable="true" layout="ResponsiveGridLayout"
+					labelSpanL="4" labelSpanM="4" emptySpanL="1" emptySpanM="1" columnsL="2"
+					columnsM="2" class="editableForm readingForm">
+			<f:content>
+		<core:Title text="Readings" />
+		
+			<Label text="Inflation Pressure (PSI)" />
+			<Select id="idEarSped" enabled="false" forceSelection="false" selectedKey="{readingModel>/IpConditionO}">
+				<core:Item text="Hot" key="H" />
+				<core:Item text="Cold" key="C" />
+			</Select>
+			
+			<Label text="IP" required="false" />
+			<Input id="ipO" value="{readingModel>/IpPsiO}" enabled="false"/>
+			
+			<Label text="Hardness (Shore A)" />
+			<Input enabled="false" value="{readingModel>/HardnessO}" />
+			<Label text="Orginal Nsd (mm)" />
+			<Input id="idOriNsd" enabled="false" value="{readingModel>/OrgNsdO}" />
+			
+			<Label text="G1 (mm)" id="oG1lbl" visible="false"/>
+			<Input enabled="false" id="oG1" value="{readingModel>/G1NsdO}" showValueHelp="true" visible="false" valueHelpOnly="true" valueHelpRequest="ongrooveOG1" maxLength="4"/>
+			
+			<Label text="G2 (mm)" id="oG2lbl" visible="false"/>
+			<Input enabled="false" id="oG2" value="{readingModel>/G2NsdO}" showValueHelp="true" visible="false" valueHelpOnly="true" valueHelpRequest="ongrooveOG2" maxLength="4"/>
+			
+			<Label text="G3 (mm)" id="oG3lbl" visible="false"/>
+			<Input enabled="false" id="oG3" value="{readingModel>/G3NsdO}" showValueHelp="true" visible="false" valueHelpOnly="true" valueHelpRequest="ongrooveOG3" maxLength="4"/>
+			
+			<Label text="G4 (mm)" id="oG4lbl" visible="false"/>
+			<Input enabled="false" id="oG4" value="{readingModel>/G4NsdO}" showValueHelp="true" visible="false" valueHelpOnly="true" valueHelpRequest="ongrooveOG4" maxLength="4"/>
+			
+			<Label text="G5 (mm)" id="oG5lbl" visible="false"/>
+			<Input enabled="false" id="oG5" value="{readingModel>/G5NsdO}" showValueHelp="true" visible="false" valueHelpOnly="true" valueHelpRequest="ongrooveOG5" maxLength="4"/>
+			
+			<Label text="G6 (mm)" id="oG6lbl" visible="false"/>
+			<Input enabled="false" id="oG6" value="{readingModel>/G6NsdO}" showValueHelp="true" visible="false" valueHelpOnly="true" valueHelpRequest="ongrooveOG6" maxLength="4"/>
+			
+			<Label text="MinNsd (mm)" />
+			<Input id="minNsdO" enabled="false" value="{readingModel>/MinNsdO}" />
+			
+			<Label text="KM Suspended" />
+			<Input id="idKmSusO" enabled="false" value="{readingModel>/KmSuspendedO}" maxLength="4" liveChange="onKMSuspendO" />
+			
+			<!-- <Label text="KM Covered" />
+			<Input id="idKmCovO" enabled="false" value="{readingModel>/KmCoveredO}" liveChange="miloNumberValid" /> -->
+			
+			<Label text="Tot KM Covered" visible="true"/>
+			<Input id="idTotKmCovO" enabled="false" value="{readingModel>/TotKmCoveredO}" visible="true"/>
+			
+		<core:Title text=""/>
+		
+			<Label text="KM/mm Wear" maxLength="4" />
+			<Input id="idKmWearO" value="{readingModel>/KmPerMmO}" enabled="false"/>
+			
+			<Label text="Projected Mileage" />
+			<Input id="idPrjMilO" enabled="false" value="{readingModel>/MilageProjO}" />
+			
+			<Label text="Tread Wear(%)" />
+			<Input id="idTWearO" enabled="false" value="{readingModel>/WearO}" />
+			
+			<Label text="Type of Wear" />
+			<Select id="idWearTyO" enabled="false" selectedKey="{readingModel>/WearTypeO}" items="{path:'WearTypeJModel>/', templateShareable:false}">
+					<core:Item text="{WearTypeJModel>TypeDesc}"
+								key="{WearTypeJModel>WearType}" />
+			</Select>
+			
+			<Label text="Gravity" />
+			<Select id="idGravO" enabled="false" selectedKey="{readingModel>/GravityO}" items="{path:'GravityJModel>/', templateShareable:false}">
+					<core:Item text="{GravityJModel>GravityDesc}"
+								key="{GravityJModel>Gravity}" />
+			</Select>	
+
+			<Label text="PWA" />
+			<Select id="idPwaO" enabled="false" selectedKey="{readingModel>/PwaO}" items="{path:'PwaJModel>/', templateShareable:false}">
+					<core:Item text="{PwaJModel>PwaDesc}"
+								key="{PwaJModel>Pwa}" />
+			</Select>
+
+			<Label text="Remarks" />
+			<Input enabled="false" value="{readingModel>/RemarksO}" />
+			
+			<!-- <Label></Label>
+			<Button text="OK" class="btn-green" press="onTabelEntriesClose"/> -->
+			
+		</f:content>
+	</f:SimpleForm>
+</content> 
+
+<beginButton>
+	
+</beginButton>
+<endButton>
+	<Button text="OK" class="btn-green" press="onTabelEntriesClose"/>
+</endButton>
+</Dialog>
+</core:FragmentDefinition>
+

@@ -1,0 +1,53 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout">
+
+	<Dialog title="Attachments" contentWidth="45%" contentHeight="50%" verticalScrolling="true" class="abcsapUiSizeCompact">
+		<content>
+			
+			<UploadCollection id="UploadCollection1" maximumFilenameLength="55" maximumFileSize="10" multiple="false"
+			change="onChange" fileSizeExceed="onFileSizeExceed" selectionChange="onSelectionChange" typeMissmatch="onTypeMissmatch"
+			uploadComplete="onUploadComplete" beforeUploadStarts="onBeforeUploadStarts"
+		 	items="{path: 'oUploadModel2>/items', templateShareable: false}" uploadEnabled="false" mode="MultiSelect">
+			
+			<toolbar>
+				<OverflowToolbar id="myId">
+				<!--  <Title text="Uploaded:" id="idTestPlanUploaded" /> -->
+					<Title id="attachmentTitle" />
+						<ToolbarSpacer />
+							<Button id="downloadButton" text="Download" press="onImageDownloadItem" enabled="true"
+									type="Transparent" />
+					
+					<UploadCollectionToolbarPlaceholder/>
+				</OverflowToolbar>
+			</toolbar>
+			
+			<items>
+				<UploadCollectionItem
+				            id="idupload"
+				            documentId="{oUploadModel2>DocNo}"
+				            fileName="{oUploadModel2>FileName}"
+				            mimeType="{oUploadModel2>MimeType}"
+				            url="{oUploadModel2>Url}"
+				            pos="{oUploadModel2>Pos}"
+				            enableEdit="false"
+				            enableDelete="false"
+							visibleDelete="false"
+				            visibleEdit="false"
+				          	>
+				</UploadCollectionItem>
+			</items>
+		</UploadCollection>	
+ 
+ 
+		</content>
+
+		<beginButton>
+			<!-- <Button text="download" icon="sap-icon://download" press="DownloadMultipleFiles" /> -->
+		</beginButton>
+		<endButton>
+		  <Button text="OK" press="onOKUploadDialog"></Button>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>		
+		
