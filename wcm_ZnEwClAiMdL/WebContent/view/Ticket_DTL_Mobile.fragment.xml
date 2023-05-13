@@ -1,0 +1,42 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core" 
+	xmlns:l="sap.ui.layout"
+	xmlns:fb="sap.ui.comp.filterbar"
+	height="100%"
+	class="frg">
+	
+	<Dialog xmlns="sap.m" title="Open Ticket" afterClose= "onCustomerfrgClose"
+			class="sapUiSizeCompact col col1" contentWidth="1024px" contentHeight="824px">
+	<content>				
+	</content>
+								     
+<Table id="idCustomerTable" items="{TicketListSetJModel>/}" mode="" fixedLayout="false" class=" tablabel">
+    <columns class="sapMTitle">
+	      <Column minScreenWidth="Tablet" width="20em" demandPopin="true" hAlign="Center">
+	        <Text text="Ticket Number" /> 
+	      </Column>
+	      
+	      <Column minScreenWidth="Tablet" width="20em" demandPopin="true" hAlign="Center">
+	        <Text text="Mobile Number" />    
+	      </Column>
+	      
+	      <Column minScreenWidth="Tablet" width="20em" demandPopin="true" hAlign="Center">
+			<Text text="Customer Name" /> 
+	      </Column>
+    </columns>
+    <items>
+      <ColumnListItem type ="Active" press="displayTicktRequest" >
+        <cells>
+      		<Text text="{TicketListSetJModel>TicketNo}" />
+      		<Text text="{TicketListSetJModel>ITelf1}" />                        
+      		<Text text="{TicketListSetJModel>Fname}" />                      
+        </cells>
+      </ColumnListItem>
+    </items>
+</Table>
+  		
+		<endButton>
+			<Button text="Without Refrence to Ticket" type="Accept" press="onWithoutTicket" />
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

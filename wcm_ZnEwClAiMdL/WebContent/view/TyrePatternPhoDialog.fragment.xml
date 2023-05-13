@@ -1,0 +1,61 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout">
+
+	<Dialog title="Upload Tyre Pattern Photos" contentWidth="40%" contentHeight="40%" verticalScrolling="true" class="abcsapUiSizeCompact">
+		<content>
+		
+		
+	<UploadCollection
+        id="idTPtrnUploadCollection"            			   
+        width = "500px"
+        sameFilenameAllowed="false" 
+        iconOnly="true" 
+        multiple="false" 
+        buttonOnly="true" 
+        icon="sap-icon://add-photo" 
+        uploadComplete="onTPtrnUploadComplete"
+        fileDeleted="onTPtrnFileDeleted"
+        beforeUploadStarts="onTPtrnBeforeUploadStarts"
+        uploadUrl="/sap/opu/odata/sap/ZAPS_UTILITY_SRV/ImageUploadSet"
+        change="onTPtrnAttachUpload"                           
+        uploadTerminated="onTPtrnUploadTerminated"
+        typeMissmatch="onTPtrnTypeMissmatch"
+        maximumFilenameLength="100"
+        maximumFileSize="50"
+        fileSizeExceed="onTPtrnFileSizeExceed"
+         items="{
+				path: 'oUploadTPtrnModel>/items',
+				templateShareable: false
+				}"
+		uploadEnabled="true"
+		uploadButtonInvisible="false"
+		>
+		 <items>
+		 <UploadCollectionItem
+			documentId="{oUploadTPtrnModel>DocNo}"
+			fileName="{oUploadTPtrnModel>FileName}"
+			mimeType="{oUploadTPtrnModel>MimeType}"
+			url="{oUploadTPtrnModel>Url}"
+			enableEdit="true"
+			enableDelete="true"
+			visibleDelete="true"
+			visibleEdit="false"
+			press="onUploadPress"
+		>
+	</UploadCollectionItem>
+	</items>
+  </UploadCollection>
+ 
+ 
+		</content>
+
+		<beginButton>
+			<Button text="OK" press="OnTyrePatternOk" /> 
+		</beginButton>
+		<endButton>
+			<Button text="Cancel" press="OnTyrePatterncancel" />
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>		
+		

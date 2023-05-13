@@ -1,0 +1,58 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form" 
+	xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout">
+
+
+
+<Dialog title="Upload Tyre Photos" contentWidth="33%" contentHeight="20%" verticalScrolling="true" class="abcsapUiSizeCompact">
+	<content>
+		<l:Grid>
+			<l:content>
+				<VBox alignItems="Center">
+					<Text id="idTyrSize" text="Tyre Size" ></Text>
+					<HBox alignItems="Center">
+					<!-- <Button icon="sap-icon://add-photo" id="idbtn1"></Button> -->
+					<core:Icon id="idicon1" src="sap-icon://add-photo" press="onTyrSize" size="4rem"/>
+					</HBox>
+						<layoutData>
+							<l:GridData span="L4 M3 S12" />
+						</layoutData>
+				</VBox>
+				
+				<VBox alignItems="Center">
+					<Text id="idTyrPattern" text="Tyre Pattern"></Text>
+					<HBox alignItems="Center">
+					<!-- <Button width="" icon="sap-icon://add-photo" id="idbtn2"></Button> -->
+					<core:Icon id="idicon2" src="sap-icon://add-photo" press="onTyrPattern" size="4rem"/>
+					</HBox>
+						<layoutData>
+							<l:GridData span="L4 M3 S12" />
+						</layoutData>
+				</VBox>
+				
+				<VBox alignItems="Center">
+					<Text id="idTyrStencil" text="Stencil Number"></Text>
+					<HBox alignItems="Center">
+					<!-- <Button width="" icon="sap-icon://add-photo" id="idbtn3" ></Button> -->
+					<core:Icon id="idicon3" src="sap-icon://add-photo" press="onTyrStencil" size="4rem"/>
+					</HBox>
+						<layoutData>
+									<l:GridData span="L4 M3 S12" />
+						</layoutData>
+				</VBox>
+			</l:content>
+		</l:Grid>
+		
+ 
+		</content>
+
+		<beginButton>
+			<Button text="OK" press="OnTyrePhotoOk" /> 
+		</beginButton>
+		<!-- <endButton>
+			<Button text="Cancel" press="OnTyrePhotocancel" />
+		</endButton> -->
+	</Dialog>
+</core:FragmentDefinition>		
+		

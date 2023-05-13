@@ -1,0 +1,57 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout">
+
+	<Dialog title="Upload Tyre Size Photos" contentWidth="40%" contentHeight="40%" verticalScrolling="true" class="abcsapUiSizeCompact">
+		<content>
+		
+	<UploadCollection
+        id="idTubeMouldMMYYCollection"            			   
+        width = "700px"
+        sameFilenameAllowed="false" 
+        iconOnly="true" 
+        multiple="false" 
+        buttonOnly="true" 
+        icon="sap-icon://add-photo" 
+        uploadComplete="onTubeMouldMMYYUploadComplete"
+        fileDeleted="onTubeMouldMMYYFileDeleted"
+        beforeUploadStarts="onTubeMouldMMYYBeforeUploadStarts"
+        uploadUrl="/sap/opu/odata/sap/ZAPS_UTILITY_SRV/ImageUploadSet"
+        change="onTubeMouldMMYYAttachUpload"                           
+        uploadTerminated="onTubeMouldMMYYUploadTerminated"
+        typeMissmatch="onTubeMouldMMYYTypeMissmatch"
+        maximumFilenameLength="100"
+        maximumFileSize="5"
+        fileSizeExceed="onTubeMouldMMYYFileSizeExceed"
+         items="{
+				 path: 'oUploadTubeMouldMMYYModel>/items',
+				templateShareable: false
+			   }"
+						
+		uploadEnabled="true"
+		uploadButtonInvisible="false">
+		<items>
+			<UploadCollectionItem
+				documentId="{oUploadTubeMouldMMYYModel>DocNo}"
+				fileName="{oUploadTubeMouldMMYYModel>FileName}"
+				mimeType="{oUploadTubeMouldMMYYModel>MimeType}"
+				url="{oUploadTubeMouldMMYYModel>Url}"
+			    enableEdit="true"
+				enableDelete="true"
+				visibleDelete="true"
+				visibleEdit="false"
+				press="onTubeMouldMMYYUploadPress">
+			</UploadCollectionItem>
+		</items>
+    </UploadCollection>    
+		</content>
+
+		<beginButton>
+			<Button text="OK" press="OnTubeMouldMMYYOk" /> 
+		</beginButton>
+		<endButton>
+			<Button text="Cancel" press="OnTubeMouldMMYYcancel" />
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>		
+		

@@ -1,0 +1,61 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout">
+
+	<Dialog title="Upload Any Other Defect Photos" contentWidth="40%" contentHeight="40%" verticalScrolling="true" class="abcsapUiSizeCompact">
+		<content>
+		
+		
+	<UploadCollection
+        id="idDefectAnyOthUploadCollection"            			   
+        width = "500px"
+        sameFilenameAllowed="false" 
+        iconOnly="true" 
+        multiple="false" 
+        buttonOnly="true" 
+        icon="sap-icon://add-photo" 
+        uploadComplete="onDefectAnyOtherUploadComplete"
+        fileDeleted="onDefectAnyOtherFileDeleted"
+        beforeUploadStarts="onDefectAnyOtherBeforeUploadStarts"
+        uploadUrl="/sap/opu/odata/sap/ZAPS_UTILITY_SRV/ImageUploadSet"
+        change="onDefectAnyOtherAttachUpload"                           
+        uploadTerminated="onDefectAnyOtherUploadTerminated"
+        typeMissmatch="onDefectAnyOtherTypeMissmatch"
+        maximumFilenameLength="100"
+        maximumFileSize="50"
+        fileSizeExceed="onDefectAnyOtherFileSizeExceed"
+         items="{
+				path: 'oUploadDefectAnyOtherModel>/items',
+				templateShareable: false
+				}"
+		uploadEnabled="true"
+		uploadButtonInvisible="false"
+		>
+		 <items>
+		 <UploadCollectionItem
+			documentId="{oUploadDefectAnyOtherModel>DocNo}"
+			fileName="{oUploadDefectAnyOtherModel>FileName}"
+			mimeType="{oUploadDefectAnyOtherModel>MimeType}"
+			url="{oUploadDefectAnyOtherModel>Url}"
+			enableEdit="true"
+			enableDelete="true"
+			visibleDelete="true"
+			visibleEdit="false"
+			press="onUploadPress"
+		>
+	</UploadCollectionItem>
+	</items>
+  </UploadCollection>
+ 
+ 
+		</content>
+
+		<beginButton>
+			<Button text="OK" press="OnDefectAnyOthOk" /> 
+		</beginButton>
+		<endButton>
+			<Button text="Cancel" press="OnDefectAnyOthcancel" />
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>		
+		

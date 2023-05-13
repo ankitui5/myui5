@@ -1,0 +1,61 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout">
+
+	<Dialog title="Upload Defect Inside Photos" contentWidth="40%" contentHeight="40%" verticalScrolling="true" class="abcsapUiSizeCompact">
+		<content>
+		
+		
+	<UploadCollection
+        id="idDefectInsideUploadCollection"            			   
+        width = "500px"
+        sameFilenameAllowed="false" 
+        iconOnly="true" 
+        multiple="false" 
+        buttonOnly="true" 
+        icon="sap-icon://add-photo" 
+        uploadComplete="onDefectInsideUploadComplete"
+        fileDeleted="onDefectInsideFileDeleted"
+        beforeUploadStarts="onDefectInsideBeforeUploadStarts"
+        uploadUrl="/sap/opu/odata/sap/ZAPS_UTILITY_SRV/ImageUploadSet"
+        change="onDefectInsideAttachUpload"                           
+        uploadTerminated="onDefectInsideUploadTerminated"
+        typeMissmatch="onDefectInsideTypeMissmatch"
+        maximumFilenameLength="100"
+        maximumFileSize="50"
+        fileSizeExceed="onDefectInsideFileSizeExceed"
+         items="{
+				path: 'oUploadDefectInsideModel>/items',
+				templateShareable: false
+				}"
+		uploadEnabled="true"
+		uploadButtonInvisible="false"
+		>
+		 <items>
+		 <UploadCollectionItem
+			documentId="{oUploadDefectInsideModel>DocNo}"
+			fileName="{oUploadDefectInsideModel>FileName}"
+			mimeType="{oUploadDefectInsideModel>MimeType}"
+			url="{oUploadDefectInsideModel>Url}"
+			enableEdit="true"
+			enableDelete="true"
+			visibleDelete="true"
+			visibleEdit="false"
+			press="onUploadPress"
+		>
+	</UploadCollectionItem>
+	</items>
+  </UploadCollection>
+ 
+ 
+		</content>
+
+		<beginButton>
+			<Button text="OK" press="OnDefectInsideOk" /> 
+		</beginButton>
+		<endButton>
+			<Button text="Cancel" press="OnDefectInsidecancel" />
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>		
+		

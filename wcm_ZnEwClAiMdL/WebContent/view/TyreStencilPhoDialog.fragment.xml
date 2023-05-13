@@ -1,0 +1,60 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout">
+
+	<Dialog title="Upload Tyre Stencil Photos" contentWidth="40%" contentHeight="40%" verticalScrolling="true" class="abcsapUiSizeCompact">
+		<content>
+		
+	<UploadCollection
+        id="idTStencilUploadCollection"            			   
+        width = "500px"
+        sameFilenameAllowed="false" 
+        iconOnly="true" 
+        multiple="false" 
+        buttonOnly="true" 
+        icon="sap-icon://add-photo" 
+        uploadComplete="onTStencilUploadComplete"
+        fileDeleted="onTStencilFileDeleted"
+        beforeUploadStarts="onTStencilBeforeUploadStarts"
+        uploadUrl="/sap/opu/odata/sap/ZAPS_UTILITY_SRV/ImageUploadSet"
+        change="onTStencilAttachUpload"                           
+        uploadTerminated="onTStencilUploadTerminated"
+        typeMissmatch="onTStencilTypeMissmatch"
+        maximumFilenameLength="100"
+        maximumFileSize="50"
+        fileSizeExceed="onTStencilFileSizeExceed"
+         items="{
+				path: 'oUploadTStencilModel>/items',
+				templateShareable: false
+				}"
+		uploadEnabled="true"
+		uploadButtonInvisible="false"
+		>
+		 <items>
+		 <UploadCollectionItem
+			documentId="{oUploadTStencilModel>DocNo}"
+			fileName="{oUploadTStencilModel>FileName}"
+			mimeType="{oUploadTStencilModel>MimeType}"
+			url="{oUploadTStencilModel>Url}"
+			enableEdit="true"
+			enableDelete="true"
+			visibleDelete="true"
+			visibleEdit="false"
+			press="onUploadPress"
+		>
+	</UploadCollectionItem>
+	</items>
+  </UploadCollection> 
+ 
+ 
+		</content>
+
+		<beginButton>
+			<Button text="OK" press="OnTyreStencilOk" /> 
+		</beginButton>
+		<endButton>
+			<Button text="Cancel" press="OnTyreStencilcancel" />
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>		
+		

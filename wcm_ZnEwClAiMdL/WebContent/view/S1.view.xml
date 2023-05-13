@@ -1,0 +1,321 @@
+<core:View xmlns:core="sap.ui.core" 
+		   xmlns:mvc="sap.ui.core.mvc"
+		   xmlns:u="sap.ui.unified" 
+		   xmlns="sap.m" 
+		   xmlns:f="sap.ui.layout.form"
+		   xmlns:l="sap.ui.layout" 
+		   controllerName="znewclaimdl.view.S1"
+		   xmlns:html="http://www.w3.org/1999/xhtml" 
+		   xmlns:t="sap.ui.table">	
+<html:style>
+
+<!-- .clashedCust {
+    color: black !important;
+    font-weight: 600;
+    font-size: 15px;
+} -->
+
+.sapMIBar-CTX .sapMTitle {
+    color: black !important;
+    font-weight: 600;
+    font-size: 17px;
+}	
+
+.tblgrid .sapMListTblCell {
+    vertical-align: middle;
+    border: none;
+    background: #fafac8;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    
+}
+.sapMIBar-CTX .sapMTitle {
+    color: black;
+    font-weight: 600;
+    font-size: 15px;
+} 
+
+.sapMListTbl .sapMLabel {
+    word-wrap: normal !important;
+    font-weight: bold !important;
+}
+
+.sapMITBTextOnly .sapMITBFilterPositive>.sapMITBText {
+    color: #2b7c2b !important;
+    font-weight: bold !important;
+}
+
+.clashedCust {
+    color: black !important;
+    font-weight: 600;
+    font-size: 15px;
+}
+</html:style> 
+<Page title="Claim By Dealer" id= "HeaderIdTit" titleLevel="H2" class="sapUiNoContentPadding clashedCust">
+<content>
+<Toolbar height="2rem" class="sapUiSizeCompact">
+		<Text id="HeaderIdTicket"  class="clashedCust"/>				
+		<ToolbarSpacer></ToolbarSpacer>
+		<Text id="HedCustMob" class="clashedCust"/>
+		<ToolbarSpacer></ToolbarSpacer>
+		<Label id="idTolbarTDt" class="clashedCust" />
+		<Text id="HeaderIdTicketDt" class="clashedCust" text="Ticket Date : {path:'jModel>/d/TicketDate',formatter:'znewclaimdl.util.Formatter.date1'}"/> 
+</Toolbar>	
+
+<!-- ***************************************************************************************************************************** -->
+<f:SimpleForm id="SimpleFormToolbar" minWidth="1024" class="sapUiSizeCompact" maxContainerCols="2" 
+			  editable="true" layout="ResponsiveGridLayout" labelSpanL="4" labelSpanM="4" emptySpanL="1" emptySpanM="1" 
+			  columnsL="2" columnsM="3" >
+	<f:content>
+		<core:Title text="Customer Details" />
+		<Label text="Phone Number" required="true"/>
+		<Input id="idPhone1" enabled="false" maxLength="10" type="Tel" value="{jModel>/d/CustomerTelf1}" liveChange="NumberValid"/>
+		
+		<Label text="Customer Name" required="true"/>
+		<Input id="idCustName" value="{jModel>/d/CustomerFname}" enabled="true"  liveChange="ValidateName"/>
+		
+	    <Label text="Fitment Type" tooltip="Tyre Fitment Type" id="" required="true" />
+        <Select forceSelection="false" selectedKey="" enabled="true" id="idFitment" change="onFitmentChange" >
+             <items>
+				<core:Item text="Original Equipments Manufacturer" key="OEM" />
+				<core:Item text="Replacement" key="REP" />
+			 </items>
+        </Select>
+        
+        <Label text="Franchise Name" />
+		<Input value="" enabled="true" id="idFranchName" visible="false"  liveChange="ValidateName"/>
+		
+	    
+	    <core:Title text="" />
+	    
+	    <!-- <Label text="Vehicle Type" id="lblVehType" required="true"/>
+		<Input id="idVehType"  enabled="true" value="{jModel>/d/VehicleType}" valueHelpRequest="onVehicleType" valueHelpOnly="true" showValueHelp="true"/>
+		 -->
+        <Label id="idlblCarMnf" text="Car Manufacturer" required="false"/>
+		<Input id="idCarManufact" enabled="true" value="" valueHelpRequest="onCarManufact" valueHelpOnly="true" showValueHelp="true" />
+		
+		<Label id="idlblVehMdl" text="Vehicle Model" required="false" />
+		<Input id="idVehMdl" value="" enabled="false" valueHelpRequest="onVehicleModel" valueHelpOnly="true" showValueHelp="true" />
+		
+		<Label text="Registration No." />
+		<Input id="idVehReg" enabled="true" maxLength="18" value="" visible="false" liveChange="NumChar"/>
+		
+		<Label text="KMS Coverd" />
+		<Input id="idKmsCvrd" enabled="true" maxLength="18" value="" visible="false" liveChange="NumChar"/>
+		
+		<Label text="Registration Certificate (RC)" />
+		<Button text="Add RC" width="28%" press="onRC" type="Accept" id="IdRC" visible="false" icon="sap-icon://picture" />			        
+	    
+	   			
+	</f:content>
+</f:SimpleForm>	
+
+<!-- ****** -->
+<Table id="idTyreTable" showNoData="false" visible="false" class="tblgrid">
+				<headerToolbar>
+						<Toolbar height="2rem">
+						<Text id="idText" text="Tyre Details" class="clashedCust"/>
+							<ToolbarSpacer></ToolbarSpacer>
+							<Button id="idAddWalkRow" icon="sap-icon://add-activity" text="Add Another Tyre" press="onAddNewRow" ></Button>
+						</Toolbar>
+				</headerToolbar>
+			<columns>
+			
+				<Column minScreenWidth="Tablet" demandPopin="true" width="10rem" hAlign="Center">
+				<Label text="Pattern Type" />
+				</Column>
+				
+				<Column minScreenWidth="Tablet" visible="false" demandPopin="true" width="10rem" hAlign="Center">
+				<Label text="Item Code" />
+				</Column>
+				
+				<Column minScreenWidth="Tablet" visible="false" demandPopin="true" width="10rem" hAlign="Center">
+				<Label text="Total NSD" />
+				</Column>
+				
+				<Column minScreenWidth="Tablet" visible="false" demandPopin="true" width="5rem" hAlign="Center">
+				<Label text="Size" />
+				</Column> 
+				
+				<Column minScreenWidth="Tablet" demandPopin="true" width="6rem" hAlign="Center">
+				<Label text="Stencil No." />
+				</Column>
+				
+				<Column minScreenWidth="Tablet" demandPopin="true" width="4rem" hAlign="Center">
+				<Label text="NSD1" />
+				</Column>
+				
+				<Column minScreenWidth="Tablet" demandPopin="true" width="4rem" hAlign="Center">
+				<Label text="NSD2" />
+				</Column>
+				
+				<Column minScreenWidth="Tablet" demandPopin="true" width="4rem" hAlign="Center">
+				<Label text="NSD3" />
+				</Column>
+				
+				<Column minScreenWidth="Tablet" visible="false" demandPopin="true" width="4rem" hAlign="Center">
+				<Label text="Avg NSD" />
+				</Column>
+				
+				<Column minScreenWidth="Tablet" visible="false" demandPopin="true" width="4rem" hAlign="Center">
+				<Label text="%Wear" />
+				</Column>
+				
+				<Column minScreenWidth="Tablet" demandPopin="true" width="16rem" hAlign="Center">
+				<Label text="Remarks" />
+				</Column>
+				
+				<Column minScreenWidth="Tablet" demandPopin="true" width="2rem" hAlign="Center">
+				<Label text="Tyre" />
+				</Column>
+				
+				<Column minScreenWidth="Tablet" demandPopin="true" width="3rem" hAlign="Center">
+				<Label text="Defect" />
+				</Column>
+				
+				<Column minScreenWidth="Tablet" demandPopin="true" width="2rem"  hAlign="Center">
+				<Label text="" />
+				</Column>
+				
+				<Column minScreenWidth="Tablet" visible="false" demandPopin="true" width="2rem"  hAlign="Center">
+				<Label text="Product Size" />
+				</Column>
+				
+				<Column minScreenWidth="Tablet" visible="false" demandPopin="true" width="2rem"  hAlign="Center">
+				<Label text="Prd Week" />
+				</Column>
+				
+				<Column minScreenWidth="Tablet" visible="false" demandPopin="true" width="2rem"  hAlign="Center">
+				<Label text="Prd Month" />
+				</Column>
+				
+				<Column minScreenWidth="Tablet" visible="false" demandPopin="true" width="2rem"  hAlign="Center">
+				<Label text="Prd Year" />
+				</Column>
+				 
+			</columns>
+		</Table>
+		<Table id="idTyreTable1" items="{AddRowJModel>/}" showNoData="true" alternateRowColors="true" class="tblgrid2" visible="false">
+			<columns>
+				
+				<Column minScreenWidth="Tablet" demandPopin="true" width="10rem" hAlign="Center"></Column>
+				<Column minScreenWidth="Tablet" visible="false" demandPopin="true" width="10rem" hAlign="Center"></Column>
+				<Column minScreenWidth="Tablet" visible="false" demandPopin="true" width="10rem" hAlign="Center"></Column>
+				<Column minScreenWidth="Tablet" visible="false" demandPopin="true" width="5rem" hAlign="Center"></Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" width="6rem" hAlign="Center"></Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" width="4rem" hAlign="Center"></Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" width="4rem" hAlign="Center"></Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" width="4rem" hAlign="Center"></Column>
+				<Column minScreenWidth="Tablet" visible="false" demandPopin="true" width="4rem" hAlign="Center"></Column>
+				<Column minScreenWidth="Tablet" visible="false" demandPopin="true" width="4rem" hAlign="Center"></Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" width="16rem" hAlign="Center"></Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" width="2rem" hAlign="Center"></Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" width="3rem" hAlign="Center"></Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" width="2rem" hAlign="Center"></Column>
+				<Column minScreenWidth="Tablet" visible="false" demandPopin="true" width="2rem" hAlign="Center"></Column>
+				<Column minScreenWidth="Tablet" visible="false" demandPopin="true" width="2rem" hAlign="Center"></Column>
+				<Column minScreenWidth="Tablet" visible="false" demandPopin="true" width="2rem" hAlign="Center"></Column>
+				<Column minScreenWidth="Tablet" visible="false" demandPopin="true" width="2rem" hAlign="Center"></Column>
+				
+			</columns>
+			<items>
+				<ColumnListItem> 
+					<cells>
+					
+						<Input maxLength="16" value="{AddRowJModel>rowData1}" valueHelpRequest="onPatternType" valueHelpOnly="true" showValueHelp="true"></Input>
+						<Input value="{AddRowJModel>rowData2}" valueHelpOnly="true" showValueHelp="true"></Input>
+						<Input value="{AddRowJModel>rowData3}" valueHelpOnly="true" showValueHelp="true"></Input>
+						<Input value="{AddRowJModel>rowData4}" valueHelpRequest="onTyreSise" valueHelpOnly="true" showValueHelp="true"></Input>
+						<Input maxLength="11" change="onValidateStencil" value="{AddRowJModel>rowData5}" enabled="false"></Input>
+						<Input maxLength="4" liveChange="onAverage" value="{AddRowJModel>rowData6}" enabled="false"></Input>
+						<Input maxLength="4" liveChange="onAverage" value="{AddRowJModel>rowData7}" enabled="false"></Input>
+						<Input maxLength="4" liveChange="onAverage" value="{AddRowJModel>rowData8}" enabled="false"></Input>
+						<Input value="{AddRowJModel>rowData9}"></Input>
+						<Input value="{AddRowJModel>rowData10}"></Input>
+						<Input maxLength="40" value="{AddRowJModel>rowData11}"></Input>
+						<Button icon="sap-icon://add-photo" press="OnTyrePhotos" type="Accept"></Button>
+						<Button icon="sap-icon://add-photo" press="onDefectPhotos" type="Accept"></Button>
+						<Button icon="sap-icon://delete" press="onRowDelete" type="Reject"></Button>
+						<Input value="{AddRowJModel>rowData12}"></Input>
+						<Input value="{AddRowJModel>rowData13}"></Input>
+						<Input value="{AddRowJModel>rowData14}"></Input>
+						<Input value="{AddRowJModel>rowData15}"></Input>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+		
+<!-- ********************************************YUBE DETAILS************************************************ -->
+
+
+<Table id="idTubeTable" showNoData="false" visible="false" class="tblgrid">
+	<headerToolbar>
+		<Toolbar height="2rem">
+		<Text id="idTubeText" text="Tube Details" class="clashedCust"/>
+		<ToolbarSpacer></ToolbarSpacer>
+		<Button id="idAddTubeRow" icon="sap-icon://add-activity" text="Add Another Tube" press="onAddNewTubeRow" ></Button>
+		</Toolbar>
+	</headerToolbar>
+			<columns>
+				<Column minScreenWidth="Tablet" demandPopin="true"  hAlign="Center">
+				<Label text="Pattern Type" />
+				</Column>
+				
+				<Column minScreenWidth="Tablet" visible="true" demandPopin="true"  hAlign="Center">
+				<Label text="Pattern Code" />
+				</Column>
+				
+				<Column minScreenWidth="Tablet" demandPopin="true" width="3rem" hAlign="Center">
+				<Label text="Tube" />
+				</Column>
+				
+				<Column minScreenWidth="Tablet" demandPopin="true" width="3rem" hAlign="Center">
+				<Label text="Defect" />
+				</Column>
+				
+				<Column minScreenWidth="Tablet" demandPopin="true" width="2rem"  hAlign="Center">
+				<Label text="" />
+				</Column>
+				
+			</columns>
+		</Table>
+		<Table id="idTubeTable1" items="{AddTubeRowJModel>/}" showNoData="true" alternateRowColors="true" class="tblgrid2" visible="false">
+			<columns>
+				
+				<Column minScreenWidth="Tablet" demandPopin="true"  hAlign="Center"></Column>
+				<Column minScreenWidth="Tablet" demandPopin="true"  hAlign="Center"></Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" width="3rem" hAlign="Center"></Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" width="3rem" hAlign="Center"></Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" width="2rem" hAlign="Center"></Column>
+				
+			</columns>
+			<items>
+				<ColumnListItem> 
+					<cells>
+						<Input maxLength="16" value="{AddTubeRowJModel>rowPtrnType}" valueHelpRequest="onPatternType" valueHelpOnly="true" showValueHelp="true"></Input>
+						<Input value="{AddTubeRowJModel>rowPtrnDesc}" enabled="false"></Input>
+						<Button icon="sap-icon://add-photo" press="OnTubePhotos" type="Accept"></Button>
+						<Button icon="sap-icon://add-photo" press="onTubeDefectPhotos" type="Accept"></Button>
+						<Button icon="sap-icon://delete" press="onTubeRowDelete" type="Reject"></Button>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+<html:hr/>    
+</content>  
+	  <footer>
+	  <Bar>
+	  <contentRight>
+	  
+	  </contentRight>
+	  
+	  <contentRight>
+	  <Button text="Create Claim" press="onClaimCreate" type="Accept"
+			  id="Id_btCrtClaim" visible="true" icon="sap-icon://create-form" />
+	  </contentRight>
+		</Bar>
+	</footer>
+</Page>
+</core:View>

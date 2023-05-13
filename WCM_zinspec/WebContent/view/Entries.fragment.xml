@@ -1,0 +1,62 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Dialog showHeader="false" class="sapUiSizeCompact" contentWidth="70%" >
+	<subHeader>
+			<Bar>
+				<contentMiddle>
+					<Text text="Earliy Failure Details" />
+				</contentMiddle>
+				
+			</Bar>
+		</subHeader> 
+	<content>
+	<f:SimpleForm  minWidth="1024"
+		maxContainerCols="2" editable="true" layout="ResponsiveGridLayout"
+		labelSpanL="4" labelSpanM="4" emptySpanL="1" emptySpanM="1" columnsL="3"
+		columnsM="2" class="editableForm">
+		<f:content>
+			<core:Title text="" />
+			<Label text="Application"  />
+			<Input enabled="true" id="idEarApp"  valueHelpRequest="InsGpCodeHelp"
+				valueHelpOnly="true" showValueHelp="false" />
+				<Label text="Route"  />
+			<Input enabled="true" id="idEarRou"  valueHelpRequest="InsGpCodeHelp"
+				valueHelpOnly="true" showValueHelp="false" />
+				<Label text="Lead (Kms)"  />
+			<Input enabled="true" id="idEarLed" type="Number" valueHelpRequest="InsGpCodeHelp"
+				valueHelpOnly="true" showValueHelp="false" />
+				<Label text="Speed (Kmph)"  />
+			<Input enabled="true" id="idEarSped" type="Number" valueHelpRequest="InsGpCodeHelp"
+				valueHelpOnly="true" showValueHelp="false" />
+				<Label text="Con/Mfg"  />
+			<Input enabled="true" id="idEarCon"  valueHelpRequest="InsGpCodeHelp"
+				valueHelpOnly="true" showValueHelp="false" />
+				
+			<core:Title text="" />
+				<Label text="GVW (MT)"  />
+			<Input enabled="true" id="idEarGvw" type="Number" valueHelpRequest="InsGpCodeHelp"
+				valueHelpOnly="true" showValueHelp="false" />
+			<Label text="Fitment Position"  />
+			<Select enabled="true" id="idEarFpos" forceSelection="false" items="{/DropDownFitmentPositionSet}"  valueHelpRequest="InsGpCodeHelp"
+				valueHelpOnly="true" showValueHelp="false" >
+				<core:ListItem key="{FitmentPosition}" text="{FitmentPositionTxt}"></core:ListItem>
+				</Select>
+<Label text="Rim Profile"  />
+			<Input enabled="true" id="idEarRim"  valueHelpRequest="InsGpCodeHelp"
+				valueHelpOnly="true" showValueHelp="false" />
+				<Label text="IP in PSI"  />
+			<Input enabled="true" id="idEarPSI"  valueHelpRequest="InsGpCodeHelp"
+				valueHelpOnly="true" showValueHelp="false" />
+				<Label text="Payload"  />
+			<Input enabled="true" id="idEarPay"  valueHelpRequest="InsGpCodeHelp"
+				valueHelpOnly="true" showValueHelp="false" />
+				
+		</f:content>
+	</f:SimpleForm>
+	</content>
+		<buttons>
+<!-- 		<Button text="Close"  visible="true" press="onTabelFilterClose" />	 -->
+		<Button text="OK"   visible="true" press="onTabelFilterOk" />		
+		</buttons>	
+</Dialog>
+</core:FragmentDefinition>
