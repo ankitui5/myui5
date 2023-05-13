@@ -1,0 +1,129 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout">
+
+	<Dialog title="More Information" contentWidth="80%" contentHeight="80%" verticalScrolling="true" class="abcsapUiSizeCompact">
+		<content>
+			<Table id="idTblMoreInfo" items="{predictionImageJModel>/}" visible="true" showNoData="true" class="tblgrid2">
+				<columns>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="10rem" hAlign="Center">
+					<Label text="Field Name" design="Bold" />
+					</Column>
+					
+					<Column minScreenWidth="Tablet" demandPopin="true" width="12rem" hAlign="Center">
+					<Label text="Field Data" design="Bold" />
+					</Column>
+					
+					<!-- <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+					<Label text="Predection Data" design="Bold" />
+					</Column> -->
+					
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+					<Label text="Remarks" design="Bold" /> 
+					</Column>
+					
+					<Column minScreenWidth="Tablet" demandPopin="true" width="4rem" hAlign="Center">
+					<Label text="Select" design="Bold" />
+					</Column> 
+					
+				</columns> 
+				<items>
+					<ColumnListItem>
+						<cells>
+						<Text text="{predictionImageJModel>ImageDesc}"></Text>
+						<Image alt="Defect Image" press="onPressMoreInfoimg" mode="Background" height="50px" width="50px" src="{predictionImageJModel>Image}" />
+						<Textarea width="80%" enabled="false"></Textarea>
+						<CheckBox select="onCheckClick"/>
+						</cells>
+					</ColumnListItem>
+					</items>
+			</Table>
+			
+			<!-- ********** -->
+			
+			<Table id="idTblMoreInfo1" items="{objJmodel>/}" visible="true" showNoData="true" class="tblgrid2">
+				<columns>
+					
+					<Column minScreenWidth="Tablet" demandPopin="true" width="10rem" hAlign="Center">
+					
+					</Column>
+					
+					<Column minScreenWidth="Tablet" demandPopin="true" width="12rem" hAlign="Center">
+					
+					</Column>
+						
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+					
+					</Column>
+					
+					<Column minScreenWidth="Tablet" demandPopin="true" width="4rem" hAlign="Center">
+					
+					</Column> 
+					
+				</columns> 
+				<items>
+					<ColumnListItem>
+						<cells>
+						<Text text="{objJmodel>Label}"></Text>
+						<Text text="{objJmodel>FieldName}"></Text>
+						<Textarea width="80%" enabled="false"></Textarea>
+						<CheckBox select="onCheckClick"/>
+						</cells>
+					</ColumnListItem>
+					</items>
+			</Table>
+			
+	<!-- <f:SimpleForm id="SimpleFormToolbar1" minWidth="1024" class="sapUiFormResGrid sapUiSizeCompact" maxContainerCols="6" 
+		editable="true" layout="ResponsiveGridLayout" labelSpanL="4" labelSpanM="4" emptySpanL="1" emptySpanM="1" 
+		columnsL="1" columnsM="3" >
+		  
+	<f:content>
+		<core:Title text="" />
+		<Label text="Item Code" />
+		<Input value="{jModel>/firstName}" id="idItemCode" />
+		<Textarea width="100%"></Textarea>
+		<CheckBox />
+	
+		<Label text="Mould No" />
+		<Input value="{jModel>/firstName}" id="idMouldNo" /> 
+		<Textarea width="100%"></Textarea>
+		<CheckBox />
+		<Text text="abc" />	
+		
+		<Label text="Stencil Number" /> 
+		<Input id="idStencilNo" value="{jModel>/lastName}" /> 
+		<Textarea width="100%"></Textarea>
+		<CheckBox />
+		
+		<Label text="NSD1" />
+		<Input id="idNsd1"  value=""/>
+		<Textarea width="100%"></Textarea>
+		<CheckBox />
+		
+		<Label text="NSD2"  />
+		<Input id="idNsd2"  value=""/>
+		<Textarea width="100%"></Textarea>
+		<CheckBox />
+		
+		<Label text="NSD3" />
+		<Input id="idNsd3"  value=""/>
+		<Textarea width="100%"></Textarea>
+		<CheckBox />
+		
+		<core:Title text="" />
+		
+		
+	</f:content> 
+	</f:SimpleForm>	 -->
+	
+	</content>
+
+		<beginButton>
+			<Button text="OK" press="OnMoreInfoOk" /> 
+		</beginButton>
+		<endButton>
+			<Button text="Cancel" press="OnMoreInfoCancel" />
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>		
+		

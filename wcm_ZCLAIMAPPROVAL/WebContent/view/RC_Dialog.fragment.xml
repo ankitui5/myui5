@@ -1,0 +1,38 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout">
+
+<Dialog title="Registration Certificate" contentWidth="30%" contentHeight="80%" verticalScrolling="true" class="abcsapUiSizeCompact">
+	<content>
+		<Table id="idRCImage" items="{RCJmodel>/}" visible="true" showNoData="true" class="tblgrid2">
+			<columns>
+				<Column minScreenWidth="Tablet" demandPopin="true" width="8rem" hAlign="Center">
+					<Label text="Image Description" design="Bold" />
+				</Column>
+			
+				<Column minScreenWidth="Tablet" demandPopin="true" width="8rem" hAlign="Center">
+					<Label text="Registration Certificate" design="Bold" />
+				</Column>
+			</columns> 
+			
+			<items>
+				<ColumnListItem>
+					<cells>
+					<Text text="{RCJmodel>ImageDesc}" ></Text>
+					<Image alt="RC Image" mode="Background" height="150px" width="150px" src="{RCJmodel>Image}" />
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+		
+</content>
+
+		<beginButton>
+			<Button text="OK" press="onRCImageOk" /> 
+		</beginButton>
+		<!-- <endButton>
+			<Button text="Cancel" press="OnMoreInfoCancel" />
+		</endButton> -->
+	</Dialog>
+</core:FragmentDefinition>		
+		

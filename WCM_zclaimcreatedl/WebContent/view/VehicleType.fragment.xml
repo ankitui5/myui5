@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+	<SelectDialog title="Vehicle Type" cancel="_VehicleTypeClose" confirm="_VehicleTypeClose" search="_VehicleTypeSearch"
+		items="{path:'VehicleType>/d/results'}" class="sapUiPopupWithPadding">
+		<StandardListItem title="{VehicleType>Type}" description="" iconInset="false"
+			iconDensityAware="false"/>
+	</SelectDialog>
+</core:FragmentDefinition>

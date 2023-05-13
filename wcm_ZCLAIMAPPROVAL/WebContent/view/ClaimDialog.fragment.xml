@@ -1,0 +1,150 @@
+<core:FragmentDefinition xmlns="sap.m" 
+						xmlns:core="sap.ui.core" 
+						xmlns:f="sap.ui.layout.form" 
+						xmlns:l="sap.ui.layout" 
+						xmlns:html="http://www.w3.org/1999/xhtml"
+						>
+	<Dialog id="idClaimDialog" showHeader="true" title="Select Defect" class="sapUiSizeCompact" contentHeight="500px" >
+	<content>
+	
+	<!-- <l:Grid>
+		<l:content> -->	
+	<HBox>	
+	     <HBox>
+				<Text text="" class="Clspace2"/>
+		 </HBox>
+			<VBox alignItems="Center" alignContent="Center">
+				<HBox alignItems="Center" alignContent="Center">
+					<RadioButton id="idRBtnFialDefect" selected="true" valueState="Warning" groupName="radioGroupfinal" />
+						<VBox alignItems="Center" alignContent="Center">
+							<Text id="idFinalResults" text="Final Defect:" class="clashedClaim" />
+						</VBox>
+				</HBox> 
+				<layoutData>
+					<l:GridData span="L4 M4 S12"></l:GridData>
+				</layoutData>
+			</VBox>
+			
+			<HBox>
+				<Text text="" class="Clspacee"/>
+		   </HBox>	
+			
+			<VBox alignItems="Center" alignContent="Center">
+				<HBox alignItems="Center" alignContent="Center">
+					<RadioButton id="idRBtnSelectDefect" select="onRBtnSelect" valueState="Warning" groupName="radioGroupfinal" />
+					<Label text="Select Defect:" design="Bold" class="clashedClaim"/>
+						<VBox alignItems="Center" alignContent="Center">
+							<!-- <Text id="idSelectDefect:" text="Select Defect" class="clashedClaim1" /> -->
+							<Input id="idDefect" width="300px" enabled="false" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onSelectDefect" />
+						</VBox>
+				</HBox>
+				<layoutData>
+					<l:GridData span="L4 M3 S12"></l:GridData>
+				</layoutData>
+			</VBox> 
+	</HBox>
+		<!-- </l:content>
+	</l:Grid> -->
+<!-- ************************************************************************************************************* -->	
+	<!-- <l:Grid >
+		<l:content> -->
+	<HBox>	
+			<VBox alignItems="Center">
+				<Image id="image1" alt="Defect Image" mode="Background" height="200px" width="250px" src="" press="onZoomPredctionImg1"/>
+				<Table id="idPridectTbl" items="{predictionDataJModel1>/}" visible="true" showNoData="true" class="tblgrid2">
+					<columns>
+						<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+						<Label text="Classification" design="Bold" />
+						</Column>
+						
+						<Column minScreenWidth="Tablet" demandPopin="true" width="3rem" hAlign="Center">
+						<Label text="%"  design="Bold" />
+						</Column>
+			
+					</columns> 
+					<items>
+						<ColumnListItem>
+							<cells>
+								<Text text="{predictionDataJModel1>DefectDesc}" />
+								<Text text="{predictionDataJModel1>PredPer}" />
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table> 
+				<layoutData>
+					<l:GridData span="L4 M4 S10" />
+				</layoutData> 
+			</VBox>
+			
+			<HBox>
+				<Text text="" class="Clspace"/>
+		   </HBox>	
+				
+			<VBox alignItems="Center">
+				<Image id="image2" alt="Defect Image" mode="Background" height="200px" width="200px" src="" press="onZoomPredctionImg2"/>
+				<Table id="idPridectTbl2" items="{predictionDataJModel2>/}" visible="true" showNoData="true" class="tblgrid2">
+					<columns>
+						<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+						<Label text="Classification" design="Bold" />
+						</Column>
+						
+						<Column minScreenWidth="Tablet" demandPopin="true" width="3rem" hAlign="Center">
+						<Label text="%" design="Bold" />
+						</Column>
+			
+					</columns> 
+					<items>
+						<ColumnListItem>
+							<cells>
+								<Text text="{predictionDataJModel2>DefectDesc}" />
+								<Text text="{predictionDataJModel2>PredPer}" />
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+				<layoutData>
+					<l:GridData span="L4 M4 S10" />
+				</layoutData> 
+			</VBox>
+			
+			<HBox>
+				<Text text="" class="Clspace"/>
+		   </HBox>
+			
+				<VBox id="id3rdPredimgVbox" alignItems="Center" visible="false">
+					<Image id="image3" alt="Defect Image" mode="Background" height="200px" width="200px" src="" press="onZoomPredctionImg3"/>
+					<Table id="idPridectTbl3" items="{predictionDataJModel3>/}" visible="true" showNoData="true" class="tblgrid2">
+						<columns>
+						
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+							<Label text="Classification" design="Bold" />
+							</Column>
+							
+							<Column minScreenWidth="Tablet" demandPopin="true" width="3rem" hAlign="Center">
+							<Label text="%" design="Bold" />
+							</Column>
+				
+						</columns> 
+						<items>
+							<ColumnListItem>
+								<cells>
+									<Text text="{predictionDataJModel3>DefectDesc}" />
+									<Text text="{predictionDataJModel3>PredPer}" />
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+					<layoutData>
+					<l:GridData span="L4 M4 S10" />
+				</layoutData> 
+			  </VBox>
+	</HBox>			 
+		<!-- </l:content>
+	</l:Grid> -->
+	</content>
+		<buttons>
+		<Button text="OK" icon="sap-icon://begin" visible="true" press="onClaimOK" type="Accept"/>
+		<Button text="Cancel" icon="sap-icon://undo" visible="true" press="onAIPridCancel" type="Reject"/>
+		</buttons>
+</Dialog>
+</core:FragmentDefinition>

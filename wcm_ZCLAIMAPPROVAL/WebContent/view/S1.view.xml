@@ -1,0 +1,208 @@
+<core:View  xmlns:core="sap.ui.core"
+			xmlns:mvc="sap.ui.core.mvc"
+			xmlns:u="sap.ui.unified"
+			xmlns="sap.m"
+			xmlns:f="sap.ui.layout.form"
+			xmlns:l="sap.ui.layout"
+			controllerName="zclaimapproval.view.S1"
+			xmlns:html="http://www.w3.org/1999/xhtml"
+			>
+
+<html:style>
+.clashedClaim {
+    color: black !important;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.clashedClaim1 {
+    color: black !important;
+    font-weight: 600;
+    font-size: 15px;
+    width: 147px;
+}
+.sapMIBar-CTX .sapMTitle {
+    color: black;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.tblgrid .sapMListTblCell {
+    vertical-align: middle;
+    border: none;
+    background: #d6dbb1;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    
+}
+
+.tblgrid2 .sapMListTblCell {
+    vertical-align: middle;
+    border: 0.2px solid #f5eaea;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.clasapUiSizeCompact{
+	border-bottom:none;
+	background-color:rgb(247, 242, 242);
+}
+
+.sapUiRespGrid.sapUiRespGridHSpace1 {
+    padding: 0 0.5rem !important;
+    margin-top: 19px !important;
+   <!-- margin-right: -417px !important; -->
+}
+<!-- .clTo{
+  margin-left:5px;
+} -->
+
+.sapUiRespGridMedia-Std-Desktop.sapUiRespGridHSpace0>.sapUiRespGridSpanL1 {
+    width: 4.333333%;
+}
+
+</html:style>
+
+<Page title="Claim Approval" id="HeaderIdTit" titleLevel="H2" class="sapUiSizeCompact">
+<content>
+<f:SimpleForm id="SimpleFormToolbar" minWidth="1024" class="sapUiSizeCompact" maxContainerCols="2" 
+			  editable="true" layout="ResponsiveGridLayout" labelSpanL="4" labelSpanM="4" emptySpanL="1" emptySpanM="1" 
+			  columnsL="2" columnsM="3" >
+	<f:content>
+		<core:Title text="" />
+		<Label text="Claim Number" design="Bold"/>
+		<Input id="idClaimNo" width="60%" valueHelpRequest="onClaim" valueHelpOnly="false" showValueHelp="true" />
+		
+		<!-- <Label text="Mobile Number" design="Bold"/>
+		<Input id="idMobNo" maxLength="10" width="60%" valueHelpRequest="onMobile" valueHelpOnly="false" showValueHelp="true" liveChange="NumberValid" />	
+	     -->
+	   	<Label text="Customer Name" design="Bold"/>
+		<Input id="idCustName" width="60%" valueHelpRequest="onCustomer" valueHelpOnly="false" showValueHelp="true" liveChange="validateCharacter" />
+		
+	    <core:Title text="" />
+		     <!-- <Label text="Last Name" design="Bold" />
+			 <Input id="idlName" width="42%" liveChange="validateCharacter" /> -->
+		
+		    <Label text="Date from " design="Bold"/>
+			<DatePicker id="idDate1" change="onDateChange" valueformat="yyyy-MM-dd" displayFormat="dd/MM/yyyy" >
+				<layoutData>
+				<l:GridData span="XL4 L3 M2 S1"/>
+				</layoutData>
+			</DatePicker>
+			<Text text="To:" class="clTo">
+				<layoutData>
+				<l:GridData span="XL1 L1 M1 S1"/>
+				</layoutData>
+			</Text>
+			<DatePicker id="idDate2" valueformat="yyyy-MM-dd" displayFormat="dd/MM/yyyy" >
+				<layoutData>
+				<l:GridData span="XL4 L3 M2 S1"/>
+				</layoutData>
+			</DatePicker>
+		
+		<Label text=""></Label>
+		<Button text="Search" icon="sap-icon://search" press="onSearch" type="Emphasized">
+		<layoutData>
+        <l:GridData span="XL3 L3 M2 S1"/>
+        </layoutData>
+		</Button>
+										
+		<Button text="Clear" press="onClear" type="Emphasized">
+		<layoutData>
+        <l:GridData span="XL3 L3 M2 S1"/>
+        </layoutData>
+		</Button> 
+	   			
+	</f:content>
+</f:SimpleForm>	
+
+	
+
+<Table id="idClaimTable" showNoData="false" class="tblgrid">
+			<columns>
+				<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+				<Label text="Claim Number" design="Bold" />
+				</Column>
+				
+				<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+				<Label text="Claim Date" design="Bold" />
+				</Column>
+				
+				<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+				<Label text="Customer" design="Bold" />
+				</Column>
+				
+				<!-- <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+				<Label text="Phone No." design="Bold" />
+				</Column> -->
+				
+				<Column minScreenWidth="Tablet" demandPopin="true" width="18rem" hAlign="Center">
+				<Label text="Dealer" design="Bold" />
+				</Column>
+				
+				<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+				<Label text="Location" design="Bold" />
+				</Column>
+				
+				<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+				<Label text="Created Time" design="Bold" />
+				</Column>
+				
+				<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+				<Label text="Time Lapsed" design="Bold" />
+				</Column>
+				
+				<Column minScreenWidth="Tablet"  width="8rem" demandPopin="true" hAlign="Center">
+				<Label text="" design="Bold" />
+				</Column>
+			</columns>
+		</Table>
+		
+		<ScrollContainer vertical="true" horizontal="false" height="450px">
+			<Table id="idClaimDataTable" growing="true" growingThreshold="100"
+					 items="{claimListJModel>/}" visible="true" showNoData="true" class="tblgrid2">
+				<columns>
+				<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center"></Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center"></Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center"></Column>
+				<!-- <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center"></Column> -->
+				<Column minScreenWidth="Tablet" demandPopin="true" width="18rem" hAlign="Center"></Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center"></Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center"></Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center"></Column>
+				<Column minScreenWidth="Tablet"  width="8rem" demandPopin="true" hAlign="Center"></Column>
+			</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{claimListJModel>ClaimNo}" />
+							<Text text="{path:'claimListJModel>ClaimDate',formatter:'zclaimapproval.util.Formatter.date1'}" />
+							<Text text="{claimListJModel>CustomerName}" />
+							<!-- <Text text="{claimListJModel>CustomerTelf1}" /> -->
+							<Text text="{claimListJModel>DealerName}" />
+							<Text text="{claimListJModel>DealerCity}" />
+							<Text text="{path:'claimListJModel>CreatedAt',formatter:'zclaimapproval.util.Formatter.SetTime'}" />
+							<Text text="{claimListJModel>ETA} Minutes ago" />
+							<!-- <Text text="" /> -->
+							<Button text="Pick Ticket" enabled="false" type="Emphasized" icon="sap-icon://show" press="onClaimPredict" />
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</ScrollContainer>
+
+</content>
+	<footer>
+		<Bar>
+			<contentLeft>	
+			</contentLeft>
+			<contentRight>
+			<Button icon="sap-icon://sys-cancel" class="icon-save" text="Home Page" type="Reject" press="onHome" id="idreject1"/>
+			</contentRight>
+		</Bar>
+	</footer>
+	</Page>
+</core:View>

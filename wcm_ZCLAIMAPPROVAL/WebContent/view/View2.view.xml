@@ -1,0 +1,431 @@
+<core:View  xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+			xmlns:u="sap.ui.unified" xmlns="sap.m" xmlns:f="sap.ui.layout.form"
+			xmlns:l="sap.ui.layout" controllerName="zclaimapproval.view.View2"
+			xmlns:html="http://www.w3.org/1999/xhtml">
+
+<html:style>
+.clashedClaim {
+	color: black !important;
+	font-weight: 600;
+	font-size: 15px;
+}
+.sapMIBar-CTX .sapMTitle {
+	color: black;
+	font-weight: 600;
+	font-size: 15px;
+}
+
+.styletextsize {
+ font-size: 10px;
+}
+
+<!-- .sapUiRespGrid.sapUiRespGridHSpace1 {
+    padding: 0px 0rem !important;
+    margin-left: 349px !important;
+} -->
+<!-- .climage{
+margin-left: 359px;
+}
+
+.climage2{
+margin-left: 3px;
+} -->
+</html:style>
+
+<Page title="" id="HeaderIdTit" titleLevel="H2" design="bold" class="sapUiSizeCompact">
+
+<content>
+<Toolbar height="2rem" class="sapUiSizeCompact">
+		<ToolbarSpacer></ToolbarSpacer>
+		<Text id="HedClaimNo" class="clashedClaim" enabled="false"/>
+		<ToolbarSpacer></ToolbarSpacer>
+</Toolbar>
+
+<VBox class="sapUiSmallMargin">
+	
+	<f:SimpleForm id="idSimpleForm1" minWidth="1024" maxContainerCols="2" editable="true" layout="ResponsiveGridLayout"
+					labelSpanL="4" labelSpanM="4" emptySpanL="1" emptySpanM="1" columnsL="2" columnsM="1" class="sapUiSizeCompact">
+		<f:content>
+			<core:Title text="Customer Details" class="crtitle" /> 
+			<Label text="Phone Number" required="false"/>
+			<Input id="idPhone1" enabled="false" maxLength="10" type="Tel" value="{ClaimjModel>/CustomerTelf1}" liveChange="NumberValid"/>
+			
+			<Label text="Fitment Type" required="false"/>
+			<Select forceSelection="false" selectedKey="{ClaimjModel>/FitType}" enabled="false" id="idFitment" >
+             <items>
+				<core:Item text="Original Equipments Manufacturer" key="OEM" />
+				<core:Item text="Replacement" key="REP" />
+			 </items>
+        </Select>
+											
+			<core:Title text="" />
+			<Label text="Customer Name" required="false"/>
+			<Input id="idFname" value="{ClaimjModel>/CustomerName}" enabled="false"  liveChange="validateCharacter"/>
+		
+		</f:content>
+	</f:SimpleForm>
+</VBox>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<Panel>
+<f:SimpleForm id="idSimpleFormDealerInfo" minWidth="1024" maxContainerCols="2" editable="true" layout="ResponsiveGridLayout"
+					labelSpanL="4" labelSpanM="4" emptySpanL="1" emptySpanM="1" columnsL="2" columnsM="1" class="sapUiSizeCompact">
+		<f:content>
+			<core:Title text="Dealer Details" class="crtitle" /> 
+			<Label text="Dealer Name" required="false"/>
+			<Input id="idDealerName" enabled="false"  type="Tel" value="{ClaimjModel>/DealerName}" />
+			
+			<Label text="Dealer Mobile No" required="false"/>
+			<Input id="idDealerMobNo" enabled="false" maxLength="10" type="Tel" value="{ClaimjModel>/DEALER_TELF1}" />
+														
+			<core:Title text="" />
+			<Label text="Dealer base Location" required="false"/>
+			<Input id="iddealerBaseloc" value="{ClaimjModel>/DealerCity}" enabled="false" />
+		
+		</f:content>
+	</f:SimpleForm>
+</Panel>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+<VBox class="sapUiSmallMargin">
+<f:SimpleForm maxContainerCols="1">
+<IconTabBar id="idIconTabBar" expanded="true" select="onTabSelected" >
+<items>
+	<IconTabFilter text="Claim Details" key="KeyClmDtl" iconColor="Positive">
+	<Panel>
+		<f:SimpleForm id="idSimpleForm2" minWidth="1024" maxContainerCols="2" editable="true" layout="ResponsiveGridLayout"
+					labelSpanL="4" labelSpanM="4" emptySpanL="1" emptySpanM="1" columnsL="2" columnsM="1" class="sapUiSizeCompact">
+		<f:content>
+		<core:Title text="Vehicle Details" class="crtitle" /> 
+			<Label text="Vehicle Type" required="false" />
+			<Input id="idVehTyp" enabled="false" value="{ClaimjModel>/VehType}" valueHelpRequest="onVehicleType" valueHelpOnly="true" showValueHelp="true" />
+			
+			<Label text="Vehicle Make" id="lblVehMak"/>
+			<Input id="idVehMak" enabled="false" value="{ClaimjModel>/VehMake}" valueHelpRequest="onVehicleMake" valueHelpOnly="true" showValueHelp="true" />
+			
+			<!-- <Label text="Vehicle Registration No." id="VehReg"/>
+			<Input id="idVehReg" enabled="false" maxLength="18" value="{ClaimjModel>/RegNo}" liveChange="NumChar"/> -->
+			
+		<core:Title text="" class="crtitle" />
+			
+			<Label text="Vehicle Model" id="VehMdl"/>
+			<Input id="idVehMdl" value="{ClaimjModel>/VehModel}" enabled="false" valueHelpRequest="onVehicleModel" valueHelpOnly="true" showValueHelp="true" />
+			
+			<Label text="Vehicle Reg.No." />
+			<Input id="idVehRegNo" value="{ClaimjModel>/RegNo}" enabled="false" valueHelpRequest="onVehRegNo" valueHelpOnly="true" showValueHelp="true" />	
+			
+		</f:content>
+	</f:SimpleForm>	
+</Panel>
+<!-- ***************************************************************************************************************************** -->	
+<Panel id="idpnlOEM" visible="false">
+		<f:SimpleForm id="FranchSimpleFormToolbar" minWidth="1024" class="sapUiSizeCompact" maxContainerCols="2" 
+			  editable="true" layout="ResponsiveGridLayout" labelSpanL="4" labelSpanM="4" emptySpanL="1" emptySpanM="1" 
+			  columnsL="2" columnsM="3" >
+	<f:content>  
+	<core:Title text="OEM Details" />
+		<Label text="Franchise Name" tooltip="Franchise Name"  id="idlblFranName" required="false" /> 
+		<Input value="{ClaimjModel>/FranhiseName}" enabled="false" visible="true" id="idFranchName" liveChange="ValidateName" /> 
+		 
+		<Label text="Registration No" tooltip="Registration No"/>
+		<Input value="{ClaimjModel>/RegNo}" enabled="false" id="idregno" visible="true" /> 
+		
+	<core:Title text="" />
+		
+		<Label text="KM Covered" tooltip="KM Covered" id="TyrKmCvrd"/>
+		<Input id="idTyrKmCvrd" enabled="false" visible="true" maxLength="6" value="{ClaimjModel>/KmCovered}" liveChange="NumberValid" />
+		
+		<Label text="" />
+		<Button text="Registration Certificate"  press="onRC" type="Accept" id="IdRC" visible="true" icon="sap-icon://picture">
+			<layoutData>
+		        <l:GridData span="XL3 L4 M2 S1"/>
+		     </layoutData>
+		</Button>				        
+	    
+		
+		
+	</f:content>
+	</f:SimpleForm>
+</Panel>
+<!-- ***************************************************************************************************************************** -->	
+ <Panel id="idpnlimage" visible="true">
+<l:Grid >	
+	<VBox alignItems="Center">
+				<Image id="idimgTsize" height="120px" width="130px" src="" press="onTyreimagePress" />
+				<layoutData>
+					<l:GridData span="L2 M1 S10" />
+				</layoutData> 
+				<Text id="idtsizedesz" />
+				<Text id="idtsizeLoc" class="styletextsize" />
+				<Text id="idtsizeTimestmp" class="styletextsize"/>
+			</VBox>
+			
+	<VBox alignItems="Center">
+				<Image id="idimgTyrePtrn" height="120px" width="130px" src="" press="onTyrePtrnimgPress"/>
+				<layoutData>
+					<l:GridData span="L2 M1 S10" />
+				</layoutData> 
+				<Text id="idtptrndesz" />
+				<Text id="idtptrnLoc" class="styletextsize"/>
+				<Text id="idtptrnTimestmp" class="styletextsize"/>
+			</VBox>	
+			
+	<VBox id="idVbox3" alignItems="Center" visible="false">
+				<Image id="idimgTyreStncl" height="120px" width="130px" src="" press="onTyrestnclimgPress"/>
+				<layoutData>
+					<l:GridData span="L2 M1 S10" />
+				</layoutData>
+				<Text id="idtstncldesz" /> 
+				<Text id="idtstnclLoc" class="styletextsize"/>
+				<Text id="idtstnclTimestmp" class="styletextsize"/>
+			</VBox>	
+	
+</l:Grid>				
+		
+</Panel>		
+
+<!-- ******************************************************************************************************************************** -->	
+	<Panel id="idTyrepanel" visible="true">
+	<f:SimpleForm id="idSimpleTyrForm" minWidth="1024" maxContainerCols="2" editable="true" layout="ResponsiveGridLayout"
+			 	  labelSpanL="4" labelSpanM="4" emptySpanL="1" emptySpanM="1" columnsL="2" columnsM="1" class="sapUiSizeCompact">
+	<f:content>
+	    <core:Title text="Tyre Details"  />
+			
+			<Label text="Product Description" tooltip="Item Code" required="false" />
+			<Input id="idTyrItmCod" enabled="false" value="{ClaimjModel>/Maktx}" valueHelpRequest="onItemDescHelp" 
+				   valueHelpOnly="true" showValueHelp="true" />
+			   
+			<Label text="" />
+				        
+			<Button text="Defect Image" press="onDefectImage" type="Accept" id="idDimage" visible="true" icon="sap-icon://image-viewer" >
+				<layoutData>
+		        	<l:GridData span="XL3 L3 M2 S1"/>
+		        </layoutData>
+			</Button> 	   
+			<!-- <Label text="Mould No" tooltip="Mould Number" required="false" />
+			<Input id="idMould" enabled="false" value="{ClaimjModel>/MouldNo}" maxLength="5" visible="true"  />	 -->		
+				
+			<Label text="Stencil Number" tooltip="Stencil Number" required="false" />
+			<Input id="idStnclNo" enabled="false" value="{ClaimjModel>/StnclNumber}"  maxLength="11" change="OnChkStncil" visible="true"/>
+			
+			<Label text="Prod. Month/Year" required="false"/>
+			<Input id="idPrdWeek" enabled="false" value="{ClaimjModel>/PrdWeek}" visible="false">
+				<layoutData>
+					<l:GridData span="XL4 L2 M4 S4"/>
+				</layoutData>
+			</Input>
+		  
+			<Select id="idPrdMonth" enabled="false" selectedKey="{ClaimjModel>/PrdMonth}">
+				<items>
+					<core:Item text=""    key=""/>
+					<core:Item text="JAN" key="01" />
+					<core:Item text="FEB" key="02" />
+					<core:Item text="MAR" key="03" />
+					<core:Item text="APR" key="04" />
+					<core:Item text="MAY" key="05" />
+					<core:Item text="JUN" key="06" />
+					<core:Item text="JUL" key="07" />
+					<core:Item text="AUG" key="08" />
+					<core:Item text="SEP" key="09" />
+					<core:Item text="OCT" key="10" />
+					<core:Item text="NOV" key="11" />
+					<core:Item text="DEC" key="12" /> 
+				</items>
+				<layoutData>
+					<l:GridData span="XL4 L2 M4 S4"/>
+				</layoutData>
+			</Select>
+
+			<Input id="idPrdYear" enabled="false" maxLength="4" value="{ClaimjModel>/PrdYear}">
+				<layoutData>
+					<l:GridData span="XL4 L2 M4 S4"/>
+				</layoutData>
+			</Input>
+		   
+		   
+		   
+		<core:Title text="" />
+			<Label text="Orignal NSD" id="lblorignsd"/>
+			<Input enabled="false" id="idInsNsd" liveChange="" value="{ClaimjModel>/TotNsd}" />
+			
+			<Label text="NSD1" required="false" id="lblnsd1" />
+			<Input enabled="false" visible="false" id="idInsNsd1" class="clinpt" liveChange="numPoint" value="{ClaimjModel>/Nsd1}" maxLength="4" />
+		
+			<Label text="NSD2" required="false" id="lblnsd2" />
+			<Input enabled="false" visible="false" id="idInsNsd2" liveChange="numPoint" value="{ClaimjModel>/Nsd2}" maxLength="4" />
+			
+			<Label text="NSD3" required="false" id="lblnsd3" />
+			<Input enabled="false" visible="false" id="idInsNsd3" liveChange="numPoint" value="{ClaimjModel>/Nsd3}" maxLength="4" />
+			
+			<Label text="NSD4" required="false" id="lblnsd4" />
+			<Input enabled="false" visible="false" id="idInsNsd4" liveChange="numPoint" value="{ClaimjModel>/Nsd4}" maxLength="4" />
+			
+			<Label text="Average NSD" id="lblnsd"/>
+			<Input enabled="false" id="idAvgNsd" liveChange="" value="{ClaimjModel>/Nsd}" />
+			
+			<Label text="% Wear" id="lblWear"/>
+			<Input id="idInsWear" enabled="false" value="{ClaimjModel>/PercentageWear}" />
+			
+		
+	</f:content>
+	</f:SimpleForm>
+	</Panel>
+
+<!-- ******************************************************************************************************************************** -->	
+	<Panel id="idTubepanel" visible="false">
+	<f:SimpleForm id="idSimpleTubeForm" minWidth="1024" maxContainerCols="2" editable="true" layout="ResponsiveGridLayout"
+			 	  labelSpanL="4" labelSpanM="4" emptySpanL="1" emptySpanM="1" columnsL="2" columnsM="1" class="sapUiSizeCompact">
+	<f:content>
+	    <core:Title text="Tube Details"  />
+			
+			<Label text="Product Description" tooltip="Item Code" required="false" />
+			<Input id="idTubeItmCod" enabled="false" value="{ClaimjModel>/Maktx}" valueHelpRequest="onItemDescHelp" 
+				   valueHelpOnly="true" showValueHelp="true" />
+			   
+			<Label text="" />
+				        
+			<Button text="Defect Image" press="onDefectImage" type="Accept" id="idTubeDimage" visible="true" icon="sap-icon://image-viewer" >
+				<layoutData>
+		        	<l:GridData span="XL3 L3 M2 S1"/>
+		        </layoutData>
+			</Button> 
+			
+			<Label text="Vendor Code" tooltip="Vendor Code" required="true"/>
+			<Input id="idTubeVendorCode" enabled="true" visible="true" valueHelpRequest="OnVendorHelp" 
+			       valueHelpOnly="true" showValueHelp="true" />
+		
+			<Label text="Mould No." tooltip="Mould No." required="true"/>
+			<Input id="idTubeMouldNo" enabled="true" visible="true" liveChange="onMouldNo" />	   
+			
+		<core:Title text="" />
+		
+			<Label text="Prod. Month/Year" required="true" />
+			<Input id="idTubePrdWeek" enabled="false" value="{ClaimjModel>/PrdWeek}" visible="false">
+				<layoutData>
+					<l:GridData span="XL4 L2 M4 S4"/>
+				</layoutData>
+			</Input>
+		  
+			<Select id="idTubePrdMonth" enabled="true" change="onTubeProdMonth">
+				<items>
+					<core:Item text=""    key=""/>
+					<core:Item text="JAN" key="01" />
+					<core:Item text="FEB" key="02" />
+					<core:Item text="MAR" key="03" />
+					<core:Item text="APR" key="04" />
+					<core:Item text="MAY" key="05" />
+					<core:Item text="JUN" key="06" />
+					<core:Item text="JUL" key="07" />
+					<core:Item text="AUG" key="08" />
+					<core:Item text="SEP" key="09" />
+					<core:Item text="OCT" key="10" />
+					<core:Item text="NOV" key="11" />
+					<core:Item text="DEC" key="12" /> 
+				</items>
+				<layoutData>
+					<l:GridData span="XL4 L2 M4 S4"/>
+				</layoutData>
+			</Select>
+
+			<Input id="idTubePrdYear" enabled="true" maxLength="4" liveChange="OnTubeChangeYear" >
+				<layoutData>
+					<l:GridData span="XL4 L2 M4 S4"/>
+				</layoutData>
+			</Input>
+			
+		
+			<Label text="Stencil Number" tooltip="Stencil Number" required="false" />
+			<Input id="idTubeStnclNo" enabled="false" visible="true"/>
+			
+			<Label text="% Wear" id="lblTubeWear" required="true"/>
+			<Input id="idTubePerWear" enabled="true" maxLength="3" liveChange="NumberValid"/>
+			
+		
+	</f:content>
+	</f:SimpleForm>
+	</Panel>
+		
+			
+<!-- *************************************************************************************************************** -->	
+<Panel>
+	<f:SimpleForm id="idSimpleForm6" minWidth="1024" maxContainerCols="2" editable="true" layout="ResponsiveGridLayout"
+			  labelSpanL="4" labelSpanM="4" emptySpanL="1" emptySpanM="1" columnsL="2" columnsM="1" class="sapUiSizeCompact">
+	<f:content>
+		<core:Title text="Finding Details" />
+		
+		<Label text="" />
+			<Button text="AI Prediction" press="onAIprediction" type="Accept" id="idAIprediction" visible="true" icon="sap-icon://goal" >
+				<layoutData>
+       			 	<l:GridData span="XL3 L3 M2 S1"/>
+        		</layoutData>
+			</Button>	
+		
+		<Label text="Defect Group" required="false" /> 
+			<Input id="idDfctGrp" enabled="false" visible="false" valueHelpRequest="OnDfctGrpHelp" 
+				   valueHelpOnly="true" showValueHelp="false"/>	
+			
+			<Label text="Defect Code"  required="false"/> 
+			<Input id="idDfctCod" enabled="false" value="" visible="false" valueHelpRequest="onDfctCodHelp" valueHelpOnly="true" showValueHelp="true" />
+			
+			<Label text="Disposal Decision" required="true"/>
+			<Select enabled="true" id="idInsDD" forceSelection="false" change="onDecisionChange" 
+				    selectedKey="{ClaimjModel>/DisposlDecision}" >
+				   <!--  <items>
+						<core:Item text="Accepted" key="A" />
+						<core:Item text="Rejected" key="R" />
+						<core:Item text="More Information Needed" key="ED" />
+						<core:Item text="Manual Inspection Needed" key="MN" />
+					</items>  -->
+		   </Select>
+		   
+		   <Label text="" required="false"/>
+		   <Button id="idmoreinfo" text="More Information" press="onBtnMoreInfo" visible="false"/>
+					
+		<core:Title text="" />
+		
+			<Label text="Discount % " required="false" /> 
+			<Input id="idDiscount" enabled="false" visible="false" value="{ClaimjModel>/Discount}" />
+			
+			<Label text="Adjustment Mode" required="true" />
+			<Select enabled="true" visible="false" id="idInsAdjMod" forceSelection="false" change="onAdjModChange" selectedKey="{ClaimjModel>/AdjustmentMode}" >
+				    <items>
+						<core:Item text="Technical" key="TEC" />
+						<core:Item text="Policy" key="POL" />
+					</items>
+			</Select> 
+			
+			<Label text="Rejection Reason" required="true" />
+			<Select id="idInsRegRea" visible="false" forceSelection="false" enabled="true" selectedKey="{ClaimjModel>/RejectionReason}" change="onRejReg"/>
+			
+			<Label text="Policy No." required="true" /> 
+			<Input id="idInsPolNo" enabled="true" visible="false" value="{ClaimjModel>/PolicyNo}" valueHelpRequest="OnPolicyHelp" 
+					valueHelpOnly="true" showValueHelp="true" />
+					
+			<Label text="Remarks" required="false" />  
+			<TextArea id="idRemrks" enabled="true" value="" />
+		
+		</f:content>
+	</f:SimpleForm> 
+</Panel>
+	
+	</IconTabFilter>
+
+<!-- ****************************************************************************************************************************** -->
+		
+</items>
+</IconTabBar>
+</f:SimpleForm>
+</VBox>
+
+</content>
+	<footer>
+		<Bar>
+			<contentLeft>
+			<!-- <Button icon="sap-icon://sys-back-2" text="Back" press="onBack" type="Accept" id="Id_back" visible="true" />	 -->
+			</contentLeft>
+			<contentRight>
+				<Button icon="sap-icon://save" text="Submit" press="onSubmit" type="Accept" id="Id_bt1" visible="true" />
+			</contentRight>
+		</Bar>
+	</footer>
+	</Page>
+</core:View>
