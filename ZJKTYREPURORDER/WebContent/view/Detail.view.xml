@@ -1,0 +1,105 @@
+<mvc:View controllerName="zjktyrepurorder.controller.Detail" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.uxap"
+	xmlns:layout="sap.ui.layout" xmlns:m="sap.m" xmlns:core="sap.ui.core" xmlns:forms="sap.ui.layout.form">
+	<m:Page showHeader="false" title="Order Details" titleAlignment="Center" class="sapUiSizeCompact">
+		<m:content>
+			<m:HBox class="sapUiSmallPaddingBegin horizontalLayout">
+				<m:VBox class="equalWidth" visible="{detailHeaderVisibility>/shoppingOverview}">
+					<m:Label design="Bold" text="SAS (Overall)"/>
+					<m:Text class="detailTxt" text="{shoppingOverviewModel>/Sas} INR"/>
+				</m:VBox>
+				<m:VBox class="objectHeaderLargeMargin equalWidth" visible="{detailHeaderVisibility>/shoppingOverview}">
+					<m:Label design="Bold" text="Net Outstanding"/>
+					<m:Text class="detailTxt" text="{shoppingOverviewModel>/NetValue} INR"/>
+				</m:VBox>
+				<m:VBox class="objectHeaderLargeMargin equalWidth" visible="{detailHeaderVisibility>/shoppingOverview}">
+					<m:Label design="Bold" text="Available Balance"/>
+					<m:Text class="detailTxt" text="{shoppingOverviewModel>/AvlBal} INR"/>
+				</m:VBox>
+				<m:VBox class="objectHeaderLargeMargin equalWidth" visible="{detailHeaderVisibility>/shoppingOverview}">
+					<m:Label design="Bold" text="Exposure"/>
+					<m:Text class="detailTxt" text="{shoppingOverviewModel>/Exposure} INR"/>
+				</m:VBox>
+				<m:VBox class="equalWidth" visible="{detailHeaderVisibility>/purchaseOrder}">
+					<m:Label design="Bold" text="Order Value"/>
+					<m:Text class="detailTxt" id="orderValue" text=""/>
+				</m:VBox>
+				<m:VBox class="objectHeaderLargeMargin equalWidth" visible="{detailHeaderVisibility>/purchaseOrder}">
+					<m:Label design="Bold" text="Ship to Party"/>
+					<m:Text class="detailTxt" id="detailShipToParty" text="Annex Enterprises"/>
+				</m:VBox>
+				<m:VBox class="objectHeaderLargeMargin equalWidth" visible="{detailHeaderVisibility>/purchaseOrder}">
+					<m:Label design="Bold" text="Address"/>
+					<m:Text class="detailTxt" id="address" text=""/>
+				</m:VBox>
+			</m:HBox>
+			<m:IconTabBar id="idIconTabBarNoIcons" class="jkTyreDetailIconTabBar" expandable="false">
+				<m:items>
+					<m:IconTabFilter text="Item Details {tableDetailsJSONModel>/tableRecordsCount}" key="Item Details">
+						<m:HBox class="sapUiLargeMarginBegin legends">
+							<core:Icon color="green" class="sapUiTinyMarginBegin" src="sap-icon://accept"/>
+							<m:Label class="sapUiTinyMarginBegin bar" design="Bold" text="Available / "/>
+							<core:Icon color="red" src="sap-icon://decline" class="sapUiTinyMarginBegin"/>
+							<m:Label text=" Not Available  " design="Bold" class="sapUiTinyMarginBegin"/>
+							
+							<m:Label class="sapUiTinyMarginBegin bar" text=" | Currency in INR" design="Bold"/>
+						</m:HBox>
+						<m:Table items="{tableDetailsJSONModel>/Data}" id="detailsTable" sticky="HeaderToolbar,InfoToolbar,ColumnHeaders" class="detailTable"
+							noDataText="No items added.">
+							<m:columns>
+								<m:Column minScreenWidth="Tablet" width="20rem" hAlign="Left">
+									<m:Label design="Bold" text="Item Description"/>
+								</m:Column>
+								<m:Column minScreenWidth="Tablet" hAlign="Center">
+									<m:Label design="Bold" text="Qty"/>
+								</m:Column>
+								<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+									<m:Label design="Bold" text="Stock"/>
+								</m:Column>
+								<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Right">
+									<m:Label design="Bold" text="Rate"/>
+								</m:Column>
+								<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Right" width="8rem">
+									<m:Label design="Bold" text="Value"/>
+								</m:Column>
+								<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center"></m:Column>
+							</m:columns>
+							<m:items>
+								<m:ColumnListItem>
+									<m:cells>
+										<m:Text text="{tableDetailsJSONModel>Matnr}"/>
+										<m:HBox>
+											<m:Input type="Number" textAlign="Center" enabled="{tableDetailsJSONModel>cartQuantDeleteBtnVisibility}" value="{tableDetailsJSONModel>Quantity}"/>
+										</m:HBox>
+										<!--<m:Text text="{tableDetailsJSONModel>Stock}"/>-->
+										<core:Icon src="{path:'tableDetailsJSONModel>Stock',formatter:'zjktyrepurorder.controller.Formatter.getIcon'}"
+											color="{path:'tableDetailsJSONModel>Stock',formatter:'zjktyrepurorder.controller.Formatter.getColor'}"
+											tooltip="{tableDetailsJSONModel>Stock}" useIconTooltip="false"/>
+										<m:Text text="{tableDetailsJSONModel>BasePrice}"/>
+										<m:Text text="{tableDetailsJSONModel>NetPrice}"/>
+										<m:Button visible="{tableDetailsJSONModel>cartQuantDeleteBtnVisibility}" icon="sap-icon://delete" press="deleteItemRow"/>
+									</m:cells>
+								</m:ColumnListItem>
+							</m:items>
+						</m:Table>
+						<m:VBox class="totalPriceHBoxLabel" id="totalPriceID" items="{totalPriceModel>/}">
+							<m:HBox justifyContent="SpaceBetween">
+								<m:Label text="{totalPriceModel>Text} : " design="Bold" class="totalText"/>
+								<m:Label text="{totalPriceModel>TotalPrc}" class="totalPrc"/>
+							</m:HBox>
+						</m:VBox>
+					</m:IconTabFilter>
+					<m:IconTabFilter text="" key=""></m:IconTabFilter>
+				</m:items>
+			</m:IconTabBar>
+		</m:content>
+		<m:footer>
+			<m:OverflowToolbar id="mainFooter">
+				<m:ToolbarSpacer/>
+				<m:Button type="Emphasized" id="review" press="pressReview" text="Review" visible="false"/>
+				<m:Button type="Emphasized" id="confirm" press="pressConfirm" text="Confirm" visible="false"/>
+				<m:Button type="Emphasized" press="pressEdit" id="edit" text="Edit" class="editBtn" visible="false"/>
+				<m:Button type="Emphasized" press="pressCancel" id="cancel" text="Cancel" class="editBtn" visible="false"/>
+			</m:OverflowToolbar>
+		</m:footer>
+	</m:Page>
+</mvc:View>

@@ -1,0 +1,40 @@
+{
+	"Data": [{
+		"Name": "Honda City Car",
+		"Supplier": "OxynumAvailable",
+		"basicValue": "3450 EUR",
+		"depotStock": "Available",
+		"Description": "Corded Keyboard with special keys for Internet Usability, USB",
+		"basicPrice": "100 EUR",
+		"Measures": "52 cm, 25 cm, 3 cm",
+		"price": "24,000"
+	}, {
+		"Name": "Bajaj Pulsar",
+		"price": "24,000",
+		"Supplier": "Technocom",
+		"basicValue": "3450 EUR",
+		"depotStock": "Available",
+		"Description": "Cordless Bluetooth Keyboard with English keys",
+		"basicPrice": "200 EUR",
+		"Measures": "192 cm, 25 cm, 3 cm"
+	}, {
+		"Name": "Bike Splendor",
+		"price": "24,000",
+		"Supplier": "Brainsoft",
+		"basicValue": "3450 EUR",
+		"depotStock": "Available",
+		"Description": "Complete package, 1 User, different Multimedia applications, playing music, watching DVDs, only with this Smart package",
+		"basicPrice": "900 EUR",
+		"Measures": "252 cm, 25 cm, 3 cm"
+	}, {
+		"Name": "Activa",
+		"price": "24,000",
+		"Supplier": "OxynumAvailable",
+		"basicValue": "3450 EUR",
+		"depotStock": "Available",
+		"Description": "Complete package, 1 User, recommended for internet users, protect your PC against cyber-crime",
+		"basicPrice": "100 EUR",
+		"Measures": "52 cm, 225 cm, 3 cm"
+	}]
+	
+}

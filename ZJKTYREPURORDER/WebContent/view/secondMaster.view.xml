@@ -1,0 +1,35 @@
+<mvc:View controllerName="zjktyrepurorder.controller.secondMaster" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
+	xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core">
+	<Page title="{itemsJSONModel>/title}" showHeader="true" showNavButton="true" navButtonPress="back" class="sapUiSizeCompact"
+		id="secondMasterPage">
+		<content>
+			<VBox class="dropDownRadioButton">
+				<Label text="Search" class="sapUiMediumMarginBegin sapUiTinyMarginTop" design="Bold"/>
+				<SearchField width="90%" class="sapUiMediumMarginBegin"/>
+				<Label text="Tyre Type" class="sapUiMediumMarginBegin sapUiTinyMarginTop" design="Bold"/>
+				<HBox class="sapUiTinyMarginTop sapUiTinyMarginBottom ">
+					<Select class="sapUiMediumMarginBegin" width="20rem">
+						<core:Item text="All"/>
+						<core:Item text="JKTIL Truck"/>
+					</Select>
+					<Button text="All Filters" press="allFilters" icon="sap-icon://filter" class="sapUiSmallMarginBegin"/>
+				</HBox>
+			</VBox>
+			<Label text="Items" class="sapUiMediumMarginBegin sapUiTinyMarginTop" design="Bold"/>
+			<List mode="MultiSelect" selectionChange="onProductDetails" noDataText="{i18n>categoryNoData}" busyIndicatorDelay="0"
+				items="{itemsJSONModel>/Data}">
+				<items>
+					<CustomListItem>
+						<HBox>
+							<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom customVBoxWidth">
+								<Link text="{itemsJSONModel>Name}" target="{itemsJSONModel>pictureURL}" press="handlePress"/>
+								<Label text="{itemsJSONModel>SupplierName}"/>
+							</VBox>
+							<Button icon="sap-icon://cart-4" press="navigateDetail" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom"/>
+						</HBox>
+					</CustomListItem>
+				</items>
+			</List>
+		</content>
+	</Page>
+</mvc:View>

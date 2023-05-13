@@ -1,0 +1,34 @@
+{
+	"Data": [{
+		"vehicle": "Honda City Car",
+		"count": 320
+	}, {
+		"vehicle": "Wagon - R",
+		"count": 56
+	}, {
+		"vehicle": "Bajaj Pulsar",
+		"count": 200
+	}, {
+		"vehicle": "Merc Benz",
+		"count": 88
+	}, {
+		"vehicle": "Honda Activa",
+		"count": 2106
+	}, {
+		"vehicle": "Hero Splendor",
+		"count": 92
+	}, {
+		"vehicle": "Hero Passion",
+		"count": 903
+	}, {
+		"vehicle": "Ford Endeavour",
+		"count": 45
+	}, {
+		"vehicle": "Hyundai i10",
+		"count": 56
+	}, {
+		"vehicle": "Kona Electric",
+		"count": 34
+	}]
+	
+}

@@ -1,0 +1,44 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<ViewSettingsDialog confirm="handleConfirm" class="fragmentClass">
+		<!--<sortItems>
+			<ViewSettingsItem text="Field 1" key="1" selected="true" />
+			<ViewSettingsItem text="Field 2" key="2" />
+			<ViewSettingsItem text="Field 3" key="3" />
+		</sortItems>
+		<groupItems>
+			<ViewSettingsItem text="Field 1" key="1" selected="true" />
+			<ViewSettingsItem text="Field 2" key="2" />
+			<ViewSettingsItem text="Field 3" key="3" />
+		</groupItems>-->
+		<filterItems>
+			<ViewSettingsFilterItem multiSelect="false" text="Tyre Type" key="1">
+				<items>
+					<ViewSettingsItem text="All" key="all"/>
+					<ViewSettingsItem text="Tube Type" key="tubeType"/>
+					<ViewSettingsItem text="Tubeless" key="Tubeless"/>
+				</items>
+			</ViewSettingsFilterItem>
+			<ViewSettingsFilterItem multiSelect="false" text="Size" key="2">
+				<items>
+					<ViewSettingsItem text="Value A" key="2a"/>
+					<ViewSettingsItem text="Value B" key="2b"/>
+					<ViewSettingsItem text="Value C" key="2c"/>
+				</items>
+			</ViewSettingsFilterItem>
+			<ViewSettingsFilterItem text="Pattern" multiSelect="false" key="3">
+				<items>
+					<ViewSettingsItem text="Value A" key="3a"/>
+					<ViewSettingsItem text="Value B" key="3b"/>
+					<ViewSettingsItem text="Value C" key="3c"/>
+				</items>
+			</ViewSettingsFilterItem>
+			<ViewSettingsFilterItem text="Ply Rating" multiSelect="false" key="4">
+				<items>
+					<ViewSettingsItem text="Value A" key="3a"/>
+					<ViewSettingsItem text="Value B" key="3b"/>
+					<ViewSettingsItem text="Value C" key="3c"/>
+				</items>
+			</ViewSettingsFilterItem>
+		</filterItems>
+	</ViewSettingsDialog>
+</core:FragmentDefinition>

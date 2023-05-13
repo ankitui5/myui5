@@ -1,0 +1,8 @@
+<mvc:View controllerName="zjktyrepurorder.controller.FullScreen" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
+	xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core">
+	<Page title="Full Screen" showHeader="false" class="sapUiSizeCompact">
+		<content>
+			<Button text="Master Detail" press="showSplitApp" id="fullScreenButton"/>
+		</content>
+	</Page>
+</mvc:View>

@@ -1,0 +1,140 @@
+<mvc:View controllerName="zjktyrepurorder.controller.Master" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
+	xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" class="masterPage">
+	<Page titleAlignment="Center" showHeader="false" title="Order Selection" id="masterPage" class="sapUiSizeCompact jkMasterPage">
+		<content>
+			<VBox class="">
+				<HBox class="sapUiTinyMarginTop sapUiTinyMarginBottom ">
+					<Label text="Division : " class="sapUiMediumMarginBegin sapUiTinyMarginTop" design="Bold"/>
+					<Select forceSelection="false" class="sapUiLargeMarginBegin divisonClass" change="getCategories" id="orderType" width="17rem"
+						items="{orderTypeModel>/}">
+						<core:Item text="{orderTypeModel>Bezei}" key="{orderTypeModel>Bezei}"/>
+					</Select>
+				</HBox>
+				<HBox class="sapUiTinyMarginTop sapUiSmallMarginEnd sapUiTinyMarginBottom ">
+					<Label text="Ship to Party : " class="sapUiMediumMarginBegin sapUiTinyMarginTop" design="Bold"/>
+					<Select class="shipToPartyMarginLeft" forceSelection="true" width="17rem" id="shipToParty" items="{shipToPartyModel>/}">
+						<core:Item text="{shipToPartyModel>Kunnr2} - {shipToPartyModel>Address}"/>
+					</Select>
+				</HBox>
+				<HBox class="sapUiTinyMarginTop">
+					<Label text="Order Type : " class="sapUiMediumMarginBegin sapUiTinyMarginTop" design="Bold"/>
+					<RadioButtonGroup select="changeRadioButtonGroup" columns="2" id="itemType" selectedIndex="0" class="radioMargin">
+						<RadioButton text="Set"/>
+						<RadioButton text="Packed Tubes"/>
+					</RadioButtonGroup>
+				</HBox>
+			</VBox>
+			<IconTabBar id="idIconTabBarNoIcons" class="jkTyreIconTabBar" expandable="false">
+				<items>
+					<IconTabFilter text="My Favourites" key="myFavouritesId">
+						<HBox class="sapUiMediumMarginBegin sapUiSmallMarginTop">
+							<VBox>
+								<Label design="Bold" text="Categories"/>
+								<Select class="" id="favCategories" width="17rem" items="{categoriesModel>/}" change="getFavourites" forceSelection="false">
+									<core:Item text="{categoriesModel>DshbGrpText}" key="{categoriesModel>DashboardGrouping}"/>
+								</Select>
+							</VBox>
+							<!--<VBox class="sapUiSmallMarginBegin">
+								<Label text=""/>
+								<Button text="All Filters" press="allFilters" icon="sap-icon://filter"/>
+							</VBox>-->
+						</HBox>
+						<List mode="SingleSelectMaster" id="myFavouritesId" selectionChange="onProductDetails" class="masterList" headerText="Items"
+							noDataText="No Favourites" busyIndicatorDelay="0" items="{favouritesJSONModel>/}">
+							<headerToolbar>
+								<OverflowToolbar>
+									<content>
+										<Title class="productCatalogueTitle" text="Items" id="favouritesCount" level="H2"/>
+										<!--<ToolbarSpacer/>-->
+										<Button id="removeFavouriteButton" type="Emphasized" text="Remove as Favourite" press="updateRemoveFavourite"
+											class="removeAsFavouriteButton"/>
+									</content>
+								</OverflowToolbar>
+							</headerToolbar>
+							<items>
+								<CustomListItem>
+									<HBox>
+										<VBox class="sapUiMediumMarginBegin sapUiSmallMarginTopBottom customVBoxWidth">
+											<Label text="{favouritesJSONModel>Matnr}"/>
+											<Label text="{favouritesJSONModel>Maktx}"/>
+										</VBox>
+										<RatingIndicator iconSize="22px" class="ratingMargin" displayOnly="{favouritesJSONModel>displayOnly}" change="removeFavourite"
+											value="{favouritesJSONModel>value}" maxValue="1" tooltip="Remove As Favourite"/>
+										<Button id="myFavouritesCart" icon="{favouritesJSONModel>icon}" press="recentOrdersCart" visible="true"
+											class="sapUiSmallMarginBegin sapUiMediumMarginEnd sapUiSmallMarginTopBottom"/>
+									</HBox>
+								</CustomListItem>
+							</items>
+						</List>
+					</IconTabFilter>
+					<IconTabFilter text="Item Catalogue" key="productCatalogue">
+						<HBox class="sapUiSmallMarginBegin">
+							<VBox class="catSearch">
+								<Label design="Bold" text="Categories"/>
+								<Select class="" id="categories" items="{categoriesModel>/}" change="getProducts" forceSelection="false">
+									<core:Item text="{categoriesModel>DshbGrpText}" key="{categoriesModel>CatCode}"/>
+								</Select>
+							</VBox>
+							<VBox class="catSearch">
+								<Label text=""/>
+								<SearchField liveChange="onSearch" id="searchField" class="sapUiSmallMarginBegin"/>
+							</VBox>
+							<!--<VBox class="sapUiSmallMarginBegin">-->
+							<!--	<Label text=""/>-->
+							<!--	<Button text="All Filters" press="allFilters" icon="sap-icon://filter"/>-->
+							<!--</VBox>-->
+						</HBox>
+						<!--<Label design="Bold" text="Search : " class="sapUiMediumMarginBegin sapUiSmallMarginTop"/>-->
+						<!--<SearchField width="68%" liveChange="onSearch" class="sapUiMediumMarginBegin"/>-->
+						<List mode="SingleSelectMaster" id="productCatalogue" selectionChange="onProductDetails" class="masterList" noDataText="No Products"
+							busyIndicatorDelay="0" items="{itemsJSONModel>/}">
+							<headerToolbar>
+								<OverflowToolbar>
+									<content>
+										<Title class="productCatalogueTitle" id="productCatalogueCount" text="Items" level="H2"/>
+										<!--<ToolbarSpacer/>-->
+										<Button id="favouriteButton" type="Emphasized" text="Save as Favourite" press="updateFavourite" class="productCatalogueButton"/>
+									</content>
+								</OverflowToolbar>
+							</headerToolbar>
+							<items>
+								<CustomListItem>
+									<HBox>
+										<VBox class="sapUiMediumMarginBegin sapUiSmallMarginTopBottom customVBoxWidth">
+											<Label text="{itemsJSONModel>Matnr}"/>
+											<Label text="{itemsJSONModel>Maktx}"/>
+										</VBox>
+										<RatingIndicator iconSize="22px" class="ratingMargin" displayOnly="{itemsJSONModel>displayOnly}" value="{itemsJSONModel>value}"
+											change="selectFavourite" maxValue="1" tooltip="Add Favourite"/>
+										<Button id="productCatalogueCart" icon="{itemsJSONModel>icon}" press="recentOrdersCart" visible="true"
+											class="sapUiSmallMarginBegin sapUiMediumMarginEnd sapUiSmallMarginTopBottom"/>
+									</HBox>
+								</CustomListItem>
+							</items>
+						</List>
+					</IconTabFilter>
+					<IconTabFilter text="Recent Orders" key="Recent Orders">
+						<Button id="collapseAll" visible="false" text="Collapse All" press="onCollapseAllPress"/>
+						<Button id="expandAll" visible="false" class="sapUiTinyMarginBegin" text="Expand All" press="onExpandAllPress"/>
+						<Tree id="Tree" items="{treeJSONModel>/}">
+							<!--<StandardTreeItem class="sapUiMediumMarginBegin" title="{treeJSONModel>text}"/>-->
+							<CustomTreeItem>
+								<FlexBox alignItems="Start" width="100%">
+									<items>
+										<Label class="sapUiTinyMarginTop treeLabelWidth" text="{treeJSONModel>text}"></Label>
+										<Label class="sapUiTinyMarginTop treeQuantity" text="{treeJSONModel>Quantity}"></Label>
+										<!--<Button icon="{treeJSONModel>icon}" visible="{= ${treeJSONModel>icon} === 'sap-icon://cart-4' ? true : false}"
+											press="handleTreeButtonPress" class="treeMarginBegin" id="treeBtn"/>-->
+										<Button icon="{treeJSONModel>icon}"
+											visible="{path:'treeJSONModel>icon',formatter:'zjktyrepurorder.controller.Formatter.trrBtnVisibility'}"
+											press="handleTreeButtonPress" class="treeMarginBegin" id="treeBtn"/>
+									</items>
+								</FlexBox>
+							</CustomTreeItem>
+						</Tree>
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+		</content>
+	</Page>
+</mvc:View>

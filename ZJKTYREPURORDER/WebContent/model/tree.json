@@ -1,0 +1,73 @@
+ [{
+ 	"text": "Node1",
+ 	"icon": "sap-icon://cart-4",
+ 	"ref": "sap-icon://attachment-audio",
+ 	"nodes": [{
+ 		"text": "Node1-1",
+ 		"ref": "sap-icon://attachment-e-pub"
+ 	}]
+ }, {
+ 	"text": "Node2",
+ 	"ref": "sap-icon://customer-financial-fact-sheet",
+ 	"icon": "sap-icon://cart-4",
+ 	"nodes": [{
+ 		"text": "Node2-1",
+ 		"ref": "sap-icon://attachment-e-pub"
+ 	}, {
+ 		"text": "Node2-2",
+ 		"ref": "sap-icon://create"
+ 	}]
+ }, {
+ 	"text": "Node3",
+ 	"ref": "sap-icon://customer-financial-fact-sheet",
+ 	"icon": "sap-icon://cart-4",
+ 	"nodes": [{
+ 		"text": "Node3-1",
+ 		"ref": "sap-icon://attachment-e-pub"
+ 	}, {
+ 		"text": "Node3-2",
+ 		"ref": "sap-icon://create"
+ 	}, {
+ 		"text": "Node3-3",
+ 		"ref": "sap-icon://create"
+ 	}]
+ }, {
+ 	"text": "Node4",
+ 	"ref": "sap-icon://customer-financial-fact-sheet",
+ 	"icon": "sap-icon://cart-4",
+ 	"nodes": [{
+ 		"text": "Node4-1",
+ 		"ref": "sap-icon://attachment-e-pub"
+ 	}, {
+ 		"text": "Node4-2",
+ 		"ref": "sap-icon://create"
+ 	}, {
+ 		"text": "Node4-3",
+ 		"ref": "sap-icon://attachment-e-pub"
+ 	}, {
+ 		"text": "Node4-4",
+ 		"ref": "sap-icon://create"
+ 	}]
+ }, {
+ 	"text": "Node5",
+ 	"ref": "sap-icon://customer-financial-fact-sheet",
+ 	"icon": "sap-icon://cart-4",
+ 	"nodes": [{
+ 		"text": "Node5-1",
+ 		"ref": "sap-icon://attachment-e-pub"
+ 	}, {
+ 		"text": "Node5-2",
+ 		"ref": "sap-icon://create"
+ 	}]
+ }, {
+ 	"text": "Node6",
+ 	"ref": "sap-icon://customer-financial-fact-sheet",
+ 	"icon": "sap-icon://cart-4",
+ 	"nodes": [{
+ 		"text": "Node6-1",
+ 		"ref": "sap-icon://attachment-e-pub"
+ 	}, {
+ 		"text": "Node6-2",
+ 		"ref": "sap-icon://create"
+ 	}]
+ }]

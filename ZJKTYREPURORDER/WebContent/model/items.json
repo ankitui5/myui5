@@ -1,0 +1,32 @@
+{
+	"Data": [{
+		"pictureURL":"images/img1.jpg",
+		"Name": "Honda City Car",
+		"price":"24,000",
+		"CurrencyCode":"EUR",
+		"SupplierName":"Red Point Stores",
+		"icon":"sap-icon://cart-4"
+	}, {
+		"pictureURL":"images/img2.jpg",
+		"Name": "Bajaj Pulsar",
+		"price":"880",
+		"CurrencyCode":"EUR",
+		"SupplierName":"Technocom",
+		"icon":"sap-icon://cart-4"
+	}, {
+		"pictureURL":"images/img3.jpg",
+		"Name": "Bike Splendor",
+		"price":"9,000",
+		"CurrencyCode":"EUR",
+		"SupplierName":"Ultrasonic United",
+		"icon":"sap-icon://cart-4"
+	}, {
+		"pictureURL":"images/img4.jpg",
+		"Name": "Activa",
+		"price":"32,00",
+		"CurrencyCode":"EUR",
+		"SupplierName":"Smartcards",
+		"icon":"sap-icon://cart-4"
+	}]
+
+}

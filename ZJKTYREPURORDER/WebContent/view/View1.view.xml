@@ -1,0 +1,32 @@
+<mvc:View controllerName="zjktyrepurorder.controller.View1" xmlns:f="sap.f" xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+	xmlns="sap.m">
+	<!--<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" title="{i18n>title}">
+					<content>
+						
+					</content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>-->
+	<VBox backgroundDesign="Solid" fitContainer="false" class="gradiantBackground">
+		<!--<VBox width="100%" class="vBoxHeader">
+			<f:ShellBar homeIconPressed="goHome" title="Purchase Order" secondTitle="" showCopilot="false" showSearch="true" showNotifications="true"
+				showProductSwitcher="true" homeIcon="./images/jklogo.png"
+				class="gradiantBackground">
+				<f:profile>
+					<f:Avatar src="./images/Female_5.png" displaySize="XL"></f:Avatar>
+				</f:profile>
+			</f:ShellBar>
+		</VBox>-->
+		<VBox>
+			<!--<App class="gradiantPageBackground" id="app" busy="{appView>/busy}" busyIndicatorDelay="{appView>/delay}"></App>-->
+			<SplitApp id="idApp" ></SplitApp>
+		</VBox>
+	</VBox>
+	<!--<SplitApp id="idApp" mode="HideMode">
+		
+	</SplitApp>-->
+</mvc:View>
