@@ -1,0 +1,1 @@
+sap.ui.core.mvc.Controller.extend("com.acute.ticketZSC.view.App", {});

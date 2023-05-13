@@ -1,0 +1,231 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+		   xmlns:u="sap.ui.unified" xmlns="sap.m" xmlns:f="sap.ui.layout.form"
+	       xmlns:l="sap.ui.layout" controllerName="com.acute.warranty.view.S1"
+	       xmlns:html="http://www.w3.org/1999/xhtml">
+
+<html:style>
+.clashedCust {
+    color: black !important;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.sapMIBar-CTX .sapMTitle {
+    color: black;
+    font-weight: 600;
+    font-size: 15px;
+ } 
+  
+ .sapUiForm .sapUiFormTitle {
+    border-width: 1px !important;
+    border-color: #cccccc !important;
+    font-family: Arial,Helvetica,sans-serif !important;
+    font-weight: bold !important;
+}	 
+
+.sapUiFormResGrid>div {
+    padding: 0rem 0.0rem !important;
+    box-sizing: border-box !important;
+}
+</html:style> 	
+<Page title="Warranty Registration" id= "HeaderIdTit" class="sapUiSizeCompact">
+<content>	
+<Toolbar height="2rem" class="sapUiSizeCompact">				
+		<ToolbarSpacer></ToolbarSpacer>
+		<Text id="HedCustMob" class="clashedCust"/>
+		<ToolbarSpacer></ToolbarSpacer> 
+		
+		
+</Toolbar>
+<VBox class="sapUiSmallMargin">
+	<f:SimpleForm id="SimpleFormToolbar" minWidth="1024" maxContainerCols="2" editable="true" layout="ResponsiveGridLayout"
+				  labelSpanL="4" labelSpanM="4" emptySpanL="1" emptySpanM="1" columnsL="2" columnsM="1" class="editableForm">
+		<f:content>
+			<core:Title text="Customer Details" />
+			<Label text="Phone No." required="true" />
+			<Input enabled="false" type="Tel" liveChange="NumberValid" id="idPhone1" maxLength="13"
+				   value="{path:'jModel>/d/CustomerTelf1', formatter:'com.acute.warranty.util.Formatter.Mobile'}" />
+			
+			<Label text="First Name" required="true" />
+			<Input enabled="true" id="idFname" value="{jModel>/d/CustomerFname}" liveChange="validateCharacter"/>
+			
+			<Label text="Last Name" />
+			<Input id="idLname" enabled="true" value="{jModel>/d/CustomerLname}" liveChange="validateCharacter" />
+			
+			<Label text="Address" required="true"/>
+			<Input id="idAdd1" enabled="true" value="{jModel>/d/CustomerAddr1}" />
+			
+			<core:Title text="" />
+			<Label text="State" required="true"/>
+			<Input enabled="true" id="idState" valueHelpRequest="onStateHelp" valueHelpOnly="true" showValueHelp="true" 
+				   value="{jModel>/d/RegionDesc}" />
+			
+			<Label text="District" required="true" />
+			<Input id="idDistrict" value="{jModel>/d/CustomerCity2}" enabled="true" valueHelpRequest="onDistrictHelp" 
+				   valueHelpOnly="true" showValueHelp="true" />
+			
+			<Label text="Location/City" required="true"/>
+			<Input id="idCity" enabled="true" value="{jModel>/d/CustomerCity1}" />
+			
+			<Label text="Email Id" />
+			<Input id="idEmail" enabled="true" value="{jModel>/d/CustomerEmail}" change="emailValidate" maxLength="35"/>
+		</f:content>
+	</f:SimpleForm>
+<html:hr/> 	
+<!-- ********************************************************************************************************************* -->	
+<f:SimpleForm id="SimpleFormVehTyp" minWidth="1024" class="sapUiSizeCompact" maxContainerCols="2" 
+			  editable="true" layout="ResponsiveGridLayout" labelSpanL="4" labelSpanM="4" emptySpanL="1" emptySpanM="1" 
+			  columnsL="2" columnsM="3" >
+	<f:content>
+		<core:Title text="Vehicle Details" />
+		<Label text="Vehicle Type" required="true"/>
+		<Input id="idVehTyp"  enabled="true" value="{jModel>/d/VehicleType}" valueHelpRequest="onVehicleType" 
+		valueHelpOnly="true" showValueHelp="true"/>
+		
+		<Label text="Vehicle Make" tooltip="Vehicle Make" required="true"/>
+		<Input id="idVehMake" value="" enabled="false" liveChange="" visible="true"  showValueHelp="true" 
+			   valueHelpOnly="true" valueHelpRequest="onVehicleMake"/> 
+		
+		<Label text="Model" tooltip="Model" visible="true" id="idlblModel" required="true"/>
+		<Input id="idVehModel" value="" enabled="false" change="" visible="true" showValueHelp="true" 
+			   valueHelpOnly="true" valueHelpRequest="onVehicleModel"/>	
+			   
+		 <Label text="Vehicle Variant" tooltip="Vehicle Variant " visible="true" id="" />
+		<Input id="idVehVar" value="" enabled="false" change="" visible="true" showValueHelp="true" 
+			   valueHelpOnly="true" valueHelpRequest="onVehicleVariant"/>	   	   
+		
+		<Label text="Odometer" tooltip="Odometer"  id="idlblOdometer" />
+		<Input id="idVehOdoMtr" enabled="true" value="" maxLength="7" liveChange="NumberValid" visible="false" />
+	    
+	    <core:Title text="" />
+	    <!--20-aug-2019 -->
+	    	    <!-- <Label text="Vehicle Regn. Date"  id="idpurchaseLabell" required="true"/>
+                <Select id="idMonth" change="onMonthChange" forceSelection="false">
+                  <items>
+                    <core:Item text=""    key="0"/>
+                    <core:Item text="JAN" key="1" />
+                    <core:Item text="FEB" key="2" />
+                    <core:Item text="MAR" key="3" />
+                    <core:Item text="APR" key="4" />
+                    <core:Item text="MAY" key="5" />
+                    <core:Item text="JUN" key="6" />
+                    <core:Item text="JUL" key="7" />
+                    <core:Item text="AUG" key="8" />
+                    <core:Item text="SEP" key="9" />
+                    <core:Item text="OCT" key="10" />
+                    <core:Item text="NOV" key="11" />
+                    <core:Item text="DEC" key="12" />
+                  </items>
+                  <layoutData>
+                    <l:GridData span="XL4 L2 M4 S4"/>
+                  </layoutData>
+                </Select>
+                <Input id="idYear" minLength="4" maxLength="4" change="YearValid">
+                  <layoutData>
+                    <l:GridData span="XL4 L2 M4 S4"/>
+                  </layoutData>
+                </Input> -->
+                
+        <Label text="Regn. No." tooltip="Regn. No." visible="true" id="idlblRegno" required="true"/>
+		<Input id="idVehRegNo" value="{jModel>/d/RegNo}" enabled="true" liveChange="NumChar" maxLength="18" visible="true" />       
+         
+        <Label text="KMs covered" tooltip="Regn. No." visible="true" id="idlblKmsCvrd" required="true"/>
+		<Input id="idKmCvrd" value="" enabled="true" liveChange="NumberValid" maxLength="6" visible="true" />       	
+			          
+	    <Label text="Monthly Running(Kms)" tooltip="Avg. Kilometres run per month(Kms)" visible="true" required="true"/>
+		<Input id="idMnthlyKms" value="" liveChange="NumberValid" enabled="true" visible="true" maxLength="6"/>	
+                
+        	
+		
+	</f:content>
+</f:SimpleForm>
+<html:hr/>  
+
+<!-- ********************************************************************************************************************* -->	
+<f:SimpleForm id="SimpleFormProdDtl" minWidth="1024" class="sapUiSizeCompact" maxContainerCols="2" 
+			  editable="true" layout="ResponsiveGridLayout" labelSpanL="4" labelSpanM="4" emptySpanL="1" emptySpanM="1" 
+			  columnsL="2" columnsM="3" >
+	<f:content>
+		<core:Title text="Product Details" />
+		<!-- <Label text="Fitment Type" required="true"/>
+		<Select id="idFitTyp" selectedKey="{jModel>/d/FitType}" forceSelection="false" enabled="true" change="" >
+			<items>
+				<core:Item text="Replacement" key="REP" />
+				<core:Item text="Original Equipment Manufacturer" key="OEM" />
+			</items>
+		</Select> -->	
+		<!-- <Input id="idFitTyp"  enabled="true" value="{jModel>/d/fittype}" valueHelpRequest="onFitType" valueHelpOnly="true" showValueHelp="true"/> -->
+		
+		<!-- <Label text="Tyre Type" tooltip="Tyre Type" required="true"/>
+		<Select id="idTyrTyp" selectedKey="" enabled="true" change="OnTyreChng" forceSelection="false" visible="true" >
+			<items>
+				<core:Item text="Tyre" key="tyr" />
+				<core:Item text="Tube" key="tub" />
+				<core:Item text="Flap" key="flp" />
+			</items>
+		</Select> -->
+		
+		<Label text="Item Description" required="true"/>
+		<Input id="idItmDesc" value="" valueHelpRequest="onItemDescHelp" valueHelpOnly="true" showValueHelp="true"></Input>
+		
+		 <Label text="Date of Purchase" tooltip="Date of Purchase" required="true"/>
+		<DatePicker id="idPurchDt" valueFormat="yyyy-MM-DD" value="" enabled="true" visible="true" change="onchangePrchDt"/>
+		    
+		  <Label text="Nos. of Tyres Purchased" tooltip="Nos. of Tyres Purchased" required="true"/>
+		<Select id="idNosTP" selectedKey="" enabled="true" change="OnNosTPChange" forceSelection="false" visible="true" >
+			<items>
+				<core:Item text="01" key="1" />
+				<core:Item text="02" key="2" />
+				<core:Item text="03" key="3" />
+				<core:Item text="04" key="4" />
+				<core:Item text="05" key="5" />
+			</items>
+			<layoutData>
+                    <l:GridData span="XL4 L2 M4 S4"/>
+            </layoutData>
+		</Select>  
+		 
+	    <core:Title text="" />
+	    
+	    <Label text="Stencil No. 1" tooltip="Product Stencil" required="true" id="lblStncl"/>
+		<Input id="idStnclNo" enabled="true" value="" visible="false" maxLength="11" change="ValidateStencil" />
+		
+		<Label text="Stencil No. 2" tooltip="Product Stencil" required="true" id="lblStncl2"/>
+		<Input id="idStnclNo2" enabled="true" value="" visible="false" maxLength="11" change="ValidateStencil" />
+		
+		<Label text="Stencil No. 3" tooltip="Product Stencil" required="true" id="lblStncl3"/>
+		<Input id="idStnclNo3" enabled="true" value="" visible="false" maxLength="11" change="ValidateStencil" />
+		
+		<Label text="Stencil No. 4" tooltip="Product Stencil" required="true" id="lblStncl4"/>
+		<Input id="idStnclNo4" enabled="true" value="" visible="false" maxLength="11" change="ValidateStencil" />
+		
+		<Label text="Stencil No. 5" tooltip="Product Stencil" required="true" id="lblStncl5"/>
+		<Input id="idStnclNo5" enabled="true" value="" visible="false" maxLength="11" change="ValidateStencil" />	   
+					   
+	   
+		
+	</f:content>
+</f:SimpleForm>
+<html:hr/> 
+<!-- ********************************************************************************************************************* -->	
+	
+</VBox>
+					
+					
+		</content>
+	<footer>
+		<Bar>
+			<contentLeft>
+				<Button id="btnDownload" visible="false" text="Download Format"
+					press="downloadExcel" type="Emphasized" />
+			</contentLeft>
+			<contentRight>
+				<Button text="Review and Save" press="onWarrantyCreate" type="Accept"
+					id="Id_bt1" visible="true" />
+ 				<Button text="" press="OnChkStencil" type="Emphasized"
+					id="Idchkstencl" visible="false" />
+			</contentRight>
+		</Bar>
+	</footer>
+	</Page>
+</core:View>

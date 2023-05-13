@@ -1,0 +1,5 @@
+<mvc:View controllerName="com.acute.ticketZSC.view.App"
+	xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
+	<SplitApp 
+	    id="idAppControl" />
+</mvc:View>

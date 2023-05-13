@@ -1,0 +1,32 @@
+<mvc:View controllerName="com.acute.ticketZSC.view.Master" xmlns="sap.m"
+  xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml">
+  <Page title="Service Request" id="masterPage"
+   >
+    
+    <content>
+      <List id="lstDetails" mode="SingleSelectMaster" growing="true" updateFinished="onListUpdated"
+        growingThreshold="200" growingScrollToLoad="true" select="onSelect"
+        noDataText="No Data Found" >
+        <headerToolbar>
+					<Toolbar class="tool">
+						
+					<SearchField liveChange="liveSearch" id="searchField"
+          width="100%" placeholder="Search">
+        </SearchField>	
+						
+					</Toolbar>
+				</headerToolbar>
+
+				
+      </List>
+    </content>
+    <footer>
+      <Bar>
+        <contentRight>
+       
+   
+        </contentRight>
+      </Bar>
+    </footer>
+  </Page>
+</mvc:View>

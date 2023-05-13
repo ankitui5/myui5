@@ -1,0 +1,249 @@
+<core:View xmlns:core="sap.ui.core" 
+			xmlns:mvc="sap.ui.core.mvc"
+  			xmlns:l="sap.ui.layout" 
+  			xmlns="sap.m"
+  			controllerName="com.acute.ticketZSC.view.Detail" 
+  			xmlns:html="http://www.w3.org/1999/xhtml"
+  			xmlns:f="sap.ui.layout.form" 
+  			>
+  <Page id="detailPage" navButtonPress="onNavBack" title="Request Details"
+		showNavButton="{device>/isPhone}" enableScrolling="true" >
+
+		<headerContent>
+<!-- 		<Button icon="sap-icon://refresh"     press="onReset" tooltip="Reset changes"/> -->
+			<ToggleButton class="ClDetailPage" id="fullscreenButton" icon="sap-icon://full-screen" enabled="true" 
+						  tooltip="Switch between FullScreen and MasterDetail"  press="maxmin" />
+		</headerContent>
+		
+		<content>
+		<VBox class="sapUiSmallMargin ">
+		<f:SimpleForm id="SimpleFormToolbar1" editable="true" layout="ResponsiveGridLayout" 
+                      labelSpanXL="3" labelSpanL="3" labelSpanM="3" maxContainerCols="3"
+			          labelSpanS="4" adjustLabelSpan="true" emptySpanXL="2" emptySpanL="1"
+					   emptySpanM="1" emptySpanS="1" columnsXL="2" columnsL="2" columnsM="2"
+					   singleContainerFullSize="false" ariaLabelledBy="Title1">
+							<f:content>
+								<core:Title text="Customer Details"  class="CustDtl" />
+								
+								<Label text="Phone No"  required="false"/>
+								<Input value="+91" enabled="false" id="idPhone" submit="onEnter" class="sapUiSizeCompact">
+									<layoutData>
+										<l:GridData span="XL1 L1 M2 S1"/>
+									</layoutData>
+								</Input>
+								<Input enabled="false" id="idPhone1" submit="onEnter" maxLength="10"/> 
+								
+								<Label text="Alternate no"  required="false"/>
+								<Input value="+91" enabled="false" id="idPhones" submit="onEnter">
+									<layoutData>
+										<l:GridData span="XL1 L1 M2 S1"/>
+									</layoutData>
+								</Input>
+								<Input enabled="false" id="idPhone2" submit="onEnter" maxLength="10"/> 
+								
+								
+								<Label text="First Name" required="false" />
+								<Input enabled="false" id="idFname" submit="onEnter"/>
+								<Label text="Last Name"  required="false"/>
+								<Input  id="idLname" enabled="false"/>
+								
+								<Label text="Address1"   required="false"/>
+								<input id="idAdd1" enabled="false"/>
+								
+								<Label text="Address2"  required="false"/>
+								<input id="idAdd2" enabled="false"/>
+								
+								<core:Title text=""/>
+								
+								<Label text="Dealer"   required="false"/>
+								<!-- <Input  id="idDealer" enabled="false"/> -->
+								<!-- <Input value="" enabled="false" visible="false" id="idDealer" submit="onEnter">
+									<layoutData>
+										<l:GridData span="XL2 L2 M2 S1"/>
+									</layoutData>
+								</Input> --> 
+								<Input enabled="false" id="idDealer1"/> 
+								
+								
+								<Label text="Country"  required="false"/>
+								<Select selectedKey="IN" enabled="false" id="idCountry" forceSelection="true">
+									<items>
+										<core:Item text="India" key="IN"/>
+									</items>
+								</Select>
+								
+								<Label text="State"  required="false" />
+								<Select  id="idState"  enabled="false" />
+								
+								<Label text="District"  required="false" />
+								<Input  id="idDistrict" enabled="false"/>
+								
+								<Label text="Location"  required="false"/>
+								<Input  id="idLocation" enabled="false"/>
+								
+								<Label text="Email Id"  required="false"/>
+								<Input  id="idEmail" enabled="false"/>
+								
+						<!-- 		<Label text="Postal Code"  required="false"/>
+								<Input  id="idCode" maxLength="6" enabled="false"/> -->
+							</f:content>
+						</f:SimpleForm>
+					</VBox>
+			<html:hr/>
+			
+			<VBox class="sapUiSmallMargin">
+              <f:SimpleForm id="SimpleFormToolbar2" editable="true" layout="ResponsiveGridLayout"
+               labelSpanXL="3"
+                labelSpanL="3"
+                labelSpanM="3"
+				labelSpanS="4"
+				adjustLabelSpan="true" 
+				emptySpanXL="2" 
+				emptySpanL="1" 
+				emptySpanM="1" 
+				emptySpanS="1" 
+				columnsXL="2" 
+				columnsL="2" 
+				maxContainerCols="3"
+				columnsM="2"
+				singleContainerFullSize="false" ariaLabelledBy="Title2">
+							
+				<f:content>
+				<core:Title text="Details" />
+								
+								 <Label text="Fitment Type" />
+								 <input id="idFitType" enabled="false"/>
+								 
+							<!-- 	<Select selectedKey="{jModel>/d/FitType}" forceSelection="false" enabled="false" id="idFitment" change="onFitmentChange">
+																		<items>
+																			<core:Item text="OEM" key="OEM"/>
+																			<core:Item text="Replacement" key="Replacement"/>
+																		</items>
+								</Select>  -->
+								
+								
+								<!-- <Label text=" Fitment Type" tooltip="Tyre Fitment Type" id="" required="true" />								
+								<Select selectedKey="" forceSelection="false" enabled="true" id="idFitment" change="onFitmentChange" >
+								</Select> -->
+								
+								<Label text="Vehicle Make"  required="false"/>
+								<Input id="idVehicleMake" enabled="false" />
+								
+								<core:Title text=""/>
+																
+								<Label text="Vehicle Type"  required="false"/>
+								<Input id="idVehicleType"  enabled="false"/>
+								
+								<Label text="Vehicle Model"  required="false"/>
+								<Input id="idModel" enabled="false"/>
+								
+							</f:content>
+						</f:SimpleForm>
+						</VBox>
+						
+						<html:hr/>
+						
+         <VBox class="sapUiSmallMargin">
+		<f:SimpleForm id="SimpleFormToolbar3"  maxContainerCols="3" editable="true" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3"
+							labelSpanS="4" adjustLabelSpan="true" emptySpanXL="2" emptySpanL="1" emptySpanM="1" emptySpanS="1" columnsXL="1" columnsL="1" columnsM="1"
+							singleContainerFullSize="false" ariaLabelledBy="Title1">
+							<f:content>
+					<core:Title text="Response Feedback" design="Bold"/>
+		<Panel >
+		<content>
+		<Label></Label>
+        <RadioButtonGroup columns="4" editable="true"  selectedIndex="1" select="OnRadioSelect" id="RadioSerID" class="sapUiMediumMarginBottom">
+				<buttons>
+					<RadioButton id="RB3-1" text="JK Depot" />
+					<RadioButton id="RB3-2" text="JK Dealer" />
+					<RadioButton id="RB3-3" text="Spot Inspection" />
+					<RadioButton id="RB3-4" text="No Response"/>
+					<RadioButton id="RB3-5" text="Ticket Closed" /> 
+				
+				</buttons>
+		</RadioButtonGroup>
+		</content>
+		</Panel>
+		
+		<!-- **********jk Depot Code************* -->
+		<Label text="Depot Code"  design="Bold" visible="false" id="idDepotCodeLabel"/>
+		<Input enabled="true" visible="false" id="idDepotCodeInput" valueHelpRequest="onDepotCodeType" valueHelpOnly="true" showValueHelp="true">		
+			<layoutData>
+				<l:GridData span="XL2 L1 M2 S2"/>
+			</layoutData>
+		</Input>
+	    <Input enabled="false" visible="false" id="idDepotCodeInput1">
+		     <layoutData>
+			    <l:GridData span="XL5 L5 M5 S2"/>
+			  </layoutData>
+		</Input>
+		<!--jk Depot Code end-->
+		
+		<!-- jk Dealer Code start   -->
+		<Label text="Dealer Code" design="Bold" visible="false" id="idDealCodeLabel"/>
+			<Input enabled="true" visible="false" id="idDealCodeInput" valueHelpRequest="onDelarCodeType" 
+			valueHelpOnly="true" showValueHelp="true">		
+				<!-- <layoutData>
+					<l:GridData span="XL2 L1 M2 S2"/>
+					</layoutData> -->
+			</Input>
+	<!-- <Input enabled="true" visible="true" id="dealercodeinput1"/>   -->
+		 <Input enabled="false" visible="false" id="idDealerName" submit="" /> 
+									
+		 <Label text="Location" design="Bold" required="false" id="Locationlabel" visible="false"/>
+		 <Input  id="idLocation1" enabled="false" value="" visible="false">	
+		   <layoutData>
+			 <l:GridData span="XL4 L4 M4 S2"/>
+			</layoutData>
+		</Input>
+								
+		<!--jk Dealer Code end -->
+		
+			<!-- jk spot inspection start -->					
+			<Label visible="false" design="Bold" text="Appointment Date" id="appDt" required="true"/>
+			<DateTimePicker
+			id="DTP4"
+			value="2016-02-18-10-32-30"
+			valueFormat="yyyy-MM-dd-HH-mm-ss"
+			displayFormat="short"
+			change="handleApDtChange" visible="false">
+			
+			<layoutData>
+			<l:GridData span="XL4 L4 M3 S2"/>
+			</layoutData>
+			</DateTimePicker>
+								
+            <!-- jk spot inspection end-->
+            
+            
+            <!--ticket closed start  -->
+            
+            <Label text="Closure Reason" design="Bold" visible="false" id="ididClosureReasonLabel"/>
+			<Select selectedKey="" visible="false" forceSelection="false" change = "onCloseReasonChange" enabled="true" id="idClosureReason" ><!-- change="onFitmentChange -->
+				<layoutData>
+					<l:GridData span="XL4 L4 M3 S2"/>
+				</layoutData>
+			</Select>
+            
+            
+            <!-- ticket close end --> 	
+								<Label text="Response Comment" design="Bold" required="true"/>
+								<TextArea  enabled="true" id="idRem" liveChange="onResponseChange"/>
+								
+							</f:content>
+						</f:SimpleForm>
+						</VBox>
+		</content>
+		<footer>
+	<Bar id="scopeFooterToolbar">
+
+	<contentRight>
+	<Button icon="sap-icon://action-settings" type="Accept"  text="Save" id="act"  press="onSave" tooltip="Savet" /> 
+	
+	</contentRight>
+	
+	</Bar>
+	</footer>
+
+	</Page>
+</core:View>

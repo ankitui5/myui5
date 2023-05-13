@@ -1,0 +1,80 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core" 
+	xmlns:l="sap.ui.layout"
+	xmlns:fb="sap.ui.comp.filterbar"
+	height="100%"
+	class="frg">
+	
+	<Dialog xmlns="sap.m" title="Select : Ticket" afterClose= "onCustomerfrgClose"
+			class="sapUiSizeCompact col col1" contentWidth="1024px" contentHeight="824px">
+	<content>
+		
+	<l:VerticalLayout width="100%" class="newlab header label1">
+	
+		<fb:FilterBar reset="onReset" search="onSearch" showRestoreButton="false" showClearButton="false">
+			<fb:filterItems>
+				<fb:FilterItem label="Ticket Number" name="a">
+					<fb:control>
+			            <Input enabled="true" id="idTicket" valueHelpRequest="onTicket" 
+			            		valueHelpOnly="false" showValueHelp="true" />
+					</fb:control>				
+				</fb:FilterItem>
+				
+				<fb:FilterItem label="Mobile Number" name="d">
+					<fb:control>
+						<!-- <Input id="idPhone1" liveChange="NumberValid" maxLength="10" 
+								valueHelpRequest="onMobileFrag" valueHelpOnly="false" showValueHelp="true"/> -->
+									
+						<Input enabled="true" id="idPhone1" valueHelpRequest="onMobileHelp" 
+			            		valueHelpOnly="false" showValueHelp="true" />
+					</fb:control>				
+				</fb:FilterItem>
+				
+				<!-- <fb:FilterItem label="Ticket Date" name="b">
+					<fb:control>
+						<DatePicker id="idTicketDate" displayFormat="dd-MM-yyyy" valueFormat="yyyy-MM-dd"/>
+					</fb:control>				
+				</fb:FilterItem> -->
+				
+			</fb:filterItems>
+		 </fb:FilterBar>		
+	</l:VerticalLayout>
+				
+	</content>
+								    
+<Table id="idCustomerTable" items="{CartListSetJModel>/}" mode="" class=" tablabel">
+    <columns class="sapMTitle">
+	      <Column minScreenWidth="Tablet" width="10em" demandPopin="true" hAlign="Center">
+	        <Text text="Ticket Number" /> 
+	      </Column>
+	      
+	      <Column minScreenWidth="Tablet" width="10em" demandPopin="true" hAlign="Center">
+	        <Text text="Mobile Number" />    
+	      </Column>
+	      
+	      <Column minScreenWidth="Tablet" width="15em" demandPopin="true" hAlign="Center">
+			<Text text="Customer Name" /> 
+	      </Column>
+	      
+<!-- 	      <Column minScreenWidth="Tablet" width="15em" demandPopin="true" hAlign="Center">
+			<Text text="Ticket Date" /> 
+	      </Column>
+	  -->
+    </columns>
+    <items>
+      <ColumnListItem type ="Active" press="displayRequest" >
+        <cells>
+      		<Text text="{CartListSetJModel>TicketNo}" />
+      		<Text text="{CartListSetJModel>ITelf1}" />                        
+      		<Text text="{CartListSetJModel>Fname}" />
+      		<!-- <Text text="{TicketSetJModel>TicketDate}" /> -->                        
+        </cells>
+      </ColumnListItem>
+    </items>
+ </Table>
+  
+		<endButton>
+			<Button text="Cancel" press="onCustomerfrgClose" />
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>
