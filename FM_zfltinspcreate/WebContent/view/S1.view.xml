@@ -1,0 +1,366 @@
+<core:View xmlns:core="sap.ui.core" 
+			xmlns:mvc="sap.ui.core.mvc"	
+			xmlns:u="sap.ui.unified" 
+			xmlns="sap.m" 
+			xmlns:f="sap.ui.layout.form"
+			xmlns:l="sap.ui.layout" 
+			xmlns:table="sap.ui.table" 
+			xmlns:uxap="sap.uxap" 
+			controllerName="zfltinspcreate.view.S1"
+			xmlns:html="http://www.w3.org/1999/xhtml"
+			>
+
+<html:style>
+.zero .sapUiSizeCompact .sapUiFormContainerTitle > .sapUiFormTitle { 
+height: 0rem !important;
+padding: 0rem !important;
+margin: 0rem !important;
+line-height: 0rem !important;
+}
+
+.sapMListTblHeader .sapMCb{
+display:none !important 
+}
+
+.editableForm .sapUiFormTitle{
+color:black !important;
+}
+
+.titlecls .sapMTitle > span {
+    color: #ffffff !important;
+}
+
+.jhClass{
+background-color:rgba(255, 255, 255, 0.8) !important; 
+}
+
+.sapUiSizeCompact .sapMIBar-CTX.sapMPageHeader .sapMLabel, .sapUiSizeCondensed.sapUiTable .sapMIBar-CTX.sapMPageHeader .sapMLabel, .sapUiSizeCondensed .sapUiTable .sapMIBar-CTX.sapMPageHeader .sapMLabel, .sapUiSizeCompact .sapMDialog-CTX .sapMIBar-CTX .sapMLabel, .sapUiSizeCondensed.sapUiTable .sapMDialog-CTX .sapMIBar-CTX .sapMLabel, .sapUiSizeCondensed .sapUiTable .sapMDialog-CTX .sapMIBar-CTX .sapMLabel .bold {
+    font-size: 1.200rem;
+}
+
+.sapUiSizeCompact .sapUiFormContainerTitle > .sapUiFormTitle{
+    height: 2rem;
+    line-height: 2rem;
+    color: black;
+    font-weight: bold;
+}
+
+.sapUiRespGridMedia-Std-Phone.sapUiFormResGridCont > .sapUiFormElementLbl:not(.sapUiRespGridSpanS12) > .sapMLabel, .sapUiRespGridMedia-Std-Tablet.sapUiFormResGridCont > .sapUiFormElementLbl:not(.sapUiRespGridSpanM12) > .sapMLabel, .sapUiRespGridMedia-Std-Desktop.sapUiFormResGridCont > .sapUiFormElementLbl:not(.sapUiRespGridSpanL12) > .sapMLabel, .sapUiRespGridMedia-Std-LargeDesktop.sapUiFormResGridCont > .sapUiFormElementLbl:not(.sapUiRespGridSpanXL12) > .sapMLabel .labelLeft{
+    text-align: left !important;
+    float: none;
+    position: relative;
+}
+</html:style>
+
+<Page title="Inspection Create" class="sapUiSizeCompact">
+		<customHeader>
+		<Bar>
+			<contentMiddle>
+				<Label text="Inspection Create" design="Bold" class="bold" />
+			</contentMiddle>
+			<contentRight>
+			</contentRight>
+		</Bar>
+		</customHeader>
+<content>	
+		
+<VBox>
+
+<Toolbar height="2rem" class="jhClass">
+<Title id="HeaderIdTit" class="titlecls" text="" level="H6" titleStyle="H6" textAlign="Center" width="100%" />							
+</Toolbar>
+<Toolbar height="3rem">
+		<Title text="Vehicle Details"/>
+		<ToolbarSpacer />
+		<Image src="../../../../../../bc/ui5_ui5/sap/zfltinspcreate/view/trucktrailer.jpg" height="50px" width="140px" />
+</Toolbar>
+
+	<f:SimpleForm id="TRHeaderFormEdit" minWidth="1024" maxContainerCols="1" editable="true" layout="ResponsiveGridLayout" title=""
+				  labelSpanL="5" labelSpanM="5" emptySpanL="0" emptySpanM="0" columnsL="3" columnsM="3" visible="true" class="labelLeft">
+		<f:content>
+			<core:Title id="VD_1" class="zero" />
+			
+			<Label required="true" id="LVehicleNoEdit" text="Vehicle Reg. Number" design="Bold" />
+			<Input id="FVehicleNoEdit"  valueHelpRequest="onVecRegNo" valueHelpOnly="true" showValueHelp="true" />
+				
+			<Label id="LVehicleCompIDEdit" text="Vehicle Make" design="Bold" />
+			<Text id="VehicleMakeID" text="{Fitments>/MakeName}" visible="true" />
+			
+			<Label id="LVehicleModelEdit" text="Vehicle Model" design="Bold" />
+			<Text id="VehicleModelID" text="{Fitments>/Model}" visible="true" />
+			
+			<Label id="LConfigurationIDEdit" text="Configuration" design="Bold" />
+			<Text id="ConfigurationIDID" text="{Fitments>/ConfigCodeDesc}" visible="true" />
+			
+			<Label id="LChasisNoEdit" text="Chassis No" design="Bold" visible="false" />
+			<Text id="ChasisNoID" text="{Fitments>/ChassisNo}" visible="false" />
+			
+			<Label id="LEngineNoEdit" text="Engine No" design="Bold" visible="false" />
+			<Text id="EngineNooID" text="{Fitments>/EngineNo}" visible="false" />
+			
+			<Label  text="Default Tyre Size" design="Bold" />
+			<Text id="TySz" text="{Fitments>/TyreDesc}" visible="true" />
+			
+			<Label  text="Contract Type" design="Bold" />
+			<Text id="IdSer" text="{Fitments>/ContractDesc}" visible="true" />
+			
+			<Label text="Last Milometer Status" design="Bold"   />
+			<Select enabled="false" id="idLastMilo" forceSelection="false" selectedKey="{Fitments>/LastMeterStatus}" >	
+				<core:Item text="Yes" key="Y"  />
+				<core:Item text="No" key="N"  />
+			</Select>
+			
+			<Label  text="Last KM Reading" design="Bold" />
+			<Text id="idLastKm" text="{Fitments>/LastMeterReading}" enabled="false" />
+			
+			<Label  text="Total KM Covered" design="Bold" />
+			<Text id="idTotKm" text="{Fitments>/TotKmCovered}" enabled="false" />
+			
+			<core:Title id="VD_2" class="zero"/>
+			
+			<Label id="LFitmentDateeEdit" required="true" text="Inspection Date" design="Bold" />
+			<DatePicker id="FFitmentDateEdit" displayFormat="{LocalViewSettingDtl>/DateFormat}" valueFormat="yyyy-MM-dd"
+						change="changeFitmentDate" enabled="true"/>
+			
+			<Label text="Fitment Date" id="idTkDatelbl" design="Bold"/>
+			<Text id="idTkDate" editable="false" enabled="false" 
+				  text="{path:'Fitments>/FitmentDate', formatter:'zfltinspcreate.util.Formatter.date1'}" />
+			
+			<Label  text="Fitment Hub Name" design="Bold" />
+			<Text  text="{Fitments>/FitHubName}" visible="true"/>
+			
+			<Label text="Last Inspection Date"  design="Bold"/>
+			<Text  id="LastInspDate" enabled="false" text="{path:'Fitments>/LastInspDate', formatter:'zfltinspcreate.util.Formatter.date1'}" />
+			
+			<Label  text="Last Insp. Hub Name" design="Bold" />
+			<Text  text="{Fitments>/LastInspHub}" visible="true"/>
+			
+			<Label  text="Contract Enroll Hub" design="Bold" />
+			<Text  text="{Fitments>/EnrolHubName}" visible="true"/>
+
+			<Label  text="Contract Enroll Date" design="Bold" />
+			<Text  text="{path:'Fitments>/ContEnrolDate', formatter:'zfltinspcreate.util.Formatter.date1'}" visible="true"/>
+			
+			<Label  text="Inspection Seq No" design="Bold" visible="false"/>
+			<Text  text="{Fitments>/LastInspectionNo}" visible="false"/>
+			
+			<Label required="false" id="LRegistrationYearEdit" text="Registration Year" design="Bold" visible="false"/>
+			<Input id="FRegistrationYearEdit"  maxLength="4"
+				value="{Fitments>/RegYear}" liveChange="NumberValid" change="onYearChange" visible="false"/>
+			
+			<Label id="LVehicleCCEdit" text="Vehicle CC" design="Bold" visible="false"/>
+			<Input id="FVehicleCCEdit" value="{Fitments>/VechCc}" 
+				   change="" liveChange="NumberValid" maxLength="6" visible="false"/>
+			
+			<Label id="LAvgRunningSpeedEdit" text="Avg Running Speed" design="Bold" visible="false"/>
+			<Input change="com.arteriatech.ppc.utils.js.Common.formatNumber" id="FAvgRunningSpeedEdit"
+				   value="{Fitments>/AvgSpeed}" liveChange="NumberValid" maxLength="3" visible="false"/>
+			
+			<Label id="LLoopDistanceEdit" text="Loop Distance" design="Bold" visible="false"/>
+			<Input type="Number" id="FLoopDistanceEdit" maxLength="5" value="{Fitments>/LoopDist}" liveChange="NumberValid" visible="false"/>
+			
+			<Label text="GVW (Tons)" design="Bold" visible="false"/>
+			<Input enabled="true" id="idEarApp1"  valueHelpRequest="InsGpCodeHelp"
+				valueHelpOnly="true" showValueHelp="false" maxLength="3" value="{Fitments>/Gvw}" liveChange="NumberValid1" visible="false"/>
+			
+			<Label text="Milometer Working" design="Bold" required="true" />
+			<Select enabled="true" id="idEarPSI" forceSelection="false" selectedKey="{Fitments>/MeterStatus}" change="onMiloMeter">
+				<core:Item text="Yes" key="Y" />
+				<core:Item text="No" key="N" />
+			</Select>
+			
+			<Label id="idmilolbl" text="Milometer Reading" design="Bold"/>
+			<Input  id="idMilReading" enabled="false" maxLength="6" value="{Fitments>/MeterReading}" liveChange="milovalid"/>
+			
+			<Label  id="idkmlbl" text="KM Covered" design="Bold" />
+			<Input  id="idMulReading" enabled="false" maxLength="6" value="{Fitments>/KmCovered}" liveChange="NumberValid"/>
+			
+			<core:Title id="VD_3" class="zero"/>
+			
+			<Label  text="Mechanical Condition" design="Bold" required="true"/>
+			<Select enabled="true" id="idmccon"  forceSelection="false" selectedKey="{Fitments>/MechCond}" change="onMecCon">
+				<core:Item text="OK" key="Y"  />
+				<core:Item text="Not OK" key="N" />
+			</Select>
+			
+			<Label  text="Reason" id="idReasonlbl" design="Bold" visible="false" required="true" />
+			<Select id="idReason" forceSelection="false" selectedKey="{Fitments>/MechCondReason}" visible="false" />
+			
+			<Label text="Rotate Positions" design="Bold" />
+			<Select enabled="true" id="idrotatiob" forceSelection="false" selectedKey="{Fitments>/TyreRotation}" change="onRotationChange">
+				<core:Item text="Automatic" key="A" />
+				<core:Item text="Manual" key="M" />
+				<core:Item text="NO" key="N" />
+			</Select>
+						
+			<Label id="LWeatherIDEdit" text="Climate" design="Bold" visible="false"/>
+			<Text text="" textAlign="End" visible="false"/>
+			
+			<Label visible="false">
+			<layoutData>
+				<l:GridData span="XL1 L1 M1 S1"/>
+			</layoutData>
+			</Label>
+			<Text text="Max Temp: " textAlign="End" visible="false">
+			<layoutData>
+				<l:GridData span="XL4 L4 M4 S4"/>
+			</layoutData>
+			</Text>
+			<Input id="FLWeatherIDMinEdit" value="{Fitments>/MaxTemp}" maxLength="3" liveChange="TempRex" visible="false"/>
+			<Text text="Min Temp: " textAlign="End" visible="false">
+			<layoutData>
+				<l:GridData span="XL3 L3 M3 S3"/>
+			</layoutData>
+			</Text>
+			<Input id="FLWeatherIDMaxEdit" value="{Fitments>/MinTemp}" liveChange="TempRex" maxLength="3" visible="false"/>
+			
+			<Label id="LRoadConditionEdit" text="Road Condition (%)" design="Bold" visible="false">
+			</Label>
+			<Text text="" textAlign="End" visible="false"/>	
+			<Label visible="false">
+			<layoutData>
+				<l:GridData span="XL1 L1 M1 S1"/>
+				</layoutData>
+			</Label>
+			
+			<Text text="On-Road:" textAlign="End" visible="false">
+			<layoutData>
+				<l:GridData span="XL4 L4 M4 S4"/>
+			</layoutData>
+			</Text>
+			<Input min="0" max="100" id="FRoadConditionEdit" maxLength="3" value="{Fitments>/OnRoad}" liveChange="NumberValid" tooltip="ON-Road %" visible="false"/>
+			<Text text="Off-Road:" textAlign="End" visible="false">
+			<layoutData>
+				<l:GridData span="XL3 L3 M3 S3"/>
+				</layoutData>
+			</Text>
+			<Input min="0" max="100" id="FOFFRoadConditionEdit" maxLength="3" liveChange="NumberValid" value="{= ${Fitments>/OffRoad} ? 100 - parseFloat(${Fitments>/OnRoad}) : '0' }"
+				tooltip="OFF-Road %" visible="false"/>
+			
+			<Label id="LPrecipitationPercentageEdit" text="Precipitation (%)" design="Bold" visible="false"/>
+			<Input min="0" id="FPrecipitationPercentageEdit" maxLength="3" value="{Fitments>/Pricit}" liveChange="NumberValid" visible="false"/>
+			
+			<Label id="LRouteConditionEdit" text="Terrain" design="Bold" visible="false"/>
+			<Select id="FRouteConditionEdit" forceSelection="false" selectedKey="{Fitments>/Terrain}" visible="false">
+			<core:Item text="Long Haul Highway" key="01" />
+				<core:Item text="Hilly" key="02"  ></core:Item>
+				<core:Item text="Short Haul" key="03"  ></core:Item>
+			</Select>
+			
+			<Label id="LGoodsCarriedEdit" text="Goods Carried" tooltip="Goods Carried" design="Bold"/>
+			<TextArea rows="2" maxLength="255" id="FGoodsCarriedEdit" value="{Fitments>/GoodsCarried}" />
+			
+			<Label id="LPreTyreDetailsEdit" text="Previous Tyre Details" design="Bold" />
+			<TextArea rows="2" maxLength="255" id="FPreTyreDetailsEdit" value="{Fitments>/TyreDetails}" tooltip="Previous Tyre Details"/>
+			
+			<Label />
+			<Button type="Emphasized" text="Service Sheet" press="onSerSheetVech">
+			<layoutData>
+				<l:GridData span="XL7 L7 M7 S7"/>
+			</layoutData>
+			</Button>
+		
+		</f:content>
+</f:SimpleForm>
+	
+</VBox>
+<Panel width="auto" id="Panel1" visible="false" class="sapUiNoMargin">
+<content>
+		<Toolbar height="3rem">
+				<Title text="Inspection"/>
+				<ToolbarSpacer />
+			    <Image src="../../../../../../bc/ui5_ui5/sap/zfltinspcreate/view/jktyre.png" height="50px" width="200px" />
+		</Toolbar>
+	<Table id="tblDetail" mode="None" select="OnTableSelect" updateFinished="onCPMKUpdate" >
+				<columns>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="8%">
+						<Label design="Bold" text="Position" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="9%" visible="false" id="idnewPos">
+						<Label design="Bold" text="New Position" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="15%">
+						<Label design="Bold" text="Owner" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Label design="Bold" text="Tyre Size" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Label design="Bold" text="Item Code Description" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="12%">
+						<Label design="Bold" text="Stencil No" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="10%">
+						<Label design="Bold" text="Action" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign='Center' width="9%" >
+						<Label design="Bold" text="Service Sheet" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="8%">
+						<Label design="Bold" text="Readings" />
+					</Column>
+				</columns>
+			</Table>
+</content>
+</Panel>
+
+<Panel width="auto" id="Panel2" visible="false" class="sapUiNoMargin">
+		
+<content>
+	<Toolbar height="3rem">
+			<Title text="Inspection"/>
+					<ToolbarSpacer />
+			<Image src="../../../../../../../sap/bc/ui5_ui5/sap/zfltinspcreate/view/jktyre.png" height="50px" width="200px" />
+	</Toolbar>
+
+		<Table id="tblDetail1" mode="None" updateFinished="onAmsUpdate" select="OnTableSelect">
+				<columns>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="8%">
+						<Label design="Bold" text="Position" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="9%" visible="false" id="idnewPos1">
+						<Label design="Bold" text="New Position" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="15%">
+						<Label design="Bold" text="Company" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Label design="Bold" text="Tyre Size" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" >
+						<Label design="Bold" text="Item Code Description" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="12%">
+						<Label design="Bold" text="Stencil No" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="10%" >
+						<Label design="Bold" text="Action" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign='Center' width="9%">
+						<Label design="Bold" text="Service Sheet" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="8%">
+						<Label design="Bold" text="Readings" />
+					</Column>
+					
+				</columns>
+			</Table>
+</content>
+</Panel>	
+										
+		</content>
+	<footer>
+		<Bar>
+			<contentLeft>
+				<Button id="btnDownload" visible="false" text="Download Format"
+						press="downloadExcel" type="Emphasized" />
+			</contentLeft>
+			<contentRight>
+				<Button text="Save" press="onFitmentCreate" type="Accept"
+						id="Id_bt1" visible="true" />
+			</contentRight>
+		</Bar>
+	</footer>
+	</Page>
+</core:View>

@@ -1,0 +1,51 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Dialog showHeader="false" id="iDKing" class="sapUiSizeCompact" contentWidth="70%" >
+	<subHeader>
+			<Bar>
+				<contentMiddle>
+					<Text text="Details" />
+				</contentMiddle>
+				
+			</Bar>
+		</subHeader> 
+	<content>
+<!-- 	<HBox justifyContent="SpaceBetween"> -->
+<!-- 	<ObjectStatus id="IdObj2" -->
+<!-- 		state="Success"		 /> -->
+<!-- 		<ObjectStatus id="IdObj4" -->
+				
+<!-- 				state="Success" /> -->
+<!-- 				<ObjectStatus id="IdObj3" -->
+				
+<!-- 				state="Success" /> -->
+<!-- 	</HBox> -->
+	<f:SimpleForm  minWidth="1024"
+		maxContainerCols="2" editable="true" layout="ResponsiveGridLayout"
+		labelSpanL="4" labelSpanM="4" emptySpanL="1" emptySpanM="1" columnsL="3"
+		columnsM="2" class="editableForm">
+		<f:content>
+			<core:Title text="" />
+				<Label text="Tyre Type"  />
+			<Select enabled="true" id="idTyrTyp" />
+				
+			<core:Title text="" />
+				
+<Label text="Tyre Location"  />
+			<Select enabled="true" id="idTyrLoc" />
+				
+				
+				
+				
+				
+				
+		</f:content>
+	</f:SimpleForm>
+	</content>
+		<buttons>
+<!-- 		<Button text="Close"  visible="true" press="onTabelFilterClose" />	 -->
+		<Button text="OK"   visible="true" press="onTyreOk" />
+		<Button text="Cancel"   visible="true" press="onTyreClose" />		
+		</buttons>	
+</Dialog>
+</core:FragmentDefinition>

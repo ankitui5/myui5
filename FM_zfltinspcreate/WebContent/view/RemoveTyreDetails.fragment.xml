@@ -1,0 +1,51 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Dialog showHeader="false" id="iDKing" class="sapUiSizeCompact" contentWidth="30%" >
+	<subHeader>
+			<Bar>
+				<contentMiddle>
+					<Text text="Details" />
+				</contentMiddle>
+				
+			</Bar>
+		</subHeader> 
+	<content>
+<!-- 	<HBox alignItems="Center" justifyContent="Center"> -->
+
+<!-- </HBox> -->
+	<f:SimpleForm  minWidth="1024"
+		maxContainerCols="2" editable="true" layout="ResponsiveGridLayout"
+		labelSpanL="4" labelSpanM="4" emptySpanL="1" emptySpanM="1" columnsL="3"
+		columnsM="2" class="editableForm">
+		<f:content>			
+			
+			<Label text="Cause of Removal" required="true" />
+			<Select enabled="true" id="idTyrLoc1" change="TyreLocChange" />
+
+			<Label text="Service Abuse" required="true" />
+			<Input enabled="true" id="idMJDefect" valueHelpRequest="onMjrDft"
+				valueHelpOnly="true" showValueHelp="true" visible="false"/>
+				
+			<Label text="Service Abuse Code" visible="false" />
+			<Input enabled="true" id="idMJDefectCode" 
+				valueHelpOnly="true" showValueHelp="true" visible="false"/>	
+			
+			<Label text="Adjustable Defect"  />
+			<Input enabled="true" id="idMNGrp" valueHelpRequest="onMnrDft"
+				valueHelpOnly="true" showValueHelp="true" visible="false"/>	
+				
+			<Label text="Adjustable Defect Code" visible="false" />
+			<Input enabled="true" id="idMNGrpCode" 
+				valueHelpOnly="true" showValueHelp="true" visible="false"/>					
+				
+				
+				
+		</f:content>
+	</f:SimpleForm>
+	</content>
+		<buttons>
+			<Button text="OK"   visible="true" press="onTyreOk1" />
+	 		<Button text="Cancel"   visible="true" press="onTyreClose1" />
+		</buttons>	
+</Dialog>
+</core:FragmentDefinition>

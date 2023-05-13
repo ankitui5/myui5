@@ -1,0 +1,88 @@
+<core:FragmentDefinition xmlns="sap.m" 
+						xmlns:core="sap.ui.core" 
+						xmlns:f="sap.ui.layout.form"
+						>
+	<Dialog showHeader="false" id="iDKing" class="sapUiSizeCompact" contentWidth="70%" >
+	<subHeader>
+			<Bar>
+				<contentMiddle>
+					<Text text="Details" />
+				</contentMiddle>
+			</Bar>
+		</subHeader> 
+	<content>
+	<HBox justifyContent="SpaceBetween">
+		<ObjectStatus id="IdObjN1" state="Success" />
+		<ObjectStatus id="IdObjN3" state="Success" />
+		<ObjectStatus id="IdObjN2" state="Success" />
+	</HBox>
+	
+	<f:SimpleForm minWidth="1024" maxContainerCols="2" editable="true" layout="ResponsiveGridLayout"
+		labelSpanL="4" labelSpanM="4" emptySpanL="1" emptySpanM="1" columnsL="3" columnsM="2" class="editableForm">
+		<f:content>
+			<core:Title text="        Previous Reading" />
+				<Label text="IP Condition" />
+			<Select id="idEarSped" enabled="false" forceSelection="false" selectedKey="{Recodings>/IpCondition}">
+				<core:Item text="Hot" key="H" />
+				<core:Item text="Cold" key="C" />
+			</Select>
+				<Label text="IP (PSI)"  />
+			<Input enabled="false" id="idEarCon" maxLength="3" change="onIpPsiChange" value="{Recodings>/IpPsi}" liveChange="NumberValid" />
+				<Label text="New Tyre NSD (mm)" design="Bold"  />
+			<Input enabled="false" id="idEarRou1" maxLength="4" value="{Recodings>/OrigNsd}" />
+				<!-- <Label text="" />
+				<Text /> -->
+				<Label text="G1 (mm)" required="true" />
+			<Input enabled="false" id="idEarLed1"  maxLength="4" value="{Recodings>/G1Nsd}" liveChange="NumberValid" change="onGCha" />
+				<Label text="G2 (mm)" required="true" />
+			<Input enabled="false" id="idEarSped1" maxLength="4" value="{Recodings>/G2Nsd}" liveChange="NumberValid" />
+				<Label text="G3 (mm)" required="true" />
+			<Input enabled="false" id="idEarCon1" maxLength="4" value="{Recodings>/G3Nsd}" liveChange="NumberValid" />
+				<Label text="G4 (mm)" />
+			<Input enabled="false" id="idEarGvw" maxLength="4" value="{Recodings>/G4Nsd}" liveChange="NumberValid" />
+				<Label text="Min Nsd (mm)" visible="false" />
+			<Input enabled="false" visible="false" id="idMin" value="{Recodings>/MinNsd}" />	
+				<Label text="Remarks" />
+			<TextArea enabled="false" id="idEarPSI1"  maxLength="50" value="{Recodings>/Remarks}" />	
+			
+		<core:Title text="Current Reading" />
+			
+			<Label text="IP Condition" required="true" />
+			<Select enabled="true" id="idNIp" forceSelection="false">
+				<core:Item text="Hot" key="H" />
+				<core:Item text="Cold" key="C" />
+			</Select>
+				<Label text="IP (PSI)" required="true" />
+			<Input enabled="true" id="idNPsi" maxLength="3" change="onIpPsiChange"  liveChange="NumberValid" />
+				<Label text="KM Suspended" />
+			<Input enabled="true" id="idNKm"  maxLength="6" liveChange="validSuspended" visible="false" />
+				
+				<Label text="KM Covered" />
+			<Input enabled="false" id="idNKMCov" />
+				
+				<Label text="G1 (mm)" required="true" />
+			<Input enabled="true" id="idNG1" maxLength="4" liveChange="NsdValid" change="onGCha" />
+				
+				<Label text="G2 (mm)" required="true" />
+			<Input enabled="true" id="idNG2" maxLength="4" liveChange="NsdValid" />
+				
+				<Label text="G3 (mm)" required="true" />
+			<Input enabled="true" id="idNG3"  maxLength="4" liveChange="NsdValid" />
+				
+				<Label text="G4 (mm)" />
+			<Input enabled="true" id="idNG4" maxLength="4" liveChange="NsdValid" />
+				
+				<Label text="Min Nsd (mm)" visible="false" />
+			<Input enabled="false" visible="false" id="idNMin" value="{Recodings>/NMinNsd}" />	
+				
+				<Label text="Remarks" required="true" />
+			<TextArea enabled="true" id="idNRem" maxLength="100" />		
+		</f:content>
+	</f:SimpleForm>
+	</content>
+		<buttons> 
+			<Button text="Save" visible="true" press="onTabelEntrieOk" />
+			<Button text="Cancel" visible="true" press="onTabelEntriesClose" />		
+		</buttons>	
+</Dialog>
+</core:FragmentDefinition>

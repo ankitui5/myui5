@@ -1,0 +1,39 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Dialog showHeader="false" class="sapUiSizeCompact" contentWidth="70%" draggable="true" >
+	<subHeader>
+			<Bar>
+				<contentMiddle>
+					<Label text="Service sheet" design="Bold" />
+				</contentMiddle>
+			</Bar>
+		</subHeader> 
+	<content>
+	<ScrollContainer
+		height="300px"
+		width="100%"
+		horizontal="false"
+		vertical="true"
+		focusable="true">
+		
+	<HBox justifyContent="SpaceBetween">
+	<ObjectStatus id="IdObj1"
+		state="Success"		 />
+		<ObjectStatus id="IdObj5"
+		state="Success"		 />
+				<ObjectStatus id="IdObj" state="Success" />
+	</HBox>
+	<Table id="Servicetbl" mode="MultiSelect" select="OnTableSelect">
+				<columns>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Label design="Bold" text="Service Name" />
+					</Column>
+				</columns>
+			</Table>
+			</ScrollContainer>
+	</content>
+		<buttons>
+			<Button text="OK"   visible="true" press="onTabelServiceOK" />
+		</buttons>	
+</Dialog>
+</core:FragmentDefinition>
