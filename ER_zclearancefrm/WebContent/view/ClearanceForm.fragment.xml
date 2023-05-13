@@ -1,0 +1,67 @@
+<core:FragmentDefinition 
+		xmlns="sap.m"
+		xmlns:f="sap.ui.layout.form" 
+		xmlns:core="sap.ui.core" 
+		xmlns:l="sap.ui.layout">
+<!-- <Dialog xmlns="sap.m" title="NO DUES/CLEARANCE FORM"  contentWidth="80%" contentHeight="70%" class="sapUiSizeCompact"> -->
+<Dialog xmlns="sap.m" title="NO DUES/CLEARANCE FORM"  contentWidth="75%" contentHeight="75%" class="abcsapUiSizeCompact">
+<content>
+<Panel id="Panel1" class="Custom_Frag">
+<Table id="idTable" items="{getQuestionAnsJModel>/}" visible="true" showNoData="false" alternateRowColors="true" class="clsfrag"> 
+
+		<headerToolbar>
+			<Toolbar class="toolbarfrag">
+			<ToolbarSpacer />
+				<!-- <Text text="Reports" /> -->
+				<Text id="idEmpName" text=""  />
+			<ToolbarSpacer />
+			    <Text id="idEmpId" text=""  />
+			<ToolbarSpacer />
+									
+			</Toolbar>
+		</headerToolbar>
+				<columns>
+					<Column width="2rem" minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+						<Label text="S.No" design="Bold"/>
+					</Column>
+								
+					<Column width="20rem" minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+						<Label text="Check Points" design="Bold"/>
+					</Column>
+					
+					<Column width="8rem"  minScreenWidth="Tablet"  hAlign='Center' demandPopin="true">
+						<Label text="Answer" design="Bold"/>
+					</Column>
+										
+					<Column width="15rem" minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+						<Label text="Comment" design="Bold"/>
+					</Column>	
+				</columns>
+				
+				<items>
+				
+					<ColumnListItem>
+						<cells>
+							 <Text   text="{getQuestionAnsJModel>Serial}"/>
+							 <Text   text="{getQuestionAnsJModel>Question}" />
+							 <Select selectedKey="{getQuestionAnsJModel>Answer}" items="" forceSelection="false">
+							 </Select>
+						<!--<Textarea value="{getQuestionAnsJModel>Remarks}" rows="1" Cols="6" /> -->
+							 <Input  enabled="true" value="{getQuestionAnsJModel>Remarks}"/>
+						</cells> 
+				   </ColumnListItem> 
+			   </items>
+			    
+	 </Table>  
+</Panel>	 
+</content> 
+
+<beginButton>
+	<Button text="Submit" id="idsubmit" press="onCloseForm" />
+</beginButton>
+<endButton>
+	<Button text="Cancel" press="Oncancel" /> 
+</endButton>
+</Dialog>
+</core:FragmentDefinition>
+
