@@ -1,0 +1,15 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<ViewSettingsDialog
+		confirm="handleConfirm">
+		<sortItems>
+			<ViewSettingsItem text="Reg. No." key="RegNo" selected="true" />
+			<ViewSettingsItem text="Inspection No." key="InspNo" />
+		</sortItems>
+		<groupItems>
+			<ViewSettingsItem text="Configuration" key="ConfigCodeDesc" />
+			<ViewSettingsItem text="Inspection Hub" key="LastInspHub" />
+		</groupItems>
+	</ViewSettingsDialog>
+</core:FragmentDefinition>

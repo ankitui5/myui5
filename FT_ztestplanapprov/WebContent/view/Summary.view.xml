@@ -1,0 +1,167 @@
+<core:View xmlns:core="sap.ui.core" 
+		   xmlns:mvc="sap.ui.core.mvc" 
+		   xmlns:l="sap.ui.layout"
+           xmlns="sap.m" 
+           xmlns:t="sap.ui.table"
+           xmlns:fb="sap.ui.comp.filterbar"
+           xmlns:f="sap.ui.layout.form" 
+           controllerName="ztestplanapprov.view.Summary"
+           xmlns:html="http://www.w3.org/1999/xhtml">
+ 	<Page title="Pending For Approval" class="mainPage">
+		<content>
+		     <Panel>
+	<l:VerticalLayout width="100%">
+					<fb:FilterBar reset="onReset" search="onSearch" showRestoreButton="true" showClearButton="true">
+						<fb:filterItems>
+							<fb:FilterItem name="A" label="Test Request Number" design="Bold" TextColor="#e78c07" >
+								<fb:control>
+									<Input id="inpPlanNo" valueHelpRequest="onTestPlanNoHelp"
+											valueHelpOnly="true" showValueHelp="true" />
+								</fb:control>
+							</fb:FilterItem>
+
+							<!-- <fb:FilterItem name="B" label="Test Request Date" labelTooltip="Tooltip Example" mandatory="false">
+								<fb:control>
+									<Select id="selectReqDate" forceSelection="false">
+										<core:Item text="Last One Month" key="01"></core:Item>
+										<core:Item text="Any" key="02"></core:Item>
+										<core:Item text="Today" key="03"></core:Item>
+										<core:Item text="Today and Yesterday" key="04"></core:Item>
+										<core:Item text="Last Seven Days" key="05"></core:Item>
+										<core:Item text="Last One Month" key="06"></core:Item>
+										<core:Item text="Manual Selection" key="07"></core:Item>
+									</Select>
+								</fb:control>
+							</fb:FilterItem>
+
+							<fb:FilterItem name="C" label="Test Plan Date" labelTooltip="Tooltip Example" mandatory="false">
+								<fb:control>
+									<Select id="selectPlanDate" forceSelection="false">
+										<core:Item text="Last One Month" key="01"></core:Item>
+										<core:Item text="Any" key="02"></core:Item>
+										<core:Item text="Today" key="03"></core:Item>
+										<core:Item text="Today and Yesterday" key="04"></core:Item>
+										<core:Item text="Last Seven Days" key="05"></core:Item>
+										<core:Item text="Last One Month" key="06"></core:Item>
+										<core:Item text="Manual Selection" key="07"></core:Item>
+									</Select>
+								</fb:control>
+							</fb:FilterItem>
+ -->
+							<fb:FilterItem name="B" label="Product Category">
+								<fb:control>
+									<MultiComboBox  selectionChange="handleSelectionChange" id="idProdCat"
+													selectionFinish="handleSelectionFinish" width="500px">
+										<!--  items="{
+												path: '/d/results',
+												sorter: { path: 'ProdCat' }
+											}" >   -->
+										<core:Item key="{'ProdCat'}" text="{'ProdCat'}" />
+										
+										<core:Item key="1" text="A" />
+										<core:Item key="2" text="B" />
+										<core:Item key="3" text="C" />
+										<core:Item key="4" text="D" />
+	
+									</MultiComboBox>
+								</fb:control>
+							</fb:FilterItem>
+<fb:FilterItem name="C" label="Test Request Date">
+<fb:control>
+		    <DateRangeSelection	id="idDate" change="handleDate" />
+</fb:control>
+</fb:FilterItem>
+
+							<!-- <fb:FilterItem name="D" label="Test Request Status">
+								<fb:control>
+									<MultiComboBox selectionChange="handleSelectionChange"
+										selectionFinish="handleSelectionFinish" width="500px">
+										items="{
+												path: '/ProductCollection',
+												sorter: { path: 'ProdCat' }
+											}">
+										<core:Item key="1" text="Pending For Acceptance by PTG" />
+										<core:Item key="2" text="Approved" />
+										<core:Item key="3" text="Rejected" />
+										<core:Item key="4" text="Revised" />
+										<core:Item key="5" text="Pending For Approval by HOD Design" />
+									</MultiComboBox>
+								</fb:control>
+							</fb:FilterItem> -->
+						</fb:filterItems>
+					</fb:FilterBar>
+				</l:VerticalLayout>
+		    </Panel>
+	    
+	<t:Table id="idTable" rows="" title="Test Plans" selectionMode="None" visibleRowCountMode="Fixed" 
+		 visibleRowCount="7" class="copa_sec">
+		 
+		<!-- <t:toolbar>
+			<Toolbar id="UITyreTableToolbar">
+					<Title id="UITyreTableTitle" level="H2" text="Test Requests" visible="true" />
+			<ToolbarSpacer />
+			</Toolbar>
+		</t:toolbar> -->
+		
+		  <t:columns >
+                <t:Column width="8rem" hAlign='Center'>
+                  <Label text="Test Plan Number" design="Bold"/>
+                  <t:template>
+                   <Text text="{}" enabled="false"/>
+                  </t:template>
+                </t:Column>
+                 <t:Column width="9rem" hAlign='Center'>
+                  <Label text="Revision Test Plan Number" design="Bold"/>
+                  <t:template>
+                   <Text text="{}" enabled="false"/>
+                  </t:template>
+                </t:Column>
+                 <t:Column width="6rem" hAlign='Center'>
+                  <Label text="Test Request Date" design="Bold"/>
+                  <t:template>
+                   <Text text="{}" enabled="false"/>
+                  </t:template>
+                </t:Column>
+                 <t:Column width="6rem" hAlign='Center'>
+                  <Label text="Test Plan Date" design="Bold"/>
+                   <t:template>
+                   <Text text="{}" enabled="false"/>
+                  </t:template>
+                </t:Column>
+                <t:Column width="6rem" hAlign='Center'>
+                  <Label text="Product Category" design="Bold"/>
+                     <t:template>
+                   <Text text="{}" enabled="false"/>
+                  </t:template>
+                </t:Column>
+                 <t:Column width="4rem" hAlign='Center'>
+                  <Label text="PTG" design="Bold"/>
+                     <t:template>
+                   <Text text="{}" enabled="false"/>
+                  </t:template>
+                </t:Column>      
+                <t:Column width="4rem" hAlign='Center'>
+                  <Label text="HOD Design" design="Bold"/>
+                     <t:template>
+                   <Text text="{}" enabled="false"/>
+                  </t:template>
+                </t:Column>  
+                 <t:Column width="4rem" hAlign='Center'>
+                  <Label text="Tech Director" design="Bold"/>
+                     <t:template>
+                   <Text text="{}" enabled="false"/>
+                  </t:template>
+                </t:Column>
+           </t:columns>		
+
+	 </t:Table>
+
+		</content>
+		 <footer>
+			<Toolbar>
+			<Label text="JK Tyre and Industries Ltd."></Label>
+			</Toolbar>
+		</footer>
+	</Page>
+	
+</core:View>

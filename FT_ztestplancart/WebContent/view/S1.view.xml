@@ -1,0 +1,83 @@
+<core:View xmlns:core="sap.ui.core" 
+		   xmlns:mvc="sap.ui.core.mvc" 
+		   xmlns="sap.m" 
+		   xmlns:f="sap.ui.layout.form"
+		   xmlns:l="sap.ui.layout"	
+		   controllerName="com.acute.ztestplancart.view.S1" 
+		   class="sapUiSizeCompact" 
+		   xmlns:html="http://www.w3.org/1999/xhtml">
+<html:style>
+
+.copa_sec table thead tr th{
+	background:#d5e7f3;
+	text-align:center !important;
+	border:1px solid #ddd; /*SS*/
+}
+
+.sapMIBar-CTX .sapMTitle {
+    color: #666666;
+    text-shadow: 0 0 0.125rem #ffffff;
+    font-weight: bold !important;
+}
+
+</html:style>
+
+	<Page title="TEST PLANS CART" level="h4" class="sapUiStdPage" enableScrolling="true">
+		<content>
+			    
+		<Table id="tableVehicle" items="{CartListSetJModel>/}" visible="true" showNoData="false">
+							<headerToolbar>
+								<Toolbar>
+									<Text text="Temporary Test Plans" />
+									<ToolbarSpacer />
+									<!-- <Button text="" press="onDownload1" icon="sap-icon://download" type="Emphasized" enabled="false" /> -->
+								</Toolbar>
+							</headerToolbar>
+							<columns>
+								<Column minScreenWidth="Tablet" hAlign='Center' width="15rem" demandPopin="true">
+									<Label text="Plan Number" design="Bold" />
+								</Column>
+								<Column minScreenWidth="Tablet" hAlign='Center' width="8rem" demandPopin="true">
+									<Label text="Revision Plan No." design="Bold" />
+								</Column>
+								<Column minScreenWidth="Tablet" hAlign='Center' width="8rem" demandPopin="true">
+									<Label text="Test Plan Date" design="Bold" />
+								</Column>
+								<Column minScreenWidth="Tablet" hAlign='Center' width="15rem" demandPopin="true">
+									<Label text="Request Number" design="Bold" />
+								</Column>
+								<Column minScreenWidth="Tablet" hAlign='Center' width="10rem" demandPopin="true">
+									<Label text="Revision Request No." design="Bold" />
+								</Column>
+								<Column minScreenWidth="Tablet" hAlign='Center' width="10rem" demandPopin="true">
+									<Label text="Category" design="Bold" />
+								</Column>
+								
+<!-- 								<Column minScreenWidth="Tablet" hAlign='Center' width="6rem" demandPopin="true">
+									<Label text="" design="Bold" />
+								</Column> -->
+							</columns>
+							<items>
+						      <ColumnListItem >
+						        <cells>
+						      		<Link text="{CartListSetJModel>TestPlanNumber}" press="displayRequest" />
+						            <Text text="{CartListSetJModel>PlanRevNo}" />
+						            <Text text="{CartListSetJModel>TestPlanDate}" />
+						            <Text text="{CartListSetJModel>TestRequestNumber}" />
+						            <Text text="{CartListSetJModel>ReqRevNo}" />
+						            <Text text="{CartListSetJModel>TestCatDesc}" />
+						            <!-- <Button text="" icon="sap-icon://print" press="OnPrint" /> -->
+						        </cells>
+						      </ColumnListItem>
+						    </items>
+
+						</Table>
+						
+		</content>
+		 <footer>
+			<Toolbar>
+			<Label text="JK Tyre and Industries Ltd." />
+			</Toolbar>
+		</footer>
+	</Page>
+</core:View>

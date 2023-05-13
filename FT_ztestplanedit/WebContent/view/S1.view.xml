@@ -1,0 +1,227 @@
+<core:View xmlns:core="sap.ui.core" 
+		   xmlns:mvc="sap.ui.core.mvc" 
+		   xmlns="sap.m" 
+		   xmlns:f="sap.ui.layout.form"
+	       xmlns:l="sap.ui.layout"	
+	       controllerName="ztestplanedit.view.S1" 
+	       class="sapUiSizeCompact" 
+	       xmlns:html="http://www.w3.org/1999/xhtml"
+	       >
+<html:style>
+
+.copa_sec table thead tr th{
+	background:#d5e7f3;
+	text-align:center !important;
+	border:1px solid #ddd; /*SS*/
+	}
+	
+.sapMText{
+ 
+ text-shadow: 0px rgba(255,255,255,0.5) !important;
+ font-weight: bold !important;  
+}
+
+.sapMTB-Transparent-CTX .sapMText {
+    font-weight: normal !important;
+    text-shadow: none !important;
+    color: #333333 !important;
+    font-weight: bold !important;
+}
+ 
+.sapMIBar > .sapMBarChild:last-child {
+    margin-right: 0.25rem !important;
+    font-weight: 900 !important;
+}
+
+.sapUiSizeCompact .sapMTB.sapMListHdrTBar {
+    height: 2rem !important;
+}
+</html:style>
+
+	<Page title="EDIT TEST PLANS" level="h4" class="sapUiStdPage" enableScrolling="true">
+		<content>
+
+		<VBox class="">			
+			
+			 <f:SimpleForm  minWidth="1024" maxContainerCols="3" editable="true" layout="ResponsiveGridLayout"
+		       labelSpanL="4" labelSpanM="4" emptySpanL="1" emptySpanM="1" columnsL="2" columnsM="3" class="editableForm">
+						<f:content>
+		 
+		 <core:Title id="V_1" level="h4" text="Selection Criteria" visible="false"/>
+		    
+		   <!--  <Label id="testDatelbl" text="Test Plan Date" design="Bold" required="true" />
+			<DateRangeSelection enabled="true" visible="true"  id="idPlnDate"/> -->
+			<!--CHNAGE BY BHUSHAN(09-SEP-2019)-->
+			
+			<Label id="lblDate" text="Date Range" design="Bold" >
+	    <layoutData>
+		<l:GridData span="XL4 L4 M4 S3"/>
+		</layoutData>
+		</Label>
+		
+		<DatePicker id="fromDate"  displayFormat="dd.MM.yyyy" change="handledatefrom"> 
+		            
+				<layoutData>
+					<l:GridData span="XL5 L3 M2 S1"/>
+				</layoutData>
+			</DatePicker>
+			<Text text="To">
+				<layoutData>
+					<l:GridData span="XL1 L1 M1 S1"/>
+				</layoutData>
+			</Text>
+			<DatePicker id="toDate"  displayFormat="dd.MM.yyyy" change="handledateto">
+				<layoutData>
+					<l:GridData span="XL5 L3 M2 S1"/>
+				</layoutData>
+			</DatePicker>
+					
+			<core:Title id="V_01"  text="" visible="false"/>
+			
+			<Label id="testStatusLbl" text="Test Plan Status" design="Bold" required="true" />
+	       <Select id="idPlanStatus" change="onchangeStatus" forceSelection="false">
+				<items>
+				<core:Item text="Pending by PTG for Approval" key="PAPP" />
+				<core:Item text="Pending by PDC for Approval" key="PAPR" />
+				<core:Item text="Approved" key="APPR" />
+				<core:Item text="Authorized By TD" key="AUTH" />
+				<core:Item text="Closed" key="CLSD" />
+				<core:Item text="On Hold" key="HOLD" />
+				<core:Item text="All" key="ALL" />
+				<core:Item text="Modification Allowed" key="EDIT" />
+				</items>
+				</Select>
+			<Label></Label>
+			<Button id="btnSearch" text="Go" type="Emphasized" press="onSearch">
+			        <layoutData>
+					<l:GridData span="L3 M2 S1"/>
+					</layoutData>
+			</Button>
+			
+			<Button id="btnClear" text="Clear" type="Emphasized" press="onClear">
+			        <layoutData>
+					<l:GridData span="L4 M2 S1"/>
+					</layoutData>
+			</Button>
+		
+		</f:content>
+	</f:SimpleForm>
+<!-- End Filter -->
+				
+			<Panel id="Panel1" visible="true" class="copa_sec"> 
+	
+				<Toolbar id="toolbarCT" class="clstoolbar">
+						<ToolbarSpacer></ToolbarSpacer>
+						<Text text="Legend :" TextColor="#e78c07"></Text>
+						
+						<core:Icon src="sap-icon://employee-approvals" color="#e78c07">
+							<core:layoutData>
+								<FlexItemData growFactor="1" />
+							</core:layoutData>
+						</core:Icon>
+						
+						<Text text="Pending by PTG for Approval"></Text> 	
+ 						<core:Icon src="sap-icon://employee-approvals" color="#617d96">
+							<core:layoutData>
+								<FlexItemData growFactor="1" />
+							</core:layoutData>
+						</core:Icon>						
+						
+						<Text text="Pending by PDC for Approval"></Text>
+						<core:Icon src="sap-icon://complete" color="#2b7d2b">
+							<core:layoutData>
+								<FlexItemData growFactor="1" />
+							</core:layoutData>
+						</core:Icon>
+						
+ 						<Text text="Authorized By TD"></Text> 						
+ 						<core:Icon src="sap-icon://complete" color="#2b7d2b">
+							<core:layoutData>
+								<FlexItemData growFactor="1" />
+							</core:layoutData>
+						</core:Icon>
+ 						<Text text="Approved"></Text>
+
+						<core:Icon src="sap-icon://decline" color="#e78c07">
+							<core:layoutData>
+								<FlexItemData growFactor="1" />
+							</core:layoutData>
+						</core:Icon>
+						<Text text="Closed"></Text>
+
+						<core:Icon src="sap-icon://documents" color="#e78c07">
+							<core:layoutData>
+								<FlexItemData growFactor="1" />
+							</core:layoutData>
+						</core:Icon>
+						<Text text="On Hold"></Text>
+
+						<core:Icon src="sap-icon://synchronize" color="#e78c07">
+							<core:layoutData>
+								<FlexItemData growFactor="1" />
+							</core:layoutData>
+						</core:Icon>
+						<Text text="Modification Allowed"></Text>
+
+						<ToolbarSpacer />
+					</Toolbar>
+			</Panel>
+				</VBox>		
+			
+	    
+		<Table id="tableVehicle" items="{CartListSetJModel>/}" visible="true" showNoData="false" 
+				alternateRowColors="true" >
+
+							<columns>
+								<Column width="15rem" minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+									<Label text="Plan Number" design="Bold"/>
+								</Column>
+								
+								<Column width="10rem" minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+									<Label text="Revision No." design="Bold"/>
+								</Column>
+								
+								<Column width="10rem" minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+									<Label text="Test Plan Date" design="Bold"/>
+								</Column>
+								
+								<Column width="15rem" minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+									<Label text="Request Number" design="Bold"/>
+								</Column>
+								
+								<Column width="10rem" minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+									<Label text="Status" design="Bold"/>
+								</Column>
+								
+								<Column width="10rem" minScreenWidth="Tablet" hAlign='Center' demandPopin="true" >
+									<Label text="" design="Bold"/>
+								</Column>
+							</columns>
+							<items>
+						      <ColumnListItem >
+						        <cells>
+						      		<Link text="{CartListSetJModel>TestPlanNumber}" press="displayRequest" />
+						            <Text text="{CartListSetJModel>PlanRevNo}" />
+						            <Text text="{CartListSetJModel>TestPlanDate}" />
+						            <Text text="{CartListSetJModel>TestRequestNumber}" />
+						            <!-- <Text text="{CartListSetJModel>ReqRevNo}" />
+						            <Text text="{CartListSetJModel>TestCatDesc}" /> -->
+						            <core:Icon src="{path:'CartListSetJModel>Status', formatter: 'ztestplanedit.util.formatte.setIcon'}"
+             		  					  color="{path:'CartListSetJModel>Status', formatter: 'ztestplanedit.util.formatte.setColor'}" />
+						          
+						            <Button icon="sap-icon://print" press="OnPrint"/>
+						              
+						        </cells>
+						      </ColumnListItem>
+						    </items>
+
+						</Table>
+						
+		</content>
+		 <footer>
+			<Toolbar>
+			<Label text="JK Tyre and Industries Ltd."></Label>
+			</Toolbar>
+		</footer>
+	</Page>
+</core:View>

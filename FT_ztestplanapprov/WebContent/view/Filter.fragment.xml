@@ -1,0 +1,19 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+  <ViewSettingsDialog id="idViewSettingsDialog" confirm="onConfirm">
+    <sortItems>
+       <ViewSettingsItem key="Age" text="Age"/>
+      <!-- <ViewSettingsItem key="City" text="City"/> -->
+    </sortItems>
+    <!-- <groupItems>
+      <ViewSettingsItem key="City" text="City"/>
+    </groupItems> -->
+    <!-- <filterItems>
+      <ViewSettingsFilterItem key="Age" text="Age" multiSelect="true">
+        <items>
+          <ViewSettingsItem key="Age___GT___25___X" text="Greater than 25"/>
+        </items>
+      </ViewSettingsFilterItem>
+    </filterItems> -->
+  </ViewSettingsDialog>
+</core:FragmentDefinition>
