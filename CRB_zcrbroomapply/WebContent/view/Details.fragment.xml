@@ -1,0 +1,28 @@
+<core:FragmentDefinition
+		xmlns="sap.m"
+		xmlns:f="sap.ui.layout.form"
+		xmlns:core="sap.ui.core">
+	<ResponsivePopover
+			id="detailsPopover"
+			title="{Ernam}"
+			class="sapUiPopupWithPadding"
+			placement="Auto">
+		<beginButton>
+			<Button text="Edit" type="Emphasized" press="handleEditButton"/>
+		</beginButton>
+		<endButton>
+			<Button text="Delete" press="handleDeleteAppointment"/>
+		</endButton>
+		<f:SimpleForm
+				editable="false"
+				layout="ResponsiveGridLayout"
+				singleContainerFullSize="false">
+			<Label text="Additional information" labelFor="moreInfo"/>
+			<Text id="moreInfo" text="{Pernr}"/>
+			<Label text="From" labelFor="startDate"/>
+			<Text id="startDate" text="{path:'Sdate',formatter:'zcrbroomapply.util.Formatter.date1'}"/>
+			<Label text="To" labelFor="endDate"/>
+			<Text id="endDate" text="{path:'Edate',formatter:'zcrbroomapply.util.Formatter.date1'}"/>
+		</f:SimpleForm>
+	</ResponsivePopover>
+</core:FragmentDefinition>

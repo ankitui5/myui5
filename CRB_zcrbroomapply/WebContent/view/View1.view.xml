@@ -1,0 +1,244 @@
+ <core:View
+		controllerName="zcrbroomapply.view.View1"
+		xmlns:core="sap.ui.core"
+		xmlns:unified="sap.ui.unified"
+		xmlns:f="sap.ui.layout.form"
+		xmlns:l="sap.ui.layout"
+		class="sapUiSizeCompact"
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns="sap.m">
+<Page title="Conference Room Booking" class="sapUiNoContentPadding pageTitle">
+<content>
+
+ 	<Toolbar >
+				<HBox >
+						<Label text="User Name: " design="Bold" />
+						<VBox width="1rem"/>
+						<Text id="idName" class="textBold"></Text>
+				</HBox>
+				<ToolbarSpacer></ToolbarSpacer>
+				<Label text="Location: " design="Bold" />
+				<VBox width="1rem"/>
+				<Text id="idLocation" class="textBold"></Text>
+			<ToolbarSpacer></ToolbarSpacer>
+				<HBox >
+					<Text id="idDate" class="textBold"	></Text>
+					<VBox width="0.5rem"/>
+					<Text id="idTime" class="textBold"	></Text>
+				</HBox>
+		</Toolbar>	
+	
+	<Panel >
+	
+	<Toolbar>
+			<HBox>
+				<Label text="Room ID:" design="Bold"/>
+									<VBox width="1rem">
+									</VBox>
+									<Input id="idRoomId" width="50%" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="onRoomIdF4"/>
+			</HBox>
+		<ToolbarSpacer></ToolbarSpacer>
+			
+	</Toolbar>
+	
+	</Panel>
+	<!-- <l:VerticalLayout width="100%">
+         		<l:Grid>
+         			<l:content>
+         				<VBox alignItems="Center" alignContent="Center">
+         					<VBox alignItems="Center" alignContent="Center">
+         						<Label text=""/>
+         							<HBox alignItems="Center" alignContent="Center">
+									
+									</HBox>
+							</VBox>
+								<layoutData>
+									<l:GridData span="XL3 L3 M6 S12"></l:GridData>
+								</layoutData>
+						</VBox>
+					</l:content>
+				</l:Grid>
+			</l:VerticalLayout>
+	 -->
+	<!--  id="PC1"
+				startDate="{path: '/startDate'}"
+				rows="{path: '/people'}"
+				appointmentsVisualization="Filled"
+				appointmentSelect="handleAppointmentSelect"
+				showEmptyIntervalHeaders="false"
+				legend="planningCalenderLegend"
+				intervalSelect="handleAppointmentAddWithContext"-->
+	
+	<VBox class="sapUiSmallMargin">
+		<PlanningCalendar
+				id="PC1"
+				startDate="{path: '/startDate'}"
+				rows="{path: '/people'}"
+				appointmentsVisualization="Filled"
+				appointmentSelect="handleAppointmentSelect"
+				showEmptyIntervalHeaders="false"
+				legend="planningCalenderLegend"
+				intervalSelect="handleAppointmentAddWithContext">
+			<toolbarContent>
+				<Title text="Title" titleStyle="H4"/>
+				<ToolbarSpacer/>
+				<Button id="addButton" icon="sap-icon://add" press="handleAppointmentCreate" tooltip="Add"/>
+			</toolbarContent>
+			<rows>
+				<PlanningCalendarRow
+						icon="{pic}"
+						title="{name}"
+						text="{role}"
+						appointments="{path : 'appointments', templateShareable: 'true'}"
+						intervalHeaders="{path: 'headers', templateShareable: 'true'}">
+					<appointments>
+						<unified:CalendarAppointment
+								startDate="{start}"
+								endDate="{end}"
+								icon="{pic}"
+								title="{title}"
+								text="{info}"
+								type="{type}"
+								tentative="{tentative}">
+						</unified:CalendarAppointment>
+					</appointments>
+					<intervalHeaders>
+						<unified:CalendarAppointment
+								startDate="{start}"
+								endDate="{end}"
+								icon="{pic}"
+								title="{title}"
+								type="{type}">
+						</unified:CalendarAppointment>
+					</intervalHeaders>
+				</PlanningCalendarRow>
+			</rows>
+		</PlanningCalendar>
+	</VBox>
+
+
+<Panel id="Panel1" class="Custom_Panel">
+	
+					<Table id="tblDetail2" items="" class="classtblhdr labelnew tblgrid " alternateRowColors="false" showNoData="false">
+							
+							<columns>
+								<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="10rem" >
+									<Label text="Employee Separation No." />
+								</Column>
+								<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="10rem">
+									<Label text="Employee Name" />
+								</Column>
+								<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="7rem">
+									<Label text="Employee Id" />
+								</Column>
+								<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="8rem">
+									<Label text="Resignation Date" />
+								</Column>
+							</columns>
+						</Table>
+						<Table id="tblDetail1" items="{EmpListSetJModel>/}" class="labelnew tblgrid classtblhdr" alternateRowColors="true">
+							<columns>
+								<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="10rem">
+								</Column>
+								
+								<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="10rem">
+								</Column>
+								
+								<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="7rem">
+								</Column>
+								
+								<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="8rem">
+								</Column>
+								
+						</columns>
+							<items>
+							<ColumnListItem type ="Active" press="displayRequest">
+							<cells>
+							<Text text="{EmpListSetJModel>ErSno}"/>
+							<Text text="{EmpListSetJModel>EmpName}"/>
+							<Text text="{EmpListSetJModel>EmpId}"/>
+							<Text text="{path:'EmpListSetJModel>ResDate', formatter: 'zesepaapprove.util.Formatter.date2'}" />
+							
+             		   		<Button icon="sap-icon://print" press="onPrint"  type="Accept" visible="false"/>
+             		   		<Button icon="sap-icon://print" press="onReleavingLatter"  type="Accept" visible="false"/>
+							</cells>
+							</ColumnListItem>
+							</items>
+						</Table>
+						</Panel>
+</content>
+<!-- **********************************************Old Code************************************************************ -->
+		<!-- <content>
+		
+		<l:VerticalLayout width="100%">
+         		<l:Grid>
+         			<l:content>
+         				<VBox alignItems="Center" alignContent="Center">
+         					<VBox alignItems="Center" alignContent="Center">
+         						<Label text=""/>
+         							<HBox alignItems="Center" alignContent="Center">
+									<Label text="Room ID:" design="Bold"/>
+									<VBox width="1rem">
+									</VBox>
+									<Input id="idRoomId" width="50%" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="onRoomIdF4"/>
+									</HBox>
+							</VBox>
+								<layoutData>
+									<l:GridData span="XL3 L3 M6 S12"></l:GridData>
+								</layoutData>
+						</VBox>
+					</l:content>
+				</l:Grid>
+			</l:VerticalLayout>
+		<VBox class="sapUiSmallMargin">
+			<PlanningCalendar
+					id="PC1"
+					startDate="{path:'Date',formatter:'zcrbroomapply.util.Formatter.date1'}"
+					rows="{path: '/DateToEmpNvg/results'}"
+					appointmentsVisualization="Filled"
+					appointmentSelect="handleAppointmentSelect"
+					showEmptyIntervalHeaders="true"
+					intervalSelect="handleAppointmentAddWithContext">
+				<toolbarContent>
+					<Title text="Title" titleStyle="H4"/>
+					<ToolBarSpacer></ToolBarSpacer>
+					<Button id="addButton" icon="sap-icon://add" press="handleAppointmentCreate" tooltip="Add"/>
+				</toolbarContent>
+				<rows>
+					<PlanningCalendarRow
+							title="{Ernam}"
+							text="{Pernr}"
+							appointments="{path: 'EmpToDetailNvg/results', templateShareable: true}"
+							intervalHeaders="{path:'EmpToDetailNvg/results', templateShareable: true}">
+						<appointments>
+							<unified:CalendarAppointment
+									startDate="{path:'Sdate',formatter:'zcrbroomapply.util.Formatter.date1'}"
+									endDate="{path:'Edate',formatter:'zcrbroomapply.util.Formatter.date1'}"
+									title="{Subjt}"
+									text="{Remark}">
+									                  
+							</unified:CalendarAppointment>
+						</appointments>
+							<intervalHeaders>
+							<unified:CalendarAppointment
+									startDate="{path:'Sdate',formatter:'zcrbroomapply.util.Formatter.date1'}"
+									endDate="{path:'Sdate',formatter:'zcrbroomapply.util.Formatter.date1'}"
+									title="{Subjt}">
+							</unified:CalendarAppointment>
+						</intervalHeaders>
+					</PlanningCalendarRow>
+				</rows>
+			</PlanningCalendar>
+			</VBox>
+		</content> -->
+		 <footer>
+				<Bar>
+					<contentLeft>	
+						<Label text="JK Tyre Industries Ltd."/>
+					</contentLeft>
+					<contentRight>
+					</contentRight>
+				</Bar>
+			</footer>
+	</Page>
+</core:View>
