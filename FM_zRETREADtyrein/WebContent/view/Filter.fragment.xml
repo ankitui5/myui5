@@ -1,0 +1,11 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+  <ViewSettingsDialog id="idViewSettingsDialog" confirm="onConfirm">
+    <sortItems>
+       <ViewSettingsItem key="Invoice No" text="Vbeln"/>
+       <ViewSettingsItem text="Trade Pattern" key="Matnr" />
+      <!-- <ViewSettingsItem key="City" text="City"/> -->
+    </sortItems>
+   
+  </ViewSettingsDialog>
+</core:FragmentDefinition>
