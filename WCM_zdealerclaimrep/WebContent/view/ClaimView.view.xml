@@ -1,0 +1,405 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:u="sap.ui.unified" xmlns="sap.m" xmlns:f="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout" controllerName="zdealerclaimrep.view.ClaimView"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<html:style>
+	.h1 .sapMIBar-CTX .sapMLabel {
+    color: black;
+    font-size: larger;
+    font-weight: 700;
+    }
+   
+ </html:style>
+	<Page title="Create Display/Edit" class="sapUiSizeCompact h1">
+		<customHeader>
+		<Bar>
+		<contentMiddle>
+		<Label text="Claim Display" ></Label>
+		</contentMiddle>
+		<contentRight>
+		<Button icon="sap-icon://edit"  
+						press="Onedit" visible="false" id="idEdit" tooltip="edit" type="Emphasized" />
+						<Button icon="sap-icon://print"  
+						press="OnPrint" visible="false" id="idPrint" tooltip="Print" type="Accept" />
+		</contentRight>
+		</Bar>
+		</customHeader>
+		<content>	
+		
+	<VBox class="sapUiSmallMargin">
+	<f:SimpleForm id="SimpleFormToolbar0" minWidth="1024"
+		maxContainerCols="3" editable="true" layout="ResponsiveGridLayout"
+		labelSpanL="5" labelSpanM="4" emptySpanL="1" emptySpanM="1" columnsL="3"
+		columnsM="1" class="editableForm">
+		<f:content>
+			<core:Title text="" />
+			<Label text="Claim No" />
+			<Input enabled="false" id="idClaimno" value="{jModel>/d/IClaimNo}" />
+			
+			<Label text="Type of Claim"  />
+			<Input enabled="false" id="idClaim" valueHelpRequest="onTypeofClaim"
+				valueHelpOnly="true" showValueHelp="true" value="{parts:[{path:'jModel>/d/EClaimTypDescr'},{path:'jModel>/d/ClaimTyp'}], formatter:'.formatter.Code'}" />
+			
+			<Label text="Ticket Number" id="idTnolbl" />
+			<Input enabled="false" id="idTno" value="{jModel>/d/TicketNo}"/>
+			
+			<Label text="Complaint Raised By" />
+			<Select change="onCustSelect" forceSelection="false" selectedKey="{jModel>/d/CustType}" enabled="false" id="idCustomer">
+				<layoutData></layoutData>
+			</Select>
+			
+			<!--add new  -->
+			<Label text="Type of Customer"  />
+			<!-- <Input id="idTypeCust" visible="false" enabled="false" value="{jModel>/d/CustType}" valueHelpOnly="true" showValueHelp="true" />  -->
+			<Select change="onCustSelect" visible="false" forceSelection="false" selectedKey="{jModel>/d/CustType}" enabled="false" id="idTypeCust">
+				<layoutData></layoutData>
+			</Select>
+			
+			<Label text="Dealer Name"  />
+			<Input id="idDlName" visible="false" enabled="false" value="{jModel>/d/EDealerName}" valueHelpOnly="true" showValueHelp="true" />
+			<!--end new  -->
+			
+			<Label text="Ticket Source"  />
+			<Input id="idTicketSource" enabled="false" value="{parts:[{path:'jModel>/d/TicketSource'},{path:'jModel>/d/SourceDesc'}], formatter:'.formatter.Code'}" />
+			<!--<Select selectedKey="{jModel>/d/SourceDesc}" forceSelection="false" enabled="false" id="idTicketSource" >
+			</Select> -->
+			
+			
+			<core:Title text="" />
+			<!--add new  -->
+			<Label text="Claim Status"  />
+			<Input id="idClmStatus" visible="false" enabled="false" value="{jModel>/d/ClaimRecDepo}" valueHelpOnly="true" showValueHelp="true" />
+			
+			<Label text="Claim Receiving Depot"  />
+			<Input id="iddepo" enabled="false" value="{jModel>/d/ClaimRecDepo}" valueHelpOnly="true" showValueHelp="true" />
+			
+			
+			<Label text="Ticket Date" id="idTkDatelbl"/>
+			
+				<Input value="{path:'jModel>/d/TicketDate', formatter:'zdealerclaimrep.util.Formatter.date1'}" enabled="false" id="idTkDate"></Input>
+			
+			<Label text="Tyre Fitment Type" />
+				<Select  forceSelection="false" enabled="false" id="idFitment"
+					change="onFitmentChange" selectedKey="{jModel>/d/FitType}">
+				</Select>
+			
+			<Label text="No. Products Under Claim(QTY)" Length="20rem" id="idnpucq" required="true" />
+			<Input enabled="false" value="{jModel>/d/DefectiveTyre}" id="idNoPr" valueHelpRequest="onNoProUndClm" valueHelpOnly="true" showValueHelp="true" />
+			
+			<!-- add New -->
+			<Label text="Dealer Location" Length="20rem" />
+			<Input enabled="false" value="{jModel>/d/EDealerCity1}" visible="false" id="idDlLocation" valueHelpRequest="onNoProUndClm" valueHelpOnly="true" showValueHelp="true" />
+				
+				
+				
+			<core:Title text="" />
+			<Label text="Claim Date" id="idclDatelbl"/>
+			<Input value="{path:'jModel>/d/ClaimDate', formatter:'zdealerclaimrep.util.Formatter.date1'}" enabled="false" id="idclDate"></Input>
+				<!-- <DatePicker id="idclDate" enabled="false" placeholder="Ticket Date"
+				dateValue="" /> -->
+			 
+			<Label text="Letter Ref No"  />
+			<Input id="idlttno" enabled="false" value="{jModel>/d/LetterRefNo}" valueHelpRequest="onTypeofDepo"
+				valueHelpOnly="true" showValueHelp="true"  />
+			
+			<Label text="Letter Ref Date"  />
+			<Input id="idlttdt" enabled="false" value="{path:'jModel>/d/LetterRefDt', formatter:'zdealerclaimrep.util.Formatter.date1'}" valueHelpRequest="onTypeofDepo"
+				valueHelpOnly="true" showValueHelp="true"  />
+				
+		    <Label text="Vehicle mfg. Month/Year"  required="true"/>
+		    <Input id="idMonth" value="{jModel>/d/PurchMonth}" enabled="false" />
+			
+			<Input id="idYear" minLength="4" value="{jModel>/d/PurchYear}"  maxLength="4" liveChange="YearValid" enabled="false">
+					<layoutData>
+						<l:GridData span="XL3 L3 M3 S3"/>
+					</layoutData>
+				</Input>		
+		</f:content>
+	</f:SimpleForm>
+</VBox>
+
+<html:hr/>
+
+
+
+
+
+	<VBox class="sapUiSmallMargin" id="idVbox1">
+	<f:SimpleForm id="SimpleFormToolbar" minWidth="1024"
+		maxContainerCols="2" editable="true" layout="ResponsiveGridLayout"
+		labelSpanL="4" labelSpanM="4" emptySpanL="1" emptySpanM="1" columnsL="2"
+		columnsM="1" class="editableForm">
+		<f:content>
+			<core:Title text="Customer Details" />
+			
+			<Label text="Phone No." required="true" />
+			<Input value="+91" enabled="false" id="idPhone" submit="onEnter">
+				<layoutData>
+					<l:GridData span="XL2 L1 M3 S4" />
+				</layoutData>
+			</Input>
+			<Input enabled="false" type="Tel" liveChange="NumberValid" id="idPhone1" maxLength="13" 
+				value="{path:'jModel>/d/CustomerTelf1', formatter:'zdealerclaimrep.util.Formatter.Mobile'}" />
+				<!-- <Input enabled="false" type="Tel" liveChange="NumberValid" id="idPhone1"
+				submit="onEnter" maxLength="13"
+				value="" /> -->
+				
+			<Label text="Alternate No." required="true" />
+			<Input value="+91" enabled="false" id="idAlt" >
+				<layoutData>
+					<l:GridData span="XL2 L1 M3 S4" />
+				</layoutData>
+			</Input>
+			<Input enabled="false" type="Tel" liveChange="NumberValid" id="idAltNo"
+				 maxLength="13"
+				value="{path:'jModel>/d/CustomerTelf2', formatter:'zdealerclaimrep.util.Formatter.Mobile'}" />
+				<!-- <Input enabled="false" type="Tel" liveChange="NumberValid" id="idAltNo"
+				 maxLength="13"
+				value="" /> -->
+				
+			<Label text="First Name" required="true" />
+			<Input enabled="false" id="idFname" submit="onEnter" value="{jModel>/d/CustomerFname}" liveChange="validateCharacter"/>	
+				
+			<Label text="Last Name" />
+			<Input id="idLname" enabled="false" value="{jModel>/d/CustomerLname}" liveChange="validateCharacter" />
+			
+			<Label text="Address" />
+			<Input id="idAdd1" enabled="false" value="{jModel>/d/CustomerAddr1}" />
+			
+			<Label text="Address" />
+			<Input id="idAdd2" enabled="false" value="{jModel>/d/CustomerAddr2}" />
+			
+			<core:Title text="" />
+			<Label text="Country" required="true" />
+			<Select selectedKey="IN" enabled="false" id="idCountry"
+				forceSelection="true">
+				<items>
+					<core:Item text="India" key="IN" />
+				</items>
+			</Select>
+			
+			<Label text="State" required="true"/>
+			<Input enabled="false" id="idState" valueHelpRequest="onStateHelp"
+				valueHelpOnly="true" showValueHelp="true" value="{jModel>/d/CustomerRegion}" />
+			
+			<Label text="District" required="true" />
+			<Input id="idDistrict" value="{jModel>/d/CustomerCity2}"
+				enabled="false" valueHelpRequest="onDistrictHelp" valueHelpOnly="true"
+				showValueHelp="true" />
+			
+			<Label text="Location" />
+			<Input id="idCity" enabled="false" value="{jModel>/d/CustomerCity1}" />
+			<!-- <Label text="Postal Code" />
+			<Input id="idCode" value="{jModel>/d/CustomerPstlz}" enabled="false" liveChange="NumberValid" /> -->
+			
+			<Label text="Email Id" />
+			<Input id="idEmail" enabled="false" value="{jModel>/d/CustomerEmail}" />
+		</f:content>
+	</f:SimpleForm>
+	
+	<html:hr/>
+	
+	<VBox class="sapUiSmallMargin">
+		<f:SimpleForm id="SimpleFormToolbar1" minWidth="1024"
+			maxContainerCols="2" editable="true" layout="ResponsiveGridLayout"
+			labelSpanL="4" labelSpanM="4" emptySpanL="1" emptySpanM="1" columnsL="2"
+			columnsM="1" class="editableForm">
+			<f:content>
+				
+				<core:Title text="Dealer Details" />
+			
+				<Label text="JK Dealer Code"  />
+				<Input  enabled="false" id="idDelar" valueHelpRequest="onTypeJkDelar"
+				valueHelpOnly="true" showValueHelp="true" value="{parts:[{path:'jModel>/d/DealerName'},
+						{path:'jModel>/d/DealerCode'}], formatter:'.formatter.Code'}" > 
+						<!-- <Input  enabled="false" id="idDelar" valueHelpRequest="onTypeJkDelar"
+				valueHelpOnly="true" showValueHelp="true" value="" > -->
+					<layoutData>
+					<l:GridData span="XL2 L3 M3 S4" />
+				</layoutData>
+				</Input>
+				<!-- <Input  enabled="false" id="idDelarName" value="{parts:[{path:'jModel>/d/EDealerName'},{path:'jModel>/d/DealerCode'}], 
+				formatter:'com.acute.claimEdit.util.Formatter.Code'}" /> -->
+				<Input  enabled="false" id="idDelarName" value="" />
+				
+				<Label text="Street" />
+				<Input enabled="false"  id="idStreet" value="{jModel>/d/EDealerStreet}" />
+				
+				<Label text="City" />
+				<Input enabled="false" id="iddelCity" 
+					value="{jModel>/d/EDealerCity1}" />
+				
+				<Label text="District" />
+				<Input id="iddelDist" enabled="false" value="{jModel>/d/EDealerCity2}" />
+				
+				<Label text="Postal Code" />
+				<Input id="idDealPos" enabled="false" value="{jModel>/d/EDealerPcode}" />
+				
+				<Label text="Phone Number" />
+				<Input id="idDealMobil" enabled="false" value="{jModel>/d/EDealerTelno}" />
+				<core:Title text="OEM Details" />
+				
+				<Label text="Franchise Name" visible="true" id="idFCNameLabel" />
+				<Input enabled="false" visible="true" id="idFCNameInput"
+					value="{jModel>/d/FranhiseName}" valueHelpRequest="onFranch"  valueHelpOnly="true" showValueHelp="true"/>
+				
+				<Label text="Franchise Person Name" visible="true" id="idFNameLabel" />
+				<Input enabled="false" visible="true" value="{jModel>/d/FranhisePerson}"
+					id="idFNameInput" />
+					
+			<Label text="Franchise Email" />
+			<Input id="idfranEmail" enabled="false" value="{jModel>/d/CustomerEmail}" />
+<!-- 				<Label text="Date of Vehicle Purchase" visible="false" id="idDVPLabel" /> -->
+<!-- 				<DatePicker enabled="false" visible="false" id="idDVPInput" -->
+<!-- 					dateValue="{path:'jModel>/d/VechPurcDate', formatter:'com.acute.claimEdit.util.Formatter.date'}" /> -->
+			<Label text="Franchise Phone Number" visible="true" id="idFPNoLabel" />
+			<Input enabled="false" visible="true" id="idFPNoInput"
+					value="{jModel>/d/FranhiseContact}" />
+				
+			<Label text="Franchise Location" visible="true" id="idFcLoc" />
+			<Input enabled="false" visible="true" id="idFranLocation" value="{jModel>/d/FranhiseLocation}" />	
+
+			</f:content>
+		</f:SimpleForm>
+	</VBox>
+</VBox>
+
+	<Panel id="IdPanel" visible="false">
+	<f:SimpleForm id="SimpleFormToolbar04" minWidth="1024"
+		maxContainerCols="3" editable="true" layout="ResponsiveGridLayout"
+		labelSpanL="4" labelSpanM="4" emptySpanL="1" emptySpanM="1" columnsL="3"
+		columnsM="1" class="editableForm">
+		<f:content>
+			<core:Title text="Tyre Details" />
+			<Label text="Item code" />
+			<Input enabled="false" id="idTyreCode" value="{jModel>/d/ItemCodeTyre}" valueHelpRequest="IteamCodeTyre"
+				valueHelpOnly="true" showValueHelp="true" />
+			
+			<Label text="Description"  />
+			<Input enabled="false" id="idTyreodeDsc" value="{jModel>/d/ItemDescTyre}" />
+			
+			<Label text="Stencil Numbe"  />
+			<Input enabled="false" id="idTyreStn" maxLength="11" value="{jModel>/d/StnclNumber}" />
+			
+			<Label text="Mould number" />
+			<Input  enabled="false" id="idTyreMDNo" value="{jModel>/d/MouldNo}">
+				<layoutData></layoutData>
+			</Input>
+			
+			<Label text="Description" />
+			<Input  enabled="false" id="idTyreMDdsc" value="{jModel>/d/OldMatDesc}">
+				<layoutData></layoutData>
+			</Input>
+			
+			<core:Title text="" />
+			<Label text="Product Category"  />
+			<Input id="idTyrePdc" enabled="false" value="{jModel>/d/PrdtCat}" />
+			
+			<Label text="Product Category Dsc"  />
+			<Input id="idTyrePdcds" enabled="false" value="{jModel>/d/PrdtCatDesc}"
+				valueHelpOnly="true" showValueHelp="true" />
+			
+			<Label text="Submission no"/>
+			<Input id="idTyreSubno" enabled="false" value="{jModel>/d/SubmNo}" />
+			
+			<Label text="Tally Flag" />
+			<Input  enabled="false" id="idTyreTally" value="{jModel>/d/TlyFlg}" >
+			</Input>
+				
+				<Label text="Sunmission Reason" />
+				<Input  enabled="false" id="idTyreSubres" value="{jModel>/d/SubmReason}" >
+				</Input>
+			
+			<core:Title text="" />
+			<Label text="Manufacturing Plant" />
+			<Input id="idTyreMfP" enabled="false" value="{jModel>/d/ManfPlnt}" />
+			
+			<Label text="Vehicle Make"  />
+			<Input id="idTyreVmk" enabled="false" valueHelpRequest="onTypeofDepo"
+				valueHelpOnly="true" showValueHelp="true" value="{jModel>/d/VehMake}" />
+			
+			<Label text="Vehicle Model"  />
+			<Input id="idTyreVmodel" enabled="false"  value="{jModel>/d/VehModel}" />
+			
+			<Label text="Registration No"  />
+			<Input id="idTyreRgNo" enabled="false"  value="{jModel>/d/RegNo}"  />
+			
+			<Label text="Chassis No"  />
+			<Input id="idTyreChNo" enabled="false" valueHelpRequest="onTypeofDepo"
+				valueHelpOnly="true" showValueHelp="true" value="{jModel>/d/ChassisNo}" />
+		</f:content>
+	</f:SimpleForm>
+
+</Panel>
+<Panel id="IdPanel1" visible="false">
+<f:SimpleForm id="SimpleFormToolbar05" minWidth="1024"
+		maxContainerCols="2" editable="true" layout="ResponsiveGridLayout"
+		labelSpanL="4" labelSpanM="4" emptySpanL="1" emptySpanM="1" columnsL="2"
+		columnsM="1" class="editableForm">
+		<f:content>
+			<core:Title text="Tube Details" />
+			<Label text="Item code" />
+			<Input enabled="false" id="idTubeCode" value="{jModel>/d/ItemCodeTube}" valueHelpRequest="IteamCodeTube"
+				valueHelpOnly="true" showValueHelp="true" />
+			
+			<Label text="Description"  />
+			<Input id="idTubePdc" enabled="false" value="{jModel>/d/ItemDescTube}" />
+			
+			<!-- <Label text="Batch" />
+			<Input enabled="false" id="idBatch" value="{jModel>/d/BatchTube}" valueHelpRequest="IteamBatchTube"
+				valueHelpOnly="true" showValueHelp="true" /> -->
+			
+			<core:Title text="" />
+			<Label text="Product Category"  />
+			<Input id="idProdCatetube" enabled="false" value="{jModel>/d/PrdtCat}" />
+			
+			<Label text="Product Category Des"  />
+			<Input id="idProdCateDesctube" enabled="false" value="{jModel>/d/PrdtCatDesc}" />
+
+		</f:content>
+	</f:SimpleForm>
+</Panel>
+
+
+<Panel id="IdPanel2" visible="false" >
+	<f:SimpleForm id="SimpleFormToolbar06" minWidth="1024"
+		maxContainerCols="2" editable="true" layout="ResponsiveGridLayout"
+		labelSpanL="4" labelSpanM="4" emptySpanL="1" emptySpanM="1" columnsL="2"
+		columnsM="1" class="editableForm">
+		<f:content>
+			<core:Title text="Flab Details" />
+			<Label text="Item code" />
+			<Input enabled="false" id="idFlapCode" value="{jModel>/d/ItemCodeFlap}" valueHelpRequest="IteamCodeFlap"
+				valueHelpOnly="true" showValueHelp="true" />
+			
+			<Label text="Description"  />
+			<Input id="idFlapPdc" enabled="false" value="{jModel>/d/ItemDescFlap}" />	
+			
+			<core:Title text="" />
+		
+			<Label text="Product Category"  />
+			<Input id="idProdCate" enabled="false" value="{jModel>/d/PrdtCat}" />
+			
+			<Label text="Product Category Des"  />
+			<Input id="idProdCateDesc" enabled="false" value="{jModel>/d/PrdtCatDesc}" />
+
+		</f:content>
+	</f:SimpleForm>
+</Panel>
+										
+		</content>
+		<footer>
+		<Bar>
+				<contentLeft>
+				<!-- <Button id="btnDownload" visible="false" text="Download Format"
+					press="downloadExcel" type="Emphasized" /> -->
+				</contentLeft>
+				<contentRight>
+				<Button text="Item Details" enabled="true" visible="true" type="Accept" press="onItemDetails" id="ItmDtlBtn" icon="sap-icon://show" />
+				
+				<Button text="Back" enabled="true" visible="true" type="Warning" press="onBack" id="backBtn" icon="sap-icon://nav-back" />
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</core:View>

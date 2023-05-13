@@ -1,0 +1,67 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout"
+		controllerName="zclaimstachart.view.subDetails" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="" id="subSetailsPage" class="page3 sub-detail_pg" showNavButton="true" navButtonPress="onBack">
+		<content>
+		   	<VBox>
+		        <Toolbar class="toolbar2">
+	              <ToolbarSpacer></ToolbarSpacer>
+	            <Text text="Line Items Graphical Representation"></Text>
+	              <ToolbarSpacer></ToolbarSpacer>
+	        </Toolbar>
+	        
+	        </VBox>
+		       
+		        
+		        <html:canvas id="subChart2" class="submy_chart2"></html:canvas>
+		        
+		         <Toolbar class="toolbar2">
+	              <ToolbarSpacer></ToolbarSpacer>
+	            <Text text="Line Items Details"></Text>
+	               <ToolbarSpacer></ToolbarSpacer>
+	        </Toolbar>
+		        <Table id="table" visible="true" class="TFtable">
+		<columns>
+			<Column
+				minScreenWidth="Tablet"
+				visible = "false"
+				hAlign="Center">
+				<Label design="Bold" text="Tyre Type" />
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				visible="false"
+				hAlign="Center">
+				<Label design="Bold" text="Tyre Location" />
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				hAlign="Center">
+				<Label design="Bold" text="Location Desc." />
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				visible="false"
+				hAlign="Center">
+				<Label design="Bold" text="Type Desc." />
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				hAlign="Center">
+				<Label design="Bold" text="Total Stock" />
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+			</ColumnListItem>
+		</items>
+	</Table>
+		  </content>
+		   <footer >
+			  <Toolbar>
+	            <ToolbarSpacer></ToolbarSpacer>
+		   
+		         <ToolbarSpacer></ToolbarSpacer>
+		         </Toolbar>
+		</footer>
+	</Page>
+</core:View>

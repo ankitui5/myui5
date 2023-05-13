@@ -1,0 +1,178 @@
+		   <core:View 
+		   xmlns:core="sap.ui.core" 
+		   xmlns:mvc="sap.ui.core.mvc"
+		   xmlns="sap.m"
+		   xmlns:d= "sap.m.LabelDesign.Bold"    	
+		   xmlns:u="sap.ui.unified"
+		   xmlns:f="sap.ui.layout.form"
+	       xmlns:l="sap.ui.layout"
+	       xmlns:sc="sap.suite.ui.commons" 	
+	       xmlns:fb="sap.ui.comp.filterbar"
+	       class="sapUiSizeCompact" 
+	       controllerName="zexposeapprove.view.S1" 
+	       xmlns:html="http://www.w3.org/1999/xhtml"
+	       width="100%"
+		   height="100%">      
+	          
+
+<Page title="Expose Approval" class=" pageTitle sapUiStdPage"  enableScrolling="false">
+<content>
+<VBox>
+	<f:SimpleForm id="myForm1" layout="ResponsiveGridLayout" editable="true" maxContainerCols="2" labelSpanL="4" labelSpanM="3"
+        		  emptySpanL="2" emptySpanM="2" columnsL="2" columnsM="2" minWidth="1024">
+		<f:content>
+			<core:Title/>
+			
+		<Label text="Date" design="Bold"/>
+			<Datepicker id="fromDate">
+				<layoutData>
+					<l:GridData span="L3"/>
+				</layoutData>
+			</Datepicker>
+	 	
+			<!-- <Label text="to">
+				<layoutData>
+					<l:GridData span="L1"/>
+				</layoutData>
+			</Label>
+		 -->
+			<Datepicker id="toDate">
+			<layoutData>
+					<l:GridData span="L3"/>
+				</layoutData>
+			</Datepicker>
+			<Label text="Request Number" design="Bold"/>
+			<Input id="idRequestNumber" type="Text" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="onRequestNumber"/>
+			
+			
+			<core:Title/>
+			
+			<Label text="Status" design="Bold"/>
+			<Select id="idStatus" forceSelection="false" enabled="true">
+				<core:Item key=" " text="Pending for Approval"/>
+				<core:Item key="R" text="Rejected"/>
+				<core:Item key="A" text="Approved"/>
+				<core:Item key="L" text="All"/>
+			</Select> 
+			
+			
+			<Label></Label>
+			<Button text="Search" type="Emphasized" press="onSearch">
+			<layoutData>
+					<l:GridData span="L3"/>
+				</layoutData>
+			</Button>
+			
+			<Button text="Clear" type="Emphasized" press="onClear">
+			<layoutData>
+					<l:GridData span="L3"/>
+				</layoutData>
+			</Button>
+		</f:content>				
+		</f:SimpleForm>
+			<!-- <Toolbar class="clstoolbar">
+				<ToolBarSpacer></ToolBarSpacer>
+				<Text text="Legend:"></Text>
+				
+				<core:Icon src="sap-icon://pending" color="	#FFD700">
+				<core:layoutData>
+					<FlexItemData growFactor="1" />
+				</core:layoutData>
+				</core:Icon>
+				<Text text="Pending For Approval"></Text>
+				
+				<core:Icon src="sap-icon://employee-rejections" color="#fa6135">
+				<core:layoutData>
+					<FlexItemData growFactor="1" />
+				</core:layoutData>
+				</core:Icon>
+				<Text text="Rejected"></Text>
+				
+				<core:Icon src="sap-icon://employee-approvals" color="#31ae31">
+				<core:layoutData>
+					<FlexItemData growFactor="1" />
+				</core:layoutData>
+				</core:Icon>
+				<Text text="Approved"></Text>
+				
+				<ToolbarSpacer/>
+			</Toolbar> -->
+			
+		</VBox>
+				
+			<Table id="idExposeApproval" showNoData="false" class="tblgrid">
+				<columns>
+					
+					 <Column width="8em" hAlign="Center" demandPopin="true" minScreenWidth="Tablet">
+					<Label text="Request No." design="Bold"/>
+					</Column> 
+					
+					
+					<Column width="8em" hAlign="Center" demandPopin="true" minScreenWidth="Tablet">
+					<Label text="Creation Date" design="Bold"/>
+					</Column>
+					
+					<Column width="2em" hAlign="Center" demandPopin="true" minScreenWidth="Tablet">
+						
+					</Column>
+							
+		
+				</columns>
+			</Table>
+			
+			<ScrollContainer vertical="true" horizontal="false" height="400px" > 
+				<Table id="idExposeApproval1"  itemPress="onPressItemFitment" items="{ExposeAppJModel>/}" visible="true" showNoData="true" class="tblgrid1" >
+					<columns>
+						
+						<Column width="8em" hAlign="Center" demandPopin="true" minScreenWidth="Tablet">
+						
+						</Column>
+						
+						<Column width="8em" hAlign="Center" demandPopin="true" minScreenWidth="Tablet">
+						
+						</Column>
+						
+						<Column width="2em" hAlign="Center" demandPopin="true" minScreenWidth="Tablet">
+						
+						</Column>
+						
+						
+					</columns>
+					<items>	
+						<ColumnListItem type ="Active" press="onFnExposeAppDetails">
+							<cells>
+								<!-- <CheckBox select="onSelect" selected="false"></CheckBox> -->
+							 	<Text text="{ExposeAppJModel>ExposureRequestNumber}"/>
+								<!-- <Text text="{ExposeAppJModel>DepotNumber}" />
+								<Text text="{ExposeAppJModel>CustomerNumber}"/>
+								<Text text="{ExposeAppJModel>CustomerName}"/> -->
+								<Text text="{path:'ExposeAppJModel>CustomerCreationDate', formatter:'zexposeapprove.util.Formatter.date1'}" />
+								<!-- <Text text="{ExposeAppJModel>CustomerClassificaition}"/>
+								<Text text="{ExposeAppJModel>Division}"/> -->
+								<core:Icon src="{path:'ExposeAppJModel>Status', formatter:'zexposeapprove.util.Formatter.setIcon'}"
+             		  		  			   color="{path:'ExposeAppJModel>Status', formatter:'zexposeapprove.util.Formatter.setColor'}" />
+							</cells>
+						
+						</ColumnListItem>
+					</items>
+				</Table> 
+			</ScrollContainer>
+		
+		
+		
+	</content>
+	 <footer>
+		<Bar>
+				<!-- <contentRight>
+					<Button id="idAppr" visible="true"  type="Accept" text="Approve" icon="sap-icon://employee-approvals" press="onApprove" />
+					<Button id="idRej"  type="Reject" visible="true" text="Reject"  icon="sap-icon://employee-rejections" press="onReject" />
+				</contentRight> -->
+			</Bar>
+	</footer> 
+</Page>
+</core:View>
+
+
+
+			
+			

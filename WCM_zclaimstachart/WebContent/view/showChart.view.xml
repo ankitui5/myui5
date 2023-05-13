@@ -1,0 +1,55 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+		controllerName="zclaimstachart.view.showChart" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="" id="showChartPage" class="page2" showNavButton="true" navButtonPress="onBack">
+		<content>
+		    <VBox>
+		        <Toolbar class="toolbar2">
+	              <ToolbarSpacer></ToolbarSpacer>
+	            <Text text="Line Items Graphical Representation"></Text>
+	              <ToolbarSpacer></ToolbarSpacer>
+	        </Toolbar> 
+	        <html:canvas id="Chart1" class="my_chart1"></html:canvas>
+	        </VBox>
+	        
+		     <Toolbar class="toolbar2">
+	              <ToolbarSpacer></ToolbarSpacer>
+	            <Text text="Line Items Details"></Text>
+	              <ToolbarSpacer></ToolbarSpacer>
+	        </Toolbar>
+	        
+		     <Table visible="true" id="table" itemPress="itemPress">
+		<columns>
+			<Column
+				minScreenWidth="Tablet"
+				hAlign="Center" visible="false">
+				<Label design="Bold" text="Tyre Type" />
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				hAlign="Center">
+				<Label design="Bold" text="Description" />
+			</Column>
+			<Column
+				minScreenWidth="Tablet" 
+				hAlign="Center">
+				<Label design="Bold" text="Total Stock" />
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+	
+		  </content>
+		   <footer >
+			  <Toolbar>
+	            <ToolbarSpacer></ToolbarSpacer>
+		   
+		         <ToolbarSpacer></ToolbarSpacer>
+		         </Toolbar>
+		</footer>
+	</Page>
+</core:View>

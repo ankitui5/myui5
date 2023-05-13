@@ -1,0 +1,123 @@
+<core:View
+ 		   xmlns:core="sap.ui.core" 
+		   xmlns:mvc="sap.ui.core.mvc"
+		   xmlns="sap.m" 
+		   xmlns:t="sap.ui.table"	   	
+		   xmlns:u="sap.ui.unified"
+		   xmlns:f="sap.ui.layout.form"
+	       xmlns:l="sap.ui.layout"
+	       xmlns:sc="sap.suite.ui.commons" 	
+	       xmlns:fb="sap.ui.comp.filterbar"
+	       xmlns:c="sap.ui.unified.calendar"
+	       controllerName="zdealerclaimrep.view.View1" 
+	       xmlns:html="http://www.w3.org/1999/xhtml">     
+<html:style>
+.header1 .sapMIBar-CTX .sapMTitle {
+    color: black !important;
+    font-size: larger;
+    <!-- text-shadow: 0 0 0.125rem #ffffff; -->
+}
+.sapUiSizeCompact .sapMTB.sapMListHdrTBar {
+    height: 2rem !important;
+	background-color: #13b1b1 !important;
+	}
+	
+.sapMTB-Transparent-CTX .sapMText {
+    font-weight: bold !important;
+    font-family: Arial,Helvetica,sans-serif !important;
+    text-shadow: none !important ;
+    color: #ffffff !important;
+}  	
+</html:style>
+	<Page title="Warranty Report" class="sapUiSizeCompact header1" enableScrolling="false" 
+		  busy="{oViewJModel>/busy}" busyIndicatorDelay="{oViewJModel>/delay}">
+	<content>
+        <f:SimpleForm  minWidth="1024" maxContainerCols="3" editable="true" layout="ResponsiveGridLayout"
+		       labelSpanL="4" labelSpanM="4" emptySpanL="1" emptySpanM="1" columnsL="2" columnsM="3" class="editableForm">
+		<f:content>
+		 
+		<core:Title id="V_1" level="h4" text="Selection Criteria" visible="false"/>
+		<Label text="Ticket Number" design="Bold"/>
+		<Input id="inpTicketNo" valueHelpRequest="onTicketNoHelp" valueHelpOnly="true"	 showValueHelp="true"/>
+			
+		<Label text="Customer Number" design="Bold"/>
+		<input enabled="true" id="idCustomerno" valueHelpRequest="onmobile" maxLength="10" liveChange="NumberValid" valueHelpOnly="false"
+			   showValueHelp="false" placeholder="Enter your mobile number"/>
+			 
+		<Label text="Service Engineer" design="Bold"/>
+		<input id="idSE" valueHelpRequest="onServiceHelp" valueHelpOnly="true" showValueHelp="true" /> 
+			
+		<core:Title id="V_01"  text="" visible="false"/>
+		<Label text="Ticket Status" design="Bold"/>
+		<input id="idStatus" valueHelpRequest="onStatus" valueHelpOnly="true" showValueHelp="true" />
+			
+		<Label text="Claim Number" design="Bold"/>
+		<input id="idClaimno" valueHelpRequest="onClaimF4" valueHelpOnly="true" showValueHelp="true" />
+		
+		<Label text="Ticket Date" design="Bold"/>
+		<DateRangeSelection	id="idDateRange" change="handleDate" valueFormat="yyyy-MM-dd" />
+			
+			<!-- <core:Title/> -->
+		<Button id="btnSearch" text="Go" type="Accept" press="onSearch">
+			<layoutData>
+			  <l:GridData span="XL2 L1 M2 S2"/>
+			</layoutData>
+		</Button>
+			
+		<Button id="btnSearch1" text="Clear" type="Reject" press="onClear">
+			<layoutData>
+				<l:GridData span="XL2 L2 M1 S1"/>
+			</layoutData>
+		</Button>
+				
+		</f:content>
+	</f:SimpleForm>
+<!-- End Filter -->
+
+ <ScrollContainer vertical="true" horizontal="true"  height="500px"> 
+	 <Table id="idTable" items="{ListSetJModel>/}" visible="true" showNoData="false" alternateRowColors="true" >
+		<headerToolbar>
+			<Toolbar>
+				<Text text="Reports" />
+			<ToolbarSpacer />
+									
+			</Toolbar>
+			</headerToolbar>
+				<columns>
+					<Column width="10rem" minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+						<Label text="Ticket Number" design="Bold"/>
+					</Column>
+								
+					<Column width="10rem" minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+						<Label text="Claim Number" design="Bold"/>
+					</Column>
+								
+					<Column width="10rem" minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+						<Label text="Inspection Number" design="Bold"/>
+					</Column>	
+				</columns>
+				
+				<items>
+				
+					<ColumnListItem>
+						<cells>
+						 <Link text="{ListSetJModel>TicketNo}" press="displayTicket" />
+						 <Link text="{ListSetJModel>ClaimNo}" press="displayClaim" />
+						 <Link text="{ListSetJModel>InspNo}" press="displayInspection"/>
+						 </cells>
+				   
+				   </ColumnListItem>
+				   
+			   </items>
+			   
+	 </Table> 
+</ScrollContainer> 
+	
+		</content>
+		<footer>
+			<Toolbar>
+			<Label text="JK Tyre and Industries Ltd."></Label>
+			</Toolbar>
+		</footer>
+	</Page>
+</core:View>
