@@ -1,0 +1,15 @@
+<core:FragmentDefinition xmlns="sap.m"
+ xmlns:core="sap.ui.core">
+ <SelectDialog title="Prod" items="{/F4ProdSizeSet}"
+  class="sapUiPopupWithPadding" search="_handleValueHelpSearch" confirm="_handleValueHelpClose"
+  cancel="_handleValueHelpCancel">
+  <StandardListItem
+      items="{/F4ProdSizeSet}"
+   type="Active"
+   title="{ProdDesc}"
+ description="{ProdSize}"
+   press="" />
+ </SelectDialog>
+</core:FragmentDefinition>
+
+ <!--  description="{ProdSize}" -->

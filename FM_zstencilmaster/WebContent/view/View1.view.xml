@@ -1,0 +1,285 @@
+<core:View
+		xmlns:core="sap.ui.core"
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns="sap.m"
+		xmlns:tl="sap.m.Toolbar"
+		xmlns:a="sap.m.Table"
+		xmlns:u="sap.ui.unified"
+		xmlns:f="sap.ui.layout.form"
+		xmlns:l="sap.ui.layout"
+		xmlns:sc="sap.suite.ui.commons"
+		xmlns:fb="sap.ui.comp.filterbar"
+		xmlns:c="sap.ui.unified.calendar"
+		xmlns:html="http://www.w3.org/1999/xhtml"
+		controllerName="zstencilmaster.view.View1"
+		>
+		
+<html:style>
+.sapMInputBaseInner {
+font-size: smaller !important;
+}
+.sapUiSizeCompact .sapMSltLabel, .sapUiSizeCompact .sapMSltArrow {
+	font-size: smaller !important;
+}
+</html:style>
+
+<Page id="idManualPage" title="Stencil Master" class="sapUiSizeCompact" backgroundDesign="Solid" enableScrolling="false" visible="true">
+			
+			<Toolbar height="1.5rem" class="sapUiSizeCompact">
+				<ToolbarSpacer/>
+				<Text id="idTimeStamp"/>
+			</Toolbar>
+		
+					<Toolbar height="2rem">
+							
+							<u:FileUploader id="FileUploaderId" name="myFileUpload"
+									tooltip="Upload your file to the local server"
+									change="onUpload"
+									typeMissmatch="handleTypeMissmatch"
+									style="Emphasized"
+									fileType="xls,xlsx"
+									placeholder="Choose a file for Upload..."
+									>
+										<!-- uploadUrl="upload/" uploadComplete="handleUploadComplete" -->
+										<u:parameters>
+											<u:FileUploaderParameter
+												name="param1"
+												value="Foo"/>
+											<u:FileUploaderParameter
+												name="param2"
+												value="bar"/>
+										</u:parameters>
+										<u:headerParameters>
+											<u:FileUploaderParameter
+												name="headerParam1"
+												value="Foo"/>
+											<u:FileUploaderParameter
+												name="headerParam2"
+												value="bar"/>
+										</u:headerParameters>
+									</u:FileUploader>
+								<Button text="Clear" type="Emphasized" id="btnClear" press="onClear" />
+								
+							<VBox width="2rem" text=""></VBox>
+							
+							<Button id="btnCreateTemplate" text="Download Excel Template" type="Emphasized" press="onCreateTemplate" icon="sap-icon://save" visible="true" />
+							<ToolbarSpacer/>
+							<Button text="Add Row" type="Emphasized" id="btnAddRow" press="onAddRow" />
+					</Toolbar>
+		<content>
+			
+<!-- ***************************************************************************************** -->
+		
+		<Table id="idHeaderTable" showNoData="false" class="sapMListTbl tblgrid" visible="false">
+			<!-- 	<headerToolbar>
+				</headerToolbar>
+			 -->
+			<columns>
+				<Column minScreenWidth="Tablet" width="4.5rem" demandPopin="true" hAlign="Center">
+					<Label text="Stencil No." design="Bold"/>
+				</Column>
+				<Column minScreenWidth="Tablet" width="3rem" demandPopin="true" hAlign="Center">
+					<Label text="Owner" design="Bold"/>
+				</Column>
+				<Column minScreenWidth="Tablet" width="0rem" demandPopin="true" hAlign="Center" visible="false">
+					<Label text="Customer" design="Bold"/>
+				</Column>
+				<Column minScreenWidth="Tablet" width="4rem" demandPopin="true" hAlign="Center">
+					<Label text="Customer" design="Bold"/>
+				</Column>
+				<Column minScreenWidth="Tablet" width="0rem" demandPopin="true" hAlign="Center" visible="false">
+					<Label text="Hub" design="Bold"/>
+				</Column>
+				<Column minScreenWidth="Tablet" width="4.5rem" demandPopin="true" hAlign="Center">
+					<Label text="Hub" design="Bold"/>
+				</Column>
+				<Column minScreenWidth="Tablet" width="4.5rem" demandPopin="true" hAlign="Center" visible="true">
+					<Label text="Company" design="Bold" />
+				</Column>
+				<Column minScreenWidth="Tablet" width="0rem" demandPopin="true" hAlign="Center" visible="false">
+					<Label text="Company" design="Bold" />
+				</Column>
+				<Column minScreenWidth="Tablet" width="5.5rem" demandPopin="true" hAlign="Center" visible="true">
+					<Label text="Size" design="Bold" />
+				</Column>
+				<Column minScreenWidth="Tablet" width="0rem" demandPopin="true" hAlign="Center" visible="false">
+					<Label text="Size" design="Bold" />
+				</Column>
+				<Column minScreenWidth="Tablet" width="6rem" demandPopin="true" hAlign="Center" visible="true">
+					<Label text="Item" design="Bold" /> 
+				</Column>
+				<Column minScreenWidth="Tablet" width="0rem" demandPopin="true" hAlign="Center" visible="false">
+					<Label text="Item" design="Bold" /> 
+				</Column>
+				<Column minScreenWidth="Tablet" width="4.5rem" demandPopin="true" hAlign="Center">
+					<Label text="Tyre Type" design="Bold"/>
+				</Column>
+				<Column minScreenWidth="Tablet" width="3.5rem" demandPopin="true" hAlign="Center">
+					<Label text="Location" design="Bold"/>
+				</Column>
+				<Column minScreenWidth="Tablet" width="1.5rem" demandPopin="true" hAlign="Center"></Column>
+			</columns>
+		</Table>
+		
+		<ScrollContainer id="idCreateTableContainer" vertical="true" horizontal="false" height="360px" visible="false">
+			<Table id="idDataTable" items="{StencilJModel>/}" showNoData="true" class="tblgrid1 " growing="true" growingThreshold="100">
+				<columns>
+					<Column minScreenWidth="Tablet" width="4.5rem" demandPopin="true" hAlign="Center"></Column>
+					<Column minScreenWidth="Tablet" width="3rem" demandPopin="true" hAlign="Center"></Column>
+					<Column minScreenWidth="Tablet" width="0rem" demandPopin="true" hAlign="Center" visible="false"></Column>
+					<Column minScreenWidth="Tablet" width="4.5rem" demandPopin="true" hAlign="Center"></Column>
+					<Column minScreenWidth="Tablet" width="0rem" demandPopin="true" hAlign="Center" visible="false"></Column>
+					<Column minScreenWidth="Tablet" width="4.5rem" demandPopin="true" hAlign="Center"></Column>
+					<Column minScreenWidth="Tablet" width="0rem" demandPopin="true" hAlign="Center" visible="false"></Column>
+					<Column minScreenWidth="Tablet" width="4.5rem" demandPopin="true" hAlign="Center" visible="true"></Column>
+					<Column minScreenWidth="Tablet" width="0rem" demandPopin="true" hAlign="Center" visible="false"></Column>
+					<Column minScreenWidth="Tablet" width="4.5rem" demandPopin="true" hAlign="Center" visible="true"></Column>
+					<Column minScreenWidth="Tablet" width="0rem" demandPopin="true" hAlign="Center" visible="false"></Column>
+					<Column minScreenWidth="Tablet" width="6.5rem" demandPopin="true" hAlign="Center" visible="true"></Column>
+					<Column minScreenWidth="Tablet" width="4.5rem" demandPopin="true" hAlign="Center"></Column>
+					<Column minScreenWidth="Tablet" width="3.5rem" demandPopin="true" hAlign="Center"></Column>
+					<Column minScreenWidth="Tablet" width="1.5rem" demandPopin="true" hAlign="Center"></Column>
+				</columns>
+		<items>
+			<ColumnListItem>
+			<cells>
+				<Input value="{StencilJModel>StencilNumber}" textAlign="Center" maxLength="16" change="onChangeStencil" />
+				<Select items="" forceSelection="false" selectedKey="{StencilJModel>Owner}" change="onOwner">
+						<items>
+							<core:Item text="JK" key="01" />
+							<core:Item text="Fleet" key="02" />
+						</items>
+				</Select>
+				<Input value="{StencilJModel>Customer}" textAlign="Center"  />
+				<Input value="{StencilJModel>CustomerText}" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="onF4Fleet" textAlign="Center" />
+				<Input value="{StencilJModel>Hub}" textAlign="Center" />
+				<Input value="{StencilJModel>HubName}" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="onF4Hub" textAlign="Center" />
+				<Input value="{StencilJModel>Company}" textAlign="Center" />
+				<Input value="{StencilJModel>CompanyText}" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="onTyreCompany" textAlign="Center" />
+				<Input value="{StencilJModel>Product_Size}" textAlign="Center"  />
+				<Input value="{StencilJModel>Product_SizeText}" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="onProdSize" textAlign="Center" />
+				<Input value="{StencilJModel>Item_Code}" textAlign="Center" />
+				<Input value="{StencilJModel>Item_CodeText}" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="onItemDesc" textAlign="Center" />
+				<Select items="" forceSelection="false" selectedKey="{StencilJModel>Tyre_Type}" >
+						<items>
+							<core:Item text="Initial Retread Mileage" key="ITM" />
+							<core:Item text="Retread 1" key="RT1" />
+							<core:Item text="Retread 2" key="RT2" />
+							<core:Item text="Retread 3" key="RT3" />
+							<core:Item text="Retread 4" key="RT4" />
+						</items>
+				</Select>
+				<Select items="" forceSelection="false" selectedKey="{StencilJModel>Location}" >
+						<items>
+							<core:Item text="Fresh" key="FRS" />
+							<core:Item text="Cut Repair" key="CTR" />
+							<core:Item text="Reusable" key="RSU" />
+							<core:Item text="Casing A" key="CS1" />
+							<core:Item text="Casing B" key="CS2" />
+							<core:Item text="Missing" key="MIS" />
+							<core:Item text="Scrap" key="SRP" />
+						</items>
+				</Select>
+				<Button type="Reject" press="onDeleteRow" icon="sap-icon://delete" />
+			</cells>
+			</ColumnListItem>
+		</items>
+			</Table>
+		</ScrollContainer>
+		
+<!-- 	Delete Table	 -->
+
+		<Table id="idDeleteHeaderTable" showNoData="false" class="sapMListTbl tblgrid">
+			<!-- 	<headerToolbar>
+				</headerToolbar>
+			 -->
+			<columns>
+				<Column minScreenWidth="Tablet" width="5rem" demandPopin="true" hAlign="Center">
+					<Label text="Stencil No." design="Bold"/>
+				</Column>
+				<Column minScreenWidth="Tablet" width="0rem" demandPopin="true" hAlign="Center" visible="false">
+					<Label text="Customer" design="Bold"/>
+				</Column>
+				<Column minScreenWidth="Tablet" width="4rem" demandPopin="true" hAlign="Center">
+					<Label text="Customer" design="Bold"/>
+				</Column>
+				<Column minScreenWidth="Tablet" width="0rem" demandPopin="true" hAlign="Center" visible="false">
+					<Label text="Hub" design="Bold"/>
+				</Column>
+				<Column minScreenWidth="Tablet" width="4rem" demandPopin="true" hAlign="Center">
+					<Label text="Hub" design="Bold"/>
+				</Column>
+				<Column minScreenWidth="Tablet" width="4rem" demandPopin="true" hAlign="Center" visible="true">
+					<Label text="Company" design="Bold" />
+				</Column>
+				<Column minScreenWidth="Tablet" width="0rem" demandPopin="true" hAlign="Center" visible="false">
+					<Label text="Company" design="Bold" />
+				</Column>
+				<Column minScreenWidth="Tablet" width="5rem" demandPopin="true" hAlign="Center" visible="true">
+					<Label text="Size" design="Bold" />
+				</Column>
+				<Column minScreenWidth="Tablet" width="0rem" demandPopin="true" hAlign="Center" visible="false">
+					<Label text="Size" design="Bold" />
+				</Column>
+				<Column minScreenWidth="Tablet" width="7.5rem" demandPopin="true" hAlign="Center" visible="true">
+					<Label text="Item" design="Bold" /> 
+				</Column>
+				<Column minScreenWidth="Tablet" width="0rem" demandPopin="true" hAlign="Center" visible="false">
+					<Label text="Item" design="Bold" /> 
+				</Column>
+				<Column minScreenWidth="Tablet" width="1.5rem" demandPopin="true" hAlign="Center"></Column>
+			</columns>
+		</Table>
+	<ScrollContainer id="idDeleteTableContainer" vertical="true" horizontal="false" height="360px">
+		<Table id="idDeleteTable" items="{DeleteJModel>/}" showNoData="true" class="tblgrid1 " growing="true" growingThreshold="100" >
+				<columns>
+					<Column minScreenWidth="Tablet" width="5rem" demandPopin="true" hAlign="Center"></Column>
+					<Column minScreenWidth="Tablet" width="5rem" demandPopin="true" hAlign="Center"></Column>
+					<Column minScreenWidth="Tablet" width="4rem" demandPopin="true" hAlign="Center"></Column>
+					<Column minScreenWidth="Tablet" width="5rem" demandPopin="true" hAlign="Center"></Column>
+					<Column minScreenWidth="Tablet" width="5rem" demandPopin="true" hAlign="Center"></Column>
+					<Column minScreenWidth="Tablet" width="8rem" demandPopin="true" hAlign="Center"></Column>
+					<Column minScreenWidth="Tablet" width="1.5rem" demandPopin="true" hAlign="Center"></Column>
+				</columns>
+		<items>
+			<ColumnListItem>
+			<cells>
+				<Input value="{DeleteJModel>StencilNumber}" showValueHelp="true" valueHelpRequest="onF4Stencil" valueHelpOnly="true"
+						textAlign="Center" maxLength="16" change="onChangeStencilDelete"/>
+				<Input value="{DeleteJModel>CustomerText}" textAlign="Center" enabled="false" />
+				<Input value="{DeleteJModel>HubName}" textAlign="Center" enabled="false" />
+				<Input value="{DeleteJModel>CompanyText}" textAlign="Center" enabled="false" />
+				<Input value="{DeleteJModel>Product_SizeText}" textAlign="Center" enabled="false" />
+				<Input value="{DeleteJModel>Item_CodeText}" textAlign="Center" enabled="false" />
+				<Button type="Reject" press="onDeleteTableRow" icon="sap-icon://delete" />
+			</cells>
+			</ColumnListItem>
+		</items>
+		</Table>
+	</ScrollContainer>
+		
+			<Toolbar height="2rem" class="sapUiSizeCompact">
+				
+				<!-- <Button id="btnDeleteTemplate" text="Download Excel Template" type="Emphasized" press="onDeleteTemplate" icon="sap-icon://save" visible="true" /> -->
+				<ToolbarSpacer/>
+				
+			</Toolbar>
+			
+			</content>
+			<footer>
+				<Bar>
+					<contentLeft>
+					<Text id="idCreateText" text="* Excel file format should be as per the template provided for download."></Text>
+					<Text id="idDeleteText" text="* Excel file should only have one column with header  ' StencilNumber ' " visible="false"></Text>
+					</contentLeft>
+					<contentRight>
+						<Button id="btnCreate" text="Create" type="Accept" press="onUpdate" icon="sap-icon://upload" visible="true" />
+						<Button id="btnDelete" text="Delete" type="Reject" press="onDelete" icon="sap-icon://delete" visible="false" />
+						
+						<Button icon="sap-icon://undo" text="Back" type="Emphasized" press="onMainPage" />
+					</contentRight>
+				</Bar>
+				</footer>
+			</Page>
+			
+</core:View>

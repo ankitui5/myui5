@@ -1,0 +1,251 @@
+<core:View
+ 		   xmlns:core="sap.ui.core" 
+		   xmlns:mvc="sap.ui.core.mvc"
+		   xmlns="sap.m" 
+		   xmlns:tl="sap.m.Toolbar" 
+		   xmlns:a="sap.m.Table"	   	
+		   xmlns:u="sap.ui.unified"
+		   xmlns:f="sap.ui.layout.form"
+	       xmlns:l="sap.ui.layout"
+	       xmlns:sc="sap.suite.ui.commons" 	
+	       xmlns:fb="sap.ui.comp.filterbar"
+	       xmlns:c="sap.ui.unified.calendar"
+	       xmlns:html="http://www.w3.org/1999/xhtml"
+	       controllerName="zstencil.view.View1">
+	       
+	        
+<Page title="Stencil Search" class="sapUiSizeCompact" backgroundDesign="Solid" enableScrolling="false">
+			<Toolbar height="4.5rem" class="sapUiSizeCompact">
+			<Label text="Stencil Number" design="Bold">
+			<layoutData>
+			<l:GridData span="XL10 L10 M10 S10"/>
+			</layoutData>
+			</Label>		
+			<Input id="idstncl" liveChange="stnclChange" width="18rem" maxLength="16"/>
+			<Button id="btnSearch" text="Go" type="Emphasized" press="onstnclsrch">
+			<layoutData>
+			<l:GridData span="XL4 L4 M4 S4"/>
+			</layoutData>
+			</Button>
+			<Button id="btnClear" text="Clear" type="Emphasized" press="onclearstncl">
+			<layoutData>
+			<l:GridData span="XL4 L4 M4 S4"/>
+			</layoutData>
+			</Button>
+			<ToolbarSpacer/>
+			<Image width="150px" height="60px" src="../../../../../../../sap/bc/ui5_ui5/sap/zstencil/view/tyre_img1.jpg" alt="JK Tyre"/>
+			<ToolbarSpacer/>
+			</Toolbar>
+			<content>
+			
+<!-- 	*************************************************************************************************************************** -->	
+		  <f:SimpleForm  minWidth="1024" maxContainerCols="3" editable="true" layout="ResponsiveGridLayout"
+		                 columnsL="3" columnsM="3" class="formborder">
+			<f:content>	
+
+			<Label required="false"  text="Enroll Customer" design="Bold"/>
+			<Text id="idcustName" width="100%" text="{stnclDetails>/KunnrName}" />
+			
+			<Label required="false"  text="Enroll Hub" design="Bold"/>
+			<Text id="idhubName" width="100%" text="{stnclDetails>/HubName}" />
+			
+			<Label required="false"  text="Enroll Tyre Type" design="Bold"/>
+			<Text id="identtype" width="100%" text="{stnclDetails>/TypeDesc}" />
+			
+			<Label required="false"  text="Enroll Tyre Loc" design="Bold"/>
+			<Text id="identyrloc" width="100%" text="{stnclDetails>/LocDesc}" />
+			
+			<Label required="false"  text="Owner Desc" design="Bold"/>
+			<Text id="idownerDesc"  width="100%" text="{stnclDetails>/OwnerDesc}"/>
+			
+			<Label required="false"  text="Type Company" design="Bold"/>
+			<Text id="idtypeComp" width="100%" text="{stnclDetails>/TypeCompDesc}"/>	
+			
+			<Label required="false"  text="Material Desc" design="Bold"/>
+			<Text id="idMaktx" width="100%" text="{stnclDetails>/Maktx}" />
+			
+			<Label required="false"  text="Size Desc" design="Bold"/>
+			<Text id="idsizeDesc" width="100%" text="{stnclDetails>/SizeDesc}" />
+	<core:Title/>
+	
+			<Label required="false"  text="Km Covered" design="Bold"/>
+			<Text id="idkmCover" width="100%" text="{stnclDetails>/KmCovered}"/>
+			
+			<Label required="false"  text="Original Nsd" design="Bold"/>
+			<Text id="idorigNsd" text="{stnclDetails>/OrigNsd}">
+			<layoutData>
+			<l:GridData width="50px"/>
+			</layoutData>
+			</Text>
+			
+			<Label required="false"  text="G1 NSD" design="Bold"/>
+			<Text id="idg1Nsd" text="{stnclDetails>/G1Nsd}" >
+			<layoutData>
+			<l:GridData width="50px"/>
+			</layoutData>
+			</Text>
+			
+			<Label required="false"  text="G2 NSD" design="Bold"/>
+			<Text id="idg2Nsd" text="{stnclDetails>/G2Nsd}" >
+			<layoutData>
+			<l:GridData width="50px"/>
+			</layoutData>
+			</Text>
+			
+			<Label required="false"  text="G3 NSD" design="Bold"/>
+			<Text id="idg3Nsd" text="{stnclDetails>/G3Nsd}" >
+			<layoutData>
+			<l:GridData width="50px"/>
+			</layoutData>
+			</Text>
+			
+			<Label required="false"  text="G4 NSD" design="Bold"/>
+			<Text id="idg4Nsd" width="100%" text="{stnclDetails>/G4Nsd}">
+			<layoutData>
+			<l:GridData width="50px"/>
+			</layoutData>
+			</Text>	
+			
+			<Label required="false"  text="IP Condition" design="Bold"/>
+			<Text id="idipCond" text="{path:'stnclDetails>/IpCondition',formatter:'zstencil.util.Formatter.ipcond'}" >	
+			<layoutData>
+			<l:GridData width="50px"/>
+			</layoutData>
+			</Text>
+			
+			<Label required="false"  text="IP Psi" design="Bold"/>
+			<Text id="idipPsi" text="{stnclDetails>/IpPsi}" >
+			<layoutData>
+			<l:GridData width="50px"/>
+			</layoutData>
+			</Text>
+		<core:Title/>	
+			
+			<Label required="false"  text="Current Customer" design="Bold"/>
+			<Text id="idCCust" text="{stnclDetails>/CKunnrName}" />
+			
+			<Label required="false"  text="Current Hub" design="Bold"/>
+			<Text id="idChub" text="{stnclDetails>/CHubName}" />
+			
+			<Label required="false"  text="Current Tyre Type" design="Bold"/>
+			<Text id="idCtyp" text="{stnclDetails>/CTypeDesc}" />
+			
+			<Label required="false"  text="Current Tyre Loc" design="Bold"/>
+			<Text id="idCtloc" text="{stnclDetails>/CLocDesc}" />
+			
+			<Label required="false"  text="Tyre Position" design="Bold"/>
+			<Text id="idTPos" text="{stnclDetails>/Pos}" />
+		
+			<!-- <Label required="false"  text="Registration No" design="Bold"/>
+			<Text id="idregNo" width="100%" text="{stnclDetails>/RegNo}" />
+			
+			<Label required="false"  text="Tyre Position " design="Bold"/>
+			<Text id="idtyrpos" width="100%" text="" /> -->
+			
+			<Label required="false"  text="Last Insp Date" design="Bold"/>
+			<Text id="idlstInsp" width="100%" text="{path:'stnclDetails>/LastInspDate',formatter:'zstencil.util.Formatter.date1'}" />
+			
+			<Label required="false"  text="Fitment Date" design="Bold"/>
+			<Text id="idftDate" width="100%" text="{path:'stnclDetails>/FitDate',formatter:'zstencil.util.Formatter.date1'}" />
+			
+			<Label required="false"  text="Vehicle No." design="Bold"/>
+			<Text id="idVehNo" text="{stnclDetails>/RegNo}" />
+
+		</f:content>
+			</f:SimpleForm>
+			
+ <!--  *************************************************************************************************************************** -->
+			
+			<Table id="stnclsrch" showNoData="false" class="tblgrid"  >
+			<columns>
+					<!-- <Column width="6em" hAlign="Center" demandPopin="true" minScreenWidth="Tablet">
+					<Label text="Object No" design="Bold"/>
+					</Column> --> 
+					
+					<!-- <Column width="6em" hAlign="Center" demandPopin="true" minScreenWidth="Tablet">
+					<Label text="Stencil No" design="Bold"/>
+					</Column> --> 
+				
+				    <!-- <Column width="6em" hAlign="Center" demandPopin="true" minScreenWidth="Tablet">
+					<Label text="Customer No" design="Bold"/>
+					</Column> -->
+					
+					<Column width="6em" hAlign="Center" demandPopin="true" minScreenWidth="Tablet">
+					<Label text="Customer Name" design="Bold"/>
+					</Column>
+					
+					<!-- <Column width="6em" hAlign="Center" demandPopin="true" minScreenWidth="Tablet">
+					<Label text="Hub Code" design="Bold"/>
+					</Column>
+					
+					<Column width="6em" hAlign="Center" demandPopin="true" minScreenWidth="Tablet">
+					<Label text="Hub Name" design="Bold"/>
+					</Column> -->
+					
+					<Column width="6em" hAlign="Center" demandPopin="true" minScreenWidth="Tablet">
+					<Label text="Tyre Type" design="Bold"/>
+					</Column>
+					
+					<!-- <Column width="6em" hAlign="Center" demandPopin="true" minScreenWidth="Tablet">
+					<Label text="Tyre Loc" design="Bold"/>
+					</Column> -->
+					
+					<Column width="6em" hAlign="Center" demandPopin="true" minScreenWidth="Tablet">
+					<Label text="Km Covered" design="Bold"/>
+					</Column> 
+					
+					
+					
+					
+					
+					<!-- <Column width="6em" hAlign="Center" demandPopin="true" minScreenWidth="Tablet">
+					<Label text="Vehicle No" design="Bold"/>
+					</Column>
+					
+					<Column width="6em" hAlign="Center" demandPopin="true" minScreenWidth="Tablet">
+					<Label text="Tyre Position" design="Bold"/> 
+					</Column>-->
+				</columns>
+				</Table>
+<!-- 	*************************************************************************************************************************** -->					
+				<ScrollContainer vertical="true" horizontal="true" height="300px" width="100%" focusable="true">
+				<Table id="idStnclSrch" items="{StnclSrchModel>/}" visible="true" showNoData="" class="tblgrid1">
+				<columns>
+						<!-- <Column width="6em" hAlign="Center" demandPopin="true" minScreenWidth="Tablet"/> -->
+						<!-- <Column width="6em" hAlign="Center" demandPopin="true" minScreenWidth="Tablet"/> -->
+						<!-- <Column width="6em" hAlign="Center" demandPopin="true" minScreenWidth="Tablet"/> -->
+						<Column width="6em" hAlign="Center" demandPopin="true" minScreenWidth="Tablet"/>
+						<!-- <Column width="6em" hAlign="Center" demandPopin="true" minScreenWidth="Tablet"/>
+						<Column width="6em" hAlign="Center" demandPopin="true" minScreenWidth="Tablet"/> -->
+						<Column width="6em" hAlign="Center" demandPopin="true" minScreenWidth="Tablet"/>
+						<!-- <Column width="6em" hAlign="Center" demandPopin="true" minScreenWidth="Tablet"/> -->
+						<Column width="6em" hAlign="Center" demandPopin="true" minScreenWidth="Tablet"/>
+						<!-- <Column width="6em" hAlign="Center" demandPopin="true" minScreenWidth="Tablet"/>
+						<Column width="6em" hAlign="Center" demandPopin="true" minScreenWidth="Tablet"/> -->
+				</columns>
+				<items>	
+						<ColumnListItem type ="Active" >
+							<cells>
+							   <!--  <Text text="{StnclSrchModel>Objnr}"/> -->
+								<!-- <Text text="{StnclSrchModel>StnclNumber}"/> -->
+								<!-- <Text text="{StnclSrchModel>Kunnr}"/> -->
+							 	<Text text="{StnclSrchModel>KunnrName}"/>
+							 	<!-- <Text text="{StnclSrchModel>HubCode}"/>
+							 	<Text text="{StnclSrchModel>HubName}"/> -->
+							 	<Text text="{StnclSrchModel>TyreType}" />
+							 	<!-- <Text text="{StnclSrchModel>TyreLoc}"/> -->
+							 	<Text text="{StnclSrchModel>KmCovered}"/>
+								
+								<!-- <Text text="{StnclSrchModel>RegNo}"/> -->
+								<!-- <Text text="{StnclSrchModel}"/> --> 
+							</cells>
+						</ColumnListItem>
+			  </items>
+			  
+				</Table>
+				</ScrollContainer>
+				
+			
+			</content>		
+			</Page>	
+</core:View>

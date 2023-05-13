@@ -1,0 +1,15 @@
+<core:FragmentDefinition xmlns="sap.m"
+ xmlns:core="sap.ui.core">
+ <SelectDialog title="GRN" items=""
+  class="sapUiPopupWithPadding" liveChange="_handleValueHelpSearch" confirm="_handleValueHelpClose"
+  cancel="_handleValueHelpCancel">
+  <StandardListItem
+      items=""
+   type="Active"
+   title="{ProdDesc}"
+ description="{ProdSize}" 
+   press="" />
+ </SelectDialog>
+</core:FragmentDefinition>
+
+<!--  description="{ProdSize}" -->

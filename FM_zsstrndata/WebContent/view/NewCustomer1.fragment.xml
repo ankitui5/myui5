@@ -1,0 +1,85 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+	<Dialog xmlns="sap.m" title="Select : Customers" class="sapUiSizeCompact col col1 frgLebl" contentWidth="65%" contentHeight="60%">
+		<content>
+			<l:Grid defaultSpan="L12 M12 S12" width="auto" position="Center">
+				<l:content>
+				
+					<f:SimpleForm minWidth="1024" maxContainerCols="4" editable="true" layout="ResponsiveGridLayout" labelSpanL="4"
+						labelSpanM="0"  emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2" class="">
+						<f:content>
+						<!--vehlabel  -->
+		<core:title/>		
+		
+		<Label text="Dealer"/>
+		<Text id="idDealer" value=""/>
+			
+		<Label text="Customer Name"/>
+		<Input  id="idcustomer" maxLength="40"  valueHelpRequest="onCustName"
+								 valueHelpOnly="true" visible = "true" showValueHelp="true" />
+		
+			
+			<core:title/>
+					   
+	  <Label text="Mobile no" />
+		<Input  id="idmobileno" liveChange="NumberValid" maxLength="35"  
+								valueHelpRequest="onMobile" valueHelpOnly="true" visible = "true" showValueHelp="true"/>
+					   
+	    <Label text="Customer No" visible="false"/>
+			<Input  id="idcustomerno" liveChange="NumberValid" maxLength="10" visible="false"/> 
+		
+		<Button text="Go" press="onSearch" icon="sap-icon://save" class="icon-save" type="Accept" />
+		<Button text="Reset" press="onReset" icon="sap-icon://reset" class="icon-save"  type="Reject"/>	
+	
+						</f:content> 
+					</f:SimpleForm>
+				</l:content>
+			</l:Grid>
+			
+		</content>
+		
+			<Table id="idCustomerTable" items="{TransListSetJModel>/}" mode="" class=" tablabel frgtb tblgrid1">
+    
+    <columns class="sapMTitle">
+      <Column visible="false"
+        minScreenWidth="Tablet"
+        width="10em"
+        demandPopin="true"
+        hAlign="Center">
+        <Text text="Channel Partner Number" /> 
+      </Column>	
+    
+     <Column
+        minScreenWidth="Tablet"
+        width="10em"
+        demandPopin="true"
+        hAlign="Center">
+        <Text text="Customer Name" /> 
+     </Column>
+      
+     <Column
+        minScreenWidth="Tablet"
+        width="10em"
+        demandPopin="true"
+        hAlign="Center">
+        <Text text="Mobile" /> 
+      </Column>
+       <Column visible="false"></Column>
+    </columns>
+    <items>
+      <ColumnListItem type ="Active" press="displayRequest1" >
+        <cells>
+      		 <Text text="{TransListSetJModel>CpNo}" />        
+      		 <Text text="{TransListSetJModel>Name}" />
+             <Text text="{TransListSetJModel>Mobile1}" />
+        </cells>
+      </ColumnListItem>
+    </items>
+  </Table>
+		<beginButton>
+			<Button text="OK" press="" />
+			
+		</beginButton> 
+		
+	</Dialog>
+</core:FragmentDefinition>

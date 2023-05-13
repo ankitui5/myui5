@@ -1,0 +1,69 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+	<Dialog xmlns="sap.m" title="Create Vehicle" class="sapUiSizeCompact" contentWidth="75%" contentHeight="30%">
+		<content>
+			<l:Grid defaultSpan="L12 M12 S12" width="auto" position="Center">
+				<l:content>
+				
+					<f:SimpleForm minWidth="70%" maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" labelSpanL="4"
+						labelSpanM="3"  emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="3" class="vehlabel">
+						<f:content>
+		<core:title/>		
+		
+		<Label text="Customer"/>
+		<Input   showSuggestion="true" showValueHelp="true" valueHelpOnly="true"
+			valueHelpRequest="onNewCustomer" value="{TranDetailsJModel>Name}"  id="IdNewCustomer"/> 
+			
+		<Label text="Vehicle Type"/>
+		<Input id="idVehicleType" showSuggestion="true" showValueHelp="true" valueHelpOnly="true"
+						valueHelpRequest="onVehicleType"/>
+				
+							
+		<Label text="Vehicle Make"/>
+		<Input id ="idVehicleMake" showSuggestion="true" showValueHelp="true" valueHelpOnly="true"
+						valueHelpRequest="onVehicleMake"  />
+
+						
+		<Label text="Vehicle Model" visible="true" />
+		<Input id="idVehicleModel" showSuggestion="true" showValueHelp="true" valueHelpOnly="true"
+						valueHelpRequest="onVehicleModelHelp"  />		
+			
+			<core:title/>
+					   
+	    <Label text="Registration #"/>
+		<Input id="idRegistration"  liveChange="NumCharValid" maxLength="20" />
+		
+	
+		
+		<Label text="Usage"/>
+		<Select id="idUsage" showSecondaryValues="true" forceSelection="false" 
+						selectedKey="">
+						<items>
+							<core:Item text="Private" key="P" />
+							<core:Item text="Commercial" key="C" />
+						</items>
+				</Select>
+				
+		<Label text="Month Running (KM)"/>
+		<Input id="idMonRunning"  liveChange="KMSValid"/>
+		
+		<Label text="Last Alignment Date"/>
+		<DatePicker id="idLADate"/>
+		
+		
+		
+						</f:content> 
+					</f:SimpleForm>
+				</l:content>
+			</l:Grid>
+			
+		</content>
+		<beginButton>
+			<Button text="OK" press="OnVehicleSubmit" />
+			
+		</beginButton> 
+		<!-- <endButton>
+			<Button text="Cancel" press="OnVehicleClose" />
+		</endButton> -->
+	</Dialog>
+</core:FragmentDefinition>

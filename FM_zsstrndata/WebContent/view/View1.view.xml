@@ -1,0 +1,273 @@
+
+<core:View
+		   xmlns:core ="sap.ui.core" 
+		   xmlns:mvc  ="sap.ui.core.mvc"
+		   xmlns:m    ="sap.m.MultiComboBox"
+		   xmlns      ="sap.m"   
+		   xmlns:u    ="sap.ui.unified"
+		   xmlns:f    ="sap.ui.layout.form"
+	       xmlns:l    ="sap.ui.layout"
+	       xmlns:t    ="sap.ui.table" 
+	       xmlns:sc   ="sap.suite.ui.commons" 	
+	       xmlns:fb   ="sap.ui.comp.filterbar"
+	       xmlns:c    ="sap.ui.unified.calendar"
+	       controllerName="zsstrndata.view.View1" 
+	       xmlns:html="http://www.w3.org/1999/xhtml">
+	
+			<html:style>
+			.paddingnew .sapMPanelContent {
+		     padding: 0rem;
+		    box-sizing: border-box;
+		    overflow: auto;
+		    white-space: normal;
+			}
+			
+			.labelnew .sapFactsheetUtiLabel, .sapMListTbl .sapMLabel {
+		    color: black;
+		    font-weight: 700;
+			}
+		
+		 	.tablemargin .sapMTB-Transparent-CTX.sapMTB {
+		    padding-left: 0.75rem;
+		    margin-top: -26px;
+			}
+			
+			.paddingRight1{
+			padding-right: 60px;
+			}
+			
+			.BoldText{
+			font-weight:700;
+			color:black;
+			}
+			
+			.BoldText1{
+			font-weight:700;
+			color:#008080;
+			}
+			
+			.Buttoncolor{
+			color:#008080;
+			}
+			
+			.margintop1	.sapUiSizeCompact .sapUiFormContainerTitle>.sapUiFormTitle {
+		    height: 2rem;
+		    line-height: 2rem;
+		    margin-top: -50px;
+			}
+		
+		<!-- 	.tblgrid .sapMListTblCell {
+		    vertical-align: middle;
+		    border: 1.1px solid rebeccapurple;
+		    background: #f4f4f6;
+			}
+			 -->
+			</html:style>
+		
+	<Page title=""  class="sapUiSizeCompact paddingnew tablemargin margintop1 l1">
+	<Toolbar height="2rem" class="sapUiSizeCompact">				
+		<ToolbarSpacer></ToolbarSpacer>
+		<Title id="HeaderIdTit" class="BoldText" text="" level="H6" titleStyle="H6" textAlign="Center" width="100%"></Title>
+		<ToolbarSpacer></ToolbarSpacer>
+	</Toolbar>
+	<content>	
+	<l:Grid defaultSpan="L12 M12 S12" width="auto" vSpacing="1">
+	<l:content>
+	<Panel backgroundDesign="Solid" visible="true">
+	<f:Form editable="true" minWidth="1024">
+	<f:layout>
+	<f:ResponsiveGridLayout columnsL="3"
+							columnsM="2" emptySpanL="1" emptySpanM="2" labelSpanL="4" labelSpanM="2" class="sapUiSizeCompact lab "/>
+	</f:layout>
+	
+	<f:formContainers class="sapUiMediumMarginBegin">
+				     <f:FormContainer>
+				       	<f:title>
+								<core:Title xmlns="sap.ui.core" text="" emphasized="true" />
+						</f:title>
+						 <f:formElements>
+							<f:FormElement visible="true">
+						   			<f:label>	
+							<Label text="Date" class="BoldText1"/>
+									</f:label>
+									<f:fields>
+									<DatePicker id="idTodayDate" change="ChangeTranDataDate" >
+									<!-- <layoutData>
+									<l:GridData span="XL3 L2 M2 S1"/>
+									</layoutData> -->
+									</DatePicker>
+									
+								<!-- 	<Button type="Accept" text="Go" press="onSearchTransaction"> -->
+									<!-- <layoutData>
+									<l:GridData span=" L1 M1 S1"/>
+									</layoutData> -->
+									<!-- </Button> -->
+									</f:fields>
+						   </f:FormElement>		
+						 </f:formElements>
+				     </f:FormContainer>
+				     
+				      <f:FormContainer>
+				       <f:title>
+								<core:Title xmlns="sap.ui.core" text="" emphasized="true"></core:Title>
+						</f:title>
+						 <f:formElements>
+						   <f:FormElement visible="true">
+									<f:label>
+									 <Label text="Amount(Rs.)" class="BoldText1"/>
+									</f:label>
+									<f:fields>
+									  <Text id="idamt" text="0.00" ></Text>
+									  
+									</f:fields>
+						   </f:FormElement>	 		
+						 </f:formElements>
+				     </f:FormContainer>
+				    
+				     <f:FormContainer>
+				       <f:title>
+								<core:Title xmlns="sap.ui.core" text="" emphasized="true" ></core:Title>
+						</f:title>
+						 <f:formElements>
+						  	
+						 
+						 <f:FormElement visible="true">
+									<f:label>
+										<Label  text=""></Label>
+									</f:label>
+									<f:fields>
+									<ToolbarSpacer></ToolbarSpacer>
+									<Button text="Add" press="addNewTransaction" icon="sap-icon://add"  id="idAdd" visible="true">
+									<!-- <layoutData>
+									<l:GridData span="L1 M1 S1"/>
+									</layoutData> -->
+									</Button>	
+								</f:fields>
+						   </f:FormElement>	
+						   
+						 </f:formElements>
+				     </f:FormContainer>
+				  </f:formContainers>	
+	</f:Form>
+	</Panel>
+	</l:content>
+	</l:Grid>
+	
+	<Panel>
+	<Table id="tblDetail1" items="{TranDetailsJModel>/}" visibleRowCount="10" class="tblgrid">
+	
+	<columns>
+	<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="10rem" >
+	<Label text="Customer" required="true"/>
+	</Column>
+	
+	<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="10rem" >
+	<Label text="Transaction Type"  required="true"/>
+	</Column>
+	
+	<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" >
+	<Label text="matnr" visible="false"/>
+	</Column>
+	
+	<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="10rem" >
+	<Label text="SKU" required="true"/>
+	</Column>
+	
+	
+	<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="10rem" >
+	<Label text="Service"  required="true"/>
+	</Column>
+	
+	<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="9.1rem">
+	<Label text="Registration No"  required="true"/>
+	</Column>
+	
+	<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="7.5rem" >
+	<Label text=" Qty" required="true"/>
+	</Column>
+	
+	<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="7.5rem" >
+	<Label text="Amount"/>
+	</Column>
+				
+	<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true" width="2.5rem">
+	<Label text="" />
+	</Column>
+	
+	<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+	<Label text="Cpno" visible="false" />
+	</Column>
+	
+	<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true">
+	<Label text="Mobile1" visible="false" />
+	</Column>
+	
+	<Column minScreenWidth="Tablet" hAlign='Center' demandPopin="true"  width="2.5rem">
+	<Label text="" visible="true"/>
+	</Column>
+	
+	</columns>
+	<items>
+	<ColumnListItem>
+	<cells>
+	<Input   showSuggestion="true" showValueHelp="true" valueHelpOnly="true"
+			valueHelpRequest="onCustomerName" value="{TranDetailsJModel>Name}" /> 
+			
+	<Select items="{Transaction>/}" forceSelection="false" 
+	        change="onChangeTransactionType" selectedKey="{TranDetailsJModel>TrnsType}" enabled="true">
+	<items>
+	<core:Item text="{Transaction>Text}" key="{Transaction>TransType}" />
+	</items>
+	</Select>
+	
+	<Input value="{TranDetailsJModel>Matnr}"  visible="false" />
+	
+	<Input showSuggestion="true" showValueHelp="true" valueHelpOnly="true"
+			valueHelpRequest="onMaterial" value="{TranDetailsJModel>Maktx}"  enabled="false" />
+			
+	<MultiComboBox autoAdjustWidth="true" items="{Service>/}" showSecondaryValues="true"  enabled="false" selectedKeys="{TranDetailsJModel>Service}" >
+	<core:Item  additionalText="" key="{Service>Service}" text="{Service>Text}"></core:Item>
+	</MultiComboBox>
+				
+	<Input  value="{TranDetailsJModel>RegNo}" liveChange="upperCase" enabled="false" valueHelpRequest="onRegNo"  showValueHelp="true" valueHelpOnly="true" /> 
+						
+	<Input  value="{TranDetailsJModel>Menge}" liveChange="NumberValid" maxLength="20"  enabled="false"/>
+			
+	<Input  value="{TranDetailsJModel>Netwr}" liveChange="AmountValid" maxLength="20"  enabled="false"/>
+	
+	<Button icon="sap-icon://delete"
+			press="onRemoveTransDetail" type="Reject" tooltip="Delete Item" />
+					
+			
+	 <Input  value="{TranDetailsJModel>CpNo}"  maxLength="20" visible="false"/> 
+	 
+	 <Input  value="{TranDetailsJModel>Mobile1}"  maxLength="20" visible="false"/>
+	 
+	 <Button icon="sap-icon://form"
+			press="onProductTransDetail" type="Accept"  visible="false" /> 
+	
+	</cells>
+	</ColumnListItem>
+	
+	</items>
+	</Table>
+	</Panel>
+
+	</content>
+	<footer>
+	<Bar>
+	<contentRight>
+		
+		<!-- <Button text="Create vehicle " press="oncreatevehicle" type="Accept"
+					id="Id_bt1" visible="true" />  -->
+		
+		<Button text="Review and Save" press="onReview" type="Accept"
+					id="Id_bt2" visible="true" /> 
+					
+		<Button text="Submit For Day" press="onSubmit" type="Accept"
+					id="Id_bt3" visible="true" />		
+	</contentRight>
+	</Bar>
+	</footer>
+	</Page>
+</core:View>

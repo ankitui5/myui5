@@ -1,0 +1,115 @@
+<core:View xmlns:core="sap.ui.core" 
+			xmlns:mvc="sap.ui.core.mvc" 
+			xmlns="sap.m" 
+			xmlns:f="sap.ui.layout.form" 
+			controllerName="com.acute.stock.in.view.S1" 
+			xmlns:html="http://www.w3.org/1999/xhtml">
+			
+	<Page id ="gatEntryText" title="GRN">
+	<content>
+
+		<Panel id="Panel1" class="Custom_Table">
+			<Toolbar>
+						<Title id="gatEntry" class="titlecls" text="" level="H6" titleStyle="H6" textAlign="Center" width="100%"></Title>
+						<!-- <ToolbarSpacer></ToolbarSpacer> -->
+			</Toolbar>
+					<Table id="tableStock" visible="true" items="" class="Custom_Table">
+							<headerToolbar>
+								<Toolbar>
+									<Title  visible="false" id="tableText" level="H2" />
+									<ToolbarSpacer></ToolbarSpacer>
+									<Button text="Add" press="addNewItem" visible="true" icon="sap-icon://add"></Button>
+								</Toolbar>
+							</headerToolbar>
+							<columns>
+								<Column minScreenWidth="Tablet" demandPopin="true">
+									<Label text="Tyre Company" design="Bold"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" visible="false">
+									<Label text="Branding No." design="Bold"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true">
+									<Label text="Stencil Number" design="Bold"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true">
+									<Label text="Prod Size" design="Bold"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true">
+									<Label text="Item Code Description" design="Bold"/>
+								</Column>
+								<Column minScreenWidth="Tablet" visible="false">
+								</Column>
+								<Column minScreenWidth="Tablet">
+								</Column>
+							</columns>
+						</Table>
+		</Panel>
+			
+		<Table id="tableStencils" items="" visible="false" class="Custom_Table">
+			<headerToolbar>
+				<Toolbar>
+					<Label text="Goods Receipt Number" required="true" />
+					<Input id="inpGrm"
+							submit="enterGrm"
+							editable="true"
+							enabled="true"
+							width="15em"
+							valueHelpRequest="showMaterialF4"
+							showValueHelp = "true"
+							valueHelpOnly ="true">
+						</Input>
+					<Label text="Dispatch Depot : " id="lblPlant" visible="false"></Label>
+					<Text text="" id="plantName"></Text>
+					<Label text=" GRN Date :" id="lblDate" visible="false"></Label>
+					<Text text="" id="date"></Text>
+					<Button press="enterGrm" visible="false" icon="sap-icon://search"></Button>
+					<ToolbarSpacer></ToolbarSpacer>
+				</Toolbar>
+			</headerToolbar>
+							<columns>
+								<Column minScreenWidth="Tablet"  demandPopin="true" width="10em" hAlign="Center">
+									<Label text="Item Number" design="Bold" />
+								</Column>
+								<Column minScreenWidth="Tablet"  demandPopin="true" width="10em" hAlign="Center">
+									<Label text="Stencil Number" design="Bold" />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+									<Label text="Branding No." design="Bold"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" width="17em" hAlign="Center">
+									<Label text="Item Desc." design="Bold"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" width="7em" hAlign="Center">
+									<Label text="Prod Size" design="Bold"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" visible="false" width="7em" hAlign="Center">
+									<Label text="NDP" design="Bold"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" visible="false" width="7em" hAlign="Center">
+									<Label text="Net Price" design="Bold"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+									<Label text="Status" design="Bold"/>
+								</Column>
+								<Column minScreenWidth="Tablet" visible="false" demandPopin="true" hAlign="Center">
+									<Label text="" />
+								</Column>
+								<Column minScreenWidth="Tablet" width="17em" demandPopin="true" hAlign="Center">
+									<Label text="Remarks" design="Bold"/>
+								</Column>
+							</columns>
+							<items>
+							</items>
+						</Table>
+		</content>
+		<footer>
+		<Bar>
+
+			<contentRight>
+				<Button text="Save" press="onMoveStock" type="Accept" id="btnSave" visible="false" />
+				<Button text="Save" press="onconfirmStencil" type="Accept" id="btnStencilSave" visible="false" />
+			</contentRight>
+		</Bar>
+	</footer>
+	</Page>
+</core:View>

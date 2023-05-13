@@ -1,0 +1,45 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+	<Dialog xmlns="sap.m" title="Product Details" class="sapUiSizeCompact" contentWidth="420px" contentHeight="300px">
+		<content>
+			<l:Grid defaultSpan="L12 M12 S12" width="auto" position="Center">
+				<l:content>
+					<f:SimpleForm minWidth="1024" maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" labelSpanL="4"
+						labelSpanM="3"  emptySpanL="1" emptySpanM="1" columnsL="2" columnsM="3">
+						<f:content>
+							
+			<Label text="Fitment Type" required="true"/>
+			<Select id="idFitTyp" forceSelection="false" enabled="true" change="" ><!-- selectedKey="{jModel>/d/FitType}" -->
+			<items>
+			<core:Item text="Replacement " key="01" />
+			<core:Item text="Original Equipment Manufacturer" key="02" />
+			<core:Item text="State Transport Undertaking" key="03" />
+			<core:Item text="Defence" key="04" />
+			</items>
+			</Select>	 
+							
+		<Label text="Stencil No." tooltip="Product Stencil" required="true" id="lblStncl"/>
+		<Input id="idStnclNo" enabled="true" value="" maxLength="10" change="charNum" />
+						
+						
+		
+		<Label text="Monthly Running(Kms)" tooltip="Avg. Kilometres run per month(Kms)" visible="true" required="true"/>
+		<Input id="idMnthlyKms" value="" liveChange="NumberValid" enabled="true" visible="true" maxLength="10"/>	
+					   
+	    <Label text="Date of Purchase" tooltip="Date of Purchase" required="true"/>
+		<DatePicker id="idPurchDt" value="" enabled="true" visible="true" change="onchangePrchDt"/> 
+						</f:content> 
+					</f:SimpleForm>
+				</l:content>
+			</l:Grid>
+			
+		</content>
+		<beginButton>
+			<Button text="OK" press="OnProductFragOk" />
+			
+		</beginButton> 
+		<endButton>
+			<Button text="Cancel" press="OnProductFragCancel" />
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>
