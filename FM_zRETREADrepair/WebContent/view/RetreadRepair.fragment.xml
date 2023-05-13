@@ -1,0 +1,109 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+	<Dialog xmlns="sap.m" title="Casing Repair Details" class="sapUiSizeCompact" contentWidth="600px" >
+		<content>
+			<l:Grid defaultSpan="L12 M12 S12" width="auto" position="Center">
+				<l:content>
+					<f:SimpleForm minWidth="1024" maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" labelSpanL="4"
+									labelSpanM="3" emptySpanL="1" emptySpanM="1" columnsL="2" columnsM="3">
+						<f:content>
+							
+								<Label text="Date of Repair" design="Bold" required="true"/>
+								<DatePicker id="idDateofRepair" width="10rem" dateFormat="dd-MM-yyyy" valueFormat="yyyy-MM-dd" ></DatePicker>
+							
+								<Label text="Stencil Number" design="Bold"/>
+								<Text id="idStencilNo" />
+
+								<Label text="Tyre Size" design="Bold"/>
+								<Text id="idTreadSize" />
+
+								<Label id="lblTreadPat" text="Pattern" design="Bold"/>
+								<Text id="idTreadPat" />
+							
+							<Label text="Category" design="Bold" />
+							<Select id="idRepairCategory" forceSelection="false" change="onCategoryChange" width="10rem" enabled="false">
+								<core:Item text="Radial" key="R"></core:Item>
+								<core:Item text="Bias" key="N"></core:Item>
+							</Select>
+							
+							<Label text="Make" design="Bold" required="true"/>
+							<Select id="idOwner" forceSelection="false" change="onOwnerChange" width="10rem">
+								<core:Item text="JK Belt" key="01"></core:Item>
+								<core:Item text="Non-JK Belt" key="02"></core:Item>
+							</Select>
+						
+						<Label text="Company" design="Bold" required="true"/>
+						<Select id="idCompanySelect" items="{CompetitionJModel>/}" 
+								change="onCompanyChange" forceSelection="false" visible="false">
+							<core:Item key="{CompetitionJModel>CompanyCode}" text="{CompetitionJModel>CompanyName}"></core:Item>
+						</Select>
+							
+							<Label id="lbpattern" text="Tread Pattern" required="true" design="Bold" visible="false"/>
+							<Input id="idMatnrInput" maxLength="40" visible="false"/>
+							<Input id="idMatnr" showValueHelp="true" visible="false" valueHelpOnly="true" valueHelpRequest="onTreadPattern"/>
+							<Text id="idMaktx" />
+							
+							<Label text="Total Quantity" design="Bold" visible="false" />
+							<Text id="idTotalQty" visible="false"/>
+							
+							<Label id="lblTotalAvail" text="Total Available Quantity" design="Bold" visible="false" />
+							<Text id="idTotalAvail" visible="false" />
+							
+		<Table id="idPatchTable" items="{patchJModel>/}" showNoData="true" class="tblgrid2">
+				<headerToolbar>
+						<Toolbar height="2rem">
+							<ToolbarSpacer></ToolbarSpacer>
+							<Button id="idAddRow" icon="sap-icon://add-activity" text="Add Item" press="onAddRow" type="Emphasized"></Button>
+						</Toolbar>
+				</headerToolbar>
+			<columns>
+				<Column minScreenWidth="Tablet" demandPopin="true" width="8rem" hAlign="Center">
+					<Label text="Patch Size" design="Bold" />
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" width="5rem" hAlign="Center">
+					<Label text="Quantity" design="Bold" />
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" width="10rem" hAlign="Center" >
+					<Label text="Reason" design="Bold" />
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" width="2rem" hAlign="Center" >
+					<Label text="" design="Bold" />
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+						<Input showValueHelp="true" valueHelpOnly="true" valueHelpRequest="onPatch" value="{patchJModel>Patch}"/>
+						<Input maxLength="2" liveChange="onlyNumber" value="{patchJModel>Fkimg}"></Input>
+						<Select items="{RequiredService>/}" selectedKey="{patchJModel>Reason}" forceSelection="false" >
+							<core:Item key="{RequiredService>Reason}" text="{RequiredService>Desc}"></core:Item>
+						</Select>
+						<Button icon="sap-icon://delete" press="onDeleteRow" type="Reject"></Button>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+							
+							<Label text="Patch Size" design="Bold" required="true" visible="false" />
+							<Input id="idPatch" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="onPatch" visible="false" />
+							
+							<Label text="Reason" design="Bold" visible="false"></Label>
+							<Select id="idReason" items="{RequiredService>/}" forceSelection="false" visible="false">
+								<core:Item key="{RequiredService>Reason}" text="{RequiredService>Desc}"></core:Item>
+							</Select>
+							
+							<Label text="Remarks" design="Bold" />
+							<TextArea id="idRemarks" maxLength="99" />
+					</f:content>
+					</f:SimpleForm>
+				</l:content>
+			</l:Grid>
+		</content>
+		<beginButton>
+			<Button text="Save" press="onRetreadOk" icon="sap-icon://save" type="Emphasized"/>
+		</beginButton> 
+		<endButton>
+			<Button text="Cancel" press="onRetreadCancel" />
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

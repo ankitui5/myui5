@@ -1,0 +1,28 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+	<Dialog xmlns="sap.m" title="Casing (Rejected)" class="sapUiSizeCompact" contentWidth="320px" contentHieght="320px">
+		<content>
+			<l:Grid defaultSpan="L12 M12 S12" width="auto" position="Center">
+				<l:content>
+				<f:SimpleForm minWidth="1024" maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" labelSpanL="4"
+									labelSpanM="3" emptySpanL="1" emptySpanM="1" columnsL="2" columnsM="3">
+							
+							<Label text="Reason" required="true"/>
+							<Select id="idReasonSelect" items="{RejectService>/}" forceSelection="false">
+							<core:Item key="{RejectService>Reason}" text="{RejectService>Desc}"></core:Item>
+							</Select>
+							
+							<Label text="Remarks" />
+							<TextArea id="idReason" maxLength="99" growing="true" rows="3"/>
+				</f:SimpleForm>
+				</l:content>
+			</l:Grid>
+		</content>
+		<beginButton>
+			<Button text="Save" press="onReject" type="Emphasized" icon="sap-icon://save"/>
+		</beginButton> 
+		<endButton>
+			<Button text="Cancel" press="onRejectCancel" />
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>
