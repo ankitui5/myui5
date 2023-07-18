@@ -1,0 +1,68 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZLEWM_PMR_PROD_STAGING_SRV" xml:lang="en" sap:schema-version="1"><Annotation xmlns="http://docs.oasis-open.org/odata/ns/edm" Term="Core.SchemaVersion" String="1.0.0"/>
+			<EntityType Name="ZwarehouseF4" sap:content-version="1">
+				<Key><PropertyRef Name="WarehouseNumber"/></Key><Property Name="WarehouseNumber" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false"/><Property Name="Description" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false"/></EntityType>
+			<EntityType Name="ZProductionStatusF4" sap:content-version="1">
+				<Key><PropertyRef Name="StatusValue"/></Key><Property Name="StatusValue" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false"/><Property Name="StatusValueText" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false"/></EntityType>
+			<EntityType Name="ZPSA" sap:content-version="1">
+				<Key><PropertyRef Name="ProductionSupplyArea"/></Key><Property Name="ProductionSupplyArea" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:creatable="false"
+					sap:updatable="false"/><Property Name="PSAText" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:creatable="false" sap:updatable="false"/></EntityType>
+			<EntityType Name="ZManufacturingOrder" sap:content-version="1">
+				<Key><PropertyRef Name="ManufacturingOrder"/></Key><Property Name="ManufacturingOrder" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"/></EntityType>
+			<EntityType Name="ZOperation" sap:content-version="1">
+				<Key><PropertyRef Name="Operation"/></Key><Property Name="Operation" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"/></EntityType>
+			<EntityType Name="ZERPWorkcenter" sap:content-version="1">
+				<Key><PropertyRef Name="ERPWorkcenter"/></Key><Property Name="ERPWorkcenter" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"/></EntityType>
+			<EntityType Name="ZPriority" sap:content-version="1">
+				<Key><PropertyRef Name="Priority"/></Key><Property Name="Priority" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"/></EntityType>
+			<EntityType Name="ZFinishedProduct" sap:content-version="1">
+				<Key><PropertyRef Name="FinishedProduct"/></Key><Property Name="FinishedProduct" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"/></EntityType>
+			<EntityType Name="ZReqstartdate" sap:content-version="1">
+				<Key><PropertyRef Name="ReqStartDate"/></Key><Property Name="ReqStartDate" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"/></EntityType>
+			<EntityType Name="ZReqstarttime" sap:content-version="1">
+				<Key><PropertyRef Name="Reqstarttime"/></Key><Property Name="Reqstarttime" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"/></EntityType>
+			<EntityType Name="ZConfirmedDate" sap:content-version="1">
+				<Key><PropertyRef Name="ConfirmedDate"/></Key><Property Name="ConfirmedDate" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"/></EntityType>
+			<EntityType Name="TableEntity" sap:content-version="1">
+				<Key><PropertyRef Name="ManufacturingOrder"/></Key><Property Name="ConfirmedDate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Date" sap:creatable="false"
+					sap:updatable="false"/><Property Name="RequirementDate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Date"
+					sap:creatable="false" sap:updatable="false"/><Property Name="ManufacturingOrder" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Manuf. Order"
+					sap:creatable="false" sap:updatable="false"/><Property Name="Operation" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Oper. or Act."
+					sap:creatable="false" sap:updatable="false"/><Property Name="ProductionSupplyArea" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="PSA"
+					sap:creatable="false" sap:updatable="false"/><Property Name="ErpWorkcenter" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="ERP Work Center"
+					sap:creatable="false" sap:updatable="false"/><Property Name="SubsequentErpWorkcenter" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="ERP Work Center"
+					sap:creatable="false" sap:updatable="false"/><Property Name="WorkcenterLocalization" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Location"
+					sap:creatable="false" sap:updatable="false"/><Property Name="TotalNbWt" Type="Edm.Int64" Nullable="false" sap:unicode="false" sap:label="Total WT" sap:creatable="false"
+					sap:updatable="false"/><Property Name="TotalOpenWt" Type="Edm.Int64" Nullable="false" sap:unicode="false" sap:label="Total WT" sap:creatable="false"
+					sap:updatable="false"/><Property Name="TotalConfirmWt" Type="Edm.Int64" Nullable="false" sap:unicode="false" sap:label="Total WT" sap:creatable="false"
+					sap:updatable="false"/><Property Name="RequiredQuantity" Type="Edm.Decimal" Nullable="false" Precision="31" Scale="14" sap:unicode="false" sap:label="Quantity"
+					sap:creatable="false" sap:updatable="false"/><Property Name="MissingPartsRelease" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:unicode="false"
+					sap:label="Missing Qty" sap:creatable="false" sap:updatable="false"/><Property Name="MissingPartsLogistics" Type="Edm.Decimal" Nullable="false" Precision="31" Scale="14" sap:unicode="false"
+					sap:label="Quantity" sap:creatable="false" sap:updatable="false"/><Property Name="PickingStatus" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Single-Character Flag"
+					sap:creatable="false" sap:updatable="false"/><Property Name="InConsolidation" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Single-Character Flag"
+					sap:creatable="false" sap:updatable="false"/><Property Name="InDelivery" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Single-Character Flag"
+					sap:creatable="false" sap:updatable="false"/><Property Name="Delivered" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Single-Character Flag"
+					sap:creatable="false" sap:updatable="false"/><Property Name="Completed" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Single-Character Flag"
+					sap:creatable="false" sap:updatable="false"/><Property Name="Comments" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Comment" sap:creatable="false"
+					sap:updatable="false"/></EntityType>
+			<EntityContainer Name="ZLEWM_PMR_PROD_STAGING_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="ZwarehouseF4" EntityType="ZLEWM_PMR_PROD_STAGING_SRV.ZwarehouseF4" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="ZProductionStatusF4" EntityType="ZLEWM_PMR_PROD_STAGING_SRV.ZProductionStatusF4" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="ZPSA" EntityType="ZLEWM_PMR_PROD_STAGING_SRV.ZPSA" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="ZManufacturingOrder" EntityType="ZLEWM_PMR_PROD_STAGING_SRV.ZManufacturingOrder" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="ZOperation" EntityType="ZLEWM_PMR_PROD_STAGING_SRV.ZOperation" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="ZERPWorkcenter" EntityType="ZLEWM_PMR_PROD_STAGING_SRV.ZERPWorkcenter" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="ZPriority" EntityType="ZLEWM_PMR_PROD_STAGING_SRV.ZPriority" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="ZFinishedProduct" EntityType="ZLEWM_PMR_PROD_STAGING_SRV.ZFinishedProduct" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="ZReqstartdate" EntityType="ZLEWM_PMR_PROD_STAGING_SRV.ZReqstartdate" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="ZReqstarttime" EntityType="ZLEWM_PMR_PROD_STAGING_SRV.ZReqstarttime" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="ZConfirmedDate" EntityType="ZLEWM_PMR_PROD_STAGING_SRV.ZConfirmedDate" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="TableEntitySet" EntityType="ZLEWM_PMR_PROD_STAGING_SRV.TableEntity" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/></EntityContainer><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZLEWM_PMR_PROD_STAGING_SRV/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZLEWM_PMR_PROD_STAGING_SRV/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

@@ -1,0 +1,21 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form">
+	<Dialog id="idDialog" title="{i18n>EditDialogTitle}" contentWidth="40%" resizable="false" draggable="true">
+		<!--contentHeight="50%"-->
+		<content>
+			<f:SimpleForm editable="true" layout="ResponsiveGridLayout" columnsXL="1" columnsL="1" columnsM="1"
+				singleContainerFullSize="false" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="4" adjustLabelSpan="false" emptySpanXL="0"
+				emptySpanL="0" emptySpanM="0" emptySpanS="0">
+				<f:content>
+					<Label text="{i18n>ConfirmedDate}"></Label>
+					<DatePicker id="idNewConfirmedDate" valueFormat="yyyy-MM-dd" displayFormat="dd.MM.yyyy"/>
+					<Label text="{i18n>Comments}"></Label>
+					<TextArea id="idNewComments" maxLength="20"/>
+				</f:content>
+			</f:SimpleForm>
+		</content>
+		<buttons>
+			<Button text="{i18n>Save}" tooltip="{i18n>Save}" press="onSave"/>
+			<Button text="{i18n>Close}" tooltip="{i18n>Close}" press="onClose"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>
