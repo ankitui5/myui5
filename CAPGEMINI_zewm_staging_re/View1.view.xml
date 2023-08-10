@@ -1,0 +1,202 @@
+<mvc:View controllerName="com.safran.ewm.zewm_staging_re.controller.View1" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
+	xmlns:layout="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:ui="sap.ui.table" xmlns:l="sap.ui.layout"
+	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar" xmlns:core="sap.ui.core" xmlns:sv="sap.ui.comp.smartvariants"
+	xmlns:smartTable="sap.ui.comp.smarttable" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:tnt="sap.tnt"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page id="page" title="{i18n>title}" class="sapUiSizeCompact">
+		<content>
+			<Toolbar>
+				<sv:SmartVariantManagement id="__SVM427" entitySet="TableEntitySet" persistencyKey="UniqueAndStablePersistencyKey" showShare="true"
+					showExecuteOnSelection="true" select="onVariantSelect1"></sv:SmartVariantManagement>
+				<ToolbarSpacer></ToolbarSpacer>
+				<Text text="{i18n>AutoRefresh} :"/><Text width="1rem"/>
+				<Switch id="idSwitch" state="false" change="onSwitchChange" customTextOn="{i18n>Yes}" customTextOff="{i18n>No}">
+					<layoutData>
+						<FlexItemData growFactor="1"/>
+					</layoutData>
+				</Switch>
+			</Toolbar>
+			<VBox fitContainer="true">
+				<smartFilterBar:SmartFilterBar entitySet="TableEntitySet" id="smartFilterBar" persistencyKey="UniqueAndStablePersistencyKey"
+					smartVariant="__SVM427" showFilterConfiguration="true" search="onFilterBarSearch1" considerSelectionVariants="true"
+					afterVariantLoad="onAfterVariantLoad" beforeVariantFetch="onBeforeVariantFetch" initialise="onFilterBarInitialise" showMessages="false">
+					<!--Standard Group: Start-->
+					<smartFilterBar:controlConfiguration>
+						<smartFilterBar:ControlConfiguration key="Warehousenumber" index="0" width="300px" mandatory="mandatory" visibleInAdvancedArea="true"
+							filterType="single"></smartFilterBar:ControlConfiguration>
+					</smartFilterBar:controlConfiguration>
+					<!--Standard Group: End-->
+					<!--Document Group: Start-->
+					<smartFilterBar:controlConfiguration>
+						<smartFilterBar:ControlConfiguration key="Productionstatus" width="300px" visibleInAdvancedArea="true"></smartFilterBar:ControlConfiguration>
+					</smartFilterBar:controlConfiguration>
+					<smartFilterBar:controlConfiguration>
+						<smartFilterBar:ControlConfiguration key="ProductionsupplyArea" width="300px" visibleInAdvancedArea="true"></smartFilterBar:ControlConfiguration>
+					</smartFilterBar:controlConfiguration>
+					<smartFilterBar:controlConfiguration>
+						<smartFilterBar:ControlConfiguration key="Manufacturingorder" width="300px" visibleInAdvancedArea="true"></smartFilterBar:ControlConfiguration>
+					</smartFilterBar:controlConfiguration>
+					<smartFilterBar:controlConfiguration>
+						<smartFilterBar:ControlConfiguration key="Operation" width="300px" visibleInAdvancedArea="true"></smartFilterBar:ControlConfiguration>
+					</smartFilterBar:controlConfiguration>
+					<smartFilterBar:controlConfiguration>
+						<smartFilterBar:ControlConfiguration key="Erpworkcenter" width="300px" visibleInAdvancedArea="true"></smartFilterBar:ControlConfiguration>
+					</smartFilterBar:controlConfiguration>
+					<smartFilterBar:controlConfiguration>
+						<smartFilterBar:ControlConfiguration key="Priority" width="300px" visibleInAdvancedArea="true"></smartFilterBar:ControlConfiguration>
+					</smartFilterBar:controlConfiguration>
+					<smartFilterBar:controlConfiguration>
+						<smartFilterBar:ControlConfiguration key="Finishedproduct" width="300px" visibleInAdvancedArea="true"></smartFilterBar:ControlConfiguration>
+					</smartFilterBar:controlConfiguration>
+					<!--Document Group: End-->
+					<!--Date Group: Start-->
+					<smartFilterBar:controlConfiguration>
+						<smartFilterBar:ControlConfiguration key="Confirmeddate" visible="true" controlType="date" filterType="interval" width="300px"
+							visibleInAdvancedArea="true"></smartFilterBar:ControlConfiguration>
+					</smartFilterBar:controlConfiguration>
+					<smartFilterBar:controlConfiguration>
+						<smartFilterBar:ControlConfiguration key="Reqstartdate" visible="true" controlType="date" filterType="interval" width="300px"
+							visibleInAdvancedArea="true"></smartFilterBar:ControlConfiguration>
+					</smartFilterBar:controlConfiguration>
+					<smartFilterBar:controlConfiguration>
+						<smartFilterBar:ControlConfiguration key="Reqstarttime" visible="true" controlType="auto" filterType="interval" width="300px"
+							visibleInAdvancedArea="true"></smartFilterBar:ControlConfiguration>
+					</smartFilterBar:controlConfiguration>
+					<!--Date Group: End-->
+					<!--MRP add-on Group: Start-->
+					<smartFilterBar:controlConfiguration>
+						<smartFilterBar:ControlConfiguration key="Plant" width="300px" visibleInAdvancedArea="true" filterType="single"></smartFilterBar:ControlConfiguration>
+					</smartFilterBar:controlConfiguration>
+					<smartFilterBar:controlConfiguration>
+						<smartFilterBar:ControlConfiguration key="Cei" width="300px" visibleInAdvancedArea="true"></smartFilterBar:ControlConfiguration>
+					</smartFilterBar:controlConfiguration>
+					<smartFilterBar:controlConfiguration>
+						<smartFilterBar:ControlConfiguration key="Ui" width="300px" visibleInAdvancedArea="true"></smartFilterBar:ControlConfiguration>
+					</smartFilterBar:controlConfiguration>
+					<smartFilterBar:controlConfiguration>
+						<smartFilterBar:ControlConfiguration key="Exceptindicator3" width="300px" visibleInAdvancedArea="true"></smartFilterBar:ControlConfiguration>
+					</smartFilterBar:controlConfiguration>
+					<smartFilterBar:controlConfiguration>
+						<smartFilterBar:ControlConfiguration key="Uap" width="300px" visibleInAdvancedArea="true"></smartFilterBar:ControlConfiguration>
+					</smartFilterBar:controlConfiguration>
+					<smartFilterBar:controlConfiguration>
+						<smartFilterBar:ControlConfiguration key="Ligneprod" width="300px" visibleInAdvancedArea="true"></smartFilterBar:ControlConfiguration>
+					</smartFilterBar:controlConfiguration>
+					<smartFilterBar:controlConfiguration>
+						<smartFilterBar:ControlConfiguration key="Product" width="300px" visibleInAdvancedArea="true"></smartFilterBar:ControlConfiguration>
+					</smartFilterBar:controlConfiguration>
+					<!--MRP add-on Group: End-->
+					<!--Missing Part Group: Start-->
+					<smartFilterBar:controlConfiguration>
+						<smartFilterBar:ControlConfiguration key="Missingpartsrelease" width="300px" visibleInAdvancedArea="true"></smartFilterBar:ControlConfiguration>
+					</smartFilterBar:controlConfiguration>
+					<smartFilterBar:controlConfiguration>
+						<smartFilterBar:ControlConfiguration key="Missingpartslogistics" width="300px" visibleInAdvancedArea="true"></smartFilterBar:ControlConfiguration>
+					</smartFilterBar:controlConfiguration>
+					<!--Missing Part Group: End-->
+					<!--Status Group: Start-->
+					<smartFilterBar:controlConfiguration>
+						<smartFilterBar:ControlConfiguration key="Pickingstatus" width="300px" visibleInAdvancedArea="true"></smartFilterBar:ControlConfiguration>
+					</smartFilterBar:controlConfiguration>
+					<smartFilterBar:controlConfiguration>
+						<smartFilterBar:ControlConfiguration key="Status" width="300px" visibleInAdvancedArea="true"></smartFilterBar:ControlConfiguration>
+					</smartFilterBar:controlConfiguration>
+					<!--Statust Group: End-->
+					<smartFilterBar:layoutData>
+						<FlexItemData shrinkFactor="0"/>
+					</smartFilterBar:layoutData>
+				</smartFilterBar:SmartFilterBar>
+				<!---->
+				<smartTable:SmartTable id="smartTableID" smartFilterId="smartFilterBar" tableType="ResponsiveTable" useExportToExcel="true"
+					entitySet="TableEntitySet" beforeExport="onBeforeExport" useVariantManagement="true" useTablePersonalisation="true" showRowCount="true"
+					persistencyKey="SmartTableKey" enableAutoBinding="true" demandPopin="true" fitContainer="true" class="sapUiResponsiveContentPadding"
+					placeToolbarInTable="true" beforeRebindTable="onBeforeReBindTable" editTogglable="false" editable="false" initialise="onInitialiseTable"
+					initiallyVisibleFields="Manufacturingorder,Operation,ProductionsupplyArea,Erpworkcenter,Subsequenterpworkcenter,Workcenterlocalization,Totalnbwt,Totalopenwt,Totalconfirmwt,Requiredquantity">
+					<smartTable:customToolbar>
+						<OverflowToolbar id="smartToolbar" design="Transparent">
+							<ToolbarSpacer id="spacer"/>
+							<Button id="idEditButton" icon="sap-icon://edit" text="{i18n>Edit}" press="onEdit" visible="false" />
+							<Button id="idDisplayButton" icon="sap-icon://display" text="{i18n>Display}" press="onDisplay"/>
+						</OverflowToolbar>
+					</smartTable:customToolbar>
+					<Table id="idInnerTable" sticky="ColumnHeaders,HeaderToolbar" fixedLayout="false" growing="true" growingThreshold="50"
+						updateFinished="onUpdateFinished" growingScrollToLoad="false" mode="SingleSelectLeft" alternateRowColors="true">
+						<columns>
+							<Column hAlign="Begin" styleClass="sapMListTblCell">
+								<customData>
+									<core:CustomData key="p13nData"
+										value='\{"columnKey": "Confirmeddate", "autoColumnWidth": \{ "visibleProperty": "Confirmeddate" }, "columnIndex": 0, "leadingProperty": "Confirmeddate", "sortProperty": "Confirmeddate", "additionalProperty": "Confirmeddate"}'/>
+								</customData>
+								<Text text="{i18n>ConfirmedDate}"/>
+							</Column>
+							<Column hAlign="Begin" styleClass="sapMListTblCell">
+								<customData>
+									<core:CustomData key="p13nData"
+										value='\{"columnKey": "Pickingstatus", "autoColumnWidth": \{ "visibleProperty": "Pickingstatus" }, "columnIndex": 13, "leadingProperty": "Pickingstatus", "sortProperty": "Pickingstatus", "additionalProperty": "Pickingstatus"}'/>
+								</customData>
+								<Text text="{i18n>Pickingstatus}"/>
+							</Column>
+							<Column hAlign="Begin" styleClass="sapMListTblCell">
+								<customData>
+									<core:CustomData key="p13nData"
+										value='\{"columnKey": "Comments", "autoColumnWidth": \{ "visibleProperty": "Comments" }, "columnIndex": 14, "leadingProperty": "Comments", "sortProperty": "Comments", "additionalProperty": "Comments"}'/>
+								</customData>
+								<Text text="{i18n>Comments}"/>
+							</Column>
+							<Column hAlign="Begin" styleClass="sapMListTblCell">
+								<customData>
+									<core:CustomData key="p13nData"
+										value='\{"columnKey": "Missingpartsrelease", "autoColumnWidth": \{ "visibleProperty": "Missingpartsrelease" }, "columnIndex": 15, "leadingProperty": "Missingpartsrelease", "sortProperty": "Missingpartsrelease", "additionalProperty": "Missingpartsrelease"}'/>
+								</customData>
+								<Label text="{i18n>Missingpartsrelease}"/>
+							</Column>
+							<Column hAlign="Begin" styleClass="sapMListTblCell">
+								<customData>
+									<core:CustomData key="p13nData"
+										value='\{"columnKey": "Missingpartslogistics", "autoColumnWidth": \{ "visibleProperty": "Missingpartslogistics" }, "columnIndex": 16, "leadingProperty": "Missingpartslogistics", "sortProperty": "Missingpartslogistics", "additionalProperty": "Missingpartslogistics"}'/>
+								</customData>
+								<Label text="{i18n>Missingpartslogistics}"/>
+							</Column>
+							<Column hAlign="Begin" styleClass="sapMListTblCell">
+								<customData>
+									<core:CustomData key="p13nData"
+										value='\{"columnKey": "Status", "autoColumnWidth": \{ "visibleProperty": "Status" }, "columnIndex": 17, "leadingProperty": "Status", "sortProperty": "Status", "additionalProperty": "Status"}'/>
+								</customData>
+								<Label text="{i18n>Status}"/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem >
+								<cells>
+									<Text text="{path:'Confirmeddate', formatter:'.formatter.setJSDate'}"/>
+								</cells>
+								<cells>
+									<HBox>
+										<core:Icon src="{path:'Pickingstatus',formatter :'.formatter.setIcon'}" color="{path:'Pickingstatus',formatter :'.formatter.setIconColor'}" class="boldIcon"/>
+										<Text width="0.5rem"></Text>
+										<Label text="{path:'Pickingstatus', formatter:'.formatter.setPickingStatusText'}" design="Bold"/>
+									</HBox>
+								</cells>
+								<cells>
+									<Text text="{path:'Comments'}"/>
+								</cells>
+								<cells>
+									<Text text="{path:'Missingpartsrelease'}"/>
+								</cells>
+								<cells>
+									<Text text="{path:'Missingpartslogistics'}"/>
+								</cells>
+								<cells>
+									<Text text="{path:'Status'}"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+					<smartTable:layoutData>
+						<FlexItemData growFactor="1" baseSize="0%"/>
+					</smartTable:layoutData>
+				</smartTable:SmartTable>
+			</VBox>
+		</content>
+	</Page>
+</mvc:View>

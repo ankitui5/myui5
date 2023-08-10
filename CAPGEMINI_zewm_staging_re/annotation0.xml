@@ -1,0 +1,610 @@
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+	<edmx:Reference Uri="/sap/opu/odata/sap/ZLEWM_PMR_PROD_STAGING_SRV/$metadata">
+		<edmx:Include Alias="Metadata" Namespace="ZLEWM_PMR_PROD_STAGING_SRV"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="https://wiki.scn.sap.com/wiki/download/attachments/448470968/UI.xml?api=v2">
+		<edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="https://wiki.scn.sap.com/wiki/download/attachments/448470974/Common.xml?api=v2">
+		<edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+	</edmx:Reference>
+	<edmx:DataServices>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="zewm_staging_re.annotations.annotation0.ZLEWM_PMR_PROD_STAGING_SRV">
+			<!---->
+			<Annotations Target="Metadata.TableEntity">
+				<Annotation Term="UI.FilterFacets">
+					<Collection>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#FilterFacet1"/>
+							<PropertyValue Property="Label" String="{i18n>StandardGroup}"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#FilterFacet2"/>
+							<PropertyValue Property="Label" String="{i18n>DocumentGroup}"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#FilterFacet3"/>
+							<PropertyValue Property="Label" String="{i18n>DateGroup}"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#FilterFacet4"/>
+							<PropertyValue Property="Label" String="{i18n>MRPGroup}"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#FilterFacet5"/>
+							<PropertyValue Property="Label" String="{i18n>MissingPartGroup}"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#FilterFacet6"/>
+							<PropertyValue Property="Label" String="{i18n>StatusGroup}"/>
+						</Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.FieldGroup" Qualifier="FilterFacet1">
+					<Record Type="UI.FieldGroupType">
+						<PropertyValue Property="Data">
+							<Collection>
+								<Record Type="UI.DataField">
+									<PropertyValue Property="Value" Path="Warehousenumber"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.FieldGroup" Qualifier="FilterFacet2">
+					<Record Type="UI.FieldGroupType">
+						<PropertyValue Property="Data">
+							<Collection>
+								<Record Type="UI.DataField">
+									<PropertyValue Property="Value" Path="Productionstatus"/>
+								</Record>
+								<Record Type="UI.DataField">
+									<PropertyValue Property="Value" Path="ProductionsupplyArea"/>
+								</Record>
+								<Record Type="UI.DataField">
+									<PropertyValue Property="Value" Path="Manufacturingorder"/>
+								</Record>
+								<Record Type="UI.DataField">
+									<PropertyValue Property="Value" Path="Operation"/>
+								</Record>
+								<Record Type="UI.DataField">
+									<PropertyValue Property="Value" Path="Erpworkcenter"/>
+								</Record>
+								<Record Type="UI.DataField">
+									<PropertyValue Property="Value" Path="Priority"/>
+								</Record>
+								<Record Type="UI.DataField">
+									<PropertyValue Property="Value" Path="Finishedproduct"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.FieldGroup" Qualifier="FilterFacet3">
+					<Record Type="UI.FieldGroupType">
+						<PropertyValue Property="Data">
+							<Collection>
+								<Record Type="UI.DataField">
+									<PropertyValue Property="Value" Path="Confirmeddate"/>
+								</Record>
+								<Record Type="UI.DataField">
+									<PropertyValue Property="Value" Path="Reqstartdate"/>
+								</Record>
+								<Record Type="UI.DataField">
+									<PropertyValue Property="Value" Path="Reqstarttime"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.FieldGroup" Qualifier="FilterFacet4">
+					<Record Type="UI.FieldGroupType">
+						<PropertyValue Property="Data">
+							<Collection>
+								<Record Type="UI.DataField">
+									<PropertyValue Property="Value" Path="Plant"/>
+								</Record>
+								<Record Type="UI.DataField">
+									<PropertyValue Property="Value" Path="Cei"/>
+								</Record>
+								<Record Type="UI.DataField">
+									<PropertyValue Property="Value" Path="Ui"/>
+								</Record>
+								<Record Type="UI.DataField">
+									<PropertyValue Property="Value" Path="Exceptindicator3"/>
+								</Record>
+								<Record Type="UI.DataField">
+									<PropertyValue Property="Value" Path="Uap"/>
+								</Record>
+								<Record Type="UI.DataField">
+									<PropertyValue Property="Value" Path="Ligneprod"/>
+								</Record>
+								<Record Type="UI.DataField">
+									<PropertyValue Property="Value" Path="Product"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.FieldGroup" Qualifier="FilterFacet5">
+					<Record Type="UI.FieldGroupType">
+						<PropertyValue Property="Data">
+							<Collection>
+								<Record Type="UI.DataField">
+									<PropertyValue Property="Value" Path="Missingpartsrelease"/>
+								</Record>
+								<Record Type="UI.DataField">
+									<PropertyValue Property="Value" Path="Missingpartslogistics"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.FieldGroup" Qualifier="FilterFacet6">
+					<Record Type="UI.FieldGroupType">
+						<PropertyValue Property="Data">
+							<Collection>
+								<Record Type="UI.DataField">
+									<PropertyValue Property="Value" Path="Pickingstatus"/>
+								</Record>
+								<Record Type="UI.DataField">
+									<PropertyValue Property="Value" Path="Status"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.SelectionFields">
+					<!--Any filter added in "UI.SelectionFields" will be shown in 'BASIC' filter group-->
+					<Collection>
+						<!--<PropertyPath>Warehousenumber</PropertyPath>
+						<PropertyPath>Productionstatus</PropertyPath>
+						<PropertyPath>Priority</PropertyPath>
+						<PropertyPath>Finishedproduct</PropertyPath>
+						<PropertyPath>ProductionsupplyArea</PropertyPath>
+						<PropertyPath>Manufacturingorder</PropertyPath>
+						<PropertyPath>Operation</PropertyPath>
+						<PropertyPath>Plant</PropertyPath>
+						<PropertyPath>Cei</PropertyPath>
+						<PropertyPath>Ui</PropertyPath>
+						<PropertyPath>Exceptindicator3</PropertyPath>
+						<PropertyPath>Uap</PropertyPath>
+						<PropertyPath>Ligneprod</PropertyPath>
+						<PropertyPath>Product</PropertyPath>
+						<PropertyPath>Status</PropertyPath>
+						<PropertyPath>Missingpartsrelease</PropertyPath>
+						<PropertyPath>Missingpartslogistics</PropertyPath>-->
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<!--<Annotations Target="Metadata.TableEntity/Warehousenumber">
+				<Annotation Term="Common.ValueList">
+					<Record Type="Common.ValueListType">
+						<PropertyValue Property="CollectionPath" String="ZwarehouseF4"/>
+						<PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Warehousenumber"/>
+									<PropertyValue Property="ValueListProperty" String="WarehouseNumber"/>
+								</Record>
+								<Record Type="Common.ValueListParameterOut">
+									<PropertyValue Property="ValueListProperty" String="Description"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>-->
+			<Annotations Target="Metadata.TableEntity/Warehousenumber">
+				<Annotation Term="Common.ValueList">
+					<Record Type="Common.ValueListType">
+						<PropertyValue Property="CollectionPath" String="ZwarehouseF4"/>
+						<PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Warehousenumber"/>
+									<PropertyValue Property="ValueListProperty" String="WarehouseNumber"/>
+								</Record>
+								<Record Type="Common.ValueListParameterOut">
+									<PropertyValue Property="ValueListProperty" String="Description"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="Metadata.TableEntity/Productionstatus">
+				<!--<Annotation Term="Common.Label" String="Productionstatus"/>-->
+				<Annotation Term="Common.Text" Path="Productionstatus">
+					<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/Productionstatus"/>
+				</Annotation>
+				<Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>
+				<Annotation Term="Common.ValueList">
+					<Record Type="Common.ValueListType">
+						<!--<PropertyValue Property="Label" String="Productionstatus"/>-->
+						<PropertyValue Property="CollectionPath" String="ZProductionStatusF4"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Productionstatus"/>
+									<PropertyValue Property="ValueListProperty" String="StatusValue"/>
+								</Record>
+								<Record Type="Common.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="StatusValueText"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="Metadata.TableEntity/Priority">
+				<Annotation Term="Common.ValueList">
+					<Record Type="Common.ValueListType">
+						<PropertyValue Property="CollectionPath" String="ZPriority"/>
+						<PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Priority"/>
+									<PropertyValue Property="ValueListProperty" String="Priority"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="Metadata.TableEntity/Finishedproduct">
+				<Annotation Term="Common.ValueList">
+					<Record Type="Common.ValueListType">
+						<PropertyValue Property="CollectionPath" String="ZFinishedProduct"/>
+						<PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Finishedproduct"/>
+									<PropertyValue Property="ValueListProperty" String="FinishedProduct"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="Metadata.TableEntity/ProductionsupplyArea">
+				<Annotation Term="Common.ValueList">
+					<Record Type="Common.ValueListType">
+						<PropertyValue Property="CollectionPath" String="ZPSA"/>
+						<PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="ProductionsupplyArea"/>
+									<PropertyValue Property="ValueListProperty" String="ProductionSupplyArea"/>
+								</Record>
+								<Record Type="Common.ValueListParameterOut">
+									<!--<PropertyValue Property="LocalDataProperty" PropertyPath="Plant"/>-->
+									<PropertyValue Property="ValueListProperty" String="PSAText"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="Metadata.TableEntity/Manufacturingorder">
+				<Annotation Term="Common.ValueList">
+					<Record Type="Common.ValueListType">
+						<PropertyValue Property="CollectionPath" String="ZManufacturingOrder"/>
+						<PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Manufacturingorder"/>
+									<PropertyValue Property="ValueListProperty" String="ManufacturingOrder"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="Metadata.TableEntity/Operation">
+				<Annotation Term="Common.ValueList">
+					<Record Type="Common.ValueListType">
+						<PropertyValue Property="CollectionPath" String="ZOperation"/>
+						<PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Operation"/>
+									<PropertyValue Property="ValueListProperty" String="Operation"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="Metadata.TableEntity/Plant">
+				<Annotation Term="Common.ValueList">
+					<Record Type="Common.ValueListType">
+						<PropertyValue Property="CollectionPath" String="zplantf4"/>
+						<PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterIn">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Warehousenumber"/>
+									<PropertyValue Property="ValueListProperty" String="WarehouseNumber"/>
+								</Record>
+								<Record Type="Common.ValueListParameterOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Plant"/>
+									<PropertyValue Property="ValueListProperty" String="Plant"/>
+								</Record>
+								<Record Type="Common.ValueListParameterOut">
+									<!--<PropertyValue Property="LocalDataProperty" PropertyPath="Warehousenumber"/>-->
+									<PropertyValue Property="ValueListProperty" String="Description"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="Metadata.TableEntity/Cei">
+				<Annotation Term="Common.ValueList">
+					<Record Type="Common.ValueListType">
+						<PropertyValue Property="CollectionPath" String="ZCEI"/>
+						<PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterIn">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Plant"/>
+									<PropertyValue Property="ValueListProperty" String="Plant"/>
+								</Record>
+								<Record Type="Common.ValueListParameterOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Cei"/>
+									<PropertyValue Property="ValueListProperty" String="CEI"/>
+								</Record>
+								<Record Type="Common.ValueListParameterOut">
+									<!--<PropertyValue Property="LocalDataProperty" PropertyPath="Warehousenumber"/>-->
+									<PropertyValue Property="ValueListProperty" String="Plant"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="Metadata.TableEntity/Ui">
+				<Annotation Term="Common.ValueList">
+					<Record Type="Common.ValueListType">
+						<PropertyValue Property="CollectionPath" String="ZUI"/>
+						<PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterIn">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Plant"/>
+									<PropertyValue Property="ValueListProperty" String="Plant"/>
+								</Record>
+								<Record Type="Common.ValueListParameterOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Ui"/>
+									<PropertyValue Property="ValueListProperty" String="UI"/>
+								</Record>
+								<Record Type="Common.ValueListParameterOut">
+									<!--<PropertyValue Property="LocalDataProperty" PropertyPath="Warehousenumber"/>-->
+									<PropertyValue Property="ValueListProperty" String="Plant"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="Metadata.TableEntity/Exceptindicator3">
+				<Annotation Term="Common.ValueList">
+					<Record Type="Common.ValueListType">
+						<PropertyValue Property="CollectionPath" String="ZEXCEPTINDICATOR3"/>
+						<PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterIn">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Plant"/>
+									<PropertyValue Property="ValueListProperty" String="Plant"/>
+								</Record>
+								<Record Type="Common.ValueListParameterOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Exceptindicator3"/>
+									<PropertyValue Property="ValueListProperty" String="ExceptIndicator3"/>
+								</Record>
+								<Record Type="Common.ValueListParameterOut">
+									<!--<PropertyValue Property="LocalDataProperty" PropertyPath="Warehousenumber"/>-->
+									<PropertyValue Property="ValueListProperty" String="Plant"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="Metadata.TableEntity/Uap">
+				<Annotation Term="Common.ValueList">
+					<Record Type="Common.ValueListType">
+						<PropertyValue Property="CollectionPath" String="ZUAP"/>
+						<PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterIn">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Plant"/>
+									<PropertyValue Property="ValueListProperty" String="Plant"/>
+								</Record>
+								<Record Type="Common.ValueListParameterOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Uap"/>
+									<PropertyValue Property="ValueListProperty" String="UAP"/>
+								</Record>
+								<Record Type="Common.ValueListParameterOut">
+									<!--<PropertyValue Property="LocalDataProperty" PropertyPath="Warehousenumber"/>-->
+									<PropertyValue Property="ValueListProperty" String="Plant"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="Metadata.TableEntity/Ligneprod">
+				<Annotation Term="Common.ValueList">
+					<Record Type="Common.ValueListType">
+						<PropertyValue Property="CollectionPath" String="ZLIGNEPROD"/>
+						<PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterIn">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Plant"/>
+									<PropertyValue Property="ValueListProperty" String="Plant"/>
+								</Record>
+								<Record Type="Common.ValueListParameterOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Ligneprod"/>
+									<PropertyValue Property="ValueListProperty" String="Ligneprod"/>
+								</Record>
+								<Record Type="Common.ValueListParameterOut">
+									<!--<PropertyValue Property="LocalDataProperty" PropertyPath="Warehousenumber"/>-->
+									<PropertyValue Property="ValueListProperty" String="Plant"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="Metadata.TableEntity/Product">
+				<Annotation Term="Common.ValueList">
+					<Record Type="Common.ValueListType">
+						<PropertyValue Property="CollectionPath" String="ZPRODUCT"/>
+						<PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterIn">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Plant"/>
+									<PropertyValue Property="ValueListProperty" String="Plant"/>
+								</Record>
+								<Record Type="Common.ValueListParameterOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Product"/>
+									<PropertyValue Property="ValueListProperty" String="Product"/>
+								</Record>
+								<Record Type="Common.ValueListParameterOut">
+									<!--<PropertyValue Property="LocalDataProperty" PropertyPath="Warehousenumber"/>-->
+									<PropertyValue Property="ValueListProperty" String="Plant"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="Metadata.TableEntity/Status">
+				<!--<Annotation Term="Common.Label" String="Status"/>-->
+				<Annotation Term="Common.Text" Path="Status">
+					<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/Status"/>
+				</Annotation>
+				<Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>
+				<Annotation Term="Common.ValueList">
+					<Record Type="Common.ValueListType">
+						<!--	<PropertyValue Property="Label" String="Status"/>-->
+						<PropertyValue Property="CollectionPath" String="ZStatusSet"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Status"/>
+									<PropertyValue Property="ValueListProperty" String="Status"/>
+								</Record>
+								<Record Type="Common.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="Status"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="Metadata.TableEntity/Missingpartsrelease">
+				<!--<Annotation Term="Common.Label" String="Status"/>-->
+				<Annotation Term="Common.Text" Path="Missingpartsrelease">
+					<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/Missingpartsrelease"/>
+				</Annotation>
+				<Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>
+				<Annotation Term="Common.ValueList">
+					<Record Type="Common.ValueListType">
+						<!--<PropertyValue Property="Label" String="Status"/>-->
+						<PropertyValue Property="CollectionPath" String="ZMissingpartreleaseSet"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Missingpartsrelease"/>
+									<PropertyValue Property="ValueListProperty" String="Release"/>
+								</Record>
+								<!--<Record Type="Common.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="Missingpartsrelease"/>
+								</Record>-->
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="Metadata.TableEntity/Missingpartslogistics">
+				<!--<Annotation Term="Common.Label" String="Status"/>-->
+				<Annotation Term="Common.Text" Path="Missingpartslogistics">
+					<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/Missingpartslogistics"/>
+				</Annotation>
+				<Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>
+				<Annotation Term="Common.ValueList">
+					<Record Type="Common.ValueListType">
+						<!--<PropertyValue Property="Label" String="Status"/>-->
+						<PropertyValue Property="CollectionPath" String="ZMissingpartlogisticsSet"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Missingpartslogistics"/>
+									<PropertyValue Property="ValueListProperty" String="Logistics"/>
+								</Record>
+								<!--<Record Type="Common.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="Missingpartslogistics"/>
+								</Record>-->
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<!--<Annotations Target="Metadata.TableEntity/Pickingstatus">
+				<Annotation Term="Common.ValueList">
+					<Record Type="Common.ValueListType">
+						<PropertyValue Property="CollectionPath" String="ZPickingStatus"/>
+						<PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Pickingstatus"/>
+									<PropertyValue Property="ValueListProperty" String="Pickingstatus"/>
+								</Record>
+								<Record Type="Common.ValueListParameterOut">
+									<PropertyValue Property="ValueListProperty" String="StatusDescription"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>-->
+			<Annotations Target="Metadata.TableEntity/Pickingstatus">
+				<Annotation Term="Common.Text" Path="DataDisplay">
+					<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+				</Annotation>
+				<Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>
+				<Annotation Term="Common.ValueList">
+					<Record Type="Common.ValueListType">
+						<PropertyValue Property="CollectionPath" String="ZPickingStatus"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="Pickingstatus"/>
+									<PropertyValue Property="ValueListProperty" String="Pickingstatus"/>
+									<!-- sap:text="<description_fieldname>" : this property should be entered in the metadata for the key field, refering to the description field -->
+								</Record>
+								<Record Type="Common.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="StatusDescription"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>
