@@ -1,0 +1,17 @@
+/* Enter your custom styles here */
+.padding {
+	padding-top:1rem;
+	padding-bottom:1rem;
+}
+
+.tileFont {
+    font-size: 2rem;
+}
+
+.textGreenColor{
+color: green;
+}
+
+.bgColorWhite{
+    background-color: white;
+}

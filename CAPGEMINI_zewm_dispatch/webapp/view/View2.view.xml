@@ -1,0 +1,158 @@
+<mvc:View controllerName="com.safran.ewm.zewm_dispatch.controller.View2" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:f="sap.f" xmlns:card="sap.f.cards" xmlns:l="sap.ui.layout" xmlns:form="sap.ui.layout.form"
+	xmlns:uxap="sap.uxap">
+	<Shell appWidthLimited="false">
+		<App>
+			<pages>
+				<Page id="idPage" title="{i18n>appDescription}" class="sapUiSizeCompact">
+					<content>
+						<!-- View portion for the not found page displayed -->
+						<VBox id="idNotFoundPage" alignItems="Center" width="100%" height="100%">
+							<FlexBox alignItems="Center" justifyContent="Center" height="12rem" width="100%">
+								<core:Icon src="sap-icon://document" size="10rem" color="gray"></core:Icon>
+							</FlexBox>
+							<FlexBox alignItems="Center" justifyContent="Center" height="2rem" width="100%">
+								<Text text="{i18n>notFoundText}"/>
+							</FlexBox>
+							<FlexBox alignItems="Center" justifyContent="Center" height="2rem" width="100%">
+								<Link id="link" text="{i18n>back}" press="onBackPressed"/>
+							</FlexBox>
+						</VBox>
+						<!-- View portion for the data page displayed -->
+						<VBox id="idPage2" alignItems="Center" width="100%" height="100%">
+							<FlexBox alignItems="Center" justifyContent="End" width="100%">
+								<Toolbar width="100%" >
+									<Text width="0rem"></Text>
+									<ToolbarSpacer ></ToolbarSpacer>
+									<Button text="{i18n>PackingButton}" type="Emphasized" press="onPressPacking"></Button>
+								</Toolbar>
+							</FlexBox>
+							<l:VerticalLayout width="100%">
+								<l:Grid containerQuery="true" defaultSpan="XL6 L6 M6 S12" visible="true">
+									<VBox>
+										<form:SimpleForm id="idCase1Form" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="4"
+											adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+											singleContainerFullSize="false">
+											<form:content>
+												<Label text="{i18n>StorageType}"/>
+												<Input id="idStorageTypeCase1" value="{oDataModel>/StorageType}" enabled="false"></Input>
+												<Label text="{i18n>StorageBin}"/>
+												<Input id="idStorageBinCase1" value="{oDataModel>/StorageBin}" enabled="false" maxLength="18"></Input>
+												<!--<Label text="{= ${QuantityDescFlag} === '2' ? ${i18n>QuantityReplenish2} : (${QuantityDescFlag} === '1' ? ${i18n>QuantityReplenish1} : ${i18n>QuantityReplenish0})}"/>-->
+												<Label labelFor="idQuantityReplenishCase1"
+													text="{= ${oDataModel>/QuantityDescFlag} === '2' ? ${i18n>QuantityReplenish2} : ${i18n>QuantityReplenish1} }"/>
+												<Input id="idQuantityReplenishCase1" value="{oDataModel>/MaximumQuantity}" enabled="false" maxLength="15" type="Number"></Input>
+												<Label></Label>
+												<HBox>
+													<Button text="{i18n>ValidationButton}" press="onClickValidationCase1" type="Emphasized"/>
+													<Text width="1rem"></Text>
+													<Button text="{i18n>ChangeButton}" press="onChangeFragment" type="Emphasized"/>
+												</HBox>
+											</form:content>
+										</form:SimpleForm>
+										<form:SimpleForm id="idCase2Form" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="4"
+											adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+											singleContainerFullSize="false" visible="false">
+											<form:content>
+												<Label text=""></Label>
+												<Text></Text>
+												<Label text="{i18n>Destination}"></Label>
+												<Input id="idDestinationCase2" value="{oDataModel>/DestinationStorageBin}" enabled="false" maxLength="10"></Input>
+												<Label text=""></Label>
+												<Label text="{i18n>DestinationHU}"></Label>
+												<Input id="idDestinationHUCase2" value="{oDataModel>/DestinationHandlingUnit}" enabled="true" maxLength="20"></Input>
+												<Label/>
+												<Button id="idValidateButton2" text="{i18n>ValidationButton}" press="onClickValidationCase2" type="Emphasized"/>
+												<Button text="{i18n>ChangeButton}" press="onClickChangeCase2" type="Emphasized" visible="false"/>
+											</form:content>
+										</form:SimpleForm>
+									</VBox>
+									<form:SimpleForm id="idSimpleForm2" editable="true" layout="ColumnLayout" singleContainerFullSize="false" columnsL="1" columnsM="1">
+										<form:content>
+											<Label id="lblSourceHU" text="{i18n>HUSource}">
+												<layoutData>
+													<l:GridData span="L3 M3 S3" linebreak="true"/>
+												</layoutData>
+											</Label>
+											<Input id="idSourceHU" value="{oDataModel>/HandlingUnit}" enabled="false">
+												<layoutData>
+													<l:GridData span="L3 M3 S3" linebreak="true"/>
+												</layoutData>
+											</Input>
+											<Label id="lblHUType" text="{i18n>HUType}"/>
+											<Input id="idHUType" value="{oDataModel>/HandlingUnitType}" enabled="false">
+												<layoutData>
+													<l:GridData span="L3 M3 S3" linebreak="true"/>
+												</layoutData>
+											</Input>
+											<Label id="lblArticle" text="{i18n>Article}"/>
+											<Input id="idArticle" value="{oDataModel>/Article}" enabled="false">
+												<layoutData>
+													<l:GridData span="L3 M3 S3" linebreak="true"/>
+												</layoutData>
+											</Input>
+											<Label id="lblBatch" text="{i18n>Batch}"/>
+											<Input id="idBatch" value="{oDataModel>/Batch}" enabled="false">
+												<layoutData>
+													<l:GridData span="L3 M3 S3" linebreak="true"/>
+												</layoutData>
+											</Input>
+											<Label id="lblQty" text="{i18n>Qty}"/>
+											<Input id="idQty" value="{oDataModel>/Quantity}" enabled="false">
+												<layoutData>
+													<l:GridData span="L3 M3 S3" linebreak="true"/>
+												</layoutData>
+											</Input>
+											<Label id="lblSLED" text="{i18n>SLED}"/>
+											<DatePicker dateValue="{oDataModel>/Sled}" valueFormat="yyyy-MM-dd" displayFormat="dd.MM.yyyy" enabled="false"/>
+											<Label id="lblMSL" text="{i18n>MSL}"/>
+											<Input id="idMSL" value="{oDataModel>/Msl}" enabled="false">
+												<layoutData>
+													<l:GridData span="L3 M3 S3" linebreak="true"/>
+												</layoutData>
+											</Input>
+										</form:content>
+									</form:SimpleForm>
+								</l:Grid>
+							</l:VerticalLayout>
+							<FlexBox alignItems="Center" justifyContent="SpaceBetween" width="100%">
+								<Text width="2rem"></Text>
+								<GenericTile id="idTile1" header="{i18n>stockDialogTitle}" press="onPressStockTile">
+									<TileContent>
+										<HBox justifyContent="End">
+											<Title id="idTileText1" text="{oDataModel>/TotalPhysicalStock}" level="H3"></Title>
+										</HBox>
+									</TileContent>
+								</GenericTile>
+								<GenericTile id="idTile2" header="{i18n>warehouseTasksDialogTitle}" press="onPressWarehouseTile">
+									<TileContent>
+										<HBox justifyContent="End">
+											<Title id="idTileText2" text="{oDataModel>/TotalWhTaskStock}" level="H3"></Title>
+										</HBox>
+									</TileContent>
+								</GenericTile>
+								<GenericTile id="idTile3" header="{i18n>MRPDialogTitle}" press="onPressMRPTile">
+									<TileContent>
+										<HBox justifyContent="End">
+											<Title id="idTileText3" text="{oDataModel>/TotalMrpStock}" level="H3"></Title>
+										</HBox>
+									</TileContent>
+								</GenericTile>
+								<GenericTile id="idTile4" header="{i18n>detailedLogTitle}" press="onPressDetailedLog">
+									<TileContent></TileContent>
+								</GenericTile>
+								<Text width="2rem"></Text>
+							</FlexBox>
+						</VBox>
+					</content>
+					<footer>
+						<OverflowToolbar>
+							<Button id="MsgBoxId" icon="sap-icon://alert" type="Emphasized" press="handleMessagePopoverPress"/>
+							<ToolbarSpacer/>
+						</OverflowToolbar>
+					</footer>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>

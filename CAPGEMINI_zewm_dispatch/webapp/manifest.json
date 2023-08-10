@@ -1,0 +1,134 @@
+{
+	"_version": "1.12.0",
+	"sap.app": {
+		"id": "com.safran.ewm.zewm_dispatch",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"sourceTemplate": {
+			"id": "servicecatalog.connectivityComponentForManifest",
+			"version": "0.0.0"
+		},
+		"dataSources": {
+			"ZLEWM_DISPATCH_APP_SRV": {
+				"uri": "/sap/opu/odata/sap/ZLEWM_DISPATCH_APP_SRV/",
+				"type": "OData",
+				"settings": {
+					"localUri": "localService/metadata.xml"
+				}
+			}
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"fullWidth": true
+	},
+	"sap.ui5": {
+		"flexEnabled": false,
+		"rootView": {
+			"viewName": "com.safran.ewm.zewm_dispatch.view.App",
+			"type": "XML",
+			"async": true,
+			"id": "app"
+		},
+		"dependencies": {
+			"minUI5Version": "1.65.6",
+			"libs": {
+				"sap.ui.layout": {},
+				"sap.ui.core": {},
+				"sap.m": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "com.safran.ewm.zewm_dispatch.i18n.i18n"
+				}
+			},
+			"": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Request"
+				},
+				"dataSource": "ZLEWM_DISPATCH_APP_SRV",
+				"preload": true
+			},
+			"oGlobalModel": {
+				"type": "sap.ui.model.json.JSONModel"
+			}
+		},
+		"resources": {
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"viewPath": "com.safran.ewm.zewm_dispatch.view",
+				"controlAggregation": "pages",
+				"controlId": "app",
+				"transition": "slide",
+				"clearControlAggregation": false,
+				"async": true
+			},
+			"routes": [
+				{
+					"name": "View1",
+					"pattern": "",
+					"target": [
+						"View1"
+					]
+				},
+				{
+					"name": "View2",
+					"pattern": "View2/{entity}",
+					"target": [
+						"View2"
+					]
+				}
+			],
+			"targets": {
+				"View1": {
+					"viewName": "View1",
+					"viewLevel": 1
+				},
+				"View2": {
+					"viewName": "View2",
+					"viewLevel": 2
+				}
+			}
+		}
+	},
+	"sap.platform.abap": {
+		"uri": "/sap/bc/ui5_ui5/sap/zewm_dispatch/webapp",
+		"_version": "1.1.0"
+	}
+}

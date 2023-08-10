@@ -1,0 +1,78 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form">
+	<Dialog title="{i18n>stockDialogTitle}" contentWidth="100%" contentHeight="100%" resizable="false" draggable="false">
+		<content>
+			<!--id="idStockDialog"-->
+			<Table items="{oStockModel>/}" inset="false">
+				<columns>
+					<Column >
+						<Text text="{i18n>FragmentWarehouseNumber}"/>
+					</Column>
+					<Column >
+						<Text text="{i18n>FragmentGrouping}"/>
+					</Column>
+					<Column >
+						<Text text="{i18n>FragmentStorageType}"/>
+					</Column>
+					<Column >
+						<Text text="{i18n>FragmentStorageBin}"/>
+					</Column>
+					<Column>
+						<Text text="{i18n>FragmentHandlingUnit}"/>
+					</Column>
+					<Column >
+						<Text text="{i18n>FragmentArticle}"/>
+					</Column>
+					<Column >
+						<Text text="{i18n>FragmentBatch}"/>
+					</Column>
+					<Column >
+						<Text text="{i18n>FragmentQuantity}"/>
+					</Column>
+					<Column >
+						<Text text="{i18n>FragmentUom}"/>
+					</Column>
+					<Column >
+						<Text text="{i18n>FragmentStockType}"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{oStockModel>WarehouseNumber}"/>
+						</cells>
+						<cells>
+							<Text text="{oStockModel>Grouping}"/>
+						</cells>
+						<cells>
+							<Text text="{oStockModel>StorageType}"/>
+						</cells>
+						<cells>
+							<Text text="{oStockModel>StorageBin}"/>
+						</cells>
+						<cells>
+							<Text text="{oStockModel>HandlingUnit}"/>
+						</cells>
+						<cells>
+							<Text text="{oStockModel>Article}"/>
+						</cells>
+						<cells>
+							<Text text="{oStockModel>Batch}"/>
+						</cells>
+						<cells>
+							<Text text="{path:'oStockModel>Quantity', formatter:'.formatter.parseToInt'}"/>
+						</cells>
+						<cells>
+							<Text text="{oStockModel>Uom}"/>
+						</cells>
+						<cells>
+							<Text text="{oStockModel>StockType}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+		<buttons>
+			<Button text="{i18n>CloseButton}" tooltip="{i18n>CloseButton}" press="onStockClose"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,12 @@
+<!DOCTYPE XML>
+<core:FragmentDefinition xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:table="sap.ui.table" xmlns:core="sap.ui.core">
+	<!--Dialog -->
+	<Dialog id="MainDId" title="{i18n>mainDialog_label} {gm>/operationType} {gm>/createModel/HandlingUnit}" contentWidth="100%"
+		contentHeight="90%" resizable="false" draggable="false" afterOpen="afterOpenMainDialog" afterClose="afterCloseMainDialog">
+		<content></content>
+		<buttons>
+			<Button text="{i18n>MessageCloseButton}" tooltip="{i18n>MessageCloseButton}" press="onClickMessageClose"/>
+		</buttons>
+		</Dialog>
+	</core:FragmentDefinition>

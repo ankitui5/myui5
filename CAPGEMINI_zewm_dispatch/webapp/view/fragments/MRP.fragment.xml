@@ -1,0 +1,30 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form">
+	<Dialog id="idMRPDialog" title="{i18n>MRPDialogTitle}" contentWidth="100%" contentHeight="100%" resizable="false" draggable="false">
+		<content>
+			<Table id="idMRPTable" items="{oMRPModel>/}" inset="false">
+				<columns>
+					<Column hAlign="Center">
+						<Text text="{i18n>FragmentRequirementDate}" textAlign="Center"/>
+					</Column>
+					<Column hAlign="Center">
+						<Text text="{i18n>FragmentRequiredQuantity}" textAlign="Center"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<DatePicker dateValue="{path:'oMRPModel>RequirementDate', formatter:'.formatter.setJSDate'}" valueFormat="yyyy-MM-dd" displayFormat="dd.MM.yyyy"
+								enabled="false" width="auto"/>
+						</cells>
+						<cells>
+							<Text text="{path:'oMRPModel>RequiredQuantity', formatter:'.formatter.parseToInt'}" />
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+		<buttons>
+			<Button text="{i18n>CloseButton}" tooltip="{i18n>CloseButton}" press="onMRPClose"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

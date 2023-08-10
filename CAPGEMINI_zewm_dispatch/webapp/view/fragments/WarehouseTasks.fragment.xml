@@ -1,0 +1,90 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form">
+	<Dialog id="idWarehouseDialog" title="{i18n>warehouseTasksDialogTitle}" contentWidth="100%" contentHeight="100%" resizable="false"
+		draggable="false">
+		<content>
+			<Table items="{oWarehouseModel>/}" inset="false">
+				<columns>
+					<Column >
+						<Text text="{i18n>FragmentWarehouseNumber}"/>
+					</Column>
+					<Column>
+						<Text text="{i18n>FragmentHandlingUnit}"/>
+					</Column>
+					<Column >
+						<Text text="{i18n>FragmentWarehouseTask}"/>
+					</Column>
+					<Column >
+						<Text text="{i18n>FragmentCategory}"/>
+					</Column>
+					<Column >
+						<Text text="{i18n>FragmentArticle}"/>
+					</Column>
+					<Column >
+						<Text text="{i18n>FragmentBatch}"/>
+					</Column>
+					<Column >
+						<Text text="{i18n>FragmentQuantity}"/>
+					</Column>
+					<Column >
+						<Text text="{i18n>FragmentUom}"/>
+					</Column>
+					<Column >
+						<Text text="{i18n>FragmentSourceStorageType}"/>
+					</Column>
+					<Column >
+						<Text text="{i18n>FragmentSourceStorageBin}"/>
+					</Column>
+					<Column >
+						<Text text="{i18n>FragmentDestinationStorageType}"/>
+					</Column>
+					<Column >
+						<Text text="{i18n>FragmentDestinationStorageBin}"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{oWarehouseModel>WarehouseNumber}"/>
+						</cells>
+						<cells>
+							<Text text="{oWarehouseModel>HandlingUnit}"/>
+						</cells>
+						<cells>
+							<Text text="{oWarehouseModel>WarehouseTask}"/>
+						</cells>
+						<cells>
+							<Text text="{oWarehouseModel>Cat}"/>
+						</cells>
+						<cells>
+							<Text text="{oWarehouseModel>Article}"/>
+						</cells>
+						<cells>
+							<Text text="{oWarehouseModel>Batch}"/>
+						</cells>
+						<cells>
+							<Text text="{path:'oWarehouseModel>Quan', formatter:'.formatter.parseToInt'}"/>
+						</cells>
+						<cells>
+							<Text text="{oWarehouseModel>Uom}"/>
+						</cells>
+						<cells>
+							<Text text="{oWarehouseModel>SourceStorageType}"/>
+						</cells>
+						<cells>
+							<Text text="{oWarehouseModel>SourceStorageBin}"/>
+						</cells>
+						<cells>
+							<Text text="{oWarehouseModel>DestinationStorageType}"/>
+						</cells>
+						<cells>
+							<Text text="{oWarehouseModel>DestinationStorageBin}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+		<buttons>
+			<Button text="{i18n>CloseButton}" tooltip="{i18n>CloseButton}" press="onWarehouseClose"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

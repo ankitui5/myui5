@@ -1,0 +1,39 @@
+<mvc:View controllerName="com.safran.ewm.zewm_dispatch.controller.View1" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
+	<Shell id="shell" appWidthLimited="false">
+		<App id="app">
+			<pages>
+				<Page id="idPage1" title="{i18n>appDescription}">
+					<content>
+						<VBox >
+							<Toolbar >
+								<Label text="{i18n>HUPending} : "/>
+								<Text id="txtHUPending" text="" width="10rem"></Text>
+								<Label text="{i18n>Whno} : "/>
+								<Text id="txtWhno" text="" width="10rem"></Text>
+							</Toolbar>
+							<FlexBox justifyContent="Center" alignItems="Center" height="20rem">
+								<VBox alignItems="Center">
+									<Label text="{i18n>HUSource}"/>
+									<HBox>
+										<Input id="idHUSource" width="15rem" maxLength="20" textAlign="Center" change="onSearch"></Input>
+										<Button icon="sap-icon://search" type="Accept" press="onSearch"/>
+									</HBox>
+								</VBox>
+							</FlexBox>
+							<FlexBox alignItems="Start" justifyContent="Start">
+								<Text width="1rem"></Text>
+								<Text id="idBottomText" text="" class="textGreenColor"></Text>
+							</FlexBox>
+						</VBox>
+					</content>
+					<footer>
+						<OverflowToolbar>
+							<Button id="idView1MsgBox" icon="sap-icon://alert" type="Emphasized" press="handleMessagePopoverPress"/>
+							<ToolbarSpacer/>
+						</OverflowToolbar>
+					</footer>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>

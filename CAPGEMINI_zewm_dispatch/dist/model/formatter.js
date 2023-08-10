@@ -1,0 +1,1 @@
+sap.ui.define(["sap/ui/core/format/DateFormat"],function(t){"use strict";return{setJSDate:function(t){return new Date(t.toString().split("T")[0])},parseToInt:function(t){return parseInt(t)}}});
