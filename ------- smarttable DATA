@@ -1,0 +1,5 @@
+onDataReceieved: function (oEvent){
+var itemCount = oEvent.getParameters().get parameter('data')['results'].length;
+
+var dataArr = oEvent.getParameters().get parameter('data')['results'];
+}
